@@ -1,8 +1,8 @@
-#include "ScriptPCH.h"
+п»ї#include "ScriptPCH.h"
 #include "deadmines.h"
 #include "Vehicle.h"
 
-//todo: реализовать прыжки хеликса, сделать получше бомбы
+//todo: й‡ЈиґЌп¦єиЌ»еџЋ?з©Ѕе©ље­є з•њжіЈжЏ„? йЂЎиЁЂеџЋ?з¦Ћж‡їеќ‚?зЃ‘п§°?
 enum ScriptTexts
 {
     SAY_AGGRO    = 5,

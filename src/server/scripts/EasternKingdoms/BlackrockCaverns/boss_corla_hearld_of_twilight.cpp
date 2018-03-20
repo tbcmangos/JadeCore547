@@ -1,8 +1,8 @@
-#include "ScriptPCH.h"
+п»ї#include "ScriptPCH.h"
 #include "Spell.h"
 #include "blackrock_caverns.h"
 
-//todo: реализовать нормальное превращение
+//todo: й‡ЈиґЌп¦єиЌ»еџЋ?п§єйЏѓиґЌиЊґиµ¤ з©Ѕе„„иЄїз·жќ–?
 enum ScriptTexts
 {
 	SAY_AGGRO		= 0,

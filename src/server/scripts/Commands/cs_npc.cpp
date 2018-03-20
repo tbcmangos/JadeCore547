@@ -116,7 +116,7 @@ UnitFlag const unitFlags[UNIT_FLAGS_MAX] =
     { UNIT_FLAG_UNK_28              , "UNIT_FLAG_UNK_28"                },
     { UNIT_FLAG_UNK_29              , "UNIT_FLAG_UNK_29"                },
     { UNIT_FLAG_SHEATHE             , "UNIT_FLAG_SHEATHE"               },
-    { UNIT_FLAG_UNK_31              , "UNIT_FLAG_UNK_31"                }
+    { (uint32)UNIT_FLAG_UNK_31      , "UNIT_FLAG_UNK_31"                }
 };
 
 class npc_commandscript : public CommandScript

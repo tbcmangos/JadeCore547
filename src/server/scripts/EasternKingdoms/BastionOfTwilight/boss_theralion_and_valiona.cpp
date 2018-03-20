@@ -1,4 +1,4 @@
-#include "ScriptPCH.h"
+ï»¿#include "ScriptPCH.h"
 #include "bastion_of_twilight.h"
 
 enum ValionaScriptTexts
@@ -49,13 +49,13 @@ enum Spells
     SPELL_TWILIGHT_METEORITE_MARK    = 88518,
     SPELL_DEEP_BREATH                = 86059,
     SPELL_TWILIGHT_FLAMES_TRIGGER    = 86194,
-    SPELL_TWILIGHT_FLAME_DMG_1        = 86199, //áüåò ïî îáû÷íîìó ìèðó
-    SPELL_TWILIGHT_FLAME_DMG_25_1    = 92868, //áüåò ïî îáû÷íîìó ìèðó
-    SPELL_TWILIGHT_FLAME_DMG_10H_1    = 92869, //áüåò ïî îáû÷íîìó ìèðó
-    SPELL_TWILIGHT_FLAME_DMG_25H_1    = 92870, //áüåò ïî îáû÷íîìó ìèðó
-    SPELL_TWILIGHT_FLAME_DMG_2        = 86228, //áüåò ïî ñóìåðå÷íîìó ìèðó
-    SPELL_TWILIGHT_FLAME_DMG_25_2    = 92867, //áüåò ïî ñóìåðå÷íîìó ìèðó
-    SPELL_COSMETIC_TWILIGHT_BREATH    = 78954, //âîçìîæíî íåâåðíûé
+    SPELL_TWILIGHT_FLAME_DMG_1        = 86199, //å³€å¥„ ç¦Ž ç¿Ÿè¨Œï§ºå£¬ ï§³å®—
+    SPELL_TWILIGHT_FLAME_DMG_25_1    = 92868, //å³€å¥„ ç¦Ž ç¿Ÿè¨Œï§ºå£¬ ï§³å®—
+    SPELL_TWILIGHT_FLAME_DMG_10H_1    = 92869, //å³€å¥„ ç¦Ž ç¿Ÿè¨Œï§ºå£¬ ï§³å®—
+    SPELL_TWILIGHT_FLAME_DMG_25H_1    = 92870, //å³€å¥„ ç¦Ž ç¿Ÿè¨Œï§ºå£¬ ï§³å®—
+    SPELL_TWILIGHT_FLAME_DMG_2        = 86228, //å³€å¥„ ç¦Ž æ†Žé­é‡£æ·ä½ƒ?ï§³å®—
+    SPELL_TWILIGHT_FLAME_DMG_25_2    = 92867, //å³€å¥„ ç¦Ž æ†Žé­é‡£æ·ä½ƒ?ï§³å®—
+    SPELL_COSMETIC_TWILIGHT_BREATH    = 78954, //è„£å‚²è·¡ï§º å¼µæ©“å­˜æ¸¾
 
     //theralion
     SPELL_ENGULFING_MAGIC                            = 86607,
@@ -100,14 +100,14 @@ enum Spells
 
     //twilight ream & mobs spells
     SPELL_TWILIGHT_PROTECTION_BUFF                    = 86415,
-    SPELL_TWILIGHT_SHIFT_AURA_1                        = 86202, //îò ãëóáîêîãî äûõàíèÿ
-    SPELL_TWILIGHT_SHIFT_AURA_25_1                    = 92889, //îò ãëóáîêîãî äûõàíèÿ
-    SPELL_TWILIGHT_SHIFT_AURA_10H_1                    = 92890, //îò ãëóáîêîãî äûõàíèÿ
-    SPELL_TWILIGHT_SHIFT_AURA_25H_1                    = 92891, //îò ãëóáîêîãî äûõàíèÿ
-    SPELL_TWILIGHT_SHIFT_AURA_2                        = 88436, //îò ðàçðóøåíèÿ
-    SPELL_TWILIGHT_SHIFT_AURA_25_2                    = 92892, //îò ðàçðóøåíèÿ
-    SPELL_TWILIGHT_SHIFT_AURA_10H_2                    = 92893, //îò ðàçðóøåíèÿ
-    SPELL_TWILIGHT_SHIFT_AURA_25H_2                    = 92894, //îò ðàçðóøåíèÿ
+    SPELL_TWILIGHT_SHIFT_AURA_1                        = 86202, //å‰ª ç´³æ„´é©è¬«?æ¶²éŽšæ–ï£·
+    SPELL_TWILIGHT_SHIFT_AURA_25_1                    = 92889, //å‰ª ç´³æ„´é©è¬«?æ¶²éŽšæ–ï£·
+    SPELL_TWILIGHT_SHIFT_AURA_10H_1                    = 92890, //å‰ª ç´³æ„´é©è¬«?æ¶²éŽšæ–ï£·
+    SPELL_TWILIGHT_SHIFT_AURA_25H_1                    = 92891, //å‰ª ç´³æ„´é©è¬«?æ¶²éŽšæ–ï£·
+    SPELL_TWILIGHT_SHIFT_AURA_2                        = 88436, //å‰ª èª¿å—šèœå­¼?
+    SPELL_TWILIGHT_SHIFT_AURA_25_2                    = 92892, //å‰ª èª¿å—šèœå­¼?
+    SPELL_TWILIGHT_SHIFT_AURA_10H_2                    = 92893, //å‰ª èª¿å—šèœå­¼?
+    SPELL_TWILIGHT_SHIFT_AURA_25H_2                    = 92894, //å‰ª èª¿å—šèœå­¼?
     SPELL_COLLAPSING_TWILIGHT_PORTAL_VISUAL            = 86291,
     SPELL_UNSTABLE_TWILIGHT_VISUAL                    = 86302,
     SPELL_UNSTABLE_TWILIGHT_DMG                        = 86305,
@@ -678,7 +678,7 @@ class boss_valiona : public CreatureScript
             {
                 _Reset();
 
-                //ïðàâêè îáùèõ ñïåëëîâ òîæå òóò
+                //ç©½è¨­å­º ç¿Ÿé™·?æ¥«è¨€ä¾?æ¡Žï¦™ è†£?
 
                 instance->DoRemoveAurasDueToSpellOnPlayers(SPELL_TWILIGHT_PROTECTION_BUFF);
                 instance->DoRemoveAurasDueToSpellOnPlayers(SPELL_TWILIGHT_SHIFT_AURA_1);

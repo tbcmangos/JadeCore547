@@ -1,4 +1,4 @@
-/*
+п»ї/*
  * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
  * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
  *
@@ -136,7 +136,7 @@ enum PetBattleCreateResult
     PET_BATTLE_CREATE_INVALIDE_PLACE = 1,
     PET_BATTLE_CREATE_MOUNT = 2,
     PET_BATTLE_CREATE_SURFACE = 3,
-    // 4 - посторонние обьекты
+    // 4 - з¦Ћеўће…ёдЅєжќ–?зїџжњѓж”ё?
     PET_BATTLE_CREATE_IN_COMBAT = 5,
     PET_BATTLE_CREATE_DIED = 6,
     PET_BATTLE_CREATE_FLYING = 7,

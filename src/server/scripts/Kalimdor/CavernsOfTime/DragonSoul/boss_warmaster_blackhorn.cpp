@@ -1,4 +1,4 @@
-#include "ScriptPCH.h"
+﻿#include "ScriptPCH.h"
 #include "dragon_soul.h"
 #include "MoveSplineInit.h"
 #include "boss_warmaster_blackhorn.h"

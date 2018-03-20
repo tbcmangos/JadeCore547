@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
  * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
  *
@@ -1277,10 +1277,10 @@ void WorldSession::HandleLearnPetSpecialization(WorldPacket & recvData)
     switch(index)
     {
         case 0:
-            specializationId = SPEC_PET_FEROCITY; // Férocité
+            specializationId = SPEC_PET_FEROCITY; // F?ocit?
             break;
         case 1:
-            specializationId = SPEC_PET_TENACITY; // Ténacité
+            specializationId = SPEC_PET_TENACITY; // T?acit?
             break;
         case 2:
             specializationId = SPEC_PET_CUNNING; // Ruse

@@ -1,8 +1,8 @@
-#include "grim_batol.h"
+п»ї#include "grim_batol.h"
 #include "ScriptPCH.h"
 
 
-//todo: щит ночных кошмаров, аое, евент с адами
+//todo: й™·?п§єжќ·зґ… жѓџжљґз‡®иЌ», ж”ќ? е„„е­ј??й›Єй–ѓ?
 
 enum ScriptTexts
 {

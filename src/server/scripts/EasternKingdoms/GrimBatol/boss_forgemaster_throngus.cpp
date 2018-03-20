@@ -1,8 +1,8 @@
-#include "grim_batol.h"
+п»ї#include "grim_batol.h"
 #include "ScriptPCH.h"
 
 
-//todo: реализовать адов и mighty stomp
+//todo: й‡ЈиґЌп¦єиЌ»еџЋ?й›ЄиЌ» ?mighty stomp
 
 enum ScriptTexts
 {

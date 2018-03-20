@@ -1,4 +1,4 @@
-#include "ScriptPCH.h"
+ï»¿#include "ScriptPCH.h"
 #include "Spell.h"
 #include "blackwing_descent.h"
 
@@ -87,7 +87,7 @@ enum Adds
     NPC_ROARING_FLAME            = 41807,
     NPC_ROARING_FLAME_TARGET    = 42121,
     NPC_ABNOXIOUS_FIEND            = 49740,
-    NPC_LORD_VICTOR_NEFARIUS_A    = 43396, // íå óâåðåí
+    NPC_LORD_VICTOR_NEFARIUS_A    = 43396, // å¼µ æ•žå„¼å­¼
 
     NPC_IMP_PORTAL_STALKER  = 49801,
     NPC_BLIND_DRAGON_TAIL   = 42356,
@@ -153,15 +153,15 @@ const Position dwarvenshieldsPos[8] =
 
 const Position atramedesnefariusspawnPos = {96.54f, -220.32f, 94.90f, 0.06f};
 
-Unit* atramedesTarget; // öåëü ëó÷à àòðàìåäà
-Creature* atramedesShield; // ïîñëåäíèé èñïîëüçîâàííûé ùèò
+Unit* atramedesTarget; // å¢®èŸ» æ‡¿å¦¬ åŸŽèª¿é­è´
+Creature* atramedesShield; // ç¦Žè¡†æŠ‘æ–?ï¦½ç¦ŽèŸ»å¾å¾ªç‰†æ¸¾ é™·?
 Creature* roaringsummon;
 Creature* _shields[8];
 
 //
-// ðîòàöèÿ çàêëèíàíèé ïðè íàçåìíîé ôàçå:
+// å°Šè¨ºæ‰“ï£· è£”å¹½å¦–é™åƒ¥ ç©½?å£¯éŠ³æ—¥è¿¹ ç‰’éŠ³:
 // pulse, breath, pulse, breath, flame, pulse, breath, pulse
-// ôàçà 80ñåê, çíà÷èò ïðèìåðíî êàæäûå 13 ñåêóíä ÷òî-òî äîëæíî êàñòîâàòüñÿ, ïîçæå íàñòðîþ òàéìåðû òî÷íåå
+// ç‰’è£” 80éµ? åˆæˆå¶¢ ç©½å¤­å„¼ï§º é­ï¦˜é…· 13 éµæœ‰åº„ ç ´?æ¡Ž å“€é£®ï§º é­å¢žè»åŸŽåŠƒï£·, ç¦Žï¦¸?å£¯å¢žå°Š?è¨ºé›©å„¼?æ¡Žæ·æª
 //
 class boss_atramedes : public CreatureScript
 {
@@ -270,7 +270,7 @@ public:
             switch (summon->GetEntry())
             {
             case NPC_TRACKING_FLAMES:
-                //todo: ðåàëèçîâàòü ïåðåäâèæåíèå
+                //todo: é‡£è´ï¦ºè»åŸŽ?æ¸Ÿé‡£å£“ç•å­¼çŒ¥
                 DoCast(summon, SPELL_SONIC_BREATH);
                 break;
             case NPC_ROARING_FLAME_TARGET:
@@ -364,7 +364,7 @@ public:
                     me->GetMotionMaster()->MovePoint(2, groundPos);
                     break;
                 case EVENT_NEXT_SPELL:
-                    //Çà îäíó ôàçó áóäåò ñêàñòîâàíî 7 ñêèëëîâ
+                    //í–‰ è³Šè…¸ ç‰’å¥§ ä¿®é´¨?ä»²ï¥®æ¡Žå¾ªï§º 7 ä»²å ¯ä¾?
                     if (nextspell > 7)
                         break;
                     switch (nextspell)
@@ -513,7 +513,7 @@ public:
         {
             if (type == POINT_MOTION_TYPE)
             {
-                // Åñëè íïö äîñòèã êîíå÷íîé òî÷êè, òî äåñïàâí
+                // í‡¸æ³£ ç?å“€å¢žåµ¬ æƒŸå¼µæ·è¿¹ æ¡ŽæŠŠ? æ¡Ž é´¨æ¥«è¨­?
                 if (id == 1)
                 {
                     me->DespawnOrUnsummon();
@@ -531,7 +531,7 @@ public:
             {
                 switch (eventId)
                 {
-                // ×åðåç 1ñåê íïö íà÷èíàåò äâèæåíèå
+                // ç—¢é‡£?1éµ?ç?å£¯å©†å£¯å¥„ å£“ç•å­¼çŒ¥
                 case EVENT_SONAR_PULSE_MOVE:
                     if (target)
                         me->GetNearPosition(pos, 50.0f, me->GetAngle(target->GetPositionX(), target->GetPositionY()));

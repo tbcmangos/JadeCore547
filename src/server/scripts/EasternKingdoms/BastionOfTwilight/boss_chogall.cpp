@@ -1,11 +1,11 @@
-#include"ScriptPCH.h"
+п»ї#include"ScriptPCH.h"
 #include"Spell.h"
 #include"bastion_of_twilight.h"
 
-//todo: разобраться с entry мобов у orders
-//todo: реализовать правильные absorb fire, absorb shadow
-//todo: сделать героик скиллы
-//todo: разобраться с таргетами fester blood
+//todo: иЄїеђѕйЋ–еџЋеЉѓпЈ· ?entry жєўзЃ‘??orders
+//todo: й‡ЈиґЌп¦єиЌ»еџЋ?з©ЅиЁ­е ЇиЊґй…· absorb fire, absorb shadow
+//todo: йЂЎиЁЂеџЋ?ж„је°Ље‡№ д»Іе Їи–Џ
+//todo: иЄїеђѕйЋ–еџЋеЉѓпЈ· ?иЁєйЂ еҐ„й–ѓ?fester blood
 
 enum ScriptTexts
 {

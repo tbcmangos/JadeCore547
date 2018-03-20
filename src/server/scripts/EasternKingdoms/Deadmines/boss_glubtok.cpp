@@ -1,7 +1,7 @@
-#include "ScriptPCH.h"
+п»ї#include "ScriptPCH.h"
 #include "deadmines.h"
 
-//todo: реализовать flame wall
+//todo: й‡ЈиґЌп¦єиЌ»еџЋ?flame wall
 
 enum ScriptTexts
 {

@@ -1,4 +1,4 @@
-#include "ScriptPCH.h"
+ï»¿#include "ScriptPCH.h"
 #include "Spell.h"
 #include "bastion_of_twilight.h"
 
@@ -212,11 +212,11 @@ class boss_halfus_wyrmbreaker : public CreatureScript
                 {
                     switch (urand(0, 9))
                     {
-                        //10 âàðèàíòîâ äðàêîíîâ
-                        //Äâóì íåàêòèâíûì ðàçäàåì áàô íåêòèâíîñòè
-                        //Äàåì õàëôèþ + ÷óäèùó áàôû îò àêòèâíûõ
+                        //10 å¾ªé³¥é™æ¡Ž?å´–èŸ¾ä½ºè»
+                        //ì½°è„¹ å¼µèŸ¾éœ‡ç´”å¿½ èª¿ï¦·é½§?è“€?å¼µæ”¸å¤–ï§ºå¢ž?
+                        //ì½§è«º éŽšæ“¬ï§ + ç½·æ€å§® è“€æ†” å‰ª èŸ¾éœ‡ç´”ç´…
                     case 0:
-                        //Ñëàíöåâûé + øòîðìîêðûë + ïîòîìîê ïóñòîòû
+                        //ï¤œé™å¢®è¿°?+ å‰½å…¸æº¢æ„‰é­‚ + ç¦Žæ¡Žæº¢?è‰‡å¢žå‰ª?
                         timewarden->CastSpell(timewarden, SPELL_UNRESPONSIVE_DRAKE, true);
                         for (uint8 i = 0; i < 8; i++)
                             whelps[i]->CastSpell(whelps[i], SPELL_UNRESPONSIVE_WHELP, true); 
@@ -225,7 +225,7 @@ class boss_halfus_wyrmbreaker : public CreatureScript
                         DoCast(me, SPELL_FRENZIED_ASSAULT);
                         break;
                     case 1:
-                        //Ñòðàæ âðåìåíè + øòîðìîêðûë + ïîòîìîê ïóñòîòû
+                        //ï¤ èª¿?è€è«ºå­¼?+ å‰½å…¸æº¢æ„‰é­‚ + ç¦Žæ¡Žæº¢?è‰‡å¢žå‰ª?
                         slatedrake->CastSpell(slatedrake, SPELL_UNRESPONSIVE_DRAKE, true);
                         for (uint8 i = 0; i < 8; i++)
                             whelps[i]->CastSpell(whelps[i], SPELL_UNRESPONSIVE_WHELP, true);
@@ -234,7 +234,7 @@ class boss_halfus_wyrmbreaker : public CreatureScript
                         DoCast(me, SPELL_FRENZIED_ASSAULT);
                         break;
                     case 2:
-                        //Ñëàíöåâûé + ïîòîìîê ïóñòîòû + äðàêîí÷èêè
+                        //ï¤œé™å¢®è¿°?+ ç¦Žæ¡Žæº¢?è‰‡å¢žå‰ª?+ å´–èŸ¾ä½ºå©†å­º
                         bWhelps = true;
                         timewarden->CastSpell(timewarden, SPELL_UNRESPONSIVE_DRAKE, true);
                         stormrider->CastSpell(stormrider, SPELL_UNRESPONSIVE_DRAKE, true);
@@ -243,7 +243,7 @@ class boss_halfus_wyrmbreaker : public CreatureScript
                         proto->CastSpell(proto, SPELL_SUPERHEATED_BREATH, true);
                         break;
                     case 3:
-                        //Ñëàíöåâûé + øòîðìîêðûë + ñòðàæ âðåìåíè
+                        //ï¤œé™å¢®è¿°?+ å‰½å…¸æº¢æ„‰é­‚ + å¢žèª¿?è€è«ºå­¼?
                         netherscion->CastSpell(netherscion, SPELL_UNRESPONSIVE_DRAKE, true);
                         for (uint8 i = 0; i < 8; i++)
                             whelps[i]->CastSpell(whelps[i], SPELL_UNRESPONSIVE_WHELP, true);
@@ -252,7 +252,7 @@ class boss_halfus_wyrmbreaker : public CreatureScript
                         DoCast(me, SPELL_SHADOW_WARPED);
                         break;
                     case 4:
-                        //Ïîòîìîê ïóñòîòû + øòîðìîêðûë + äðàêîí÷èêè
+                        //æ·ƒæ¡Žæº¢?è‰‡å¢žå‰ª?+ å‰½å…¸æº¢æ„‰é­‚ + å´–èŸ¾ä½ºå©†å­º
                         bWhelps = true;
                         slatedrake->CastSpell(slatedrake, SPELL_UNRESPONSIVE_DRAKE, true);
                         timewarden->CastSpell(timewarden, SPELL_UNRESPONSIVE_DRAKE, true);
@@ -261,7 +261,7 @@ class boss_halfus_wyrmbreaker : public CreatureScript
                         proto->CastSpell(proto, SPELL_SUPERHEATED_BREATH, true);
                         break;
                     case 5:
-                        //Ñëàíöåâûé + ñòðàæ âðåìåíè + ïîòîìîê ïóñòîòû
+                        //ï¤œé™å¢®è¿°?+ å¢žèª¿?è€è«ºå­¼?+ ç¦Žæ¡Žæº¢?è‰‡å¢žå‰ª?
                         stormrider->CastSpell(stormrider, SPELL_UNRESPONSIVE_DRAKE, true);
                         for (uint8 i = 0; i < 8; i++)
                             whelps[i]->CastSpell(whelps[i], SPELL_UNRESPONSIVE_WHELP, true);
@@ -270,7 +270,7 @@ class boss_halfus_wyrmbreaker : public CreatureScript
                         DoCast(me, SPELL_FRENZIED_ASSAULT);
                         break;
                     case 6:
-                        //Øòîðìîêðûë + ñòðàæ âðåìåíè + äðàêîí÷èêè
+                        //è¦“å…¸æº¢æ„‰é­‚ + å¢žèª¿?è€è«ºå­¼?+ å´–èŸ¾ä½ºå©†å­º
                         bWhelps = true;
                         slatedrake->CastSpell(slatedrake, SPELL_UNRESPONSIVE_DRAKE, true);
                         netherscion->CastSpell(netherscion, SPELL_UNRESPONSIVE_DRAKE, true);
@@ -279,7 +279,7 @@ class boss_halfus_wyrmbreaker : public CreatureScript
                         proto->CastSpell(proto, SPELL_SUPERHEATED_BREATH, true);                    
                         break;
                     case 7:
-                        //Ñëàíöåâûé + ñòðàæ âðåìåíè + äðàêîí÷èêè
+                        //ï¤œé™å¢®è¿°?+ å¢žèª¿?è€è«ºå­¼?+ å´–èŸ¾ä½ºå©†å­º
                         bWhelps = true;
                         stormrider->CastSpell(stormrider, SPELL_UNRESPONSIVE_DRAKE, true);
                         netherscion->CastSpell(netherscion, SPELL_UNRESPONSIVE_DRAKE, true);
@@ -288,7 +288,7 @@ class boss_halfus_wyrmbreaker : public CreatureScript
                         proto->CastSpell(proto, SPELL_SUPERHEATED_BREATH, true);                    
                         break;
                     case 8:
-                        //Ïîòîìîê ïóñòîòû + ñòðàæ âðåìåíè + äðàêîí÷èêè
+                        //æ·ƒæ¡Žæº¢?è‰‡å¢žå‰ª?+ å¢žèª¿?è€è«ºå­¼?+ å´–èŸ¾ä½ºå©†å­º
                         bWhelps = true;
                         slatedrake->CastSpell(slatedrake, SPELL_UNRESPONSIVE_DRAKE, true);
                         stormrider->CastSpell(stormrider, SPELL_UNRESPONSIVE_DRAKE, true);
@@ -297,7 +297,7 @@ class boss_halfus_wyrmbreaker : public CreatureScript
                         proto->CastSpell(proto, SPELL_SUPERHEATED_BREATH, true);
                         break;
                     case 9:
-                        //Ñëàíöåâûé + øòîðìîêðûë + äðàêîí÷èêè
+                        //ï¤œé™å¢®è¿°?+ å‰½å…¸æº¢æ„‰é­‚ + å´–èŸ¾ä½ºå©†å­º
                         bWhelps = true;
                         netherscion->CastSpell(netherscion, SPELL_UNRESPONSIVE_DRAKE, true);
                         timewarden->CastSpell(timewarden, SPELL_UNRESPONSIVE_DRAKE, true);

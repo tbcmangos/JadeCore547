@@ -1,4 +1,4 @@
-#include"ScriptPCH.h"
+ï»¿#include"ScriptPCH.h"
 #include"Spell.h"
 #include "GameObjectAI.h"
 #include "blackwing_descent.h"
@@ -620,7 +620,7 @@ class npc_absolute_zero : public CreatureScript
                 creature->SetSpeed(MOVE_WALK, 0.5f);
             }
 
-            uint32 uiPauseTimer; //÷òîáû íå ñðàáàòûâàëî ñðàçó ïðè ñàììîíå âîçëå èãðîêà
+            uint32 uiPauseTimer; //ç ´ç¿Ÿ?å¼µ æ±è¤»åŸŽé¡¥è´?æ±æš¹?ç©½?ç„Œå£¹ä½º?è„£ä¿‰?åµ¬å°Šé­
             uint32 uiDespawnTimer;
             bool bCanExplode; 
 
@@ -705,7 +705,7 @@ class npc_magma_jet : public CreatureScript
                     Position newPos;
                     me->GetNearPosition(newPos, 5.5f, 0.0f);
                     me->NearTeleportTo(newPos.GetPositionX(), newPos.GetPositionY(), me->GetPositionZ(), me->GetOrientation());
-                    if (creOwner->GetDistance(me) >= 50.0f) // ñïàâíèòü ðàçëîìû íà ðàññòîÿíèè äî 50 îò áîññà
+                    if (creOwner->GetDistance(me) >= 50.0f) // æ¥«è¨­æ–æ½— èª¿ä¿‰ä½ƒ?å£¯ èª¿è‘ºæ¡Žï£·æ–?å“€ 50 å‰ª ç‘è‘º?
                         me->DespawnOrUnsummon();
                     else
                     {

@@ -1,4 +1,4 @@
-#include "arena_of_annihilation.h"
+﻿#include "arena_of_annihilation.h"
 
 class instance_arena_of_annihilation : public InstanceMapScript
 {
@@ -146,6 +146,7 @@ class instance_arena_of_annihilation : public InstanceMapScript
                     default:
                         break;
                 }
+				return 0;
             }
 
             private:

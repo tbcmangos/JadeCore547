@@ -1,4 +1,4 @@
-#include "BattlePetAbility.h"
+﻿#include "BattlePetAbility.h"
 #include "BattlePetAbilityEffect.h"
 #include "BattlePet.h"
 #include "Battle/PetBattleEvent.h"

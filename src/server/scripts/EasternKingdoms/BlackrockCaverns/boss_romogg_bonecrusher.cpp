@@ -1,8 +1,8 @@
-#include "ScriptPCH.h"
+п»ї#include "ScriptPCH.h"
 #include "blackrock_caverns.h"
 
-//todo: реализовать призыв о помощи
-//todo: реализовать комбо цепи+аое
+//todo: й‡ЈиґЌп¦єиЌ»еџЋ?з©Ѕп¦єйЎҐ ?з¦Ћжєўй™·
+//todo: й‡ЈиґЌп¦єиЌ»еџЋ?жѓџп§°?еў®з‚Ў+ж”ќ?
 
 enum ScriptTexts
 {

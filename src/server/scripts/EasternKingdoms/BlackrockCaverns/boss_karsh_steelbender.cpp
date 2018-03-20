@@ -1,7 +1,7 @@
-#include "ScriptPCH.h"
+п»ї#include "ScriptPCH.h"
 #include "blackrock_caverns.h"
 
-//todo: сделать скалирование дамага от стаков брони
+//todo: йЂЎиЁЂеџЋ?д»ІиґЌп¦јиЌ»й™ќзЊҐ иЏґиЊµдѕЃ е‰Є еўћиџѕиЌ» йЋ–дЅє?
 enum ScriptTexts
 {
 	SAY_AGGRO	= 0,

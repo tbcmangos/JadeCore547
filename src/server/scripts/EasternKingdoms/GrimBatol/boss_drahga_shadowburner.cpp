@@ -1,12 +1,12 @@
-#include "grim_batol.h"
+п»ї#include "grim_batol.h"
 #include "Spell.h"
 #include "ScriptPCH.h"
 #include "Vehicle.h"
 
 
-//todo: починить spell_flaming_fixate
-//todo: откорректировать координаты призыва валионы и перемещение босса
-//todo: сделать корректный not_selectable босса, когда он сидит на валионе
+//todo: з¦Ће©†жќ–жЅ— spell_flaming_fixate
+//todo: е‰Єжѓџж‹™з„‰йњ‡е°ЉеѕЄжЅ— жѓџе…ёжЂЏеЈЇеџ· з©Ѕп¦єйЎҐ?еѕЄжіЈдЅє??жёџй‡Јйќ­з·жќ–?зЃ‘и‘є?
+//todo: йЂЎиЁЂеџЋ?жѓџж‹™з„‰её™жёѕ not_selectable зЃ‘и‘є? жѓџе®ё?дЅє иЊЃжЂЏ?еЈЇ еѕЄжіЈдЅє?
 
 enum ScriptTexts
 {

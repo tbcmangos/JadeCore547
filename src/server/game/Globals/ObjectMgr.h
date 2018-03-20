@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
  * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
  *
@@ -1537,7 +1537,7 @@ class ObjectMgr
 
         UpdateSkipData skipData;
 
-        ///Temporaire pour la création des Z, a remettre en private après
+        ///Temporaire pour la cr?tion des Z, a remettre en private apr?
         GameObjectDataContainer _gameObjectDataStore;
     
         std::set<uint32> const& GetOverwriteExtendedCosts() const

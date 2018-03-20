@@ -321,9 +321,9 @@ class boss_yu_lon_celestial : public CreatureScript
 
 								Movement::MoveSplineInit init(*me);
 								Position home = me->GetHomePosition();
-								init.MoveTo(-746.665405, -5083.675781, -6.227572);
+								init.MoveTo(float(-746.665405), float(-5083.675781), float(-6.227572));
 								init.SetWalk(true);
-								init.SetFacing(0.952623);
+								init.SetFacing(float(0.952623));
 								init.Launch();
 
                                 //me->DisappearAndDie();
