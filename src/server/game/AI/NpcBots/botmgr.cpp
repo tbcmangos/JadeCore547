@@ -221,6 +221,8 @@ bool BotMgr::RestrictBots(Creature const* bot, bool add) const
     if (_owner->IsInFlight())
         return true;
 
+	if (_owner->IsFlying())
+		return true;
     Map const* currMap = _owner->GetMap();
 
     if ((!_enableNpcBotsBGs && currMap->IsBattleground()) ||
