@@ -34,7 +34,10 @@
 #include "DynamicTree.h"
 #include "Vehicle.h"
 #include "RaidEncountersMgr.h"
-
+//npcbot
+#include "botmgr.h"
+#define Trinity JadeCore
+//end npcbot
 union u_map_magic
 {
     char asChar[4];
@@ -2742,7 +2745,24 @@ uint32 Map::GetPlayersCountExceptGMs() const
     uint32 count = 0;
     for (MapRefManager::const_iterator itr = m_mapRefManager.begin(); itr != m_mapRefManager.end(); ++itr)
         if (!itr->getSource()->isGameMaster())
+        //npcbot - count npcbots as group members (event if not in group)
+        {
+            if (itr->GetSource()->HaveBot() && BotMgr::LimitBots(this))
+            {
+                ++count;
+                BotMap const* botmap = itr->GetSource()->GetBotMgr()->GetBotMap();
+                for (BotMap::const_iterator itr = botmap->begin(); itr != botmap->end(); ++itr)
+                {
+                    Creature* cre = itr->second;
+                    if (!cre || !cre->IsInWorld() || cre->FindMap() != this)
+                        continue;
+                    ++count;
+                }
+            }
+            else
+        //end npcbot
             ++count;
+        }
     return count;
 }
 
@@ -2808,6 +2828,10 @@ void Map::AddToActive(Creature* c)
         GridCoord p = JadeCore::ComputeGridCoord(x, y);
         if (getNGrid(p.x_coord, p.y_coord))
             getNGrid(p.x_coord, p.y_coord)->incUnloadActiveLock();
+        //bot
+        else if (c->GetIAmABot())
+            EnsureGridLoadedForActiveObject(Cell(JadeCore::ComputeCellCoord(c->GetPositionX(), c->GetPositionY())), c);
+        //end bot
         else
         {
             GridCoord p2 = JadeCore::ComputeGridCoord(c->GetPositionX(), c->GetPositionY());
@@ -2836,6 +2860,10 @@ void Map::RemoveFromActive(Creature* c)
         GridCoord p = JadeCore::ComputeGridCoord(x, y);
         if (getNGrid(p.x_coord, p.y_coord))
             getNGrid(p.x_coord, p.y_coord)->decUnloadActiveLock();
+        //bot
+        else if (c->GetIAmABot())
+            EnsureGridLoaded(Cell(JadeCore::ComputeCellCoord(c->GetPositionX(), c->GetPositionY())));
+        //end bot
         else
         {
             GridCoord p2 = JadeCore::ComputeGridCoord(c->GetPositionX(), c->GetPositionY());

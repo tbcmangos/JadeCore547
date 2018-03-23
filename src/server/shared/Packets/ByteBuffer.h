@@ -22,6 +22,7 @@
 #include "Common.h"
 #include "Debugging/Errors.h"
 #include "Log.h"
+#include "../../game/Entities/Object/ObjectDefines.h"
 #include "Utilities/ByteConverter.h"
 
 //! Structure to ease conversions from single 64 bit integer guid into individual bytes, for packet sending purposes
@@ -29,8 +30,15 @@
 struct ObjectGuid
 {
     public:
+		//npcbot
+		static ObjectGuid const Empty;
+		//end npcbot
+
         ObjectGuid() { _data.u64 = 0LL; }
         ObjectGuid(uint64 guid) { _data.u64 = guid; }
+		//npcbot
+		ObjectGuid(HighGuid highGuid, uint32 guidLow) { _data.u64 = MAKE_NEW_GUID(guidLow, 0, highGuid); }
+		//end npcbto
 
         uint8& operator[](uint32 index)
         {
@@ -55,6 +63,9 @@ struct ObjectGuid
         }
 
         operator uint64()
+		//npcbot
+		const
+		//end npcbot
         {
             return _data.u64;
         }
@@ -75,6 +86,15 @@ struct ObjectGuid
             return bool(_data.u64);
         }
 
+		//npcbot
+		bool IsPlayer() const {
+			return IS_PLAYER_GUID(_data.u64);
+		}
+		bool IsCreature() const {
+			return IS_CREATURE_GUID(_data.u64);
+		}
+		//end npcbot
+
     private:
         union
         {
@@ -82,7 +102,20 @@ struct ObjectGuid
             uint8 byte[8];
         } _data;
 };
-
+//npcbot
+namespace std
+{
+	template<>
+	struct hash<ObjectGuid>
+	{
+	public:
+		size_t operator()(ObjectGuid const& key) const
+		{
+			return hash<unsigned long long>()(static_cast<uint64>(key));
+		}
+	};
+}
+//end npcbot
 class ByteBufferException
 {
     public:
