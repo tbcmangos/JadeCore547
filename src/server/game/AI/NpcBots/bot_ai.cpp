@@ -252,7 +252,12 @@ bool bot_ai::SetBotOwner(Player* newowner)
         }
 
         (const_cast<CreatureTemplate*>(me->GetCreatureTemplate()))->unit_flags2 &= ~(UNIT_FLAG2_ALLOW_ENEMY_INTERACT);
-        me->SetUInt32Value(UNIT_FIELD_FLAGS_2, me->GetCreatureTemplate()->unit_flags2);
+		if (me->GetOutfit() && me->GetDisplayId()) {
+			me->SetUInt32Value(UNIT_FIELD_FLAGS_2, me->GetCreatureTemplate()->unit_flags2 | UNIT_FLAG2_MIRROR_IMAGE);
+		}
+		else {
+			me->SetUInt32Value(UNIT_FIELD_FLAGS_2, me->GetCreatureTemplate()->unit_flags2);
+		}
     }
 
     //recursive
@@ -277,7 +282,12 @@ void bot_ai::ResetBotAI(uint8 resetType)
         _ownerGuid = 0;
 
     (const_cast<CreatureTemplate*>(me->GetCreatureTemplate()))->unit_flags2 |= (UNIT_FLAG2_ALLOW_ENEMY_INTERACT);
-    me->SetUInt32Value(UNIT_FIELD_FLAGS_2, me->GetCreatureTemplate()->unit_flags2);
+	if (me->GetOutfit() && me->GetDisplayId()) {
+		me->SetUInt32Value(UNIT_FIELD_FLAGS_2, me->GetCreatureTemplate()->unit_flags2 | UNIT_FLAG2_MIRROR_IMAGE);
+	}
+	else {
+		me->SetUInt32Value(UNIT_FIELD_FLAGS_2, me->GetCreatureTemplate()->unit_flags2);
+	}
 
     me->IsAIEnabled = true;
     me->SetCanUpdate(true);

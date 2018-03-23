@@ -345,8 +345,9 @@ bool Creature::InitEntry(uint32 Entry, uint32 /*team*/, const CreatureData* data
     //dressnpc - uint32 displayID = sObjectMgr->ChooseDisplayId(0, GetCreatureTemplate(), data);
 	SetOutfit(sObjectMgr->GetCreatureDisplay(Entry));
 	uint32 displayID = sObjectMgr->ChooseDisplayId(0, GetCreatureTemplate(), data);
-	if (GetOutfit() && displayID)
+	if ( (GetOutfit() && displayID) || IsNPCBot()) {
 		SetFlag(UNIT_FIELD_FLAGS_2, UNIT_FLAG2_MIRROR_IMAGE);
+	}
 	else
 		RemoveFlag(UNIT_FIELD_FLAGS_2, UNIT_FLAG2_MIRROR_IMAGE);
 
@@ -430,10 +431,13 @@ bool Creature::UpdateEntry(uint32 Entry, uint32 team, const CreatureData* data)
 
     SetUInt32Value(UNIT_FIELD_FLAGS, unit_flags);
     //dressnpc - SetUInt32Value(UNIT_FIELD_FLAGS_2, cInfo->unit_flags2);
-	if (GetOutfit() && GetDisplayId())
-		SetUInt32Value(UNIT_FIELD_FLAGS_2, cInfo->unit_flags2 | UNIT_FLAG2_MIRROR_IMAGE);
-	else
-		SetUInt32Value(UNIT_FIELD_FLAGS_2, cInfo->unit_flags2);
+	if (!IsNPCBot()) {
+		if (GetOutfit() && GetDisplayId()) {
+			SetUInt32Value(UNIT_FIELD_FLAGS_2, cInfo->unit_flags2 | UNIT_FLAG2_MIRROR_IMAGE);
+		}
+		else
+			SetUInt32Value(UNIT_FIELD_FLAGS_2, cInfo->unit_flags2);
+	}
     SetFlag(UNIT_FIELD_FLAGS_2, UNIT_FLAG2_REGENERATE_POWER);
 
     SetUInt32Value(OBJECT_FIELD_DYNAMIC_FLAGS, dynamicflags);
