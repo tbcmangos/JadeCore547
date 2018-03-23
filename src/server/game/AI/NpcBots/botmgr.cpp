@@ -1,4 +1,4 @@
-#include "bot_ai.h"
+﻿#include "bot_ai.h"
 #include "bot_Events.h"
 #include "botmgr.h"
 #include "Chat.h"
@@ -538,7 +538,7 @@ BotAddResult BotMgr::AddBot(Creature* bot, bool takeMoney)
     if (!bot->GetBotAI()->IAmFree())
     {
         ChatHandler ch(_owner->GetSession());
-        ch.PSendSysMessage("%s will not join you, already has master: %s",
+        ch.PSendSysMessage(u8"%s는 당신과 합류하지 않을것입니다, 그의 주인은: %s",
             bot->GetName(), bot->GetBotOwner()->GetName());
         //ch.SetSentErrorMessage(true);
         return BOT_ADD_NOT_AVAILABLE;
@@ -546,14 +546,14 @@ BotAddResult BotMgr::AddBot(Creature* bot, bool takeMoney)
     if (bot->GetBotAI()->IsDuringTeleport())
     {
         ChatHandler ch(_owner->GetSession());
-        ch.PSendSysMessage("%s cannot join you while about to teleport", bot->GetName());
+        ch.PSendSysMessage(u8"%s는 순간 이동하는 동안 당신과 합류 할 수 없습니다.", bot->GetName());
         //ch.SetSentErrorMessage(true);
         return BOT_ADD_BUSY;
     }
     if (!temporary && _owner->GetNpcBotsCount() >= GetMaxNpcBots())
     {
         ChatHandler ch(_owner->GetSession());
-        ch.PSendSysMessage("Youre exceed max npcbots (%u)", GetMaxNpcBots());
+        ch.PSendSysMessage(u8"최대 npcbots 수를 초과했습니다. (%u)", GetMaxNpcBots());
         //ch.SetSentErrorMessage(true);
         return BOT_ADD_MAX_EXCEED;
     }
@@ -567,7 +567,7 @@ BotAddResult BotMgr::AddBot(Creature* bot, bool takeMoney)
         if (count >= _maxClassNpcBots)
         {
             ChatHandler ch(_owner->GetSession());
-            ch.PSendSysMessage("You cannot have more bots of that class! %u of %u", count, _maxClassNpcBots);
+            ch.PSendSysMessage(u8"당신은 해당 직업의 npcbot을 더 소유할 수 없습니다!! %u / %u", count, _maxClassNpcBots);
             //ch.SetSentErrorMessage(true);
             return BOT_ADD_MAX_CLASS_EXCEED;
         }
@@ -591,7 +591,7 @@ BotAddResult BotMgr::AddBot(Creature* bot, bool takeMoney)
         if (!_owner->HasEnoughMoney(uint64(cost)))
         {
             ChatHandler ch(_owner->GetSession());
-            std::string str = "You don't have enough money (";
+            std::string str = u8"당신은 돈이 충분하지 않습니다. (";
             str += GetNpcBotCostStr(_owner->getLevel(), bot);
             str += ")!";
             ch.SendSysMessage(str.c_str());
@@ -743,11 +743,11 @@ bool BotMgr::RemoveBotFromGroup(Creature* bot)
     gr = _owner->GetGroup(); //check if group has been deleted
     if (map && map->IsDungeon() && (!gr || !gr->IsMember(bot->GetGUID()))) //make sure bot is removed from group
     {
-        ChatHandler(_owner->GetSession()).PSendSysMessage("Your bot %s has been removed from your group and will be teleported out of the instance in 60 seconds if not invited back", bot->GetName());
+        ChatHandler(_owner->GetSession()).PSendSysMessage(u8"봇 %s 이(가) 그룹에서 삭제되었으며 다시 초대되지 않으면 인스턴스에서 60초후 순간 이동됩니다.", bot->GetName());
 
         if (gr && _owner->GetGUID() != gr->GetLeaderGUID())
             if (Player* leader = ObjectAccessor::FindPlayer(gr->GetLeaderGUID()))
-                ChatHandler(leader->GetSession()).PSendSysMessage("Bot %s has been removed from your group and will be teleported out of the instance in 60 seconds if not invited back", bot->GetName());
+                ChatHandler(leader->GetSession()).PSendSysMessage(u8"봇 %s 이(가) 그룹에서 삭제되었으며 다시 초대되지 않으면 인스턴스에서 60초후 순간 이동됩니다.", bot->GetName());
 
         bot->GetBotAI()->StartBoot();
     }
