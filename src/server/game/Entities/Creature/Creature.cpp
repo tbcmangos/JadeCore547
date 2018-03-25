@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
  * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
  *
@@ -146,7 +146,7 @@ m_respawnDelay(300), m_corpseDelay(60), m_respawnradius(0.0f), m_reactState(REAC
 m_defaultMovementType(IDLE_MOTION_TYPE), m_spawnId(0), m_equipmentId(0), m_AlreadyCallAssistance(false),
 m_AlreadySearchedAssistance(false), m_regenHealth(true), m_AI_locked(false), m_meleeDamageSchoolMask(SPELL_SCHOOL_MASK_NORMAL),
 m_creatureInfo(NULL), m_creatureData(NULL), m_path_id(0), m_formation(NULL), m_battleground(NULL),
-m_FixedAttackDistance(0.0f)
+m_FixedAttackDistance(0.0f), outfitId(0)
 {
     m_regenTimer = CREATURE_REGEN_INTERVAL;
     m_valuesCount = UNIT_END;
@@ -332,7 +332,14 @@ bool Creature::InitEntry(uint32 Entry, uint32 /*team*/, const CreatureData* data
         return false;
     }
 
-    uint32 displayID = sObjectMgr->ChooseDisplayId(0, GetCreatureTemplate(), data);
+    //dressnpc - uint32 displayID = sObjectMgr->ChooseDisplayId(0, GetCreatureTemplate(), data);
+	SetOutfit(sObjectMgr->GetCreatureDisplay(Entry));
+	uint32 displayID = sObjectMgr->ChooseDisplayId(0, GetCreatureTemplate(), data);
+	if (GetOutfit() && displayID)
+		SetFlag(UNIT_FIELD_FLAGS_2, UNIT_FLAG2_MIRROR_IMAGE);
+	else
+		RemoveFlag(UNIT_FIELD_FLAGS_2, UNIT_FLAG2_MIRROR_IMAGE);
+
     CreatureModelInfo const* minfo = sObjectMgr->GetCreatureModelRandomGender(&displayID);
     if (!minfo)                                             // Cancel load if no model defined
     {
@@ -412,7 +419,11 @@ bool Creature::UpdateEntry(uint32 Entry, uint32 team, const CreatureData* data)
     SetAttackTime(RANGED_ATTACK, cInfo->rangeattacktime);
 
     SetUInt32Value(UNIT_FIELD_FLAGS, unit_flags);
-    SetUInt32Value(UNIT_FIELD_FLAGS_2, cInfo->unit_flags2);
+    //dressnpc - SetUInt32Value(UNIT_FIELD_FLAGS_2, cInfo->unit_flags2);
+	if (GetOutfit() && GetDisplayId())
+		SetUInt32Value(UNIT_FIELD_FLAGS_2, cInfo->unit_flags2 | UNIT_FLAG2_MIRROR_IMAGE);
+	else
+		SetUInt32Value(UNIT_FIELD_FLAGS_2, cInfo->unit_flags2);
     SetFlag(UNIT_FIELD_FLAGS_2, UNIT_FLAG2_REGENERATE_POWER);
 
     SetUInt32Value(OBJECT_FIELD_DYNAMIC_FLAGS, dynamicflags);

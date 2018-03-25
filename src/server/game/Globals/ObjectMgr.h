@@ -89,6 +89,17 @@ struct GameTele
 };
 
 typedef UNORDERED_MAP<uint32, GameTele > GameTeleContainer;
+//dressnpc
+#define MAX_CREATURE_OUTFIT_DISPLAYS 11
+struct CreatureOutfit
+{
+	uint32 entry;
+	uint8 race;
+	uint8 Class;
+	uint8 gender;
+	uint32 outfit[MAX_CREATURE_OUTFIT_DISPLAYS];
+};
+typedef std::unordered_map<uint32, CreatureOutfit> CreatureOutfitContainer;
 
 enum ScriptsType
 {
@@ -1138,6 +1149,12 @@ class ObjectMgr
         void LoadQuestPOI();
 
         void LoadNPCSpellClickSpells();
+
+		//dressnpc
+		CreatureOutfitContainer _creatureOutfitStore;
+		void LoadCreatureOutfits();
+		uint32 GetCreatureDisplay(uint32 modelid) const;
+		const CreatureOutfitContainer& GetCreatureOutfitMap() const { return _creatureOutfitStore; }
 
         void LoadGameTele();
 

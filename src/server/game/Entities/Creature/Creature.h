@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
  * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
  *
@@ -461,6 +461,10 @@ class Creature : public Unit, public GridObject<Creature>, public MapObject
         void AddToWorld();
         void RemoveFromWorld();
 
+		//dressnpc
+		void SetOutfit(uint32 outfit) { outfitId = outfit; };
+		uint32 GetOutfit() const { return outfitId; };
+
         void DisappearAndDie();
 
         bool Create(uint32 guidlow, Map* map, uint32 phaseMask, uint32 Entry, uint32 vehId, uint32 team, float x, float y, float z, float ang, const CreatureData* data = NULL);
@@ -826,6 +830,9 @@ class Creature : public Unit, public GridObject<Creature>, public MapObject
         //WaypointMovementGenerator vars
         uint32 m_waypointID;
         uint32 m_path_id;
+
+		//dressnpc
+		uint32 outfitId;
 
         //Formation var
         CreatureGroup* m_formation;
