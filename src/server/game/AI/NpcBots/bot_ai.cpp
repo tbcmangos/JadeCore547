@@ -6609,6 +6609,7 @@ void bot_minion_ai::_updateEquips(uint8 slot, Item* item)
             uint8 index = 0;
             stmt = CharacterDatabase.GetPreparedStatement(CHAR_REP_ITEM_INSTANCE);
 			stmt->setUInt32(  index, botitem->GetEntry());
+			stmt->setUInt32(++index, uint32(0)); // transEntry
 			stmt->setUInt32(++index, GUID_LOPART(botitem->GetOwnerGUID()));//.GetCounter());
 			stmt->setUInt32(++index, GUID_LOPART(botitem->GetUInt64Value(ITEM_FIELD_CREATOR))); //GetGuidValue(ITEM_FIELD_CREATOR).GetCounter());
 			stmt->setUInt32(++index, GUID_LOPART(botitem->GetUInt64Value(ITEM_FIELD_GIFTCREATOR)));// GetGuidValue(ITEM_FIELD_GIFTCREATOR).GetCounter());
