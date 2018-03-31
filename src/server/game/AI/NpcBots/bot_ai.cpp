@@ -561,7 +561,8 @@ void bot_minion_ai::_calculatePos(Position& pos)
             mydist *= 0.2f;
             break;
         }
-        master->GetNearPoint(me, x, y, z, size, mydist, angle);
+		if (me->GetMap() != nullptr)
+			master->GetNearPoint(me, x, y, z, size, mydist, angle);
         if (!master->IsWithinLOS(x,y,z)) //try to get much closer to master
         {
             mydist *= 0.4f - float(i*0.07f);
@@ -1353,7 +1354,8 @@ void bot_minion_ai::SetStats(bool force, bool shapeshift)
         me->SetLevel(mylevel);
 		//thesawolf - lets add a ding here
 		me->HandleEmoteCommand(EMOTE_ONESHOT_CHEER);
-		BotYell(u8"두둥!", master);
+		if (me->GetMap() != nullptr)
+			BotYell(u8"두둥!", master);
         force = true; //reinit spells/passives/other
     }
     if (force)
