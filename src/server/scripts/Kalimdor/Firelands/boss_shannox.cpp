@@ -1,4 +1,4 @@
-﻿#include "ScriptPCH.h"
+#include "ScriptPCH.h"
 #include "firelands.h"
 
 enum ScriptTexts
@@ -93,11 +93,11 @@ enum Other
 
 enum AreaIds
 {
-    AREA_1          = 5764, // 巾莘脣 쥔?震乙?
-    AREA_2          = 5821, // 淃尊杷渾 艇潗
-    AREA_3          = 5766, // 間靭牆渾 쭤張?
-    AREA_4          = 5791, // 췻菴 쿨億張莘 拳閃孼?
-    AREA_5          = 5765, // 嬌張牆渾 禎倧贍
+    AREA_1          = 5764, // Логово Бет'тилак
+    AREA_2          = 5821, // Порочный путь
+    AREA_3          = 5766, // Каменный Венец
+    AREA_4          = 5791, // Гряда Древнего Пламени
+    AREA_5          = 5765, // Огненный портал
 };
 
 const Position dogPos[2] = 

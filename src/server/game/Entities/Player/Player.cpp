@@ -17918,7 +17918,7 @@ void Player::SendPreparedQuest(uint64 guid)
                 if ((quest->IsAutoComplete() && quest->IsRepeatable() && !quest->IsDailyOrWeekly()) || quest->HasFlag(QUEST_FLAGS_AUTOCOMPLETE))
                     PlayerTalkClass->SendQuestGiverRequestItems(quest, guid, CanCompleteRepeatableQuest(quest), true);
                 else
-                    PlayerTalkClass->SendQuestGiverQuestDetails(quest, guid, false);
+                    PlayerTalkClass->SendQuestGiverQuestDetails(quest, guid, true);
             }
         }
     }

@@ -6651,8 +6651,8 @@ SpellCastResult Spell::CheckRuneCost(uint32 runeCostID)
     for (uint32 i = 0; i < RUNE_DEATH; ++i)
     {
         runeCost[i] = src->RuneCost[i];
-         if (Player* modOwner = m_caster->GetSpellModOwner())
-             modOwner->ApplySpellMod(m_spellInfo->Id, SPELLMOD_COST, runeCost[i], this);
+        if (Player* modOwner = m_caster->GetSpellModOwner())
+            modOwner->ApplySpellMod(m_spellInfo->Id, SPELLMOD_COST, runeCost[i], this, false);
     }
 
     runeCost[RUNE_DEATH] = MAX_RUNES;                       // calculated later
@@ -6690,67 +6690,135 @@ void Spell::TakeRunePower(bool didHit)
 
     int32 runeCost[NUM_RUNE_TYPES];                         // blood, frost, unholy, death
 
-     for (uint32 i = 0; i < RUNE_DEATH; ++i)
-     {
-         runeCost[i] = runeCostData->RuneCost[i];
-         if (Player* modOwner = m_caster->GetSpellModOwner())
-             modOwner->ApplySpellMod(m_spellInfo->Id, SPELLMOD_COST, runeCost[i], this);
-     }
+    for (uint32 i = 0; i < RUNE_DEATH; ++i)
+    {
+        runeCost[i] = runeCostData->RuneCost[i];
+        if (Player* modOwner = m_caster->GetSpellModOwner())
+        {
+            modOwner->ApplySpellMod(m_spellInfo->Id, SPELLMOD_COST, runeCost[i], this);
+
+            if (runeCost[i] < 0)
+                runeCost[i] = 0;
+        }
+    }
 
     runeCost[RUNE_DEATH] = 0;                               // calculated later
 
-     for (uint32 i = 0; i < MAX_RUNES; ++i)
-     {
-         RuneType rune = player->GetCurrentRune(i);
-         if (!player->GetRuneCooldown(i) && runeCost[rune] > 0)
-         {
-             player->SetRuneCooldown(i, didHit ? player->GetRuneBaseCooldown(i) : uint32(RUNE_MISS_COOLDOWN));
-             player->SetDeathRuneUsed(i, false);
-             runeCost[rune]--;
-         }
-     }
+    for (uint32 i = 0; i < MAX_RUNES; ++i)
+    {
+        RuneType rune = player->GetCurrentRune(i);
+        if (player->GetRuneCooldown(i) || !runeCost[rune])
+            continue;
 
-runeCost[RUNE_DEATH] = runeCost[RUNE_BLOOD] + runeCost[RUNE_UNHOLY] + runeCost[RUNE_FROST];
-    if (!runeCost[RUNE_DEATH])
-        runeCost[RUNE_DEATH] = runeCostData->RuneCost[RUNE_DEATH];
-	
+        uint32 cooldown = ((m_spellInfo->SpellFamilyFlags[0] & SPELLFAMILYFLAG_DK_DEATH_STRIKE) > 0 || didHit) ? player->GetRuneBaseCooldown(i) : uint32(RUNE_MISS_COOLDOWN);
+        player->SetRuneCooldown(i, cooldown);
+        player->SetDeathRuneUsed(i, false);
+
+        switch (m_spellInfo->Id)
+        {
+            case 45477: // Icy Touch
+            case 45902: // Blood Strike
+            case 48721: // Blood Boil
+            case 50842: // Pestilence
+            case 85948: // Festering Strike
+            {
+                // Reaping
+                if (player->HasAura(56835))
+                {
+                    if (!player->IsRunePermanentlyConverted(i)) // do not convert rune, that alredy converted permanently
+                        player->AddRuneBySpell(i, RUNE_DEATH, 56835);
+                }
+                break;
+            }
+            case 49998: // Death Strike
+            {
+                // Blood Rites
+                if (player->HasAura(50034))
+                {
+                    player->AddRuneBySpell(i, RUNE_DEATH, 50034);
+                }
+                break;
+            }
+            default:
+                break;
+        }
+
+        runeCost[rune]--;
+    }
+
+    /* In MOP there is a some spell, that use death rune, e.g - 73975, so don't reset it*/
+    runeCost[RUNE_DEATH] = runeCostData->RuneCost[RUNE_DEATH];
+    runeCost[RUNE_DEATH] += runeCost[RUNE_BLOOD] + runeCost[RUNE_UNHOLY] + runeCost[RUNE_FROST];
+
     if (runeCost[RUNE_DEATH] > 0)
-     {
-         for (uint32 i = 0; i < MAX_RUNES; ++i)
-         {
-             RuneType rune = player->GetCurrentRune(i);
-             if (!player->GetRuneCooldown(i) && rune == RUNE_DEATH)
-             {
-                 uint32 cooldown = ((m_spellInfo->SpellFamilyFlags[0] & SPELLFAMILYFLAG_DK_DEATH_STRIKE) > 0 || didHit) ? player->GetRuneBaseCooldown(i) : uint32(RUNE_MISS_COOLDOWN);
-                 player->SetRuneCooldown(i, cooldown);
-                 runeCost[rune]--;
- 
-                 bool takePower = didHit;
-                 if (uint32 spell = player->GetRuneConvertSpell(i))
-                     takePower = spell != 54637;
- 
-                 // keep Death Rune type if missed or player has Blood of the North
-                 if (takePower)
-                 {
-                     player->RestoreBaseRune(i);
-                     player->SetDeathRuneUsed(i, true);
-                 }
- 
-                 if (runeCost[RUNE_DEATH] == 0)
-                     break;
-             }
-         }
-     }
+    {
+        for (uint32 i = 0; i < MAX_RUNES; ++i)
+        {
+            RuneType rune = player->GetCurrentRune(i);
+            if (!player->GetRuneCooldown(i) && rune == RUNE_DEATH)
+            {
+                uint32 cooldown = ((m_spellInfo->SpellFamilyFlags[0] & SPELLFAMILYFLAG_DK_DEATH_STRIKE) > 0 || didHit) ? player->GetRuneBaseCooldown(i) : uint32(RUNE_MISS_COOLDOWN);
+                player->SetRuneCooldown(i, cooldown);
+                runeCost[rune]--;
 
-	// you can gain some runic power when use runes
-     if (didHit)
-     {
-         if (int32 rp = int32(runeCostData->runePowerGain * sWorld->getRate(RATE_POWER_RUNICPOWER_INCOME)))
-         {
-             AddPct(rp, player->GetTotalAuraModifier(SPELL_AURA_MOD_RUNE_REGEN_SPEED));
-             player->ModifyPower(POWER_RUNIC_POWER, int32(rp));
-         }
-     }
+                bool takePower = didHit;
+                if (uint32 spell = player->GetRuneConvertSpell(i))
+                    takePower = didHit && spell != 54637;
+
+                if (player->IsRunePermanentlyConverted(i))
+                    takePower = false;
+
+                // keep Death Rune type if missed or player has Blood of the North or rune is permanently converted
+                if (takePower)
+                {
+                    player->RestoreBaseRune(i);
+                    player->SetDeathRuneUsed(i, true);
+                }
+
+                switch (m_spellInfo->Id)
+                {
+                    case 45477: // Icy Touch
+                    case 45902: // Blood Strike
+                    case 48721: // Blood Boil
+                    case 50842: // Pestilence
+                    case 85948: // Festering Strike
+                    {
+                        // Reaping
+                        if (player->HasAura(56835))
+                        {
+                            if (!player->IsRunePermanentlyConverted(i)) // do not convert rune, that alredy converted permanently
+                                player->AddRuneBySpell(i, RUNE_DEATH, 56835);
+                        }
+                        break;
+                    }
+                    case 49998: // Death Strike
+                    {
+                        // Blood Rites
+                        if (player->HasAura(50034))
+                        {
+                            player->AddRuneBySpell(i, RUNE_DEATH, 50034);
+                        }
+                        break;
+                    }
+                    default:
+                        break;
+                }
+
+                if (runeCost[RUNE_DEATH] == 0)
+                    break;
+            }
+        }
+    }
+
+    // you can gain some runic power when use runes
+    if (didHit)
+    {
+        if (int32 rp = int32(runeCostData->runePowerGain * sWorld->getRate(RATE_POWER_RUNICPOWER_INCOME)))
+        {
+            AddPct(rp, player->GetTotalAuraModifier(SPELL_AURA_MOD_RUNE_REGEN_SPEED));
+            player->ModifyPower(POWER_RUNIC_POWER, int32(rp));
+        }
+    }
 }
 
 void Spell::TakeReagents()

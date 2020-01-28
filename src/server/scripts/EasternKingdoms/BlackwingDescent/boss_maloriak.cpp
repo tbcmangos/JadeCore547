@@ -1,4 +1,4 @@
-﻿#include"ScriptPCH.h"
+#include"ScriptPCH.h"
 #include"Spell.h"
 #include "GameObjectAI.h"
 #include "blackwing_descent.h"
@@ -620,7 +620,7 @@ class npc_absolute_zero : public CreatureScript
                 creature->SetSpeed(MOVE_WALK, 0.5f);
             }
 
-            uint32 uiPauseTimer; //破翟?張 汁褻城顥贍?汁暹?穽?焌壹佺?脣俉?嵬尊魏
+            uint32 uiPauseTimer; //чтобы не срабатывало сразу при саммоне возле игрока
             uint32 uiDespawnTimer;
             bool bCanExplode; 
 
@@ -705,7 +705,7 @@ class npc_magma_jet : public CreatureScript
                     Position newPos;
                     me->GetNearPosition(newPos, 5.5f, 0.0f);
                     me->NearTeleportTo(newPos.GetPositionX(), newPos.GetPositionY(), me->GetPositionZ(), me->GetOrientation());
-                    if (creOwner->GetDistance(me) >= 50.0f) // 楫設杖潗 調俉佃?壯 調葺桎杖?哀 50 剪 灑葺?
+                    if (creOwner->GetDistance(me) >= 50.0f) // спавнить разломы на расстоянии до 50 от босса
                         me->DespawnOrUnsummon();
                     else
                     {

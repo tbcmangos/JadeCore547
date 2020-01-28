@@ -1,8 +1,8 @@
-﻿#include"ScriptPCH.h"
+#include"ScriptPCH.h"
 #include "the_vortex_pinnacle.h"
 
 
-// 躬釣穽惑外陝? ?淳春?禎魏 張 釣贍了荻陝?
+// Перепрыгивания в вихрях пока не реализованы
 
 enum Creatures
 {

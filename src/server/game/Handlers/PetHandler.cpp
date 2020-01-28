@@ -1277,10 +1277,10 @@ void WorldSession::HandleLearnPetSpecialization(WorldPacket & recvData)
     switch(index)
     {
         case 0:
-            specializationId = SPEC_PET_FEROCITY; // F?ocit?
+            specializationId = SPEC_PET_FEROCITY; // Ferocity
             break;
         case 1:
-            specializationId = SPEC_PET_TENACITY; // T?acit?
+            specializationId = SPEC_PET_TENACITY; // Ferocity
             break;
         case 2:
             specializationId = SPEC_PET_CUNNING; // Ruse

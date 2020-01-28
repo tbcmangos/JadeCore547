@@ -1,7 +1,7 @@
-﻿#include "ScriptPCH.h"
+#include "ScriptPCH.h"
 #include "deadmines.h"
 
-//todo: 釣贍了荻城?flame wall
+//todo: реализовать flame wall
 
 enum ScriptTexts
 {

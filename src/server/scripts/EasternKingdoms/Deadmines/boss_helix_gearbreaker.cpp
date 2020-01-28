@@ -1,8 +1,8 @@
-﻿#include "ScriptPCH.h"
+#include "ScriptPCH.h"
 #include "deadmines.h"
 #include "Vehicle.h"
 
-//todo: 釣贍了荻城?穽婚孺 畜泣揄? 逡言城?禎懿坂?灑藺?
+//todo: реализовать прыжки хеликса, сделать получше бомбы
 enum ScriptTexts
 {
     SAY_AGGRO    = 5,

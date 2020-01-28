@@ -116,7 +116,7 @@ if( WIN32 )
       libmysql
     PATHS
       ${MYSQL_ADD_LIBRARIES_PATH}
-      "C:/Program Files/MySQL/MySQL Server 5.6/lib"
+      "C:/Program Files/MySQL/MySQL Server 5.6/lib/opt"
       "C:/Program Files/MySQL/MySQL Server 5.5/lib/opt"
       "C:/Program Files/MySQL/MySQL Server 5.1/lib/opt"
       "C:/Program Files/MySQL/MySQL Server 5.0/lib/opt"

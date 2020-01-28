@@ -1,8 +1,8 @@
-﻿#include"ScriptPCH.h"
+#include"ScriptPCH.h"
 #include"Spell.h"
 #include"blackwing_descent.h"
 
-//todo: 釣贍了荻城?reroure power, low health, 惟拙焉帙渾 double attack
+//todo: реализовать reroure power, low health, корректный double attack
 enum ScriptTexts
 {
     SAY_AGGRO       = 0,

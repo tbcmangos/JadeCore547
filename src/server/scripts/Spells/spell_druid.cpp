@@ -4251,9 +4251,12 @@ class spell_dru_starsurge : public SpellScriptLoader
             {
                 if (Player* _player = GetCaster()->ToPlayer())
                 {
-                    _player->RemoveAura(SPELL_DRUID_SHOOTING_STARS);
-
-                    if (_player->HasAura(SPELL_DRUID_SHOOTING_STARS))
+                    if (_player->GetAuraBeforeInstantCast())
+                    {
+                        _player->RemoveAura(SPELL_DRUID_SHOOTING_STARS);
+                        _player->SetAuraBeforeInstantCast(false);
+                    }
+                    else if (_player->HasAura(SPELL_DRUID_SHOOTING_STARS))
                         _player->RemoveSpellCooldown(SPELL_DRUID_STARSURGE, true);
                 }
             }

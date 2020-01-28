@@ -1,8 +1,8 @@
-﻿#include "ScriptPCH.h"
+#include "ScriptPCH.h"
 #include "Spell.h"
 #include "blackrock_caverns.h"
 
-//todo: 釣贍了荻城?狀鏃贍茴赤 穽億調緘杖?
+//todo: реализовать нормальное превращение
 enum ScriptTexts
 {
 	SAY_AGGRO		= 0,

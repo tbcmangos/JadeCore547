@@ -3613,7 +3613,6 @@ float Unit::GetUnitDodgeChance(Unit const* attacker) const
             int32 levelDiff = getLevelForTarget(attacker) - attacker->getLevelForTarget(this);
             if (levelDiff > 0)
                 dodge += 1.5f * levelDiff;
-                
             return dodge > 0.0f ? dodge : 0.0f;
         }
     }
@@ -9585,6 +9584,9 @@ bool Unit::HandleDummyAuraProc(Unit* victim, uint32 damage, uint32 absorb, AuraE
                     if (victim->IsFriendlyTo(this))
                         return false;
 
+                    if (!roll_chance_i(50))
+                        return false;
+
                     if (GetTypeId() == TYPEID_PLAYER)
                     {
                         int32 bp = std::max<int32>(int32(CalculatePct(GetTotalAttackPowerValue(BASE_ATTACK), 20)),
@@ -9594,7 +9596,7 @@ bool Unit::HandleDummyAuraProc(Unit* victim, uint32 damage, uint32 absorb, AuraE
                         {
                             Item* mainItem = ToPlayer()->GetItemByPos(INVENTORY_SLOT_BAG_0, EQUIPMENT_SLOT_MAINHAND);
                             if (mainItem)
-                                bp = CalculatePct(bp, (mainItem->GetTemplate()->Delay / 2.6));
+                                bp = CalculatePct(bp, (mainItem->GetTemplate()->Delay / 2600)); //2600 or 2.6
 
                             if (procFlag & PROC_FLAG_DONE_OFFHAND_ATTACK)
                                 bp = CalculatePct(bp, 50);
@@ -9613,10 +9615,13 @@ bool Unit::HandleDummyAuraProc(Unit* victim, uint32 damage, uint32 absorb, AuraE
                                 return false;
 
                             float baseCastTime = procSpell->CastTimeEntry->CastTime;
-                            if (baseCastTime > 1500)
+                            if (baseCastTime < 1500)
                                 baseCastTime = 1500;
 
                             bp = int32(bp * (baseCastTime / 1500));
+
+                            // From 5.4 it should damage 40% from damage
+                            bp = CalculatePct(bp, 40);
 
                             if (procSpell->GetCustomCoefficientForStormlash())
                                 bp = CalculatePct(bp, procSpell->GetCustomCoefficientForStormlash());
@@ -9657,7 +9662,7 @@ bool Unit::HandleDummyAuraProc(Unit* victim, uint32 damage, uint32 absorb, AuraE
                             else if (procSpell)
                             {
                                 float baseCastTime = procSpell->CastTimeEntry->CastTime;
-                                if (baseCastTime > 1500)
+                                if (baseCastTime < 1500)
                                     baseCastTime = 1500;
 
                                 bp = int32(bp * (baseCastTime / 1500));

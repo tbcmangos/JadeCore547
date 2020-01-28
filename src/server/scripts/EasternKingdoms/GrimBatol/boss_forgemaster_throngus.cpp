@@ -1,8 +1,8 @@
-﻿#include "grim_batol.h"
+#include "grim_batol.h"
 #include "ScriptPCH.h"
 
 
-//todo: 釣贍了荻城?雪荻 ?mighty stomp
+//todo: реализовать адов и mighty stomp
 
 enum ScriptTexts
 {

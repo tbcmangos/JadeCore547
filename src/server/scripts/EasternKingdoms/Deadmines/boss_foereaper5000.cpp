@@ -1,8 +1,8 @@
-﻿#include "ScriptPCH.h"
+#include "ScriptPCH.h"
 #include "deadmines.h"
 
 
-//todo: 釣贍了荻城?尊灑診 ?雪哀?壯 愼尊凹? 盾誼特杖?尊灑診 禎衆?愴僥增循 檉終 溢灑?
+//todo: реализовать робота и аддов на героике, включение робота после убийства пары мобов
 enum ScriptTexts
 {
     SAY_AGGRO    = 0,

@@ -1,7 +1,7 @@
-﻿#include "ScriptPCH.h"
+#include "ScriptPCH.h"
 #include "blackrock_caverns.h"
 
-//todo: 逡言城?楫言?疾陝曾典茵打?
+//todo: сделать спелл трансформации
 
 enum ScriptTexts
 {

@@ -1,4 +1,4 @@
-﻿#include"ScriptPCH.h"
+#include"ScriptPCH.h"
 #include"WorldPacket.h"
 #include"shadowfang_keep.h"
 #include"ScriptMgr.h"
@@ -308,7 +308,7 @@ class npc_springvale_tormented_officer : public CreatureScript
                             DoCast(SPELL_SHIELD_WALL);
                             break;
                         case EVENT_FORSAKEN_ABILITY:
-                            //todo: 釣贍了荻城?楫言?
+                            //todo: реализовать спелл
                             break;
                         case EVENT_UNHOLY_EMPOWERMENT:
                             if (pInstance)

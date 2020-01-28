@@ -1,9 +1,9 @@
-﻿#include "ScriptPCH.h"
+#include "ScriptPCH.h"
 #include "Spell.h"
 #include "bastion_of_twilight.h"
 
-//調吾鎖城劃 ?楫言乙麟 electric instability, lava seed, liquid ice
-//壯煜?橓筑幽巍 秧 avity crash
+//разобраться с спеллами electric instability, lava seed, liquid ice
+//найти вехиклид для avity crash
 
 enum FeludiusScriptText
 {
@@ -183,10 +183,10 @@ enum Events
     EVENT_LIGHTNING_ROD                = 17,
     EVENT_CHAIN_LIGHTNING            = 18,
     EVENT_THUNDERSHOCK                = 19,
-    EVENT_PHASE_3_1                    = 20,    //怏贍謫?
-    EVENT_PHASE_3_2                    = 21,    //怏贍謫?
-    EVENT_PHASE_3_3                    = 22,    //怏贍謫?
-    EVENT_PHASE_3_4                    = 23,    //怏贍謫?
+    EVENT_PHASE_3_1                    = 20,    //диалоги
+    EVENT_PHASE_3_2                    = 21,    //диалоги
+    EVENT_PHASE_3_3                    = 22,    //диалоги
+    EVENT_PHASE_3_4                    = 23,    //диалоги
     EVENT_CRYOGENIC_AURA            = 24,
     EVENT_LAVA_SEED                    = 25,
     EVENT_GRAVITY_CRUSH                = 26,
@@ -216,7 +216,7 @@ enum Adds
     NPC_VIOLENT_CYCLONE                        = 44747,
     NPC_LIQUID_ICE                            = 45452,
     NPC_ASCENDANT_COUNCIL_PLUME_STALKER        = 45420,
-    NPC_ASCENDANT_COUNCIL_TARGET_STALKER    = 44553,    //張禎?帙? 剪有菴 憙?
+    NPC_ASCENDANT_COUNCIL_TARGET_STALKER    = 44553,    //непонятно, откуда это
     NPC_ASCENDANT_COUNCIL_CONTROLLER        = 43691,
     NPC_GRAVITY_CRUSH                        = 45476,
     NPC_FLAME_STRIKE                        = 49432,
@@ -235,21 +235,21 @@ enum Actions
 
 const Position councilPos[4] = 
 {
-    {-1053.54f, -564.38f, 835.02f, 5.81f},    //蟾循鳥佺
-    {-1054.04f, -600.60f, 835.03f, 0.42f},    //謫杖?
-    {-1057.89f, -653.51f, 877.70f, 0.79f},    //燮姚?
-    {-1057.93f, -533.38f, 877.68f, 5.47f},    //鎭拙葉疾?
+    {-1053.54f, -564.38f, 835.02f, 5.81f},    //акварион
+    {-1054.04f, -600.60f, 835.03f, 0.42f},    //огнис
+    {-1057.89f, -653.51f, 877.70f, 0.79f},    //арион
+    {-1057.93f, -533.38f, 877.68f, 5.47f},    //террастра
 };
 
 const Position groundPos[7] = 
 {
-    {-1038.45f, -590.60f, 831.98f, 6.04f},    //壯 2?牒銳 只菴 穽惑齧?燮姚?
-    {-1034.61f, -571.70f, 831.90f, 6.04f},    //壯 2?牒銳 只菴 穽惑齧?鎭拙葉疾?
-    {-1008.42f, -571.32f, 831.90f, 4.71f},    //壯 3?牒銳 尿軸厓? 桎把?蟾循鳥佺?
-    {-995.92f, -582.68f, 831.90f, 3.18f},    //壯 3?牒銳 尿軸厓? 桎把?謫杖焌
-    {-1008.75f, -594.82f, 831.90f, 1.52f},    //壯 3?牒銳 尿軸厓? 桎把?燮姚壯
-    {-1020.88f, -582.67f, 831.90f, 0.0f},    //壯 3?牒銳 尿軸厓? 桎把?鎭拙葉疾?
-    {-1008.58f, -582.97f, 831.90f, 6.23f},    //壯 3?牒銳 桎把?楫設壯 溢章疾前嶢?
+    {-1038.45f, -590.60f, 831.98f, 6.04f},    //на 2й фазе сюда прыгает арион
+    {-1034.61f, -571.70f, 831.90f, 6.04f},    //на 2й фазе сюда прыгает террастра
+    {-1008.42f, -571.32f, 831.90f, 4.71f},    //на 3й фазе исходная точка аквариона
+    {-995.92f, -582.68f, 831.90f, 3.18f},    //на 3й фазе исходная точка огниса
+    {-1008.75f, -594.82f, 831.90f, 1.52f},    //на 3й фазе исходная точка ариона
+    {-1020.88f, -582.67f, 831.90f, 0.0f},    //на 3й фазе исходная точка террастры
+    {-1008.58f, -582.97f, 831.90f, 6.23f},    //на 3й фазе точка спавна монстросити
 };
 
 const Position randomPos[34] = 

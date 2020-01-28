@@ -1,8 +1,8 @@
-﻿#include "ScriptPCH.h"
+#include "ScriptPCH.h"
 #include "blackrock_caverns.h"
 
-//todo: 釣贍了荻城?穽了顥 ?禎溢陷
-//todo: 釣贍了荻城?惟藺?墮炡+攝?
+//todo: реализовать призыв о помощи
+//todo: реализовать комбо цепи+аое
 
 enum ScriptTexts
 {

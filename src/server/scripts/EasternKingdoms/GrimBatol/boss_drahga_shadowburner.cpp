@@ -1,12 +1,12 @@
-﻿#include "grim_batol.h"
+#include "grim_batol.h"
 #include "Spell.h"
 #include "ScriptPCH.h"
 #include "Vehicle.h"
 
 
-//todo: 禎婆杖潗 spell_flaming_fixate
-//todo: 剪惟拙焉震尊循潗 惟典怏壯執 穽了顥?循泣佺??渟釣靭緘杖?灑葺?
-//todo: 逡言城?惟拙焉帙渾 not_selectable 灑葺? 惟宸?佺 茁怏?壯 循泣佺?
+//todo: починить spell_flaming_fixate
+//todo: откорректировать координаты призыва валионы и перемещение босса
+//todo: сделать корректный not_selectable босса, когда он сидит на валионе
 
 enum ScriptTexts
 {

@@ -1,8 +1,8 @@
-﻿
+
 #include "ScriptPCH.h"
 #include "blackrock_caverns.h"
 
-//todo: 釣贍了荻城?魏增?緘檣荻, 悚猝儼?穽?愴僥增橓 調粧? 洵終?magma split
+//todo: реализовать касты щенков, берсерк при убийстве ранти, взрыв magma split
 enum Spells
 {
 	SPELL_BERSERK				= 82395,

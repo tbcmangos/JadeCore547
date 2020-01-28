@@ -106,7 +106,7 @@ namespace Movement
          */
         void SetUncompressed();
 
-        /* Enables flying animation. Disabled by default
+        /* Enables CatmullRom spline interpolation mode, enables flying animation. Disabled by default
          */
         void SetFly();
 

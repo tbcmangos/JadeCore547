@@ -917,12 +917,12 @@ void WorldSession::HandlePlayerLoginOpcode(WorldPacket& recvData)
         m_playerLoading = false;
         return;
     }
-	
 
     _charLoginCallback = CharacterDatabase.DelayQueryHolder((SQLQueryHolder*)holder);
     PreparedStatement* stmt = LoginDatabase.GetPreparedStatement(LOGIN_SEL_CHARACTER_SPELL);
     stmt->setUInt32(0, GetAccountId());
     _accountSpellCallback = LoginDatabase.AsyncQuery(stmt);
+
 }
 
 void WorldSession::HandleLoadScreenOpcode(WorldPacket& recvPacket)

@@ -136,7 +136,7 @@ enum PetBattleCreateResult
     PET_BATTLE_CREATE_INVALIDE_PLACE = 1,
     PET_BATTLE_CREATE_MOUNT = 2,
     PET_BATTLE_CREATE_SURFACE = 3,
-    // 4 - 禎增典佺杖?翟會攸?
+    // 4 - посторонние обьекты
     PET_BATTLE_CREATE_IN_COMBAT = 5,
     PET_BATTLE_CREATE_DIED = 6,
     PET_BATTLE_CREATE_FLYING = 7,

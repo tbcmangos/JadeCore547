@@ -28,6 +28,10 @@ namespace Movement
 {
     UnitMoveType SelectSpeedType(uint32 moveFlags)
     {
+        /*! Not sure about MOVEMENTFLAG_CAN_FLY here - do creatures that can fly
+            but are on ground right now also have it? If yes, this needs a more
+            dynamic check, such as is flying now
+        */
         if (moveFlags & (MOVEMENTFLAG_FLYING | MOVEMENTFLAG_CAN_FLY | MOVEMENTFLAG_DISABLE_GRAVITY))
         {
             if (moveFlags & MOVEMENTFLAG_BACKWARD /*&& speed_obj.flight >= speed_obj.flight_back*/)
@@ -111,6 +115,9 @@ namespace Movement
 
     void MoveSplineInit::Launch()
     {
+        if (&unit == nullptr)
+            return;
+
         MoveSpline& move_spline = *unit.movespline;
 
         Location real_position(unit.GetPositionX(), unit.GetPositionY(), unit.GetPositionZMinusOffset(), unit.GetOrientation());
@@ -126,7 +133,8 @@ namespace Movement
         // there is a big chance that current position is unknown if current state is not finalized, need compute it
         // this also allows calculate spline position and update map position in much greater intervals
         // Don't compute for transport movement if the unit is in a motion between two transports
-        if (!move_spline.Finalized() && move_spline.onTransport == (unit.GetTransGUID() != 0))
+        if (!move_spline.Finalized() && move_spline.Initialized() && move_spline.onTransport == (unit.GetTransGUID() != 0)
+            && !(move_spline.splineflags.transportEnter && args.flags.transportExit))
             real_position = move_spline.ComputePosition();
 
         // should i do the things that user should do? - no.
@@ -344,6 +352,9 @@ namespace Movement
 
     void MoveSplineInit::Stop(bool force)
     {
+        if (&unit == nullptr)
+            return;
+
         MoveSpline& move_spline = *unit.movespline;
 
         if (force)
@@ -372,6 +383,10 @@ namespace Movement
     MoveSplineInit::MoveSplineInit(Unit& m) : unit(m)
     {
         args.splineId = splineIdGen.NewId();
+
+        if (&unit == nullptr)
+            return;
+
         // Elevators also use MOVEMENTFLAG_ONTRANSPORT but we do not keep track of their position changes
         args.TransformForTransport = unit.GetTransGUID();
         // mix existing state into new

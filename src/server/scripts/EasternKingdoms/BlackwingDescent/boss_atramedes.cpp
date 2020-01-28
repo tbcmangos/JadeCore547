@@ -1,4 +1,4 @@
-﻿#include "ScriptPCH.h"
+#include "ScriptPCH.h"
 #include "Spell.h"
 #include "blackwing_descent.h"
 
@@ -87,7 +87,7 @@ enum Adds
     NPC_ROARING_FLAME            = 41807,
     NPC_ROARING_FLAME_TARGET    = 42121,
     NPC_ABNOXIOUS_FIEND            = 49740,
-    NPC_LORD_VICTOR_NEFARIUS_A    = 43396, // 張 敞儼孼
+    NPC_LORD_VICTOR_NEFARIUS_A    = 43396, // не уверен
 
     NPC_IMP_PORTAL_STALKER  = 49801,
     NPC_BLIND_DRAGON_TAIL   = 42356,
@@ -153,15 +153,15 @@ const Position dwarvenshieldsPos[8] =
 
 const Position atramedesnefariusspawnPos = {96.54f, -220.32f, 94.90f, 0.06f};
 
-Unit* atramedesTarget; // 墮蟻 懿妬 城調靭菴
-Creature* atramedesShield; // 禎衆抑杖?尿禎蟻吾循牆渾 陷?
+Unit* atramedesTarget; // цель луча атрамеда
+Creature* atramedesShield; // последний использованный щит
 Creature* roaringsummon;
 Creature* _shields[8];
 
 //
-// 尊診打 裔幽妖陝僥 穽?壯銳日迹 牒銳:
+// ротация заклинаний при наземной фазе:
 // pulse, breath, pulse, breath, flame, pulse, breath, pulse
-// 牒裔 80遵? 午成嶢 穽夭儼狀 魏輦酷 13 遵有庄 破?桎 哀飮狀 魏增荻城劃, 禎隸?壯增尊?診雩儼?桎杷檍
+// фаза 80сек, значит примерно каждые 13 секунд что-то должно кастоваться, позже настрою таймеры точнее
 //
 class boss_atramedes : public CreatureScript
 {
@@ -270,7 +270,7 @@ public:
             switch (summon->GetEntry())
             {
             case NPC_TRACKING_FLAMES:
-                //todo: 釣贍了荻城?渟釣壓畏孼猥
+                //todo: реализовать передвижение
                 DoCast(summon, SPELL_SONIC_BREATH);
                 break;
             case NPC_ROARING_FLAME_TARGET:
@@ -364,7 +364,7 @@ public:
                     me->GetMotionMaster()->MovePoint(2, groundPos);
                     break;
                 case EVENT_NEXT_SPELL:
-                    //행 賊腸 牒奧 修鴨?仲葉桎循狀 7 仲堯依?
+                    //За одну фазу будет скастовано 7 скиллов
                     if (nextspell > 7)
                         break;
                     switch (nextspell)
@@ -513,7 +513,7 @@ public:
         {
             if (type == POINT_MOTION_TYPE)
             {
-                // 퇸泣 獐?哀增嵬 惟張杷迹 桎把? 桎 鴨楫設?
+                // Если нпц достиг конечной точки, то деспавн
                 if (id == 1)
                 {
                     me->DespawnOrUnsummon();
@@ -531,7 +531,7 @@ public:
             {
                 switch (eventId)
                 {
-                // 痢釣?1遵?獐?壯婆壯奄 壓畏孼猥
+                // Через 1сек нпц начинает движение
                 case EVENT_SONAR_PULSE_MOVE:
                     if (target)
                         me->GetNearPosition(pos, 50.0f, me->GetAngle(target->GetPositionX(), target->GetPositionY()));

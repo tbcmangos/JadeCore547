@@ -42,5 +42,5 @@ class PlayerScript_Event_April : public PlayerScript
 
 void AddSC_event_april()
 {
-    //new PlayerScript_Event_April();
+    new PlayerScript_Event_April();
 };

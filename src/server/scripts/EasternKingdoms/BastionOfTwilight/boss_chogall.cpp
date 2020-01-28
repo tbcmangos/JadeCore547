@@ -1,11 +1,11 @@
-﻿#include"ScriptPCH.h"
+#include"ScriptPCH.h"
 #include"Spell.h"
 #include"bastion_of_twilight.h"
 
-//todo: 調吾鎖城劃 ?entry 溢灑??orders
-//todo: 釣贍了荻城?穽設堯茴酷 absorb fire, absorb shadow
-//todo: 逡言城?愼尊凹 仲堯薏
-//todo: 調吾鎖城劃 ?診造奄閃?fester blood
+//todo: разобраться с entry мобов у orders
+//todo: реализовать правильные absorb fire, absorb shadow
+//todo: сделать героик скиллы
+//todo: разобраться с таргетами fester blood
 
 enum ScriptTexts
 {

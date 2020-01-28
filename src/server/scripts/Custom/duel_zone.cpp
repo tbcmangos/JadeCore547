@@ -71,5 +71,5 @@ class duel_zone : public PlayerScript
 
 void AddSC_DuelZone()
 {
-    //new duel_zone();
+    new duel_zone();
 }

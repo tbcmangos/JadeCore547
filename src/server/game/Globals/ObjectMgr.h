@@ -1554,7 +1554,7 @@ class ObjectMgr
 
         UpdateSkipData skipData;
 
-        ///Temporaire pour la cr?tion des Z, a remettre en private apr?
+        ///Temporary for the creation of the Z, may change to private later
         GameObjectDataContainer _gameObjectDataStore;
     
         std::set<uint32> const& GetOverwriteExtendedCosts() const
