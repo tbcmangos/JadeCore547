@@ -1,4 +1,4 @@
-﻿#include "bot_ai.h"
+#include "bot_ai.h"
 #include "bot_Events.h"
 #include "bot_GridNotifiers.h"
 #include "botmgr.h"
@@ -1355,7 +1355,7 @@ void bot_minion_ai::SetStats(bool force, bool shapeshift)
 		//thesawolf - lets add a ding here
 		me->HandleEmoteCommand(EMOTE_ONESHOT_CHEER);
 		if (me->GetMap() != nullptr)
-			BotYell(u8"두둥!", master);
+			BotYell(u8"叮叮!", master);
         force = true; //reinit spells/passives/other
     }
     if (force)
@@ -1963,7 +1963,7 @@ void bot_ai::ReceiveEmote(Player* player, uint32 emote)
 			return;
 		}
 		SetBotCommandState(COMMAND_STAY);
-		BotWhisper(u8"좋아.. 여기서 기다릴께..", player);
+		BotWhisper(u8"好吧，我就呆在这", player);
 		break;
 	case TEXT_EMOTE_BECKON:
 	case TEXT_EMOTE_FOLLOW:
@@ -1975,7 +1975,7 @@ void bot_ai::ReceiveEmote(Player* player, uint32 emote)
 			return;
 		}
 		SetBotCommandState(COMMAND_FOLLOW, true);
-		BotWhisper(u8"너가 어딜 가든 난 함께 할거야..", player);
+		BotWhisper(u8"你去哪我都跟..", player);
 		break;
 	case TEXT_EMOTE_WAVE:
 	case TEXT_EMOTE_GREET:
@@ -1984,11 +1984,11 @@ void bot_ai::ReceiveEmote(Player* player, uint32 emote)
 	case TEXT_EMOTE_WELCOME:
 	case TEXT_EMOTE_INTRODUCE:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_WAVE);
-		BotSay(u8"안녕하세요!", player);
+		BotSay(u8"你好!", player);
 		break;
 	case TEXT_EMOTE_DANCE:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_DANCE);
-		BotSay(u8"쉐낏~ 온 몸을 흔들어봐!", player);
+		BotSay(u8"晃晃你的奶瓶!", player);
 		break;
 	case TEXT_EMOTE_FLIRT:
 	case TEXT_EMOTE_KISS:
@@ -1998,11 +1998,11 @@ void bot_ai::ReceiveEmote(Player* player, uint32 emote)
 	case TEXT_EMOTE_LOVE:
 	case TEXT_EMOTE_HOLDHAND:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_SHY);
-		BotSay(u8"으음...", player);
+		BotSay(u8"额...", player);
 		break;
 	case TEXT_EMOTE_FLEX:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_APPLAUD);
-		BotSay(u8"헤라클레스! 헤라클레스!", player);
+		BotSay(u8"大力! 大力!", player);
 		break;
 	case TEXT_EMOTE_ANGRY:
 	case TEXT_EMOTE_FACEPALM:
@@ -2013,7 +2013,7 @@ void bot_ai::ReceiveEmote(Player* player, uint32 emote)
 	case TEXT_EMOTE_SCOLD:
 	case TEXT_EMOTE_CROSSARMS:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_QUESTION);
-		BotSay(u8"내가 뭘 잘못했니?", player);
+		BotSay(u8"我真的那么干了?", player);
 		break;
 	case TEXT_EMOTE_FART:
 	case TEXT_EMOTE_BURP:
@@ -2022,19 +2022,19 @@ void bot_ai::ReceiveEmote(Player* player, uint32 emote)
 	case TEXT_EMOTE_SNIFF:
 	case TEXT_EMOTE_STINK:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_POINT);
-		BotSay(u8"내가 아니었어! 그냥..", player);
+		BotSay(u8"不是我！是你你你..", player);
 		break;
 	case TEXT_EMOTE_JOKE:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_LAUGH);
-		BotSay(u8"에이.. 내가 그렇게 쉽게 웃을 사람으로 보여?", player);
+		BotSay(u8"啊.. 我笑的太早了吗?", player);
 		break;
 	case TEXT_EMOTE_CHICKEN:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_RUDE);
-		BotSay(u8"우리는 진짜 닭이 누군지 조만간 알 수 있을거야!", player);
+		BotSay(u8"我们很快就会知道谁是胆小鬼了!", player);
 		break;
 	case TEXT_EMOTE_APOLOGIZE:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_POINT);
-		BotSay(u8"젠장 맞아 너가 미안해야해!", player);
+		BotSay(u8"你说得对，你很抱歉!", player);
 		break;
 	case TEXT_EMOTE_APPLAUD:
 	case TEXT_EMOTE_CLAP:
@@ -2042,13 +2042,13 @@ void bot_ai::ReceiveEmote(Player* player, uint32 emote)
 	case TEXT_EMOTE_HAPPY:
 	case TEXT_EMOTE_GOLFCLAP:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_BOW);
-		BotSay(u8"고마워.. 고마워.. 난 항상 여기 있을거야.", player);
+		BotSay(u8"谢谢。。谢谢。。我一周都在这里.", player);
 		break;
 	case TEXT_EMOTE_BEG:
 	case TEXT_EMOTE_GROVEL:
 	case TEXT_EMOTE_PLEAD:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_NO);
-		BotSay(u8"너가 뭘 원하든.. 난 아무것도 줄것이 없어.", player);
+		BotSay(u8"什么都找我要，我啥都没有！", player);
 		break;
 	case TEXT_EMOTE_BITE:
 	case TEXT_EMOTE_POKE:
@@ -2056,11 +2056,11 @@ void bot_ai::ReceiveEmote(Player* player, uint32 emote)
 	case TEXT_EMOTE_PINCH:
 	case TEXT_EMOTE_PUNCH:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_ROAR);
-		BotYell(u8"아야! 망할, 상처!", player);
+		BotYell(u8"哎呀，卧槽，太疼了！", player);
 		break;
 	case TEXT_EMOTE_BORED:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_NO);
-		BotSay(u8"미안하지만 널 웃게할 재주는 없어..", player);
+		BotSay(u8"我的工作职责不包括招待你。 ", player);
 		break;
 	case TEXT_EMOTE_BOW:
 	case TEXT_EMOTE_CURTSEY:
@@ -2070,12 +2070,12 @@ void bot_ai::ReceiveEmote(Player* player, uint32 emote)
 	case TEXT_EMOTE_SIT:
 		//me->HandleEmoteCommand(EMOTE_STATE_SIT); // replace if state doesn't break
 		me->HandleEmoteCommand(EMOTE_ONESHOT_EAT);
-		BotSay(u8"휴식 시간을 가지자..", player);
+		BotSay(u8"容我休息一下..", player);
 		break;
 	case TEXT_EMOTE_AGREE:
 	case TEXT_EMOTE_NOD:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_EXCLAMATION);
-		BotSay(u8"나도 동의해!", player);
+		BotSay(u8"居然有人和我想的一样!", player);
 		break;
 	case TEXT_EMOTE_AMAZE:
 	case TEXT_EMOTE_COWER:
@@ -2091,7 +2091,7 @@ void bot_ai::ReceiveEmote(Player* player, uint32 emote)
 	case TEXT_EMOTE_JEALOUS:
 	case TEXT_EMOTE_PROUD:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_FLEX);
-		BotSay(u8"알아, 알어. 나도 내가 놀랍다는 것을..", player);
+		BotSay(u8"是啊是啊，我伟大吧..", player);
 		break;
 	case TEXT_EMOTE_BLEED:
 	case TEXT_EMOTE_MOURN:
@@ -2099,20 +2099,20 @@ void bot_ai::ReceiveEmote(Player* player, uint32 emote)
 	case TEXT_EMOTE_FAINT:
 	case TEXT_EMOTE_PULSE:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_KNEEL);
-		BotYell(u8"치료! 시작!", player);
+		BotYell(u8"奶一口! 补下buff!", player);
 		break;
 	case TEXT_EMOTE_BLINK:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_KICK);
-		BotSay(u8"뭐? 눈에 뭐가 들어갔니?", player);
+		BotSay(u8"啥? 眼睛里进东西了?", player);
 		break;
 	case TEXT_EMOTE_BOUNCE:
 	case TEXT_EMOTE_BARK:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_POINT);
-		BotSay(u8"좋은 강아지는 누굴까요? 바로 너야!", player);
+		BotSay(u8"谁是条好狗? 是你是你还是你!", player);
 		break;
 	case TEXT_EMOTE_BYE:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_WAVE);
-		BotSay(u8"음.... 기다려! 어딜 가는거야?!", player);
+		BotSay(u8"额.... 等下! 你在搞毛!", player);
 		break;
 	case TEXT_EMOTE_CACKLE:
 	case TEXT_EMOTE_LAUGH:
@@ -2123,7 +2123,7 @@ void bot_ai::ReceiveEmote(Player* player, uint32 emote)
 	case TEXT_EMOTE_SNICKER:
 	case TEXT_EMOTE_SNORT:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_LAUGH);
-		BotSay(u8"잠깐... 뭐가 우릴 다시 웃게 만들었지?", player);
+		BotSay(u8"等下... 你们又在笑什么?", player);
 		break;
 	case TEXT_EMOTE_CONFUSED:
 	case TEXT_EMOTE_CURIOUS:
@@ -2142,7 +2142,7 @@ void bot_ai::ReceiveEmote(Player* player, uint32 emote)
 	case TEXT_EMOTE_SERIOUS:
 	case TEXT_EMOTE_EYEBROW:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_QUESTION);
-		BotSay(u8"날 보지 마.. 난 그냥 여기 있어", player);
+		BotSay(u8"别看我.. 我在这干活呢", player);
 		break;
 	case TEXT_EMOTE_COUGH:
 	case TEXT_EMOTE_DROOL:
@@ -2152,37 +2152,37 @@ void bot_ai::ReceiveEmote(Player* player, uint32 emote)
 	case TEXT_EMOTE_SNEEZE:
 	case TEXT_EMOTE_SWEAT:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_POINT);
-		BotSay(u8"으우! 너의 불쾌한 세균을 다른 곳에서 간직해줘!", player);
+		BotSay(u8"额! 有细菌，把你口罩带起!", player);
 		break;
 	case TEXT_EMOTE_CRY:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_CRY);
-		BotSay(u8"울음을 그치지 않을래? 너의 울음이 날 울게 만들어!", player);
+		BotSay(u8"别哭了好不好，搞的我都想哭了!", player);
 		break;
 	case TEXT_EMOTE_CRACK:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_ROAR);
-		BotSay(u8"인정사정 볼것 없어!", player);
+		BotSay(u8"痛击的时候到了!", player);
 		break;
 	case TEXT_EMOTE_EAT:
 	case TEXT_EMOTE_DRINK:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_EAT);
-		BotSay(u8"내 목마름을 채울 수 있을만큼 충분했음 좋겠어...", player);
+		BotSay(u8"希望你给大家都带了吃的...", player);
 		break;
 	case TEXT_EMOTE_GLOAT:
 	case TEXT_EMOTE_MOCK:
 	case TEXT_EMOTE_TEASE:
 	case TEXT_EMOTE_EMBARRASS:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_CRY);
-		BotSay(u8"그 의미가 개미똥구멍을 필요로 하는건가..", player);
+		BotSay(u8"别表现得那么蠢..", player);
 		break;
 	case TEXT_EMOTE_HUNGRY:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_EAT);
-		BotSay(u8"뭐? 어떤걸 먹을까?", player);
+		BotSay(u8"什么? 你想尝尝。。这东西??!!", player);
 		break;
 	case TEXT_EMOTE_LAYDOWN:
 	case TEXT_EMOTE_TIRED:
 	case TEXT_EMOTE_YAWN:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_KNEEL);
-		BotSay(u8"이미 휴식 시간 아니었어?", player);
+		BotSay(u8"居然又该休息了吗?", player);
 		break;
 	case TEXT_EMOTE_MOAN:
 	case TEXT_EMOTE_MOON:
@@ -2196,27 +2196,27 @@ void bot_ai::ReceiveEmote(Player* player, uint32 emote)
 	case TEXT_EMOTE_WINK:
 	case TEXT_EMOTE_CHARM:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_NO);
-		BotSay(u8"그걸 너의 소중한 팬티안에서 간직하는건 어때..", player);
+		BotSay(u8"别把你的鸟掏出来..", player);
 		break;
 	case TEXT_EMOTE_NO:
 	case TEXT_EMOTE_VETO:
 	case TEXT_EMOTE_DISAGREE:
 	case TEXT_EMOTE_DOUBT:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_QUESTION);
-		BotSay(u8"아음.... 왜 안돼?!", player);
+		BotSay(u8"额.... 为啥呢?!", player);
 		break;
 	case TEXT_EMOTE_PANIC:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_EXCLAMATION);
-		BotSay(u8"지금 당황할 때가 아니야!", player);
+		BotSay(u8"慌慌慌个毛线!", player);
 		break;
 	case TEXT_EMOTE_POINT:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_POINT);
-		BotSay(u8"뭐?! 나 역시 할 수 있어!", player);
+		BotSay(u8"什么?! 我也能好吧!", player);
 		break;
 	case TEXT_EMOTE_RUDE:
 	case TEXT_EMOTE_RASP:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_RUDE);
-		BotSay(u8"내가 돌아 왔어, 친구!", player);
+		BotSay(u8"我在你后面，小屁孩!", player);
 		break;
 	case TEXT_EMOTE_ROAR:
 	case TEXT_EMOTE_THREATEN:
@@ -2237,18 +2237,18 @@ void bot_ai::ReceiveEmote(Player* player, uint32 emote)
 	case TEXT_EMOTE_REVENGE:
 	case TEXT_EMOTE_SHAKEFIST:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_ROAR);
-		BotYell(u8"원시인!", player);
+		BotYell(u8"干起来!", player);
 		break;
 	case TEXT_EMOTE_TALK:
 	case TEXT_EMOTE_TALKEX:
 	case TEXT_EMOTE_TALKQ:
 	case TEXT_EMOTE_LISTEN:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_TALK);
-		BotSay(u8"이러쿵 저러쿵 ㅋㅋㅋ..", player);
+		BotSay(u8"叽里呱啦说点废话..", player);
 		break;
 	case TEXT_EMOTE_THANK:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_BOW);
-		BotSay(u8"별말씀을!", player);
+		BotSay(u8"跟我还客气个啥!", player);
 		break;
 	case TEXT_EMOTE_VICTORY:
 	case TEXT_EMOTE_CHEER:
@@ -2256,7 +2256,7 @@ void bot_ai::ReceiveEmote(Player* player, uint32 emote)
 	case TEXT_EMOTE_HIGHFIVE:
 	case TEXT_EMOTE_DING:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_CHEER);
-		BotSay(u8"오예!", player);
+		BotSay(u8"牛B了卧槽!", player);
 		break;
 	case TEXT_EMOTE_COLD:
 	case TEXT_EMOTE_SHIVER:
@@ -2265,101 +2265,101 @@ void bot_ai::ReceiveEmote(Player* player, uint32 emote)
 	case TEXT_EMOTE_HEALME:
 	case TEXT_EMOTE_POUT:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_QUESTION);
-		BotSay(u8"그리고 정확히 내가 해야할 일이 뭐야?", player);
+		BotSay(u8"我凭什么要那么做?", player);
 		break;
 	case TEXT_EMOTE_COMFORT:
 	case TEXT_EMOTE_SOOTHE:
 	case TEXT_EMOTE_PAT:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_CRY);
-		BotSay(u8"고마워...", player);
+		BotSay(u8"谢了...", player);
 		break;
 	case TEXT_EMOTE_INSULT:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_CRY);
-		BotSay(u8"너가 내 감정을 상하게 했어..", player);
+		BotSay(u8"你伤我心了..", player);
 		break;
 	case TEXT_EMOTE_JK:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_POINT);
-		BotSay(u8"너가.....", player);
+		BotSay(u8"你.....", player);
 		break;
 	case TEXT_EMOTE_RAISE:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_POINT);
-		BotSay(u8"그래.. 너가.. 최고야..", player);
+		BotSay(u8"还行吧你，世界第三。 ", player);
 		break;
 	case TEXT_EMOTE_READY:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_SALUTE);
-		BotSay(u8"여기 준비 됐어!", player);
+		BotSay(u8"我也准备好了!", player);
 		break;
 	case TEXT_EMOTE_SHOO:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_KICK);
-		BotSay(u8"네 모습을 봐!", player);
+		BotSay(u8"嘘你自己!", player);
 		break;
 	case TEXT_EMOTE_SLAP:
 	case TEXT_EMOTE_SMACK:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_CRY);
-		BotSay(u8"내가 그걸 받을 자격이 있을까?", player);
+		BotSay(u8"天哪我做错了什么?", player);
 		break;
 	case TEXT_EMOTE_STAND:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_NONE);
-		BotSay(u8"뭐? 휴식시간이 끝났어? 좋아..", player);
+		BotSay(u8"什么? 该干活了? 好吧..", player);
 		break;
 	case TEXT_EMOTE_TICKLE:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_LAUGH);
-		BotSay(u8"이봐요! 그만해!", player);
+		BotSay(u8"喂! 停下!", player);
 		break;
 	case TEXT_EMOTE_VIOLIN:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_TALK);
-		BotSay(u8"하하.. 아주 재밌어..", player);
+		BotSay(u8"哈哈.. 有那么点意思..", player);
 		break;
 	case TEXT_EMOTE_HELPME:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_POINT);
-		BotYell(u8"빨리! 누가 도와줘!", player);
+		BotYell(u8"快点! 大家来帮帮忙!", player);
 		break;
 	case TEXT_EMOTE_GOODLUCK:
 	case TEXT_EMOTE_LUCK:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_TALK);
-		BotSay(u8"고마워... 난 그게 필요 했어..", player);
+		BotSay(u8"谢谢... 正需要鼓励..", player);
 		break;
 	case TEXT_EMOTE_BRANDISH:
 	case TEXT_EMOTE_MERCY:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_BEG);
-		BotSay(u8"제발 날 죽이지마!", player);
+		BotSay(u8"球球你了，鳖杀我!", player);
 		break;
 	case TEXT_EMOTE_BADFEELING:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_QUESTION);
-		BotSay(u8"난 단지 불길한 기분이 들뿐이야...", player);
+		BotSay(u8"我有一种不祥的预感...", player);
 		break;
 	case TEXT_EMOTE_MAP:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_NO);
-		BotSay(u8"안돼.. 우리가 길을 잃은건 아니겠지, 어?", player);
+		BotSay(u8"不，你难道是路痴吗?", player);
 		break;
 	case TEXT_EMOTE_IDEA:
 	case TEXT_EMOTE_THINK:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_NO);
-		BotSay(u8"오 이런.. 천재적인 아이디어야...", player);
+		BotSay(u8"呦.. 可真是个好主意...", player);
 		break;
 	case TEXT_EMOTE_OFFER:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_NO);
-		BotSay(u8"고마워.. 마지막 마을에서 방금 돌아왔어", player);
+		BotSay(u8"不了，谢谢.. 我在村头买了一些了", player);
 		break;
 	case TEXT_EMOTE_PET:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_ROAR);
-		BotSay(u8"내가 너의 애완동물처럼 보이니?!", player);
+		BotSay(u8"我看起来像你的狗?!", player);
 		break;
 	case TEXT_EMOTE_ROLLEYES:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_POINT);
-		BotSay(u8"그걸 계속하면 니 눈알이 곧 밖으로 빠져나올거야..", player);
+		BotSay(u8"再这么做我就把你眼珠子挖出来..", player);
 		break;
 	case TEXT_EMOTE_SING:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_APPLAUD);
-		BotSay(u8"사랑스러워... 단지 사랑스러워..", player);
+		BotSay(u8"不错嘛... 蛮好听的워..", player);
 		break;
 	case TEXT_EMOTE_COVEREARS:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_EXCLAMATION);
-		BotYell(u8"그게 너에게 도움이 될거라 생각하니?!", player);
+		BotYell(u8"有用吗?!你这是掩耳盗铃 ", player);
 		break;
 	default:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_QUESTION);
-		BotSay(u8"움캬아아앗...", player);
+		BotSay(u8"额...hmmmm...", player);
 		break;
 	}
 }
@@ -3043,10 +3043,10 @@ void bot_minion_ai::_updateMountedState()
             {
                 // thesawolf - let's give it some personality
                 me->HandleEmoteCommand(EMOTE_ONESHOT_CHEER);                
-                BotSay(u8"자 어서 가자!", master);
+                BotSay(u8"走，粗发!", master);
                 return;
             } else {
-                BotSay(u8"난 그 탈것이 없어, 그래서 내 치킨을 탈거야..", master);
+                BotSay(u8"我的马儿不行了，所以暂时只能骑一下我的鸡了..", master);
                 me->AddAura(65927, me); //summons chicken mount
                 return;
             }
@@ -4419,19 +4419,19 @@ bool bot_minion_ai::OnGossipHello(Player* player, Creature* creature, uint32 /*o
             if (!reason)
             {
                 std::ostringstream message;
-                message << creature->GetName() << u8"를 정말 고용 하시겠습니까?";
-                player->PlayerTalkClass->GetGossipMenu().AddMenuItem(-1, GOSSIP_ICON_TAXI, u8"저와 파티 하시겠어요?",
+                message << u8"你想雇佣 " << creature->GetName() << u8" 吗?";
+                player->PlayerTalkClass->GetGossipMenu().AddMenuItem(-1, GOSSIP_ICON_TAXI, u8"你愿意跟我吗?",
                     GOSSIP_SENDER_HIRE, GOSSIP_ACTION_INFO_DEF + 0, message.str().c_str(), cost, false);
             }
             else
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TAXI, u8"저와 파티 하시겠어요?", GOSSIP_SENDER_HIRE, GOSSIP_ACTION_INFO_DEF + reason);
+                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TAXI, u8"你愿意跟我吗?", GOSSIP_SENDER_HIRE, GOSSIP_ACTION_INFO_DEF + reason);
 
             if (creature->GetBotClass() >= BOT_CLASS_EX_START)
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, "<Take a better look on this one>", GOSSIP_SENDER_SCAN, GOSSIP_ACTION_INFO_DEF + 1);
+                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"<仔细看看这一个>", GOSSIP_SENDER_SCAN, GOSSIP_ACTION_INFO_DEF + 1);
 				//thesawolf - add set faction option to gossip
-				player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"당신 편을 들겠습니다!", GOSSIP_SENDER_FACTION, GOSSIP_ACTION_INFO_DEF + 1);
+				player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"选个阵营!", GOSSIP_SENDER_FACTION, GOSSIP_ACTION_INFO_DEF + 1);
 				//thesawolf - a delete for good measure
-				//player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TAXI, "You can go now...", GOSSIP_SENDER_EARLYDISMISS, GOSSIP_ACTION_INFO_DEF + 1);
+				player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TAXI, u8"你可以走了...", GOSSIP_SENDER_EARLYDISMISS, GOSSIP_ACTION_INFO_DEF + 1);
 
             menus = true;
         }
@@ -4443,21 +4443,21 @@ bool bot_minion_ai::OnGossipHello(Player* player, Creature* creature, uint32 /*o
 
         if (player == creature->GetBotOwner())
         {
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"장비 관리...", GOSSIP_SENDER_EQUIPMENT, GOSSIP_ACTION_INFO_DEF + 1);
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"특성 관리...", GOSSIP_SENDER_ROLES, GOSSIP_ACTION_INFO_DEF + 1);
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"거리 관리...", GOSSIP_SENDER_FORMATION, GOSSIP_ACTION_INFO_DEF + 1);
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"능력 사용...", GOSSIP_SENDER_ABILITIES, GOSSIP_ACTION_INFO_DEF + 1);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"管理装备...", GOSSIP_SENDER_EQUIPMENT, GOSSIP_ACTION_INFO_DEF + 1);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"管理职责...", GOSSIP_SENDER_ROLES, GOSSIP_ACTION_INFO_DEF + 1);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"管理形态...", GOSSIP_SENDER_FORMATION, GOSSIP_ACTION_INFO_DEF + 1);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"使用技能...", GOSSIP_SENDER_ABILITIES, GOSSIP_ACTION_INFO_DEF + 1);
             if (creature->GetBotClass() >= BOT_CLASS_EX_START)
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"능력 상태...", GOSSIP_SENDER_SCAN_OWNER, GOSSIP_ACTION_INFO_DEF + 1);
+                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"技能状态...", GOSSIP_SENDER_SCAN_OWNER, GOSSIP_ACTION_INFO_DEF + 1);
 
-			/*
+			
             if (!gr)
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"<파티 생성>", GOSSIP_SENDER_JOIN_GROUP, GOSSIP_ACTION_INFO_DEF + 1);
+                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"<创建队伍>", GOSSIP_SENDER_JOIN_GROUP, GOSSIP_ACTION_INFO_DEF + 1);
             else if (!gr->IsMember(creature->GetGUID()))
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"<파티 추가>", GOSSIP_SENDER_JOIN_GROUP, GOSSIP_ACTION_INFO_DEF + 2);
+                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"<添加至队伍>", GOSSIP_SENDER_JOIN_GROUP, GOSSIP_ACTION_INFO_DEF + 2);
             else
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"<파티 삭제>", GOSSIP_SENDER_LEAVE_GROUP, GOSSIP_ACTION_INFO_DEF + 1);
-			*/
+                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"<从队伍中移除>", GOSSIP_SENDER_LEAVE_GROUP, GOSSIP_ACTION_INFO_DEF + 1);
+			
 
             menus = true;
         }
@@ -4466,9 +4466,9 @@ bool bot_minion_ai::OnGossipHello(Player* player, Creature* creature, uint32 /*o
             switch (creature->GetBotClass())
             {
                 case BOT_CLASS_MAGE:
-					player->ADD_GOSSIP_ITEM(GOSSIP_ICON_VENDOR, u8"빵이 필요해", GOSSIP_SENDER_CLASS, GOSSIP_ACTION_INFO_DEF + 1);
-					player->ADD_GOSSIP_ITEM(GOSSIP_ICON_VENDOR, u8"음료가 필요해", GOSSIP_SENDER_CLASS, GOSSIP_ACTION_INFO_DEF + 2);
-					player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TRAINER, u8"포탈을 열어줄래?", GOSSIP_SENDER_PORTAL, GOSSIP_ACTION_INFO_DEF + 3);
+					player->ADD_GOSSIP_ITEM(GOSSIP_ICON_VENDOR, u8"给点吃的 ", GOSSIP_SENDER_CLASS, GOSSIP_ACTION_INFO_DEF + 1);
+					player->ADD_GOSSIP_ITEM(GOSSIP_ICON_VENDOR, u8"给点喝的 ", GOSSIP_SENDER_CLASS, GOSSIP_ACTION_INFO_DEF + 2);
+					player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TRAINER, u8"来个传送门? ", GOSSIP_SENDER_PORTAL, GOSSIP_ACTION_INFO_DEF + 3);
                     menus = true;
                     break;
                 default:
@@ -4479,8 +4479,8 @@ bool bot_minion_ai::OnGossipHello(Player* player, Creature* creature, uint32 /*o
         if (player == creature->GetBotOwner())
         {
             std::ostringstream astr;
-            astr << u8"당신은 " << creature->GetName() << u8"을 떠나 보내겠습니까?";
-            player->PlayerTalkClass->GetGossipMenu().AddMenuItem(-1, GOSSIP_ICON_TAXI, u8"이제그만 널 보내줄께",
+            astr << u8"你要把 " << creature->GetName() << u8" 送走吗? ";
+            player->PlayerTalkClass->GetGossipMenu().AddMenuItem(-1, GOSSIP_ICON_TAXI, u8"你被解散了 ",
                 GOSSIP_SENDER_DISMISS, GOSSIP_ACTION_INFO_DEF + 1, astr.str().c_str(), 0, false);
 
             menus = true;
@@ -4488,7 +4488,7 @@ bool bot_minion_ai::OnGossipHello(Player* player, Creature* creature, uint32 /*o
     }
 
     if (menus)
-        player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"아무것도 아니야", 0, GOSSIP_ACTION_INFO_DEF + 1);
+        player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"没事", 0, GOSSIP_ACTION_INFO_DEF + 1);
 
     player->PlayerTalkClass->SendGossipMenu(gossipTextId, creature->GetGUID());
     return true;
@@ -4519,7 +4519,7 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
         case 0: //any kind of fail
         {
 			me->HandleEmoteCommand(EMOTE_ONESHOT_NO);
-			BotSay(u8"다시 시도해 보거나.. 아님 다른것을 선택해 봐..", player);
+			BotSay(u8"你可能需要再试一次.. 或者试下别的东西..", player);
             break;
         }
         case 1: //return to main menu
@@ -4531,7 +4531,7 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
             //thesawolf - early dismissal/delete
             me->HandleEmoteCommand(EMOTE_ONESHOT_NONE);
             me->HandleEmoteCommand(EMOTE_ONESHOT_FLEX);
-            BotSay(u8"너와 함께한 시간은 내겐 좋은 추억이야...", player);
+            BotSay(u8"我们在一起会幸福的...", player);
             me->CombatStop();
             me->DeleteFromDB();
             me->AddObjectToRemoveList();
@@ -4548,11 +4548,11 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
         {
             subMenu = true;
             
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TABARD, u8"얼라이언스가 되어주게...", GOSSIP_SENDER_FACTION_ALLIANCE, GOSSIP_ACTION_INFO_DEF + 1);
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_BATTLE, u8"호드가 되어주게...", GOSSIP_SENDER_FACTION_HORDE, GOSSIP_ACTION_INFO_DEF + 1);
-			//player->ADD_GOSSIP_ITEM(GOSSIP_ICON_VENDOR, u8"모두의 적이 되어주게...", GOSSIP_SENDER_FACTION_MONSTER, GOSSIP_ACTION_INFO_DEF + 1);
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TRAINER, u8"모두의 친구가 되어주게...", GOSSIP_SENDER_FACTION_FRIEND, GOSSIP_ACTION_INFO_DEF + 1);
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"(뒤로가기)", 1, GOSSIP_ACTION_INFO_DEF + 1);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TABARD, u8"联盟...", GOSSIP_SENDER_FACTION_ALLIANCE, GOSSIP_ACTION_INFO_DEF + 1);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_BATTLE, u8"部落...", GOSSIP_SENDER_FACTION_HORDE, GOSSIP_ACTION_INFO_DEF + 1);
+			player->ADD_GOSSIP_ITEM(GOSSIP_ICON_VENDOR, u8"怪物...", GOSSIP_SENDER_FACTION_MONSTER, GOSSIP_ACTION_INFO_DEF + 1);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TRAINER, u8"对所有人友好...", GOSSIP_SENDER_FACTION_FRIEND, GOSSIP_ACTION_INFO_DEF + 1);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"(返回)", 1, GOSSIP_ACTION_INFO_DEF + 1);
 
             break;
         }
@@ -4568,7 +4568,7 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
             
             //const_cast<CreatureTemplate*>(me->GetCreatureTemplate())->faction = faction;
             me->HandleEmoteCommand(EMOTE_ONESHOT_SALUTE);
-            BotSay(u8"얼라이언스를 위하여!", player);
+            BotSay(u8"为了联盟!", player);
             break;
         }
         case GOSSIP_SENDER_FACTION_HORDE: //set horde
@@ -4583,7 +4583,7 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
                         
             //const_cast<CreatureTemplate*>(me->GetCreatureTemplate())->faction = faction;
             me->HandleEmoteCommand(EMOTE_ONESHOT_ROAR);
-            BotSay(u8"호드를 위하여!", player);
+            BotSay(u8"为了部落!", player);
             break;
         }
         case GOSSIP_SENDER_FACTION_MONSTER: //set monster
@@ -4598,7 +4598,7 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
                         
             //const_cast<CreatureTemplate*>(me->GetCreatureTemplate())->faction = faction;
             me->HandleEmoteCommand(EMOTE_ONESHOT_RUDE);
-            BotSay(u8"난 너희 모두가 싫어!", player);
+            BotSay(u8"我恨所有人!", player);
             break;
         }
         case GOSSIP_SENDER_FACTION_FRIEND: //set friendly to all
@@ -4613,7 +4613,7 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
                         
             //const_cast<CreatureTemplate*>(me->GetCreatureTemplate())->faction = faction;
             me->HandleEmoteCommand(EMOTE_ONESHOT_FLEX);
-            BotSay(u8"난 너희 모두를 사랑해!", player);
+            BotSay(u8"所有人都爱我!", player);
             break;
         }
 
@@ -4627,10 +4627,10 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
 
             if (plevel < 40) // level check
             {
-                BotWhisper(u8"난 아직 포탈을 소환 할 수 없다... 미안해.", player);
+                BotWhisper(u8"你的级别不够40，我现在不能召唤传送门... 抱歉.", player);
                 //player->PlayerTalkClass->ClearMenus();
                 //return OnGossipHello(player, me);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"뒤로", 1, GOSSIP_ACTION_INFO_DEF + 1);
+                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"返回", 1, GOSSIP_ACTION_INFO_DEF + 1);
                 break;            
             } 
                         
@@ -4644,20 +4644,20 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
                 {
                     subMenu = true;
                    
-                    player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"스톰윈드", GOSSIP_SENDER_PORTCHOICE, GOSSIP_ACTION_INFO_DEF + 1);
-                    player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"아이언포지",  GOSSIP_SENDER_PORTCHOICE, GOSSIP_ACTION_INFO_DEF + 2);
-                    player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"다르나서스",  GOSSIP_SENDER_PORTCHOICE, GOSSIP_ACTION_INFO_DEF + 3);
-                    player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"엑소다르",  GOSSIP_SENDER_PORTCHOICE, GOSSIP_ACTION_INFO_DEF + 4);
-                    player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"테라모어",  GOSSIP_SENDER_PORTCHOICE, GOSSIP_ACTION_INFO_DEF + 5);
+                    player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"暴风城 ", GOSSIP_SENDER_PORTCHOICE, GOSSIP_ACTION_INFO_DEF + 1);
+                    player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"铁炉堡 ",  GOSSIP_SENDER_PORTCHOICE, GOSSIP_ACTION_INFO_DEF + 2);
+                    player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"达纳苏斯 ",  GOSSIP_SENDER_PORTCHOICE, GOSSIP_ACTION_INFO_DEF + 3);
+                    player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"埃索达 ",  GOSSIP_SENDER_PORTCHOICE, GOSSIP_ACTION_INFO_DEF + 4);
+                    player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"塞拉摩岛 ",  GOSSIP_SENDER_PORTCHOICE, GOSSIP_ACTION_INFO_DEF + 5);
                     if (plevel > 65) 
                     {
-                        player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"샤트라스",  GOSSIP_SENDER_PORTCHOICE, GOSSIP_ACTION_INFO_DEF + 6);
+                        player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"沙塔斯城 ",  GOSSIP_SENDER_PORTCHOICE, GOSSIP_ACTION_INFO_DEF + 6);
                     }
                     if (plevel > 73)
                     {
-                        player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"달라란",  GOSSIP_SENDER_PORTCHOICE, GOSSIP_ACTION_INFO_DEF + 7);
+                        player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"达拉然 ",  GOSSIP_SENDER_PORTCHOICE, GOSSIP_ACTION_INFO_DEF + 7);
                     }
-                    player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"(뒤로)", 1, GOSSIP_ACTION_INFO_DEF + 1);
+                    player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"(返回)", 1, GOSSIP_ACTION_INFO_DEF + 1);
                     break;
                 }
                 case 2:
@@ -4668,20 +4668,20 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
                 {
                     subMenu = true;
                     
-                    player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"오그리마", GOSSIP_SENDER_PORTCHOICE, GOSSIP_ACTION_INFO_DEF + 8);
-                    player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"썬더블러프",  GOSSIP_SENDER_PORTCHOICE, GOSSIP_ACTION_INFO_DEF + 9);
-                    player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"언더시티",  GOSSIP_SENDER_PORTCHOICE, GOSSIP_ACTION_INFO_DEF + 10);
-                    player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"실버문",  GOSSIP_SENDER_PORTCHOICE, GOSSIP_ACTION_INFO_DEF + 11);
-                    player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"스토나드",  GOSSIP_SENDER_PORTCHOICE, GOSSIP_ACTION_INFO_DEF + 12);
+                    player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"奥格瑞玛 ", GOSSIP_SENDER_PORTCHOICE, GOSSIP_ACTION_INFO_DEF + 8);
+                    player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"雷霆崖 ",  GOSSIP_SENDER_PORTCHOICE, GOSSIP_ACTION_INFO_DEF + 9);
+                    player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"幽暗城 ",  GOSSIP_SENDER_PORTCHOICE, GOSSIP_ACTION_INFO_DEF + 10);
+                    player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"银月城 ",  GOSSIP_SENDER_PORTCHOICE, GOSSIP_ACTION_INFO_DEF + 11);
+                    player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"斯通纳德 ",  GOSSIP_SENDER_PORTCHOICE, GOSSIP_ACTION_INFO_DEF + 12);
                     if (plevel > 65)
                     {
-                        player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"샤트라스",  GOSSIP_SENDER_PORTCHOICE, GOSSIP_ACTION_INFO_DEF + 13);
+                        player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"沙塔斯城 ",  GOSSIP_SENDER_PORTCHOICE, GOSSIP_ACTION_INFO_DEF + 13);
                     }
                     if (plevel > 73)
                     {
-                        player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"달라란",  GOSSIP_SENDER_PORTCHOICE, GOSSIP_ACTION_INFO_DEF + 14);
+                        player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"达拉然 ",  GOSSIP_SENDER_PORTCHOICE, GOSSIP_ACTION_INFO_DEF + 14);
                     }
-                    player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"(뒤로)", 1, GOSSIP_ACTION_INFO_DEF + 1);
+                    player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"(返回)", 1, GOSSIP_ACTION_INFO_DEF + 1);
                     break;
                 }
                 default:
@@ -4701,80 +4701,80 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
                 {
                     portlock = 10059;
                     portdest = 17334;
-                    locname = "Stormwind City";
+                    locname = u8"暴风城 ";
                     break;
                 }
                 case 2:
                 {
                     portlock = 11416;
-                    locname = "Ironforge";
+                    locname = u8"铁炉堡 ";
                     break;
                 }
                 case 3:
                 {
                     portlock = 11419;
-                    locname = "Darnassus";
+                    locname = u8"达纳苏斯 ";
                     break;
                 }
                 case 4:
                 {
                     portlock = 32266;
-                    locname = "Exodar";
+                    locname = u8"埃索达 ";
                     break;
                 }
                 case 5:
                 {
                     portlock = 49360;
-                    locname = "Theramore";
+                    locname = u8"塞拉摩岛 ";
                     break;
                 }
                 case 6: 
                 {
                     portlock = 33691;
-                    locname = "Shattrath City";
+                    locname = u8"沙塔斯城 ";
                     break;
                 }
                 case 7:
                 case 14:
                 {
                     portlock = 53142;
-                    locname = "Dalaran";
+                    locname = u8"达拉然 ";
                     break;
                 }
                 case 8:
                 {
                     portlock = 11417;
-                    locname = "Orgrimmar";
+                    locname = u8"奥格瑞玛 ";
                     break;
                 }
                 case 9:
                 {
                     portlock = 11420;
-                    locname = "Thunder Bluff";
+                    locname = u8"雷霆崖 ";
                     break;
                 }
                 case 10:
                 {
                     portlock = 11418;
-                    locname = "Undercity";
+                    locname = u8"幽暗城 ";
                     break;
                 }
                 case 11:
                 {
                     portlock = 32267;
-                    locname = "Silvermoon City";
+                    locname = u8"银月城 ";
                     break;
                 }
                 case 12:
                 {
                     portlock = 49361;
-                    locname = "Stonard";
+                    locname = u8"斯通纳德 ";
                     break;
                 }
                 case 13:
                 {
                     portlock = 35717;
-                    locname = "Shattrath City";
+                    locname = u8"沙塔斯城 ";
                     break;
                 }
                 default:
@@ -4796,7 +4796,7 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
             {
                 //portspell->finish(false);
                 //delete portspell;
-                BotSay(u8"웁스! 먼가 잘못 됐어!", player);
+                BotSay(u8"哎呀! 出了点问题!", player);
             }
             else
             {
@@ -4804,7 +4804,7 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
                 //portspell->prepare(&targets);
                 //PlaySound(TEXT_EMOTE_TRAIN);
                 std::ostringstream chootext;
-                chootext << u8"모두 탑승 하세요 " << locname << " 이 열렸습니다!";
+                chootext << u8"所有人都上 " << locname << " 特快专列!";
                 BotYell(chootext.str().c_str(), player);
             }
             break;
@@ -4834,9 +4834,9 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
                     }
                     if (!food)
                     {
-                        std::string errorstr = u8"난 아직 ";
-                        errorstr += iswater ? u8"음료" : u8"빵";
-                        errorstr += u8" 만드는 법을 배우지 못했어";
+                        std::string errorstr = u8"我现在不能召唤 ";
+                        errorstr += iswater ? u8"水 " : u8"食物 ";
+                        errorstr += u8" 技能问题 ";
                         BotWhisper(errorstr.c_str(), player);
                         //player->PlayerTalkClass->ClearMenus();
                         //return OnGossipHello(player, me);
@@ -4852,13 +4852,13 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
                     {
                         foodspell->finish(false);
                         delete foodspell;
-                        BotWhisper(u8"지금 당장 할 수는 없어", player);
+                        BotWhisper(u8"我现在还不能那么做 ", player);
                     }
                     else
                     {
                         aftercastTargetGuid = player->GetGUID();
                         foodspell->prepare(&targets);
-                        BotWhisper(u8"여기 나왔습니다...", player);
+                        BotWhisper(u8"给你...", player);
                     }
                     break;
                 }
@@ -4872,41 +4872,41 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
             subMenu = true;
 
             //general
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"너의 장비를 보여줘", GOSSIP_SENDER_EQUIPMENT_LIST, GOSSIP_ACTION_INFO_DEF + 1);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"给我看下你的仓库", GOSSIP_SENDER_EQUIPMENT_LIST, GOSSIP_ACTION_INFO_DEF + 1);
 
             //auto-equip
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"자동 장착...", GOSSIP_SENDER_EQUIP_AUTOEQUIP, GOSSIP_ACTION_INFO_DEF + 1);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"自动装备...", GOSSIP_SENDER_EQUIP_AUTOEQUIP, GOSSIP_ACTION_INFO_DEF + 1);
 
             //weapons
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"주무기...", GOSSIP_SENDER_EQUIPMENT_SHOW, GOSSIP_ACTION_INFO_DEF + BOT_SLOT_MAINHAND);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"主手...", GOSSIP_SENDER_EQUIPMENT_SHOW, GOSSIP_ACTION_INFO_DEF + BOT_SLOT_MAINHAND);
             if (_canUseOffHand())
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"보조무기...", GOSSIP_SENDER_EQUIPMENT_SHOW, GOSSIP_ACTION_INFO_DEF + BOT_SLOT_OFFHAND);
+                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"副手...", GOSSIP_SENDER_EQUIPMENT_SHOW, GOSSIP_ACTION_INFO_DEF + BOT_SLOT_OFFHAND);
             if (_canUseRanged())
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"원거리무기...", GOSSIP_SENDER_EQUIPMENT_SHOW, GOSSIP_ACTION_INFO_DEF + BOT_SLOT_RANGED);
+                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"远程武器...", GOSSIP_SENDER_EQUIPMENT_SHOW, GOSSIP_ACTION_INFO_DEF + BOT_SLOT_RANGED);
             else
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"성물...", GOSSIP_SENDER_EQUIPMENT_SHOW, GOSSIP_ACTION_INFO_DEF + BOT_SLOT_RANGED);
+                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"圣物...", GOSSIP_SENDER_EQUIPMENT_SHOW, GOSSIP_ACTION_INFO_DEF + BOT_SLOT_RANGED);
 
             //armor
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"머리...", GOSSIP_SENDER_EQUIPMENT_SHOW, GOSSIP_ACTION_INFO_DEF + BOT_SLOT_HEAD);
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"어깨...", GOSSIP_SENDER_EQUIPMENT_SHOW, GOSSIP_ACTION_INFO_DEF + BOT_SLOT_SHOULDERS);
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"가슴...", GOSSIP_SENDER_EQUIPMENT_SHOW, GOSSIP_ACTION_INFO_DEF + BOT_SLOT_CHEST);
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"허리...", GOSSIP_SENDER_EQUIPMENT_SHOW, GOSSIP_ACTION_INFO_DEF + BOT_SLOT_WAIST);
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"다리...", GOSSIP_SENDER_EQUIPMENT_SHOW, GOSSIP_ACTION_INFO_DEF + BOT_SLOT_LEGS);
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"발...", GOSSIP_SENDER_EQUIPMENT_SHOW, GOSSIP_ACTION_INFO_DEF + BOT_SLOT_FEET);
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"손목...", GOSSIP_SENDER_EQUIPMENT_SHOW, GOSSIP_ACTION_INFO_DEF + BOT_SLOT_WRIST);
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"손...", GOSSIP_SENDER_EQUIPMENT_SHOW, GOSSIP_ACTION_INFO_DEF + BOT_SLOT_HANDS);
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"등...", GOSSIP_SENDER_EQUIPMENT_SHOW, GOSSIP_ACTION_INFO_DEF + BOT_SLOT_BACK);
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"셔츠...", GOSSIP_SENDER_EQUIPMENT_SHOW, GOSSIP_ACTION_INFO_DEF + BOT_SLOT_BODY);
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"반지1...", GOSSIP_SENDER_EQUIPMENT_SHOW, GOSSIP_ACTION_INFO_DEF + BOT_SLOT_FINGER1);
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"반지2...", GOSSIP_SENDER_EQUIPMENT_SHOW, GOSSIP_ACTION_INFO_DEF + BOT_SLOT_FINGER2);
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"장신구1...", GOSSIP_SENDER_EQUIPMENT_SHOW, GOSSIP_ACTION_INFO_DEF + BOT_SLOT_TRINKET1);
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"장신구2...", GOSSIP_SENDER_EQUIPMENT_SHOW, GOSSIP_ACTION_INFO_DEF + BOT_SLOT_TRINKET2);
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"목...", GOSSIP_SENDER_EQUIPMENT_SHOW, GOSSIP_ACTION_INFO_DEF + BOT_SLOT_NECK);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"头盔...", GOSSIP_SENDER_EQUIPMENT_SHOW, GOSSIP_ACTION_INFO_DEF + BOT_SLOT_HEAD);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"肩甲...", GOSSIP_SENDER_EQUIPMENT_SHOW, GOSSIP_ACTION_INFO_DEF + BOT_SLOT_SHOULDERS);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"胸甲...", GOSSIP_SENDER_EQUIPMENT_SHOW, GOSSIP_ACTION_INFO_DEF + BOT_SLOT_CHEST);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"腰带...", GOSSIP_SENDER_EQUIPMENT_SHOW, GOSSIP_ACTION_INFO_DEF + BOT_SLOT_WAIST);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"腿铠...", GOSSIP_SENDER_EQUIPMENT_SHOW, GOSSIP_ACTION_INFO_DEF + BOT_SLOT_LEGS);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"靴子...", GOSSIP_SENDER_EQUIPMENT_SHOW, GOSSIP_ACTION_INFO_DEF + BOT_SLOT_FEET);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"手腕...", GOSSIP_SENDER_EQUIPMENT_SHOW, GOSSIP_ACTION_INFO_DEF + BOT_SLOT_WRIST);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"手套...", GOSSIP_SENDER_EQUIPMENT_SHOW, GOSSIP_ACTION_INFO_DEF + BOT_SLOT_HANDS);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"披风...", GOSSIP_SENDER_EQUIPMENT_SHOW, GOSSIP_ACTION_INFO_DEF + BOT_SLOT_BACK);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"衬衣...", GOSSIP_SENDER_EQUIPMENT_SHOW, GOSSIP_ACTION_INFO_DEF + BOT_SLOT_BODY);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"戒指1...", GOSSIP_SENDER_EQUIPMENT_SHOW, GOSSIP_ACTION_INFO_DEF + BOT_SLOT_FINGER1);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"戒指1...", GOSSIP_SENDER_EQUIPMENT_SHOW, GOSSIP_ACTION_INFO_DEF + BOT_SLOT_FINGER2);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"饰品1...", GOSSIP_SENDER_EQUIPMENT_SHOW, GOSSIP_ACTION_INFO_DEF + BOT_SLOT_TRINKET1);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"饰品2...", GOSSIP_SENDER_EQUIPMENT_SHOW, GOSSIP_ACTION_INFO_DEF + BOT_SLOT_TRINKET2);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, u8"颈圈...", GOSSIP_SENDER_EQUIPMENT_SHOW, GOSSIP_ACTION_INFO_DEF + BOT_SLOT_NECK);
 
             //if (player->IsGameMaster())
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"장착 해제", GOSSIP_SENDER_UNEQUIP_ALL, GOSSIP_ACTION_INFO_DEF + 1);
+                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"卸下所有 ", GOSSIP_SENDER_UNEQUIP_ALL, GOSSIP_ACTION_INFO_DEF + 1);
 
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"뒤로", 1, GOSSIP_ACTION_INFO_DEF + 1);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"返回", 1, GOSSIP_ACTION_INFO_DEF + 1);
 
             break;
         }
@@ -4925,9 +4925,9 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
                 if (!item) continue;
                 std::ostringstream msg;
                 _AddItemLink(player, item, msg);
-                msg << u8" 슬롯 " << uint32(i) << " (" << _getNameForSlot(i + 1) << ")";
+                msg << u8" 槽位 " << uint32(i) << " (" << _getNameForSlot(i + 1) << ")";
                 if (i < BOT_SLOT_RANGED && einfo->ItemEntry[i] == item->GetEntry())
-                    msg << " |cffe6cc80|h[!standard item!]|h|r";
+                    msg << u8" |cffe6cc80|h[!标准物品!]|h|r";
                 BotWhisper(msg.str().c_str(), player);
             }
 
@@ -4950,7 +4950,7 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
             _AddItemLink(player, item, msg);
 
             if (slot < BOT_SLOT_RANGED && einfo->ItemEntry[slot] == item->GetEntry())
-                msg << " |cffe6cc80|h[!standard item!]|h|r";
+                msg << " |cffe6cc80|h[!标准物品!]|h|r";
 
             BotWhisper(msg.str().c_str(), player);
 
@@ -5026,7 +5026,7 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
             //s2.2.0 add current item (with return)
             uint8 slot = action - (GOSSIP_ACTION_INFO_DEF + 1);
             std::ostringstream str;
-            str << u8"장비: ";
+            str << u8"已装备: ";
             if (Item* item = _equips[slot])
             {
                 _AddItemLink(player, item, str);
@@ -5034,24 +5034,24 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
             }
             else
             {
-                str << u8"없음";
+                str << u8"空 ";
                 player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, str.str().c_str(), GOSSIP_SENDER_EQUIPMENT_SHOW, action);
             }
 
             //s2.2.1 add unequip option if have weapon (GMs only)
             if (action - GOSSIP_ACTION_INFO_DEF <= BOT_SLOT_RANGED)
                 //if (player->IsGameMaster())
-                    player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"기존 장비 사용", GOSSIP_SENDER_EQUIP_RESET, action);
+                    player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"使用你的旧装备 ", GOSSIP_SENDER_EQUIP_RESET, action);
 
             //s2.2.2 add unequip option for non-weapons
             if (slot >= BOT_SLOT_RANGED && _equips[slot])
                 //if (player->IsGameMaster())
-                    player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"장착 해제", GOSSIP_SENDER_UNEQUIP, action);
+                    player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"卸载装备 ", GOSSIP_SENDER_UNEQUIP, action);
 
             //s2.2.3a: add an empty submenu with info if no items are found
             if (itemList.empty())
             {
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"흠... 너에게 줄것이 없군", 0, GOSSIP_ACTION_INFO_DEF + 1);
+                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"额... 我没什么能给你 ", 0, GOSSIP_ACTION_INFO_DEF + 1);
             }
             else
             {
@@ -5108,7 +5108,7 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
                 }
             }
 
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"뒤로", GOSSIP_SENDER_EQUIPMENT, GOSSIP_ACTION_INFO_DEF + 2);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"返回", GOSSIP_SENDER_EQUIPMENT, GOSSIP_ACTION_INFO_DEF + 2);
 
             //TC_LOG_ERROR("entities.player", "OnGossipSelect(bot): added %u item(s) to list of %s (requester: %s)",
             //    counter, me->GetName().c_str(), player->GetName().c_str());
@@ -5118,7 +5118,7 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
         case GOSSIP_SENDER_UNEQUIP: //equips change s3: Unequip DEPRECATED
         {
             if (_unequip(action - (GOSSIP_ACTION_INFO_DEF + 1)))
-                BotSay("Hm...", player);
+                BotSay("额...", player);
             break;
         }
         case GOSSIP_SENDER_UNEQUIP_ALL:
@@ -5130,7 +5130,7 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
                 {
                     suc = false;
                     std::ostringstream estr;
-                    estr << "Cannot reset equipment in slot " << uint32(i) << " (" << _getNameForSlot(i + 1) << ")!";
+                    estr << u8"不能重置装备， 槽位 " << uint32(i) << " (" << _getNameForSlot(i + 1) << ")!";
                     BotWhisper(estr.str().c_str(), player);
                 }
 
@@ -5293,7 +5293,7 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
 
             if (itemList.empty())
             {
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"흠... 너에게 줄것이 없군", 0, GOSSIP_ACTION_INFO_DEF + 1);
+                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"额... 我没什么能给你", 0, GOSSIP_ACTION_INFO_DEF + 1);
             }
             else
             {
@@ -5359,7 +5359,7 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
                 }
             }
 
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"뒤로", GOSSIP_SENDER_EQUIPMENT, GOSSIP_ACTION_INFO_DEF + 2);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"返回", GOSSIP_SENDER_EQUIPMENT, GOSSIP_ACTION_INFO_DEF + 2);
             break;
         }
         case GOSSIP_SENDER_EQUIP_RESET: //equips change s4a: reset equipment
@@ -5449,7 +5449,7 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
                 player->ADD_GOSSIP_ITEM(_onOffIcon(role), GetRoleString(role), GOSSIP_SENDER_ROLES_TOGGLE, GOSSIP_ACTION_INFO_DEF + role);
             }
 
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"뒤로", 1, GOSSIP_ACTION_INFO_DEF + role + 1);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"返回", 1, GOSSIP_ACTION_INFO_DEF + role + 1);
 
             break;
         }
@@ -5482,8 +5482,8 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
                 player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TRAINER, name.str().c_str(), GOSSIP_SENDER_ABILITIES_USE, GOSSIP_ACTION_INFO_DEF + basespell);
             }
 
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"수정", GOSSIP_SENDER_ABILITIES_USE, GOSSIP_ACTION_INFO_DEF);
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"뒤로", 1, GOSSIP_ACTION_INFO_DEF + 2);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"更新", GOSSIP_SENDER_ABILITIES_USE, GOSSIP_ACTION_INFO_DEF);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"返回", 1, GOSSIP_ACTION_INFO_DEF + 2);
 
             break;
         }
@@ -5496,19 +5496,19 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
                 {
                     std::ostringstream ostr;
                     std::string name;
-                    ostr << u8"어서 가시오. 나는 오직 내 주인만을 섬깁니다. 그의 이름은 ";
+                    ostr << u8"一边儿凉快，我只为我主子服务. ";
                     if (sObjectMgr->GetPlayerNameByGUID(ObjectGuid(HighGuid::Player, _ownerGuid), name))
                         ostr << name;
                     else
-                        ostr << u8"알수없는 (" << _ownerGuid << ')';
+                        ostr << u8"未知 (" << _ownerGuid << ')';
                     BotSay(ostr.str().c_str(), player);
                     ChatHandler ch(player->GetSession());
-                    ch.PSendSysMessage(u8"%s %s는 버림받기 전까지 당신과 합류하지 않을것입니다.", me->GetName(), (me->getGender() == GENDER_MALE ? "그" : "그녀") );
+                    ch.PSendSysMessage(u8"%s 将不能加入你直到他的主人解散%s .", me->GetName(), (me->getGender() == GENDER_MALE ? "他 " : "她 ") );
                     break;
                 }
 
                 if (SetBotOwner(player))
-                    BotWhisper(u8"난 너와 함께할 준비가 됐어.", player);
+                    BotWhisper(u8"我准备好了.", player);
                 else
                     BotSay("...", player);
             }
@@ -5529,16 +5529,16 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
                 switch (reason)
                 {
                     case 1: //has owner, unexpected
-                        ch.PSendSysMessage(u8"%s는 당신과 합류하지 않을것입니다, 그의 주인은: %s",
+                        ch.PSendSysMessage(u8"%s不能加入你, 他的主人是: %s",
                             //me->GetName().c_str(), master->GetName().c_str());
                             me->GetName(), me->GetBotOwner()->GetName());
                         break;
                     case 2: //max npcbots exceed
-                        ch.PSendSysMessage(u8"최대 npcbots 수를 초과했습니다. (%u)", BotMgr::GetMaxNpcBots());
+                        ch.PSendSysMessage(u8"超出最大可拥有的机器人数量. (%u)", BotMgr::GetMaxNpcBots());
                         break;
                     case 3: //not enough money
                     {
-                        std::string str = u8"당신은 돈이 충분하지 않습니다. (";
+                        std::string str = u8"你的金币不足. (";
                         str += BotMgr::GetNpcBotCostStr(player->getLevel(), me);
                         str += ")!";
                         ch.SendSysMessage(str.c_str());
@@ -5553,7 +5553,7 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
                             if (itr->second->GetBotClass() == GetBotClass())
                                 ++count;
 
-                        ch.PSendSysMessage(u8"당신은 해당 직업의 npcbot을 더 소유할 수 없습니다! %u / %u",
+                        ch.PSendSysMessage(u8"你拥有的机器人数量 %u 超过最大允许 %u 个的职业机器人数量!! ",
                             count, _maxClassNpcBots);
                         break;
                     }
@@ -5577,7 +5577,7 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
                 if (!(i < BOT_SLOT_RANGED ? _resetEquipment(i) : _unequip(i)))
                 {
                     std::ostringstream estr;
-                    estr << "Cannot reset equipment in slot " << uint32(i) << " (" << _getNameForSlot(i + 1) << ")! Cannot dismiss bot!";
+                    estr << u8"不能重置装备，槽位： " << uint32(i) << " (" << _getNameForSlot(i + 1) << ")! 不能解散机器人!";
                     ChatHandler ch(player->GetSession());
                     ch.SendSysMessage(estr.str().c_str());
                     abort = true;
@@ -5602,13 +5602,13 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
                     pet->setFaction(35);
                 // thesawolf - 80 npcbot slaughtering you, isn't funny, make them passive aggressive
                 me->HandleEmoteCommand(EMOTE_ONESHOT_RUDE);
-				BotSay(u8"흥! 날 버린걸 곧 후회할 것이다...", player);
+				BotSay(u8"不管怎么说，你真是个烂老板...", player);
 				//me->Attack(player, IsMelee());
             }
             else
 			{
                 me->HandleEmoteCommand(EMOTE_ONESHOT_WAVE);
-                BotSay(u8"난 니가 그리울거야...", player);
+                BotSay(u8"我打赌你肯定会想我的...", player);
 			}
 
             //thesawolf - instead of dismissing.. delete
@@ -5638,10 +5638,10 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
         {
             subMenu = true;
             std::ostringstream diststr;
-            diststr << u8"거리 수정 (현재: " << uint32(player->GetBotFollowDist()) << u8")";
+            diststr << u8"设置距离 (当前: " << uint32(player->GetBotFollowDist()) << u8")";
             player->PlayerTalkClass->GetGossipMenu().AddMenuItem(-1, GOSSIP_ICON_CHAT, diststr.str(),
                 GOSSIP_SENDER_FORMATION_DISTANCE, GOSSIP_ACTION_INFO_DEF + 1, "", 0, true);
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"뒤로", 1, GOSSIP_ACTION_INFO_DEF + 2);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"返回", 1, GOSSIP_ACTION_INFO_DEF + 2);
             break;
         }
         case GOSSIP_SENDER_DEBUG_ACTION:
@@ -5675,7 +5675,7 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
                 {
                     close = false;
                     ChatHandler ch(player->GetSession());
-                    ch.PSendSysMessage(u8"%s'의 특성:", me->GetName());
+                    ch.PSendSysMessage(u8"%s 的职责是:", me->GetName());
                     for (uint8 i = BOT_MAX_ROLE; i != BOT_ROLE_NONE; i >>= 1)
                     {
                         if (_roleMask & i)
@@ -5706,7 +5706,7 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
                 {
                     close = false;
                     ChatHandler ch(player->GetSession());
-                    ch.PSendSysMessage(u8"%s'의 spells:", me->GetName());
+                    ch.PSendSysMessage(u8"%s 的技能:", me->GetName());
                     uint32 counter = 0;
                     SpellInfo const* spellInfo;
                     BotSpellMap const& myspells = GetSpellMap();
@@ -5751,26 +5751,26 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
 
             std::ostringstream ostr;
             std::string name;
-            ostr << "Bot: " << me->GetName()
-                << " (Id: " << me->GetEntry()
-                << ", guidlow: " << me->GetGUIDLow()
-                << ", faction: " << me->getFaction()
-                << "). owner: ";
+            ostr << u8"机器人: " << me->GetName()
+                << u8" (Id: " << me->GetEntry()
+                << u8", guidlow: " << me->GetGUIDLow()
+                << u8", 阵营: " << me->getFaction()
+                << u8"). 主人: ";
             if (_ownerGuid && sObjectMgr->GetPlayerNameByGUID(ObjectGuid(HighGuid::Player, _ownerGuid), name))
                 ostr << name << " (" << _ownerGuid << ')';
             else
-                ostr << "none";
+                ostr << u8"无 ";
 
             player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, ostr.str().c_str(), GOSSIP_SENDER_DEBUG_ACTION, GOSSIP_ACTION_INFO_DEF + 0);
 
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "<Reset Owner>", GOSSIP_SENDER_DEBUG_ACTION, GOSSIP_ACTION_INFO_DEF + 1);
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "<Reset Stats>", GOSSIP_SENDER_DEBUG_ACTION, GOSSIP_ACTION_INFO_DEF + 2);
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "<List Stats>", GOSSIP_SENDER_DEBUG_ACTION, GOSSIP_ACTION_INFO_DEF + 3);
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "<List Roles>", GOSSIP_SENDER_DEBUG_ACTION, GOSSIP_ACTION_INFO_DEF + 4);
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "<List Spells>", GOSSIP_SENDER_DEBUG_ACTION, GOSSIP_ACTION_INFO_DEF + 5);
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "<Reload Config>", GOSSIP_SENDER_DEBUG_ACTION, GOSSIP_ACTION_INFO_DEF + 6);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"<重置主人>", GOSSIP_SENDER_DEBUG_ACTION, GOSSIP_ACTION_INFO_DEF + 1);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"<重置状态>", GOSSIP_SENDER_DEBUG_ACTION, GOSSIP_ACTION_INFO_DEF + 2);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"<列出状态>", GOSSIP_SENDER_DEBUG_ACTION, GOSSIP_ACTION_INFO_DEF + 3);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"<列出职责>", GOSSIP_SENDER_DEBUG_ACTION, GOSSIP_ACTION_INFO_DEF + 4);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"<列出技能>", GOSSIP_SENDER_DEBUG_ACTION, GOSSIP_ACTION_INFO_DEF + 5);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"<重载设置>", GOSSIP_SENDER_DEBUG_ACTION, GOSSIP_ACTION_INFO_DEF + 6);
 
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "BACK", 1, GOSSIP_ACTION_INFO_DEF + 1);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"返回", 1, GOSSIP_ACTION_INFO_DEF + 1);
             break;
         }
         case GOSSIP_SENDER_SCAN:
@@ -5788,7 +5788,7 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
                     break;
             }
 
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"뒤로", 1, GOSSIP_ACTION_INFO_DEF + 1);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"返回", 1, GOSSIP_ACTION_INFO_DEF + 1);
 
             break;
         }
@@ -5863,7 +5863,7 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
                     break;
             }
 
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "BACK", 1, GOSSIP_ACTION_INFO_DEF + 1);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, u8"返回", 1, GOSSIP_ACTION_INFO_DEF + 1);
 
             break;
         }
@@ -5933,7 +5933,7 @@ void bot_minion_ai::SummonBotsPet(uint32 entry)
     {
         //annoy master
         if (!IAmFree())
-            BotWhisper("Why am I trying to summon unknown pet!?", master);
+            BotWhisper(u8"我为什么要召唤未知宠物!?", master);
         return;
     }
     float x(0),y(0),z(0);
@@ -5943,7 +5943,7 @@ void bot_minion_ai::SummonBotsPet(uint32 entry)
     if (!m_botsPet)
     {
         if (!IAmFree())
-            BotWhisper("Failed to summon pet!", master);
+            BotWhisper(u8"召唤宠物失败!", master);
         return;
     }
 
@@ -6427,9 +6427,9 @@ bool bot_minion_ai::_unequip(uint8 slot)
         if (msg != EQUIP_ERR_OK)
         {
             std::ostringstream istr, iistr;
-            istr << "Cannot unequip ";
+            istr << u8"不能装备 ";
             _AddItemLink(master, item, iistr);
-            istr << iistr.str() << " for some stupid reason! Sending through mail";
+            istr << iistr.str() << u8" 因为一些未知原因! 正通过邮件发送 ";
             ChatHandler ch(master->GetSession());
             ch.SendSysMessage(istr.str().c_str());
 
@@ -6511,7 +6511,7 @@ bool bot_minion_ai::_equip(uint8 slot, Item* newItem)
 
     if (!_unequip(slot))
     {
-        BotSay(u8"가방이 가득 찼습니다. 아이템을 위한 공간을 비워 주세요.", master);
+        BotSay(u8"你没有足够的空间给我现在的物品.", master);
         return false;
     }
 
@@ -6521,7 +6521,7 @@ bool bot_minion_ai::_equip(uint8 slot, Item* newItem)
         if (newItem->GetOwnerGUID() != master->GetGUID() || !master->HasItemCount(newItemId, 1))
         {
             std::ostringstream msg;
-            msg << "Cannot find ";
+            msg << u8"不能找到 ";
             _AddItemLink(master, newItem, msg);
             msg << " (id: " << uint32(newItemId) << ")!";
             BotWhisper(msg.str().c_str(), master);
@@ -7092,43 +7092,43 @@ char const* bot_minion_ai::_getNameForSlot(uint8 slot) const
     switch (slot)
     {
         case BOT_SLOT_MAINHAND:
-            return u8"주무기";
+            return u8"主手";
         case BOT_SLOT_OFFHAND:
-            return u8"보조무기";
+            return u8"副手";
         case BOT_SLOT_RANGED:
-            return u8"원거리";
+            return u8"远程";
         case BOT_SLOT_HEAD:
-            return u8"머리";
+            return u8"头盔";
         case BOT_SLOT_SHOULDERS:
-            return u8"어깨";
+            return u8"肩甲";
         case BOT_SLOT_CHEST:
-            return u8"가슴";
+            return u8"胸甲";
         case BOT_SLOT_WAIST:
-            return u8"허리";
+            return u8"腰带";
         case BOT_SLOT_LEGS:
-            return u8"다리";
+            return u8"腿铠";
         case BOT_SLOT_FEET:
-            return u8"발";
+            return u8"靴子";
         case BOT_SLOT_WRIST:
-            return u8"손목";
+            return u8"手腕";
         case BOT_SLOT_HANDS:
-            return u8"손";
+            return u8"手套";
         case BOT_SLOT_BACK:
-            return u8"등";
+            return u8"披风";
         case BOT_SLOT_BODY:
-            return u8"셔츠";
+            return u8"衬衣";
         case BOT_SLOT_FINGER1:
-            return u8"반지1";
+            return u8"戒指1";
         case BOT_SLOT_FINGER2:
-            return u8"반지2";
+            return u8"戒指2";
         case BOT_SLOT_TRINKET1:
-            return u8"장신구1";
+            return u8"饰品1";
         case BOT_SLOT_TRINKET2:
-            return u8"장신구2";
+            return u8"饰品2";
         case BOT_SLOT_NECK:
-            return u8"목";
+            return u8"颈圈";
         default:
-            return u8"알수없음";
+            return u8"未知";
     }
 }
 
@@ -7151,19 +7151,19 @@ char const* bot_ai::GetRoleString(uint8 role) const
         case BOT_ROLE_NONE:
             return "???";
         case BOT_ROLE_TANK:
-            return u8"몸빵";
+            return u8"坦克";
         case BOT_ROLE_DPS:
-            return u8"딜";
+            return u8"输出";
         case BOT_ROLE_HEAL:
-            return u8"힐";
+            return u8"治疗";
         //case BOT_ROLE_MELEE:
         //    return "Melee";
         case BOT_ROLE_RANGED:
-            return u8"원거리";
+            return u8"远程";
         default:
         {
             std::ostringstream str;
-            str << u8"특성 " << uint32(role);
+            str << u8"职责 " << uint32(role);
             return str.str().c_str();
         }
     }
@@ -7523,7 +7523,7 @@ void bot_ai::FindMaster(bool force)
             return;
 
         if (!IsTempBot())
-            BotWhisper(u8"왔구나...", master);
+            BotWhisper(u8"嗨...", master);
         return;
     }
 }
