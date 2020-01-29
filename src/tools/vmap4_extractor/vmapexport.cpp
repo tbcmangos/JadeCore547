@@ -186,6 +186,9 @@ void LoadCommonMPQFiles(uint32 build)
     int count = sizeof(CONF_mpq_list) / sizeof(char*);
     for (int i = 1; i < count; ++i)
     {
+        if (build < 15211 && !strcmp("world2.MPQ", CONF_mpq_list[i]))   // 4.3.2 and higher MPQ
+            continue;
+
         _stprintf(filename, _T("%s%s"), input_path, CONF_mpq_list[i]);
         if (!SFileOpenPatchArchive(WorldMpq, filename, "", 0))
         {
@@ -198,6 +201,7 @@ void LoadCommonMPQFiles(uint32 build)
             _tprintf(_T("Loaded %s\n"), filename);
     }
 
+    char const* prefix = NULL;
     for (int i = 0; Builds[i] && Builds[i] <= CONF_TargetBuild; ++i)
     {
         // Do not attempt to read older MPQ patch archives past this build, they were merged with base
@@ -206,9 +210,18 @@ void LoadCommonMPQFiles(uint32 build)
             continue;
 
         memset(filename, 0, sizeof(filename));
-        _stprintf(filename, _T("%swow-update-base-%u.MPQ"), input_path, Builds[i]);
- 
-        if (!SFileOpenPatchArchive(WorldMpq, filename, "base", 0))
+        if (Builds[i] > LAST_DBC_IN_DATA_BUILD)
+        {
+            prefix = "";
+            _stprintf(filename, _T("%swow-update-base-%u.MPQ"), input_path, Builds[i]);
+        }
+        else
+        {
+            prefix = "base";
+            _stprintf(filename, _T("%swow-update-%u.MPQ"), input_path, Builds[i]);
+        }
+
+        if (!SFileOpenPatchArchive(WorldMpq, filename, prefix, 0))
         {
             if (GetLastError() != ERROR_PATH_NOT_FOUND)
                 _tprintf(_T("Cannot open patch archive %s\n"), filename);
