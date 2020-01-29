@@ -1,4 +1,4 @@
-﻿#include "bot_ai.h"
+#include "bot_ai.h"
 #include "bot_Events.h"
 #include "botmgr.h"
 #include "Chat.h"
@@ -518,7 +518,7 @@ BotAddResult BotMgr::AddBot(Creature* bot, bool takeMoney)
     if (!_enableNpcBots)
     {
         ChatHandler ch(_owner->GetSession());
-        ch.SendSysMessage(u8"NPC机器人系统目前禁用，请联系GM.");
+        ch.SendSysMessage("NPC机器人系统目前禁用，请联系GM.");
         //ch.SetSentErrorMessage(true);
         return BOT_ADD_DISABLED;
     }
@@ -528,7 +528,7 @@ BotAddResult BotMgr::AddBot(Creature* bot, bool takeMoney)
             if (!_allowgm)
             {
                 ChatHandler ch(_owner->GetSession());
-                ch.SendSysMessage(u8"NPC机器人系统对普通玩家不可用，GM禁止玩家拥有机器人.");
+                ch.SendSysMessage("NPC机器人系统对普通玩家不可用，GM禁止玩家拥有机器人.");
                 //ch.SetSentErrorMessage(true);
                 return BOT_ADD_DISABLED;
             }
@@ -538,7 +538,7 @@ BotAddResult BotMgr::AddBot(Creature* bot, bool takeMoney)
     if (!bot->GetBotAI()->IAmFree())
     {
         ChatHandler ch(_owner->GetSession());
-        ch.PSendSysMessage(u8"%s不能加入你, 他的主人是: %s",
+        ch.PSendSysMessage("%s不能加入你, 他的主人是: %s",
             bot->GetName(), bot->GetBotOwner()->GetName());
         //ch.SetSentErrorMessage(true);
         return BOT_ADD_NOT_AVAILABLE;
@@ -546,14 +546,14 @@ BotAddResult BotMgr::AddBot(Creature* bot, bool takeMoney)
     if (bot->GetBotAI()->IsDuringTeleport())
     {
         ChatHandler ch(_owner->GetSession());
-        ch.PSendSysMessage(u8"%s在传送时不能加入你.", bot->GetName());
+        ch.PSendSysMessage("%s在传送时不能加入你.", bot->GetName());
         //ch.SetSentErrorMessage(true);
         return BOT_ADD_BUSY;
     }
     if (!temporary && _owner->GetNpcBotsCount() >= GetMaxNpcBots())
     {
         ChatHandler ch(_owner->GetSession());
-        ch.PSendSysMessage(u8"超出最大拥有机器人数量. (%u)", GetMaxNpcBots());
+        ch.PSendSysMessage("超出最大拥有机器人数量. (%u)", GetMaxNpcBots());
         //ch.SetSentErrorMessage(true);
         return BOT_ADD_MAX_EXCEED;
     }
@@ -567,7 +567,7 @@ BotAddResult BotMgr::AddBot(Creature* bot, bool takeMoney)
         if (count >= _maxClassNpcBots)
         {
             ChatHandler ch(_owner->GetSession());
-            ch.PSendSysMessage(u8"你拥有的机器人数量 %u 超过最大允许 %u 个职业机器人数量!! ", count, _maxClassNpcBots);
+            ch.PSendSysMessage("你拥有的机器人数量 %u 超过最大允许 %u 个职业机器人数量!! ", count, _maxClassNpcBots);
             //ch.SetSentErrorMessage(true);
             return BOT_ADD_MAX_CLASS_EXCEED;
         }
@@ -591,7 +591,7 @@ BotAddResult BotMgr::AddBot(Creature* bot, bool takeMoney)
         if (!_owner->HasEnoughMoney(uint64(cost)))
         {
             ChatHandler ch(_owner->GetSession());
-            std::string str = u8"你没有足够的金币. (";
+            std::string str = "你没有足够的金币. (";
             str += GetNpcBotCostStr(_owner->getLevel(), bot);
             str += ")!";
             ch.SendSysMessage(str.c_str());
@@ -743,11 +743,11 @@ bool BotMgr::RemoveBotFromGroup(Creature* bot)
     gr = _owner->GetGroup(); //check if group has been deleted
     if (map && map->IsDungeon() && (!gr || !gr->IsMember(bot->GetGUID()))) //make sure bot is removed from group
     {
-        ChatHandler(_owner->GetSession()).PSendSysMessage(u8"机器人 %s 被移除队伍，将在60秒后传送出副本.", bot->GetName());
+        ChatHandler(_owner->GetSession()).PSendSysMessage("机器人 %s 被移除队伍，将在60秒后传送出副本.", bot->GetName());
 
         if (gr && _owner->GetGUID() != gr->GetLeaderGUID())
             if (Player* leader = ObjectAccessor::FindPlayer(gr->GetLeaderGUID()))
-                ChatHandler(leader->GetSession()).PSendSysMessage(u8"机器人 %s 被移除队伍，将在60秒后传送出副本.", bot->GetName());
+                ChatHandler(leader->GetSession()).PSendSysMessage("机器人 %s 被移除队伍，将在60秒后传送出副本.", bot->GetName());
 
         bot->GetBotAI()->StartBoot();
     }
