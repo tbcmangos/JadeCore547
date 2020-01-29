@@ -1,1 +1,0 @@
-暂时只对比src。到spline的movespline.cpp文件夹了。
