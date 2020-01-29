@@ -1429,6 +1429,9 @@ void World::LoadConfigSettings(bool reload)
     // InterRealm settings
     m_bool_configs[CONFIG_INTERREALM_ENABLE] = ConfigMgr::GetBoolDefault("InterRealm.Enabled", false);
 
+    // Show Pandaren faction select ui at login.
+    m_bool_configs[CONFIG_PANDAREN_FACTION_SELECT] = ConfigMgr::GetBoolDefault("Pandaren.FactionSelect", false);
+
     if (reload)
         sScriptMgr->OnConfigLoad(reload);
 }

@@ -9,7 +9,7 @@ public:
  
     void OnLogin(Player* player)
     {
-            if (player->getRace() == RACE_PANDAREN_NEUTRAL)
+            if (player->getRace() == RACE_PANDAREN_NEUTRAL && sWorld->getBoolConfig(CONFIG_PANDAREN_FACTION_SELECT))
             {
                 player->ShowNeutralPlayerFactionSelectUI();
             }
