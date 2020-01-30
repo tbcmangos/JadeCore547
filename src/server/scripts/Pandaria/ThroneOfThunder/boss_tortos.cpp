@@ -569,7 +569,7 @@ class npc_tortos_whirl_turtle : public CreatureScript
                         std::list<Player*> plrList;
 
                         PlayersCheck checker(me, 5.0f);
-                        JadeCore::PlayerListSearcher<PlayersCheck> searcher(me, plrList, checker);
+                        UwowCore::PlayerListSearcher<PlayersCheck> searcher(me, plrList, checker);
                         me->VisitNearbyWorldObject(5.0f, searcher);
 
                         for (auto itr : plrList)
@@ -699,7 +699,7 @@ class spell_tortos_rockfall: public SpellScriptLoader
                 if (targets.empty())
                     return;
 
-                JadeCore::RandomResizeList(targets, 1);
+                UwowCore::RandomResizeList(targets, 1);
             }
 
             void HandleOnHit()

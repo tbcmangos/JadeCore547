@@ -36,7 +36,7 @@
 #include <thread>
 //npcbot
 #include "botmgr.h"
-#define Trinity JadeCore
+#define Trinity UwowCore
 //end npcbot
 
 MapManager::MapManager()
@@ -109,8 +109,8 @@ void MapManager::Initialize()
         //float pos_z = field[4].GetFloat();
         //float ori = field[5].GetFloat();
 
-        CellCoord c = JadeCore::ComputeCellCoord(pos_x, pos_y);
-        GridCoord g = JadeCore::ComputeGridCoord(pos_x, pos_y);
+        CellCoord c = UwowCore::ComputeCellCoord(pos_x, pos_y);
+        GridCoord g = UwowCore::ComputeGridCoord(pos_x, pos_y);
         ASSERT(c.IsCoordValid() && "Invalid Cell coord!");
         ASSERT(g.IsCoordValid() && "Invalid Grid coord!");
         Map* npcbotmap = sMapMgr->CreateBaseMap(mapId);
@@ -384,7 +384,7 @@ void MapManager::DoDelayedMovesAndRemoves()
 
 bool MapManager::ExistMapAndVMap(uint32 mapid, float x, float y)
 {
-    GridCoord p = JadeCore::ComputeGridCoord(x, y);
+    GridCoord p = UwowCore::ComputeGridCoord(x, y);
 
     int gx=63-p.x_coord;
     int gy=63-p.y_coord;

@@ -136,8 +136,8 @@ public:
                 return;
 
             std::list<Unit*> tempList;
-            JadeCore::AnyUnitInObjectRangeCheck check(me, 8.0f);
-            JadeCore::UnitListSearcher<JadeCore::AnyUnitInObjectRangeCheck> searcher(me, tempList, check);
+            UwowCore::AnyUnitInObjectRangeCheck check(me, 8.0f);
+            UwowCore::UnitListSearcher<UwowCore::AnyUnitInObjectRangeCheck> searcher(me, tempList, check);
             me->VisitNearbyObject(8.0f, searcher);
 
             for (std::list<Unit*>::const_iterator it = tempList.begin(); it != tempList.end(); ++it)
@@ -304,8 +304,8 @@ public:
 
                         if (Creature* creature = summon->GetSummoner()->ToCreature())
                         {
-                            JadeCore::AnyCreatureInObjectRangeCheck check(me, 2.0f);
-                            JadeCore::UnitListSearcher<JadeCore::AnyCreatureInObjectRangeCheck> searcher(me, tempList, check);
+                            UwowCore::AnyCreatureInObjectRangeCheck check(me, 2.0f);
+                            UwowCore::UnitListSearcher<UwowCore::AnyCreatureInObjectRangeCheck> searcher(me, tempList, check);
                             me->VisitNearbyObject(2.0f, searcher);
 
                             for (std::list<Unit*>::const_iterator it = tempList.begin(); it != tempList.end(); ++it)
@@ -418,8 +418,8 @@ public:
             else
             {
                 std::list<Creature*> list_p;
-                JadeCore::AnyCreatureInObjectRangeCheck check(me, 2.0f);
-                JadeCore::CreatureListSearcher<JadeCore::AnyCreatureInObjectRangeCheck> searcher(me, list_p, check);
+                UwowCore::AnyCreatureInObjectRangeCheck check(me, 2.0f);
+                UwowCore::CreatureListSearcher<UwowCore::AnyCreatureInObjectRangeCheck> searcher(me, list_p, check);
                 me->VisitNearbyObject(2.0, searcher);
 
                 for (std::list<Creature*>::const_iterator itr = list_p.begin(); itr != list_p.end(); itr++)
@@ -560,8 +560,8 @@ public:
             {
                 std::list<Player*> PL_list;
 
-                JadeCore::AnyPlayerInObjectRangeCheck check(me, 30.0f);
-                JadeCore::PlayerListSearcher<JadeCore::AnyPlayerInObjectRangeCheck> searcher(me, PL_list, check);
+                UwowCore::AnyPlayerInObjectRangeCheck check(me, 30.0f);
+                UwowCore::PlayerListSearcher<UwowCore::AnyPlayerInObjectRangeCheck> searcher(me, PL_list, check);
                 me->VisitNearbyObject(30.0f, searcher);
 
                 for (std::list<Player*>::const_iterator it = PL_list.begin(); it != PL_list.end(); ++it)

@@ -690,7 +690,7 @@ class spell_ultraxion_fading_light : public SpellScriptLoader
                 }
                     
                 if (targets.size() > min_players)
-                    JadeCore::Containers::RandomResizeList(targets, min_players);
+                    UwowCore::Containers::RandomResizeList(targets, min_players);
             }
            
             void Register()

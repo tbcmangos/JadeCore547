@@ -568,7 +568,7 @@ class boss_spirit_of_gara_jal_council : public CreatureScript
                     return NULL;
 
                 if (bosses.size() > 1)
-                    bosses.sort(JadeCore::HealthPctOrderPred(false));
+                    bosses.sort(UwowCore::HealthPctOrderPred(false));
 
                 return bosses.front();
             }

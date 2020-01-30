@@ -454,13 +454,13 @@ class boss_ji_kun : public CreatureScript
 
             void GetHungryHatchlings(std::list<Creature*>& creatures) const
             {
-                CellCoord pair(JadeCore::ComputeCellCoord(me->GetPositionX(), me->GetPositionY()));
+                CellCoord pair(UwowCore::ComputeCellCoord(me->GetPositionX(), me->GetPositionY()));
                 Cell cell(pair);
                 cell.SetNoCreate();
 
                 HatchlingCheck check(me);
-                JadeCore::CreatureListSearcher<HatchlingCheck> searcher(me, creatures, check);
-                TypeContainerVisitor<JadeCore::CreatureListSearcher<HatchlingCheck>, GridTypeMapContainer> visitor(searcher);
+                UwowCore::CreatureListSearcher<HatchlingCheck> searcher(me, creatures, check);
+                TypeContainerVisitor<UwowCore::CreatureListSearcher<HatchlingCheck>, GridTypeMapContainer> visitor(searcher);
 
                 cell.Visit(pair, visitor, *(me->GetMap()), *me, 300.0f);
             }

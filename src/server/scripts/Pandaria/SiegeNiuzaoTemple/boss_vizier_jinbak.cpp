@@ -360,8 +360,8 @@ public:
             {
                 std::list<Unit*> PL_list;
 
-                JadeCore::AnyUnitInObjectRangeCheck check(puddle, 30.0f);
-                JadeCore::UnitListSearcher<JadeCore::AnyUnitInObjectRangeCheck> searcher(puddle, PL_list, check);
+                UwowCore::AnyUnitInObjectRangeCheck check(puddle, 30.0f);
+                UwowCore::UnitListSearcher<UwowCore::AnyUnitInObjectRangeCheck> searcher(puddle, PL_list, check);
                 puddle->VisitNearbyObject(30.0f, searcher);
 
                 for (std::list<Unit*>::const_iterator it = PL_list.begin(); it != PL_list.end(); ++it)

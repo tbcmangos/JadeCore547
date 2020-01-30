@@ -1055,7 +1055,7 @@ class npc_dragon_soul_thrall_1 : public CreatureScript
             {
                 Player* player = NULL;
                 AnyLivePlayerNoGmCheck check(me, 500.0f);
-                JadeCore::PlayerSearcher<AnyLivePlayerNoGmCheck> searcher(me, player, check);
+                UwowCore::PlayerSearcher<AnyLivePlayerNoGmCheck> searcher(me, player, check);
                 me->VisitNearbyWorldObject(500.0f, searcher);
                 return (player ? true : false);
             }
@@ -2621,7 +2621,7 @@ class npc_madness_of_deathwing_jump_pad : public CreatureScript
                 {
                     std::list<Player*> players;
                     PlayerCheck check(me, spellIdEx1, spellIdEx2);
-                    JadeCore::PlayerListSearcher<PlayerCheck> searcher(me, players, check);
+                    UwowCore::PlayerListSearcher<PlayerCheck> searcher(me, players, check);
                     me->VisitNearbyObject(32.0f, searcher);
                     if (!players.empty())
                         for (std::list<Player*>::const_iterator itr = players.begin(); itr != players.end(); ++ itr)
@@ -2760,7 +2760,7 @@ class spell_madness_of_deathwing_crush_force : public SpellScriptLoader
                 if (targets.empty())
                     return;
 
-                JadeCore::Containers::RandomResizeList(targets, 1);
+                UwowCore::Containers::RandomResizeList(targets, 1);
             }
 
             void Register()
@@ -3034,7 +3034,7 @@ class spell_madness_of_deathwing_shrapnel_aoe : public SpellScriptLoader
 
                 targets.remove_if(PlayersCheck());
 
-                JadeCore::Containers::RandomResizeList(targets, fragments.size());
+                UwowCore::Containers::RandomResizeList(targets, fragments.size());
 
                 for (std::list<uint64>::const_iterator itr = fragments.begin(); itr != fragments.end(); ++itr)
                 {

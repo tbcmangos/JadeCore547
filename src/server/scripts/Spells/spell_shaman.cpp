@@ -1172,8 +1172,8 @@ class spell_sha_fire_nova : public SpellScriptLoader
             SpellCastResult HandleCheckCast()
             {
                 UnitList targets;
-                JadeCore::AnyUnitHavingBuffInObjectRangeCheck u_check(GetCaster(), GetCaster(), 100, SPELL_SHA_FLAME_SHOCK, false);
-                JadeCore::UnitListSearcher<JadeCore::AnyUnitHavingBuffInObjectRangeCheck> searcher(GetCaster(), targets, u_check);
+                UwowCore::AnyUnitHavingBuffInObjectRangeCheck u_check(GetCaster(), GetCaster(), 100, SPELL_SHA_FLAME_SHOCK, false);
+                UwowCore::UnitListSearcher<UwowCore::AnyUnitHavingBuffInObjectRangeCheck> searcher(GetCaster(), targets, u_check);
                 GetCaster()->VisitNearbyObject(100, searcher);
                 
                 return targets.size() == 0 ? SPELL_FAILED_CANT_DO_THAT_RIGHT_NOW : SPELL_CAST_OK;
@@ -1528,7 +1528,7 @@ class spell_sha_healing_stream : public SpellScriptLoader
                     std::list<Unit*> unitList;
                     _player->GetPartyMembers(unitList, true, false);
 
-                    unitList.sort(JadeCore::HealthPctOrderPred());
+                    unitList.sort(UwowCore::HealthPctOrderPred());
                     if (unitList.size() >= 2)
                         unitList.resize(2);
 
@@ -1829,7 +1829,7 @@ class spell_sha_healing_rain_heal : public SpellScriptLoader
                     return false;
                 });
 
-                targets.sort(JadeCore::HealthPctOrderPred());
+                targets.sort(UwowCore::HealthPctOrderPred());
                 if (targets.size() > 6)
                     targets.resize(6);
             }
@@ -1955,10 +1955,10 @@ class spell_sha_bloodlust : public SpellScriptLoader
 
             void RemoveInvalidTargets(std::list<WorldObject*>& targets)
             {
-                targets.remove_if(JadeCore::UnitAuraCheck(true, SHAMAN_SPELL_SATED));
-                targets.remove_if(JadeCore::UnitAuraCheck(true, HUNTER_SPELL_INSANITY));
-                targets.remove_if(JadeCore::UnitAuraCheck(true, MAGE_SPELL_TEMPORAL_DISPLACEMENT));
-                targets.remove_if(JadeCore::UnitAuraCheck(true, SHAMAN_SPELL_EXHAUSTION));
+                targets.remove_if(UwowCore::UnitAuraCheck(true, SHAMAN_SPELL_SATED));
+                targets.remove_if(UwowCore::UnitAuraCheck(true, HUNTER_SPELL_INSANITY));
+                targets.remove_if(UwowCore::UnitAuraCheck(true, MAGE_SPELL_TEMPORAL_DISPLACEMENT));
+                targets.remove_if(UwowCore::UnitAuraCheck(true, SHAMAN_SPELL_EXHAUSTION));
             }
 
             void ApplyDebuff()
@@ -2010,10 +2010,10 @@ class spell_sha_heroism : public SpellScriptLoader
 
             void RemoveInvalidTargets(std::list<WorldObject*>& targets)
             {
-                targets.remove_if(JadeCore::UnitAuraCheck(true, SHAMAN_SPELL_EXHAUSTION));
-                targets.remove_if(JadeCore::UnitAuraCheck(true, HUNTER_SPELL_INSANITY));
-                targets.remove_if(JadeCore::UnitAuraCheck(true, MAGE_SPELL_TEMPORAL_DISPLACEMENT));
-                targets.remove_if(JadeCore::UnitAuraCheck(true, SHAMAN_SPELL_SATED));
+                targets.remove_if(UwowCore::UnitAuraCheck(true, SHAMAN_SPELL_EXHAUSTION));
+                targets.remove_if(UwowCore::UnitAuraCheck(true, HUNTER_SPELL_INSANITY));
+                targets.remove_if(UwowCore::UnitAuraCheck(true, MAGE_SPELL_TEMPORAL_DISPLACEMENT));
+                targets.remove_if(UwowCore::UnitAuraCheck(true, SHAMAN_SPELL_SATED));
             }
 
             void ApplyDebuff()

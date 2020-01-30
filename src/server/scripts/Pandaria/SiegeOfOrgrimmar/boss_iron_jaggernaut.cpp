@@ -1115,11 +1115,11 @@ class spell_iron_juggernaut_mortar_blast_aoe : public SpellScriptLoader
 
                 if (!rangeTargets.empty())
                 {
-                    target = JadeCore::Containers::SelectRandomContainerElement(rangeTargets);
+                    target = UwowCore::Containers::SelectRandomContainerElement(rangeTargets);
                 }
                 else if (!targets.empty())
                 {
-                    target = JadeCore::Containers::SelectRandomContainerElement(targets);
+                    target = UwowCore::Containers::SelectRandomContainerElement(targets);
                 }
 
                 if (target)

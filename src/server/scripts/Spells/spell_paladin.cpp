@@ -737,7 +737,7 @@ class spell_pal_emancipate : public SpellScriptLoader
 
                     if (!auraList.empty())
                     {
-                        JadeCore::Containers::RandomResizeList(auraList, 1);
+                        UwowCore::Containers::RandomResizeList(auraList, 1);
                         _player->RemoveAura(*auraList.begin());
                     }
                 }
@@ -2193,7 +2193,7 @@ class spell_pal_beacon_of_light : public SpellScriptLoader
                     targets.push_back(caster);
                     if (targets.size() > maxSize)
                     {
-                        targets.sort(JadeCore::HealthPctOrderPred());
+                        targets.sort(UwowCore::HealthPctOrderPred());
                         targets.resize(maxSize);
                     }
                 }
@@ -2395,7 +2395,7 @@ public:
                 targets.clear();
 
 
-                unitList.sort(JadeCore::HealthPctOrderPred());
+                unitList.sort(UwowCore::HealthPctOrderPred());
                 unitList.resize(1);
 
                 for (auto itr : unitList)

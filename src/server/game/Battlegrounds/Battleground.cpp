@@ -37,7 +37,7 @@
 #include "Guild.h"
 #include "GuildMgr.h"
 
-namespace JadeCore
+namespace UwowCore
 {
     class BattlegroundChatBuilder
     {
@@ -101,7 +101,7 @@ namespace JadeCore
             int32 _arg1;
             int32 _arg2;
     };
-}                                                           // namespace JadeCore
+}                                                           // namespace UwowCore
 
 template<class Do>
 void Battleground::BroadcastWorker(Do& _do)
@@ -1188,7 +1188,7 @@ uint32 Battleground::GetBonusHonorFromKill(uint32 kills) const
 {
     //variable kills means how many honorable kills you scored (so we need kills * honor_for_one_kill)
     uint32 maxLevel = std::min(GetMaxLevel(), 90U);
-    return JadeCore::Honor::hk_honor_at_level(maxLevel, float(kills));
+    return UwowCore::Honor::hk_honor_at_level(maxLevel, float(kills));
 }
 
 void Battleground::BlockMovement(Player* player)
@@ -2138,8 +2138,8 @@ void Battleground::SendMessageToAll(int32 entry, ChatMsg type, Player const* sou
     if (!entry)
         return;
 
-    JadeCore::BattlegroundChatBuilder bg_builder(type, entry, source);
-    JadeCore::LocalizedPacketDo<JadeCore::BattlegroundChatBuilder> bg_do(bg_builder);
+    UwowCore::BattlegroundChatBuilder bg_builder(type, entry, source);
+    UwowCore::LocalizedPacketDo<UwowCore::BattlegroundChatBuilder> bg_do(bg_builder);
     BroadcastWorker(bg_do);
 }
 
@@ -2151,8 +2151,8 @@ void Battleground::PSendMessageToAll(int32 entry, ChatMsg type, Player const* so
     va_list ap;
     va_start(ap, source);
 
-    JadeCore::BattlegroundChatBuilder bg_builder(type, entry, source, &ap);
-    JadeCore::LocalizedPacketDo<JadeCore::BattlegroundChatBuilder> bg_do(bg_builder);
+    UwowCore::BattlegroundChatBuilder bg_builder(type, entry, source, &ap);
+    UwowCore::LocalizedPacketDo<UwowCore::BattlegroundChatBuilder> bg_do(bg_builder);
     BroadcastWorker(bg_do);
 
     va_end(ap);
@@ -2182,8 +2182,8 @@ void Battleground::SendWarningToAll(int32 entry, ...)
 
 void Battleground::SendMessage2ToAll(int32 entry, ChatMsg type, Player const* source, int32 arg1, int32 arg2)
 {
-    JadeCore::Battleground2ChatBuilder bg_builder(type, entry, source, arg1, arg2);
-    JadeCore::LocalizedPacketDo<JadeCore::Battleground2ChatBuilder> bg_do(bg_builder);
+    UwowCore::Battleground2ChatBuilder bg_builder(type, entry, source, arg1, arg2);
+    UwowCore::LocalizedPacketDo<UwowCore::Battleground2ChatBuilder> bg_do(bg_builder);
     BroadcastWorker(bg_do);
 }
 

@@ -440,7 +440,7 @@ class boss_immerseus : public CreatureScript
                 std::list<Player*> players;
 
                 PlayersRangeCheck checker(me, 29.0f);
-                JadeCore::PlayerListSearcher<PlayersRangeCheck> searcher(me, players, checker);
+                UwowCore::PlayerListSearcher<PlayersRangeCheck> searcher(me, players, checker);
                 me->VisitNearbyWorldObject(29.0f, searcher);
 
                 if (!players.empty())
@@ -476,7 +476,7 @@ class boss_immerseus : public CreatureScript
                     points.push_back(pos);
                 }
 
-                JadeCore::Containers::RandomResizeList(points, maxPuddles);
+                UwowCore::Containers::RandomResizeList(points, maxPuddles);
 
                 summonedPuddles = maxPuddles;
 

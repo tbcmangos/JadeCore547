@@ -222,7 +222,7 @@ void Creature::RemoveFromWorld()
         Unit::RemoveFromWorld();
 
         if (m_spawnId)
-            JadeCore::MultimapErasePair(GetMap()->GetCreatureBySpawnIdStore(), m_spawnId, this);
+            UwowCore::MultimapErasePair(GetMap()->GetCreatureBySpawnIdStore(), m_spawnId, this);
 
         GetMap()->GetObjectsStore().Remove<Creature>(GetGUID());
     }
@@ -802,13 +802,13 @@ void Creature::DoFleeToGetAssistance()
     {
         Creature* creature = NULL;
 
-        CellCoord p(JadeCore::ComputeCellCoord(GetPositionX(), GetPositionY()));
+        CellCoord p(UwowCore::ComputeCellCoord(GetPositionX(), GetPositionY()));
         Cell cell(p);
         cell.SetNoCreate();
-        JadeCore::NearestAssistCreatureInCreatureRangeCheck u_check(this, getVictim(), radius);
-        JadeCore::CreatureLastSearcher<JadeCore::NearestAssistCreatureInCreatureRangeCheck> searcher(this, creature, u_check);
+        UwowCore::NearestAssistCreatureInCreatureRangeCheck u_check(this, getVictim(), radius);
+        UwowCore::CreatureLastSearcher<UwowCore::NearestAssistCreatureInCreatureRangeCheck> searcher(this, creature, u_check);
 
-        TypeContainerVisitor<JadeCore::CreatureLastSearcher<JadeCore::NearestAssistCreatureInCreatureRangeCheck>, GridTypeMapContainer > grid_creature_searcher(searcher);
+        TypeContainerVisitor<UwowCore::CreatureLastSearcher<UwowCore::NearestAssistCreatureInCreatureRangeCheck>, GridTypeMapContainer > grid_creature_searcher(searcher);
 
         cell.Visit(p, grid_creature_searcher, *GetMap(), *this, radius);
 
@@ -2139,7 +2139,7 @@ SpellInfo const* Creature::reachWithSpellCure(Unit* victim)
 // select nearest hostile unit within the given distance (regardless of threat list).
 Unit* Creature::SelectNearestTarget(float dist) const
 {
-    CellCoord p(JadeCore::ComputeCellCoord(GetPositionX(), GetPositionY()));
+    CellCoord p(UwowCore::ComputeCellCoord(GetPositionX(), GetPositionY()));
     Cell cell(p);
     cell.SetNoCreate();
 
@@ -2149,11 +2149,11 @@ Unit* Creature::SelectNearestTarget(float dist) const
         if (dist == 0.0f)
             dist = MAX_VISIBILITY_DISTANCE;
 
-        JadeCore::NearestHostileUnitCheck u_check(this, dist);
-        JadeCore::UnitLastSearcher<JadeCore::NearestHostileUnitCheck> searcher(this, target, u_check);
+        UwowCore::NearestHostileUnitCheck u_check(this, dist);
+        UwowCore::UnitLastSearcher<UwowCore::NearestHostileUnitCheck> searcher(this, target, u_check);
 
-        TypeContainerVisitor<JadeCore::UnitLastSearcher<JadeCore::NearestHostileUnitCheck>, WorldTypeMapContainer > world_unit_searcher(searcher);
-        TypeContainerVisitor<JadeCore::UnitLastSearcher<JadeCore::NearestHostileUnitCheck>, GridTypeMapContainer >  grid_unit_searcher(searcher);
+        TypeContainerVisitor<UwowCore::UnitLastSearcher<UwowCore::NearestHostileUnitCheck>, WorldTypeMapContainer > world_unit_searcher(searcher);
+        TypeContainerVisitor<UwowCore::UnitLastSearcher<UwowCore::NearestHostileUnitCheck>, GridTypeMapContainer >  grid_unit_searcher(searcher);
 
         cell.Visit(p, world_unit_searcher, *GetMap(), *this, dist);
         cell.Visit(p, grid_unit_searcher, *GetMap(), *this, dist);
@@ -2165,7 +2165,7 @@ Unit* Creature::SelectNearestTarget(float dist) const
 // select nearest hostile unit within the given distance and without cc on it (regardless of threat list).
 Unit* Creature::SelectNearestTargetNoCC(float dist) const
 {
-    CellCoord p(JadeCore::ComputeCellCoord(GetPositionX(), GetPositionY()));
+    CellCoord p(UwowCore::ComputeCellCoord(GetPositionX(), GetPositionY()));
     Cell cell(p);
     cell.SetNoCreate();
 
@@ -2175,11 +2175,11 @@ Unit* Creature::SelectNearestTargetNoCC(float dist) const
         if (dist == 0.0f)
             dist = MAX_VISIBILITY_DISTANCE;
 
-        JadeCore::NearestHostileNoCCUnitCheck u_check(this, dist);
-        JadeCore::UnitLastSearcher<JadeCore::NearestHostileNoCCUnitCheck> searcher(this, target, u_check);
+        UwowCore::NearestHostileNoCCUnitCheck u_check(this, dist);
+        UwowCore::UnitLastSearcher<UwowCore::NearestHostileNoCCUnitCheck> searcher(this, target, u_check);
 
-        TypeContainerVisitor<JadeCore::UnitLastSearcher<JadeCore::NearestHostileNoCCUnitCheck>, WorldTypeMapContainer > world_unit_searcher(searcher);
-        TypeContainerVisitor<JadeCore::UnitLastSearcher<JadeCore::NearestHostileNoCCUnitCheck>, GridTypeMapContainer >  grid_unit_searcher(searcher);
+        TypeContainerVisitor<UwowCore::UnitLastSearcher<UwowCore::NearestHostileNoCCUnitCheck>, WorldTypeMapContainer > world_unit_searcher(searcher);
+        TypeContainerVisitor<UwowCore::UnitLastSearcher<UwowCore::NearestHostileNoCCUnitCheck>, GridTypeMapContainer >  grid_unit_searcher(searcher);
 
         cell.Visit(p, world_unit_searcher, *GetMap(), *this, dist);
         cell.Visit(p, grid_unit_searcher, *GetMap(), *this, dist);
@@ -2191,7 +2191,7 @@ Unit* Creature::SelectNearestTargetNoCC(float dist) const
 // select nearest hostile unit within the given attack distance (i.e. distance is ignored if > than ATTACK_DISTANCE), regardless of threat list.
 Unit* Creature::SelectNearestTargetInAttackDistance(float dist) const
 {
-    CellCoord p(JadeCore::ComputeCellCoord(GetPositionX(), GetPositionY()));
+    CellCoord p(UwowCore::ComputeCellCoord(GetPositionX(), GetPositionY()));
     Cell cell(p);
     cell.SetNoCreate();
 
@@ -2204,11 +2204,11 @@ Unit* Creature::SelectNearestTargetInAttackDistance(float dist) const
     }
 
     {
-        JadeCore::NearestHostileUnitInAttackDistanceCheck u_check(this, dist);
-        JadeCore::UnitLastSearcher<JadeCore::NearestHostileUnitInAttackDistanceCheck> searcher(this, target, u_check);
+        UwowCore::NearestHostileUnitInAttackDistanceCheck u_check(this, dist);
+        UwowCore::UnitLastSearcher<UwowCore::NearestHostileUnitInAttackDistanceCheck> searcher(this, target, u_check);
 
-        TypeContainerVisitor<JadeCore::UnitLastSearcher<JadeCore::NearestHostileUnitInAttackDistanceCheck>, WorldTypeMapContainer > world_unit_searcher(searcher);
-        TypeContainerVisitor<JadeCore::UnitLastSearcher<JadeCore::NearestHostileUnitInAttackDistanceCheck>, GridTypeMapContainer >  grid_unit_searcher(searcher);
+        TypeContainerVisitor<UwowCore::UnitLastSearcher<UwowCore::NearestHostileUnitInAttackDistanceCheck>, WorldTypeMapContainer > world_unit_searcher(searcher);
+        TypeContainerVisitor<UwowCore::UnitLastSearcher<UwowCore::NearestHostileUnitInAttackDistanceCheck>, GridTypeMapContainer >  grid_unit_searcher(searcher);
 
         cell.Visit(p, world_unit_searcher, *GetMap(), *this, ATTACK_DISTANCE > dist ? ATTACK_DISTANCE : dist);
         cell.Visit(p, grid_unit_searcher, *GetMap(), *this, ATTACK_DISTANCE > dist ? ATTACK_DISTANCE : dist);
@@ -2221,8 +2221,8 @@ Player* Creature::SelectNearestPlayer(float distance) const
 {
     Player* target = NULL;
 
-    JadeCore::NearestPlayerInObjectRangeCheck checker(this, distance);
-    JadeCore::PlayerLastSearcher<JadeCore::NearestPlayerInObjectRangeCheck> searcher(this, target, checker);
+    UwowCore::NearestPlayerInObjectRangeCheck checker(this, distance);
+    UwowCore::PlayerLastSearcher<UwowCore::NearestPlayerInObjectRangeCheck> searcher(this, target, checker);
     VisitNearbyObject(distance, searcher);
 
     return target;
@@ -2232,8 +2232,8 @@ Player* Creature::SelectNearestPlayerNotGM(float distance) const
 {
     Player* target = NULL;
 
-    JadeCore::NearestPlayerNotGMInObjectRangeCheck checker(this, distance);
-    JadeCore::PlayerLastSearcher<JadeCore::NearestPlayerNotGMInObjectRangeCheck> searcher(this, target, checker);
+    UwowCore::NearestPlayerNotGMInObjectRangeCheck checker(this, distance);
+    UwowCore::PlayerLastSearcher<UwowCore::NearestPlayerNotGMInObjectRangeCheck> searcher(this, target, checker);
     VisitNearbyObject(distance, searcher);
 
     return target;
@@ -2275,14 +2275,14 @@ void Creature::CallAssistance()
             std::list<Creature*> assistList;
 
             {
-                CellCoord p(JadeCore::ComputeCellCoord(GetPositionX(), GetPositionY()));
+                CellCoord p(UwowCore::ComputeCellCoord(GetPositionX(), GetPositionY()));
                 Cell cell(p);
                 cell.SetNoCreate();
 
-                JadeCore::AnyAssistCreatureInRangeCheck u_check(this, getVictim(), radius);
-                JadeCore::CreatureListSearcher<JadeCore::AnyAssistCreatureInRangeCheck> searcher(this, assistList, u_check);
+                UwowCore::AnyAssistCreatureInRangeCheck u_check(this, getVictim(), radius);
+                UwowCore::CreatureListSearcher<UwowCore::AnyAssistCreatureInRangeCheck> searcher(this, assistList, u_check);
 
-                TypeContainerVisitor<JadeCore::CreatureListSearcher<JadeCore::AnyAssistCreatureInRangeCheck>, GridTypeMapContainer >  grid_creature_searcher(searcher);
+                TypeContainerVisitor<UwowCore::CreatureListSearcher<UwowCore::AnyAssistCreatureInRangeCheck>, GridTypeMapContainer >  grid_creature_searcher(searcher);
 
                 cell.Visit(p, grid_creature_searcher, *GetMap(), *this, radius);
             }
@@ -2307,14 +2307,14 @@ void Creature::CallForHelp(float radius)
     if (radius <= 0.0f || !getVictim() || isPet() || isCharmed())
         return;
 
-    CellCoord p(JadeCore::ComputeCellCoord(GetPositionX(), GetPositionY()));
+    CellCoord p(UwowCore::ComputeCellCoord(GetPositionX(), GetPositionY()));
     Cell cell(p);
     cell.SetNoCreate();
 
-    JadeCore::CallOfHelpCreatureInRangeDo u_do(this, getVictim(), radius);
-    JadeCore::CreatureWorker<JadeCore::CallOfHelpCreatureInRangeDo> worker(this, u_do);
+    UwowCore::CallOfHelpCreatureInRangeDo u_do(this, getVictim(), radius);
+    UwowCore::CreatureWorker<UwowCore::CallOfHelpCreatureInRangeDo> worker(this, u_do);
 
-    TypeContainerVisitor<JadeCore::CreatureWorker<JadeCore::CallOfHelpCreatureInRangeDo>, GridTypeMapContainer >  grid_creature_searcher(worker);
+    TypeContainerVisitor<UwowCore::CreatureWorker<UwowCore::CallOfHelpCreatureInRangeDo>, GridTypeMapContainer >  grid_creature_searcher(worker);
 
     cell.Visit(p, grid_creature_searcher, *GetMap(), *this, radius);
 }
@@ -2851,7 +2851,7 @@ const char* Creature::GetNameForLocaleIdx(LocaleConstant loc_idx) const
 void Creature::SetPosition(float x, float y, float z, float o)
 {
     // prevent crash when a bad coord is sent by the client
-    if (!JadeCore::IsValidMapCoord(x, y, z, o))
+    if (!UwowCore::IsValidMapCoord(x, y, z, o))
     {
         sLog->outDebug(LOG_FILTER_UNITS, "Creature::SetPosition(%f, %f, %f) .. bad coordinates!", x, y, z);
         return;
@@ -2947,8 +2947,8 @@ Unit* Creature::SelectNearestHostileUnitInAggroRange(bool useLOS) const
     Unit* target = NULL;
 
     {
-        JadeCore::NearestHostileUnitInAggroRangeCheck u_check(this, useLOS);
-        JadeCore::UnitSearcher<JadeCore::NearestHostileUnitInAggroRangeCheck> searcher(this, target, u_check);
+        UwowCore::NearestHostileUnitInAggroRangeCheck u_check(this, useLOS);
+        UwowCore::UnitSearcher<UwowCore::NearestHostileUnitInAggroRangeCheck> searcher(this, target, u_check);
 
         VisitNearbyGridObject(MAX_AGGRO_RADIUS, searcher);
     }

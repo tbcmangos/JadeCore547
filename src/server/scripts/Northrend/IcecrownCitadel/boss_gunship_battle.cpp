@@ -1459,8 +1459,8 @@ struct npc_gunship_boarding_addAI : public gunship_npc_AI
             me->_AddCreatureSpellCooldown(BurningPitchId, time(NULL) + 3);
 
             std::list<Player*> players;
-            JadeCore::UnitAuraCheck check(true, Instance->GetData(DATA_TEAM_IN_INSTANCE) == HORDE ? SPELL_ON_ORGRIMS_HAMMER_DECK : SPELL_ON_SKYBREAKER_DECK);
-            JadeCore::PlayerListSearcher<JadeCore::UnitAuraCheck> searcher(me, players, check);
+            UwowCore::UnitAuraCheck check(true, Instance->GetData(DATA_TEAM_IN_INSTANCE) == HORDE ? SPELL_ON_ORGRIMS_HAMMER_DECK : SPELL_ON_SKYBREAKER_DECK);
+            UwowCore::PlayerListSearcher<UwowCore::UnitAuraCheck> searcher(me, players, check);
             me->VisitNearbyWorldObject(200.0f, searcher);
 
             players.remove_if([this](Player* player)
@@ -1470,7 +1470,7 @@ struct npc_gunship_boarding_addAI : public gunship_npc_AI
 
             if (!players.empty())
             {
-                players.sort(JadeCore::ObjectDistanceOrderPred(me));
+                players.sort(UwowCore::ObjectDistanceOrderPred(me));
                 for (std::list<Player*>::iterator itr = players.begin(); itr != players.end(); ++itr)
                     me->AddThreat(*itr, 1.0f);
 
@@ -1523,8 +1523,8 @@ struct npc_gunship_boarding_addAI : public gunship_npc_AI
     bool HasAttackablePlayerNearby()
     {
         std::list<Player*> players;
-        JadeCore::UnitAuraCheck check(true, Instance->GetData(DATA_TEAM_IN_INSTANCE) == HORDE ? SPELL_ON_ORGRIMS_HAMMER_DECK : SPELL_ON_SKYBREAKER_DECK);
-        JadeCore::PlayerListSearcher<JadeCore::UnitAuraCheck> searcher(me, players, check);
+        UwowCore::UnitAuraCheck check(true, Instance->GetData(DATA_TEAM_IN_INSTANCE) == HORDE ? SPELL_ON_ORGRIMS_HAMMER_DECK : SPELL_ON_SKYBREAKER_DECK);
+        UwowCore::PlayerListSearcher<UwowCore::UnitAuraCheck> searcher(me, players, check);
         me->VisitNearbyWorldObject(200.0f, searcher);
 
         players.remove_if([this](Player* player)
@@ -2200,7 +2200,7 @@ public:
 
             if (!targets.empty())
             {
-                WorldObject* target = JadeCore::Containers::SelectRandomContainerElement(targets);
+                WorldObject* target = UwowCore::Containers::SelectRandomContainerElement(targets);
                 targets.clear();
                 targets.push_back(target);
             }
@@ -2266,7 +2266,7 @@ public:
         {
             if (!targets.empty())
             {
-                WorldObject* target = JadeCore::Containers::SelectRandomContainerElement(targets);
+                WorldObject* target = UwowCore::Containers::SelectRandomContainerElement(targets);
                 targets.clear();
                 targets.push_back(target);
             }

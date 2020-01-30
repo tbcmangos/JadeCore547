@@ -826,8 +826,8 @@ class npc_simon_bunny : public CreatureScript
                 me->SetObjectScale(large ? 2.0f : 1.0f);
 
                 std::list<WorldObject*> ClusterList;
-                JadeCore::AllWorldObjectsInRange objects(me, searchDistance);
-                JadeCore::WorldObjectListSearcher<JadeCore::AllWorldObjectsInRange> searcher(me, ClusterList, objects);
+                UwowCore::AllWorldObjectsInRange objects(me, searchDistance);
+                UwowCore::WorldObjectListSearcher<UwowCore::AllWorldObjectsInRange> searcher(me, ClusterList, objects);
                 me->VisitNearbyObject(searchDistance, searcher);
 
                 for (std::list<WorldObject*>::const_iterator i = ClusterList.begin(); i != ClusterList.end(); ++i)

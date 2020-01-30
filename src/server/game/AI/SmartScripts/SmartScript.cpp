@@ -2438,8 +2438,8 @@ ObjectList* SmartScript::GetWorldObjectsInDist(float dist)
     WorldObject* obj = GetBaseObject();
     if (obj)
     {
-        JadeCore::AllWorldObjectsInRange u_check(obj, dist);
-        JadeCore::WorldObjectListSearcher<JadeCore::AllWorldObjectsInRange> searcher(obj, *targets, u_check);
+        UwowCore::AllWorldObjectsInRange u_check(obj, dist);
+        UwowCore::WorldObjectListSearcher<UwowCore::AllWorldObjectsInRange> searcher(obj, *targets, u_check);
         obj->VisitNearbyObject(dist, searcher);
     }
     return targets;
@@ -3209,16 +3209,16 @@ Unit* SmartScript::DoSelectLowestHpFriendly(float range, uint32 MinHPDiff)
     if (!me)
         return NULL;
 
-    CellCoord p(JadeCore::ComputeCellCoord(me->GetPositionX(), me->GetPositionY()));
+    CellCoord p(UwowCore::ComputeCellCoord(me->GetPositionX(), me->GetPositionY()));
     Cell cell(p);
     cell.SetNoCreate();
 
     Unit* unit = NULL;
 
-    JadeCore::MostHPMissingInRange u_check(me, range, MinHPDiff);
-    JadeCore::UnitLastSearcher<JadeCore::MostHPMissingInRange> searcher(me, unit, u_check);
+    UwowCore::MostHPMissingInRange u_check(me, range, MinHPDiff);
+    UwowCore::UnitLastSearcher<UwowCore::MostHPMissingInRange> searcher(me, unit, u_check);
 
-    TypeContainerVisitor<JadeCore::UnitLastSearcher<JadeCore::MostHPMissingInRange>, GridTypeMapContainer >  grid_unit_searcher(searcher);
+    TypeContainerVisitor<UwowCore::UnitLastSearcher<UwowCore::MostHPMissingInRange>, GridTypeMapContainer >  grid_unit_searcher(searcher);
 
     cell.Visit(p, grid_unit_searcher, *me->GetMap(), *me, range);
     return unit;
@@ -3229,14 +3229,14 @@ void SmartScript::DoFindFriendlyCC(std::list<Creature*>& _list, float range)
     if (!me)
         return;
 
-    CellCoord p(JadeCore::ComputeCellCoord(me->GetPositionX(), me->GetPositionY()));
+    CellCoord p(UwowCore::ComputeCellCoord(me->GetPositionX(), me->GetPositionY()));
     Cell cell(p);
     cell.SetNoCreate();
 
-    JadeCore::FriendlyCCedInRange u_check(me, range);
-    JadeCore::CreatureListSearcher<JadeCore::FriendlyCCedInRange> searcher(me, _list, u_check);
+    UwowCore::FriendlyCCedInRange u_check(me, range);
+    UwowCore::CreatureListSearcher<UwowCore::FriendlyCCedInRange> searcher(me, _list, u_check);
 
-    TypeContainerVisitor<JadeCore::CreatureListSearcher<JadeCore::FriendlyCCedInRange>, GridTypeMapContainer >  grid_creature_searcher(searcher);
+    TypeContainerVisitor<UwowCore::CreatureListSearcher<UwowCore::FriendlyCCedInRange>, GridTypeMapContainer >  grid_creature_searcher(searcher);
 
     cell.Visit(p, grid_creature_searcher, *me->GetMap(), *me, range);
 }
@@ -3246,14 +3246,14 @@ void SmartScript::DoFindFriendlyMissingBuff(std::list<Creature*>& list, float ra
     if (!me)
         return;
 
-    CellCoord p(JadeCore::ComputeCellCoord(me->GetPositionX(), me->GetPositionY()));
+    CellCoord p(UwowCore::ComputeCellCoord(me->GetPositionX(), me->GetPositionY()));
     Cell cell(p);
     cell.SetNoCreate();
 
-    JadeCore::FriendlyMissingBuffInRange u_check(me, range, spellid);
-    JadeCore::CreatureListSearcher<JadeCore::FriendlyMissingBuffInRange> searcher(me, list, u_check);
+    UwowCore::FriendlyMissingBuffInRange u_check(me, range, spellid);
+    UwowCore::CreatureListSearcher<UwowCore::FriendlyMissingBuffInRange> searcher(me, list, u_check);
 
-    TypeContainerVisitor<JadeCore::CreatureListSearcher<JadeCore::FriendlyMissingBuffInRange>, GridTypeMapContainer >  grid_creature_searcher(searcher);
+    TypeContainerVisitor<UwowCore::CreatureListSearcher<UwowCore::FriendlyMissingBuffInRange>, GridTypeMapContainer >  grid_creature_searcher(searcher);
 
     cell.Visit(p, grid_creature_searcher, *me->GetMap(), *me, range);
 }

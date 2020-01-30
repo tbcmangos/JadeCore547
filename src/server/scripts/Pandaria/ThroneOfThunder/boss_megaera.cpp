@@ -833,7 +833,7 @@ class boss_megaera : public CreatureScript
                 if (creatures.empty())
                     return NULL;
 
-                return JadeCore::Containers::SelectRandomContainerElement(creatures);
+                return UwowCore::Containers::SelectRandomContainerElement(creatures);
             }
         };
 };

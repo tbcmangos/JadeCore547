@@ -102,13 +102,13 @@ template<class OBJECT_TYPES>
 class TypeMapContainer
 {
     public:
-        template<class SPECIFIC_TYPE> size_t Count() const { return JadeCore::Count(i_elements, (SPECIFIC_TYPE*)NULL); }
+        template<class SPECIFIC_TYPE> size_t Count() const { return UwowCore::Count(i_elements, (SPECIFIC_TYPE*)NULL); }
 
         /// inserts a specific object into the container
         template<class SPECIFIC_TYPE> 
         bool insert(SPECIFIC_TYPE *obj)
         {
-            SPECIFIC_TYPE* t = JadeCore::Insert(i_elements, obj);
+            SPECIFIC_TYPE* t = UwowCore::Insert(i_elements, obj);
             return (t != NULL);
         }
 
@@ -116,7 +116,7 @@ class TypeMapContainer
         //template<class SPECIFIC_TYPE> 
         //bool remove(SPECIFIC_TYPE* obj)
         //{
-        //    SPECIFIC_TYPE* t = JadeCore::Remove(i_elements, obj);
+        //    SPECIFIC_TYPE* t = UwowCore::Remove(i_elements, obj);
         //    return (t != NULL);
         //}
 
@@ -134,19 +134,19 @@ public:
     template<class SPECIFIC_TYPE>
     bool Insert(KEY_TYPE const& handle, SPECIFIC_TYPE* obj)
     {
-        return JadeCore::Insert(_elements, handle, obj);
+        return UwowCore::Insert(_elements, handle, obj);
     }
 
     template<class SPECIFIC_TYPE>
     bool Remove(KEY_TYPE const& handle)
     {
-        return JadeCore::Remove(_elements, handle, (SPECIFIC_TYPE*)NULL);
+        return UwowCore::Remove(_elements, handle, (SPECIFIC_TYPE*)NULL);
     }
 
     template<class SPECIFIC_TYPE>
     SPECIFIC_TYPE* Find(KEY_TYPE const& handle)
     {
-        return JadeCore::Find(_elements, handle, (SPECIFIC_TYPE*)NULL);
+        return UwowCore::Find(_elements, handle, (SPECIFIC_TYPE*)NULL);
     }
 
     ContainerUnorderedMap<OBJECT_TYPES, KEY_TYPE>& GetElements() { return _elements; }

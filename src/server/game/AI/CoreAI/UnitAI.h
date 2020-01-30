@@ -172,7 +172,7 @@ class UnitAI
                 return NULL;
 
             if (targetType == SELECT_TARGET_NEAREST || targetType == SELECT_TARGET_FARTHEST)
-                targetList.sort(JadeCore::ObjectDistanceOrderPred(me));
+                targetList.sort(UwowCore::ObjectDistanceOrderPred(me));
 
             switch (targetType)
             {
@@ -221,13 +221,13 @@ class UnitAI
                 return;
 
             if (targetType == SELECT_TARGET_NEAREST || targetType == SELECT_TARGET_FARTHEST)
-                targetList.sort(JadeCore::ObjectDistanceOrderPred(me));
+                targetList.sort(UwowCore::ObjectDistanceOrderPred(me));
 
             if (targetType == SELECT_TARGET_FARTHEST || targetType == SELECT_TARGET_BOTTOMAGGRO)
                 targetList.reverse();
 
             if (targetType == SELECT_TARGET_RANDOM)
-                JadeCore::Containers::RandomResizeList(targetList, maxTargets);
+                UwowCore::Containers::RandomResizeList(targetList, maxTargets);
             else
                 targetList.resize(maxTargets);
         }

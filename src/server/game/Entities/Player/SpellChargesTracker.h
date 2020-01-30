@@ -4,7 +4,7 @@
 #include <cstdint>
 #include <unordered_map>
 
-namespace JadeCore
+namespace UwowCore
 {
     class SpellChargesTracker final
     {
@@ -31,6 +31,6 @@ namespace JadeCore
         auto const i = spellChargesMap_.find(spellId);
         return (i != spellChargesMap_.end()) ? i->second.consumedCharges : 0;
     }
-} // namespace JadeCore
+} // namespace UwowCore
 
 #endif // JadeCore_GAME_SPELL_CHARGES_TRACKER_H

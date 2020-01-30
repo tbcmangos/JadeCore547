@@ -1267,7 +1267,7 @@ class spell_ra_den_unstable_vita_aura : public SpellScriptLoader
                 if (players.size() < 1)
                     return;
 
-                players.sort(JadeCore::DistanceOrderPred(player));
+                players.sort(UwowCore::DistanceOrderPred(player));
 
                 std::list<Player*>::reverse_iterator ritr = players.rbegin();
 
@@ -1508,7 +1508,7 @@ class spell_ra_den_call_essence : public SpellScriptLoader
                     }
                 }
 
-                targets.push_back(JadeCore::Containers::SelectRandomContainerElement(creatures));
+                targets.push_back(UwowCore::Containers::SelectRandomContainerElement(creatures));
             }
 
             void HandleScript(SpellEffIndex effIndex)

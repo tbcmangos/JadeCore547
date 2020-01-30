@@ -245,7 +245,7 @@ class boss_yu_lon_celestial : public CreatureScript
                         _targets.remove_if(PlayerCheck());
 
                         if (!_targets.empty())
-                            if (auto target = JadeCore::Containers::SelectRandomContainerElement(_targets))
+                            if (auto target = UwowCore::Containers::SelectRandomContainerElement(_targets))
                                 if (target->GetTypeId() == TYPEID_PLAYER)
                                     me->CastSpell(target, SPELL_JADEFIRE_BLAZE_BOLT, true);
                         break;

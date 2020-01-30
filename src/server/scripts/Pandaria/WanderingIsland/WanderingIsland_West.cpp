@@ -422,7 +422,7 @@ public:
             if (playerList.empty())
                 return NULL;
 
-            JadeCore::Containers::RandomResizeList(playerList, 1);
+            UwowCore::Containers::RandomResizeList(playerList, 1);
 
             return *playerList.begin();
         }

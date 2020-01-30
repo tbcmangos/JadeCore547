@@ -1813,7 +1813,7 @@ class spell_siege_of_orgrimmar_fracture_aoe : public SpellScriptLoader
 
             void FilterTargets(std::list<WorldObject*>& targets)
             {
-                JadeCore::Containers::RandomResizeList(targets, 1);
+                UwowCore::Containers::RandomResizeList(targets, 1);
             }
 
             void HandleHitTarget(SpellEffIndex effIndex)
@@ -1849,7 +1849,7 @@ class spell_siege_of_orgrimmar_tidal_wave_aoe : public SpellScriptLoader
 
             void FilterTargets(std::list<WorldObject*>& targets)
             {
-                JadeCore::Containers::RandomResizeList(targets, 1);
+                UwowCore::Containers::RandomResizeList(targets, 1);
             }
 
             void HandleHitTarget(SpellEffIndex effIndex)

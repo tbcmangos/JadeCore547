@@ -5,7 +5,7 @@
 
 const static int q_patt[2][2] = { {0,1}, {3,2} };
 
-namespace JadeCore
+namespace UwowCore
 {
     bool IsPointInZone(const ResearchPOIPoint &test, const ResearchPOIPoints &polygon)
     {
@@ -155,7 +155,7 @@ uint16 ArchaeologyMgr::GetResearchSiteID()
         ResearchZoneEntry const& entry = kvp.second;
         if (entry.map == _player->GetMapId() && entry.zone == zoneId)
         {
-            if (JadeCore::IsPointInZone(test, entry.coords))
+            if (UwowCore::IsPointInZone(test, entry.coords))
                 return kvp.first;
         }
     }
@@ -279,7 +279,7 @@ void ArchaeologyMgr::GenerateResearchSiteInMap(uint32 mapId, uint32 map)
     if (tempSites.empty())
         return;
 
-    _researchSites[map].insert(JadeCore::Containers::SelectRandomContainerElement(tempSites));
+    _researchSites[map].insert(UwowCore::Containers::SelectRandomContainerElement(tempSites));
     _archaeologyChanged = true;
 
     ShowResearchSites();
@@ -303,7 +303,7 @@ void ArchaeologyMgr::GenerateResearchSites()
     }
 
     for (auto& set : _researchSites)
-        JadeCore::Containers::RandomResizeSet(set, RESEARCH_SITES_PER_MAP);
+        UwowCore::Containers::RandomResizeSet(set, RESEARCH_SITES_PER_MAP);
 
     _archaeologyChanged = true;
 
@@ -323,7 +323,7 @@ void ArchaeologyMgr::GenerateResearchProjects()
         if (kvp.second.empty())
             break;
 
-        auto itr = JadeCore::Containers::SelectRandomWeightedContainerElement(kvp.second, [this](ResearchProjectEntry const* entry) -> double
+        auto itr = UwowCore::Containers::SelectRandomWeightedContainerElement(kvp.second, [this](ResearchProjectEntry const* entry) -> double
         {
             if (entry->rare && IsCompletedProject(entry->ID))
                 return 0.0;
@@ -389,7 +389,7 @@ bool ArchaeologyMgr::SolveResearchProject(uint32 projectId)
     }
 
     // Add new project
-    auto itr = JadeCore::Containers::SelectRandomWeightedContainerElement(sResearchProjectMap[entry->branchId], [this](ResearchProjectEntry const* entry) -> double
+    auto itr = UwowCore::Containers::SelectRandomWeightedContainerElement(sResearchProjectMap[entry->branchId], [this](ResearchProjectEntry const* entry) -> double
     {
         if (entry->rare && IsCompletedProject(entry->ID))
             return 0.0;
@@ -689,7 +689,7 @@ uint16 ArchaeologyMgr::GetRandomActiveSiteInMap(uint32 mapId) const
     if (sitesId.empty())
         return 0;
 
-    JadeCore::Containers::RandomResizeList(sitesId, 1);
+    UwowCore::Containers::RandomResizeList(sitesId, 1);
     return sitesId.front();
 }
 

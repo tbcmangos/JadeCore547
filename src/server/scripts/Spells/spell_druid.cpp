@@ -2715,7 +2715,7 @@ class spell_dru_swiftmend_heal : public SpellScriptLoader
 
                 targets.clear();
 
-                unitList.sort(JadeCore::HealthPctOrderPred());
+                unitList.sort(UwowCore::HealthPctOrderPred());
                 unitList.resize(3);
 
                 for (auto itr : unitList)
@@ -2757,7 +2757,7 @@ class spell_dru_dream_of_cenarius_heal : public SpellScriptLoader
 
                 targets.clear();
 
-                unitList.sort(JadeCore::HealthPctOrderPred());
+                unitList.sort(UwowCore::HealthPctOrderPred());
                 unitList.resize(1);
 
                 for (auto itr : unitList)
@@ -3515,7 +3515,7 @@ class spell_dru_t10_restoration_4p_bonus : public SpellScriptLoader
                         return;
                     }
 
-                    Unit* target = JadeCore::Containers::SelectRandomContainerElement(tempTargets);
+                    Unit* target = UwowCore::Containers::SelectRandomContainerElement(tempTargets);
                     targets.clear();
                     targets.push_back(target);
                 }
@@ -3603,7 +3603,7 @@ class spell_dru_starfall_dummy : public SpellScriptLoader
                     });
                 }
 
-                JadeCore::Containers::RandomResizeList(targets, 2);
+                UwowCore::Containers::RandomResizeList(targets, 2);
             }
 
             void HandleDummy(SpellEffIndex /*effIndex*/)

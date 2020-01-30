@@ -253,8 +253,8 @@ class boss_majordomo_staghelm : public CreatureScript
                             if (Unit* target = me->getVictim())
                             {
                                 std::list<Player*> PlayerList;
-                                JadeCore::AnyPlayerInObjectRangeCheck checker(target, 10.0f);
-                                JadeCore::PlayerListSearcher<JadeCore::AnyPlayerInObjectRangeCheck> searcher(target, PlayerList, checker);
+                                UwowCore::AnyPlayerInObjectRangeCheck checker(target, 10.0f);
+                                UwowCore::PlayerListSearcher<UwowCore::AnyPlayerInObjectRangeCheck> searcher(target, PlayerList, checker);
                                 target->VisitNearbyWorldObject(5.0f, searcher);
                                 uint8 const minTargets = Is25ManRaid() ? 18 : 7;
                                 if (PlayerList.size() >= minTargets)

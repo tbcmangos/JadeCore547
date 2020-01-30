@@ -2036,7 +2036,7 @@ void CreatureBonusLootProcessor::GetPlayersWithBonus(std::list<Player*>& players
         return;
 
     PlayerWithCurrencyCheck checker(m_Creature, range, m_BonusLootData->requiredCurrency);
-    JadeCore::PlayerListSearcher<PlayerWithCurrencyCheck> searcher(m_Creature, players, checker);
+    UwowCore::PlayerListSearcher<PlayerWithCurrencyCheck> searcher(m_Creature, players, checker);
     m_Creature->VisitNearbyWorldObject(range, searcher);
 }
 

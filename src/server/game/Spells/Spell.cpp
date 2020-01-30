@@ -1210,9 +1210,9 @@ void Spell::SelectImplicitConeTargets(SpellEffIndex effIndex, SpellImplicitTarge
 
     if (uint32 containerTypeMask = GetSearcherTypeMask(objectType, condList))
     {
-        JadeCore::WorldObjectSpellConeTargetCheck check(coneAngle, radius, m_caster, m_spellInfo, selectionType, condList);
-        JadeCore::WorldObjectListSearcher<JadeCore::WorldObjectSpellConeTargetCheck> searcher(m_caster, targets, check, containerTypeMask);
-        SearchTargets<JadeCore::WorldObjectListSearcher<JadeCore::WorldObjectSpellConeTargetCheck> >(searcher, containerTypeMask, m_caster, m_caster, radius);
+        UwowCore::WorldObjectSpellConeTargetCheck check(coneAngle, radius, m_caster, m_spellInfo, selectionType, condList);
+        UwowCore::WorldObjectListSearcher<UwowCore::WorldObjectSpellConeTargetCheck> searcher(m_caster, targets, check, containerTypeMask);
+        SearchTargets<UwowCore::WorldObjectListSearcher<UwowCore::WorldObjectSpellConeTargetCheck> >(searcher, containerTypeMask, m_caster, m_caster, radius);
 
         CallScriptObjectAreaTargetSelectHandlers(targets, effIndex);
 
@@ -1220,7 +1220,7 @@ void Spell::SelectImplicitConeTargets(SpellEffIndex effIndex, SpellImplicitTarge
         {
             // Other special target selection goes here
             if (uint32 maxTargets = m_spellValue->MaxAffectedTargets)
-                JadeCore::Containers::RandomResizeList(targets, maxTargets);
+                UwowCore::Containers::RandomResizeList(targets, maxTargets);
 
             for (std::list<WorldObject*>::iterator itr = targets.begin(); itr != targets.end(); ++itr)
             {
@@ -1511,7 +1511,7 @@ void Spell::SelectImplicitAreaTargets(SpellEffIndex effIndex, SpellImplicitTarge
                             }
                             else
                             {
-                                unitTargets.sort(JadeCore::UnitDistanceCompareOrderPred(m_caster));
+                                unitTargets.sort(UwowCore::UnitDistanceCompareOrderPred(m_caster));
                                 Unit* victim = (*unitTargets.begin())->ToUnit();
 
                                 if (victim)
@@ -1595,7 +1595,7 @@ void Spell::SelectImplicitAreaTargets(SpellEffIndex effIndex, SpellImplicitTarge
             {
                 if (unitTargets.size() > maxSize)
                 {
-                    unitTargets.sort(JadeCore::HealthPctOrderPred());
+                    unitTargets.sort(UwowCore::HealthPctOrderPred());
                     unitTargets.resize(maxSize);
                 }
             }
@@ -1609,7 +1609,7 @@ void Spell::SelectImplicitAreaTargets(SpellEffIndex effIndex, SpellImplicitTarge
 
                 if (unitTargets.size() > maxSize)
                 {
-                    unitTargets.sort(JadeCore::PowerPctOrderPred((Powers)power));
+                    unitTargets.sort(UwowCore::PowerPctOrderPred((Powers)power));
                     unitTargets.resize(maxSize);
                 }
             }
@@ -1662,16 +1662,16 @@ void Spell::SelectImplicitAreaTargets(SpellEffIndex effIndex, SpellImplicitTarge
         }
 
         if (m_spellInfo->HasCustomTargetFlag(SpellTargetFlagCu::SPELL_TARGET_FLAG_CU0_SORT_BY_RANGE))
-            unitTargets.sort(JadeCore::DistanceOrderPred(m_caster));
+            unitTargets.sort(UwowCore::DistanceOrderPred(m_caster));
 
         if (m_spellInfo->HasCustomTargetFlag(SpellTargetFlagCu::SPELL_TARGET_FLAG_CU0_SORT_BY_HEALTH))
-            unitTargets.sort(JadeCore::HealthPctOrderPred());
+            unitTargets.sort(UwowCore::HealthPctOrderPred());
 
         // Other special target selection goes here
         if (uint32 maxTargets = m_spellValue->MaxAffectedTargets)
         {
             if (!m_spellInfo->HasCustomTargetFlag(SpellTargetFlagCu::SPELL_TARGET_FLAG_CU0_RESIZE_ONLY))
-                JadeCore::Containers::RandomResizeList(unitTargets, maxTargets);
+                UwowCore::Containers::RandomResizeList(unitTargets, maxTargets);
             else
                 unitTargets.resize(maxTargets);
         }
@@ -1683,7 +1683,7 @@ void Spell::SelectImplicitAreaTargets(SpellEffIndex effIndex, SpellImplicitTarge
     if (!gObjTargets.empty())
     {
         if (uint32 maxTargets = m_spellValue->MaxAffectedTargets)
-            JadeCore::Containers::RandomResizeList(gObjTargets, maxTargets);
+            UwowCore::Containers::RandomResizeList(gObjTargets, maxTargets);
 
         for (std::list<GameObject*>::iterator itr = gObjTargets.begin(); itr != gObjTargets.end(); ++itr)
             AddGOTarget(*itr, effMask);
@@ -1692,7 +1692,7 @@ void Spell::SelectImplicitAreaTargets(SpellEffIndex effIndex, SpellImplicitTarge
     if (!l_AreaTriggerTargets.empty())
     {
         if (uint32 l_MaxTargets = m_spellValue->MaxAffectedTargets)
-            JadeCore::Containers::RandomResizeList(l_AreaTriggerTargets, l_MaxTargets);
+            UwowCore::Containers::RandomResizeList(l_AreaTriggerTargets, l_MaxTargets);
 
         for (std::list<AreaTrigger*>::iterator l_Iterator = l_AreaTriggerTargets.begin(); l_Iterator != l_AreaTriggerTargets.end(); ++l_Iterator)
             AddAreaTriggerTarget(*l_Iterator, effMask);
@@ -2008,13 +2008,13 @@ void Spell::SelectImplicitTrajTargets()
     float srcToDestDelta = m_targets.GetDstPos()->m_positionZ - m_targets.GetSrcPos()->m_positionZ;
 
     std::list<WorldObject*> targets;
-    JadeCore::WorldObjectSpellTrajTargetCheck check(dist2d, m_targets.GetSrcPos(), m_caster, m_spellInfo);
-    JadeCore::WorldObjectListSearcher<JadeCore::WorldObjectSpellTrajTargetCheck> searcher(m_caster, targets, check, GRID_MAP_TYPE_MASK_ALL);
-    SearchTargets<JadeCore::WorldObjectListSearcher<JadeCore::WorldObjectSpellTrajTargetCheck> > (searcher, GRID_MAP_TYPE_MASK_ALL, m_caster, m_targets.GetSrcPos(), dist2d);
+    UwowCore::WorldObjectSpellTrajTargetCheck check(dist2d, m_targets.GetSrcPos(), m_caster, m_spellInfo);
+    UwowCore::WorldObjectListSearcher<UwowCore::WorldObjectSpellTrajTargetCheck> searcher(m_caster, targets, check, GRID_MAP_TYPE_MASK_ALL);
+    SearchTargets<UwowCore::WorldObjectListSearcher<UwowCore::WorldObjectSpellTrajTargetCheck> > (searcher, GRID_MAP_TYPE_MASK_ALL, m_caster, m_targets.GetSrcPos(), dist2d);
     if (targets.empty())
         return;
 
-    targets.sort(JadeCore::ObjectDistanceOrderPred(m_caster));
+    targets.sort(UwowCore::ObjectDistanceOrderPred(m_caster));
 
     float b = tangent(m_targets.GetElevation());
     float a = (srcToDestDelta - dist2d * b) / (dist2d * dist2d);
@@ -2265,7 +2265,7 @@ void Spell::SearchTargets(SEARCHER& searcher, uint32 containerMask, Unit* refere
         x = pos->GetPositionX();
         y = pos->GetPositionY();
 
-        CellCoord p(JadeCore::ComputeCellCoord(x, y));
+        CellCoord p(UwowCore::ComputeCellCoord(x, y));
         Cell cell(p);
         cell.SetNoCreate();
 
@@ -2290,9 +2290,9 @@ WorldObject* Spell::SearchNearbyTarget(float range, SpellTargetObjectTypes objec
     uint32 containerTypeMask = GetSearcherTypeMask(objectType, condList);
     if (!containerTypeMask)
         return NULL;
-    JadeCore::WorldObjectSpellNearbyTargetCheck check(range, m_caster, m_spellInfo, selectionType, condList);
-    JadeCore::WorldObjectLastSearcher<JadeCore::WorldObjectSpellNearbyTargetCheck> searcher(m_caster, target, check, containerTypeMask);
-    SearchTargets<JadeCore::WorldObjectLastSearcher<JadeCore::WorldObjectSpellNearbyTargetCheck> > (searcher, containerTypeMask, m_caster, m_caster, range);
+    UwowCore::WorldObjectSpellNearbyTargetCheck check(range, m_caster, m_spellInfo, selectionType, condList);
+    UwowCore::WorldObjectLastSearcher<UwowCore::WorldObjectSpellNearbyTargetCheck> searcher(m_caster, target, check, containerTypeMask);
+    SearchTargets<UwowCore::WorldObjectLastSearcher<UwowCore::WorldObjectSpellNearbyTargetCheck> > (searcher, containerTypeMask, m_caster, m_caster, range);
     return target;
 }
 
@@ -2301,9 +2301,9 @@ void Spell::SearchAreaTargets(std::list<WorldObject*>& targets, float range, Pos
     uint32 containerTypeMask = GetSearcherTypeMask(objectType, condList);
     if (!containerTypeMask)
         return;
-    JadeCore::WorldObjectSpellAreaTargetCheck check(range, position, m_caster, referer, m_spellInfo, selectionType, condList);
-    JadeCore::WorldObjectListSearcher<JadeCore::WorldObjectSpellAreaTargetCheck> searcher(m_caster, targets, check, containerTypeMask);
-    SearchTargets<JadeCore::WorldObjectListSearcher<JadeCore::WorldObjectSpellAreaTargetCheck> > (searcher, containerTypeMask, m_caster, position, range);
+    UwowCore::WorldObjectSpellAreaTargetCheck check(range, position, m_caster, referer, m_spellInfo, selectionType, condList);
+    UwowCore::WorldObjectListSearcher<UwowCore::WorldObjectSpellAreaTargetCheck> searcher(m_caster, targets, check, containerTypeMask);
+    SearchTargets<UwowCore::WorldObjectListSearcher<UwowCore::WorldObjectSpellAreaTargetCheck> > (searcher, containerTypeMask, m_caster, position, range);
 }
 
 void Spell::SearchChainTargets(std::list<WorldObject*>& targets, uint32 chainTargets, WorldObject* target, SpellTargetObjectTypes objectType, SpellTargetCheckTypes selectType, ConditionContainer* condList, bool isChainHeal)
@@ -8760,14 +8760,14 @@ SpellCastResult Spell::CheckItems()
     // check spell focus object
     if (m_spellInfo->RequiresSpellFocus)
     {
-        CellCoord p(JadeCore::ComputeCellCoord(m_caster->GetPositionX(), m_caster->GetPositionY()));
+        CellCoord p(UwowCore::ComputeCellCoord(m_caster->GetPositionX(), m_caster->GetPositionY()));
         Cell cell(p);
 
         GameObject* ok = NULL;
-        JadeCore::GameObjectFocusCheck go_check(m_caster, m_spellInfo->RequiresSpellFocus);
-        JadeCore::GameObjectSearcher<JadeCore::GameObjectFocusCheck> checker(m_caster, ok, go_check);
+        UwowCore::GameObjectFocusCheck go_check(m_caster, m_spellInfo->RequiresSpellFocus);
+        UwowCore::GameObjectSearcher<UwowCore::GameObjectFocusCheck> checker(m_caster, ok, go_check);
 
-        TypeContainerVisitor<JadeCore::GameObjectSearcher<JadeCore::GameObjectFocusCheck>, GridTypeMapContainer > object_checker(checker);
+        TypeContainerVisitor<UwowCore::GameObjectSearcher<UwowCore::GameObjectFocusCheck>, GridTypeMapContainer > object_checker(checker);
         Map& map = *m_caster->GetMap();
         cell.Visit(p, object_checker, map, *m_caster, m_caster->GetVisibilityRange());
 
@@ -10286,7 +10286,7 @@ bool Spell::IsMorePowerfulAura(Unit const* target) const
     return false;
 }
 
-namespace JadeCore
+namespace UwowCore
 {
 
 WorldObjectSpellTargetCheck::WorldObjectSpellTargetCheck(Unit* caster, Unit* referer, SpellInfo const* spellInfo,
@@ -10474,4 +10474,4 @@ bool WorldObjectSpellTrajTargetCheck::operator()(WorldObject* target)
     return WorldObjectSpellAreaTargetCheck::operator ()(target);
 }
 
-} //namespace JadeCore
+} //namespace UwowCore

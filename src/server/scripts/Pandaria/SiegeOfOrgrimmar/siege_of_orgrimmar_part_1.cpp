@@ -226,12 +226,12 @@ class npc_siege_of_orgrimmar_tormented_initiate : public CreatureScript
                         {
                             std::list<Creature*> creatures;
                             CreaturesCheck checker(me->GetGUID());
-                            JadeCore::CreatureListSearcher<CreaturesCheck> searcher(me, creatures, checker);
+                            UwowCore::CreatureListSearcher<CreaturesCheck> searcher(me, creatures, checker);
                             me->VisitNearbyWorldObject(40.0f, searcher);
 
                             if (!creatures.empty())
                             {
-                                Creature* target = JadeCore::Containers::SelectRandomContainerElement(creatures);
+                                Creature* target = UwowCore::Containers::SelectRandomContainerElement(creatures);
 
                                 DoCast(target, SPELL_BOOBLE_SHIELD_1);
                             }

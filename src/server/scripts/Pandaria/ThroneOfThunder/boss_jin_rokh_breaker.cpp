@@ -346,7 +346,7 @@ class StatueController
             if (notActivatedStatues.empty())
                 return NULL;
 
-            return JadeCore::Containers::SelectRandomContainerElement(notActivatedStatues);
+            return UwowCore::Containers::SelectRandomContainerElement(notActivatedStatues);
         }
 
     private:
@@ -935,7 +935,7 @@ class npc_jinrokh_the_breaker_focused_lightning : public CreatureScript
             {
                 Creature* creature = NULL;
                 FocusedLightningCheck checker(me);
-                JadeCore::CreatureLastSearcher<FocusedLightningCheck> searcher(me, creature, checker);
+                UwowCore::CreatureLastSearcher<FocusedLightningCheck> searcher(me, creature, checker);
                 me->VisitNearbyObject(2.0f, searcher);
                 if (creature)
                 {
@@ -1346,7 +1346,7 @@ class spell_jinrokh_the_breaker_ionization : public SpellScriptLoader
                 // in 25 heroic
                 if (targets.size() > 13)
                 {
-                    JadeCore::Containers::RandomResizeList(targets, 13);
+                    UwowCore::Containers::RandomResizeList(targets, 13);
                 }
             }
 

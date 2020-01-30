@@ -468,9 +468,9 @@ class instance_gate_setting_sun : public InstanceMapScript
                     case NPC_WEAK_SPOT:
                         return raigonWeakGuid;
                     case DATA_RANDOM_BOMBARDER:
-                        return JadeCore::Containers::SelectRandomContainerElement(bombarderGuids);
+                        return UwowCore::Containers::SelectRandomContainerElement(bombarderGuids);
                     case DATA_RANDOM_BOMB_STALKER:
-                        return JadeCore::Containers::SelectRandomContainerElement(bombStalkerGuids);
+                        return UwowCore::Containers::SelectRandomContainerElement(bombStalkerGuids);
                     case GO_WALL_C:
                         return wallCGuid;
                     case GO_WALL_B:

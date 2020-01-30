@@ -565,8 +565,8 @@ public:
                 return;
 
 
-            JadeCore::AnyPlayerInObjectRangeCheck check(boss, 14.0f);
-            JadeCore::PlayerListSearcher<JadeCore::AnyPlayerInObjectRangeCheck> searcher(boss, PL_LIST, check);
+            UwowCore::AnyPlayerInObjectRangeCheck check(boss, 14.0f);
+            UwowCore::PlayerListSearcher<UwowCore::AnyPlayerInObjectRangeCheck> searcher(boss, PL_LIST, check);
             boss->VisitNearbyObject(14.0f, searcher);
 
             for (std::list<Player*>::const_iterator itr = PL_LIST.begin(); itr != PL_LIST.end(); itr++)
@@ -621,8 +621,8 @@ public:
             if (!boss)
                 return;
 
-            JadeCore::AnyPlayerInObjectRangeCheck check(boss, 22.0f);
-            JadeCore::PlayerListSearcher<JadeCore::AnyPlayerInObjectRangeCheck> searcher(boss, PL_LIST, check);
+            UwowCore::AnyPlayerInObjectRangeCheck check(boss, 22.0f);
+            UwowCore::PlayerListSearcher<UwowCore::AnyPlayerInObjectRangeCheck> searcher(boss, PL_LIST, check);
             boss->VisitNearbyObject(22.0f, searcher);
 
             for (std::list<Player*>::const_iterator itr = PL_LIST.begin(); itr != PL_LIST.end(); itr++)

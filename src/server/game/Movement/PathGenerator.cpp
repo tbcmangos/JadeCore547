@@ -50,7 +50,7 @@ bool PathGenerator::CalculatePath(float destX, float destY, float destZ, bool fo
     float x, y, z;
     _sourceUnit->GetPosition(x, y, z);
 
-    if (!JadeCore::IsValidMapCoord(destX, destY, destZ) || !JadeCore::IsValidMapCoord(x, y, z))
+    if (!UwowCore::IsValidMapCoord(destX, destY, destZ) || !UwowCore::IsValidMapCoord(x, y, z))
         return false;
 
     G3D::Vector3 dest(destX, destY, destZ);

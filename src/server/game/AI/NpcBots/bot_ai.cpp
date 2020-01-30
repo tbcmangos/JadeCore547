@@ -45,7 +45,7 @@ extern float _mult_dmg_melee;
 extern float _mult_dmg_spell;
 extern float _mult_healing;
 
-#define TrinityCore		JadeCore
+#define TrinityCore		UwowCore
 #define TC_LOG_ERROR	sLog->outError
 
 bot_minion_ai::bot_minion_ai(Creature* creature) : bot_ai(creature)
@@ -2781,12 +2781,12 @@ Unit* bot_ai::_getTarget(bool byspell, bool ranged, bool &reset) const
         {
             bool attackCC = i;
 
-            CellCoord p(JadeCore::ComputeCellCoord(me->GetPositionX(), me->GetPositionY()));
+            CellCoord p(UwowCore::ComputeCellCoord(me->GetPositionX(), me->GetPositionY()));
             Cell cell(p);
             cell.SetNoCreate();
 
             NearestHostileUnitCheck check(me, maxdist, byspell, this, attackCC);
-			JadeCore::UnitLastSearcher <NearestHostileUnitCheck> searcher(master, t, check);
+			UwowCore::UnitLastSearcher <NearestHostileUnitCheck> searcher(master, t, check);
             me->VisitNearbyObject(maxdist, searcher);
         }
     }
@@ -3281,16 +3281,16 @@ bool bot_ai::InDuel(Unit const* target) const
 //Finds player or it's corpse for resurrection returned as WorldObject*
 WorldObject* bot_minion_ai::GetNearbyRezTarget(float dist) const
 {
-    CellCoord p(JadeCore::ComputeCellCoord(me->GetPositionX(), me->GetPositionY()));
+    CellCoord p(UwowCore::ComputeCellCoord(me->GetPositionX(), me->GetPositionY()));
     Cell cell(p);
     cell.SetNoCreate();
 
     WorldObject* target = NULL;
 
     NearbyRezTargetCheck check(me, dist, this);
-	JadeCore::WorldObjectSearcher <NearbyRezTargetCheck> searcher(me, target, check);
+	UwowCore::WorldObjectSearcher <NearbyRezTargetCheck> searcher(me, target, check);
 
-    TypeContainerVisitor<JadeCore::WorldObjectSearcher <NearbyRezTargetCheck>, WorldTypeMapContainer > world_unit_searcher(searcher);
+    TypeContainerVisitor<UwowCore::WorldObjectSearcher <NearbyRezTargetCheck>, WorldTypeMapContainer > world_unit_searcher(searcher);
 
     cell.Visit(p, world_unit_searcher, *me->GetMap(), *me, dist);
 
@@ -3300,17 +3300,17 @@ WorldObject* bot_minion_ai::GetNearbyRezTarget(float dist) const
 //Returns dispellable/stealable 'Any Hostile Unit Attacking BotParty'
 Unit* bot_minion_ai::FindHostileDispelTarget(float dist, bool stealable) const
 {
-    CellCoord p(JadeCore::ComputeCellCoord(me->GetPositionX(), me->GetPositionY()));
+    CellCoord p(UwowCore::ComputeCellCoord(me->GetPositionX(), me->GetPositionY()));
     Cell cell(p);
     cell.SetNoCreate();
 
     Unit* unit = NULL;
 
     HostileDispelTargetCheck check(me, dist, stealable, this);
-	JadeCore::UnitLastSearcher <HostileDispelTargetCheck> searcher(me, unit, check);
+	UwowCore::UnitLastSearcher <HostileDispelTargetCheck> searcher(me, unit, check);
 
-    TypeContainerVisitor<JadeCore::UnitLastSearcher <HostileDispelTargetCheck>, WorldTypeMapContainer > world_unit_searcher(searcher);
-    TypeContainerVisitor<JadeCore::UnitLastSearcher <HostileDispelTargetCheck>, GridTypeMapContainer >  grid_unit_searcher(searcher);
+    TypeContainerVisitor<UwowCore::UnitLastSearcher <HostileDispelTargetCheck>, WorldTypeMapContainer > world_unit_searcher(searcher);
+    TypeContainerVisitor<UwowCore::UnitLastSearcher <HostileDispelTargetCheck>, GridTypeMapContainer >  grid_unit_searcher(searcher);
 
     cell.Visit(p, world_unit_searcher, *me->GetMap(), *me, dist);
     cell.Visit(p, grid_unit_searcher, *me->GetMap(), *me, dist);
@@ -3336,17 +3336,17 @@ Unit* bot_minion_ai::FindAffectedTarget(uint32 spellId, ObjectGuid caster, float
     if (master->GetMap()->Instanceable())
         dist = DEFAULT_VISIBILITY_INSTANCE;
 
-    CellCoord p(JadeCore::ComputeCellCoord(master->GetPositionX(), master->GetPositionY()));
+    CellCoord p(UwowCore::ComputeCellCoord(master->GetPositionX(), master->GetPositionY()));
     Cell cell(p);
     cell.SetNoCreate();
 
     Unit* unit = NULL;
 
     AffectedTargetCheck check(caster, dist, spellId, master, hostile);
-	JadeCore::UnitLastSearcher <AffectedTargetCheck> searcher(master, unit, check);
+	UwowCore::UnitLastSearcher <AffectedTargetCheck> searcher(master, unit, check);
 
-    TypeContainerVisitor<JadeCore::UnitLastSearcher <AffectedTargetCheck>, WorldTypeMapContainer > world_unit_searcher(searcher);
-    TypeContainerVisitor<JadeCore::UnitLastSearcher <AffectedTargetCheck>, GridTypeMapContainer >  grid_unit_searcher(searcher);
+    TypeContainerVisitor<UwowCore::UnitLastSearcher <AffectedTargetCheck>, WorldTypeMapContainer > world_unit_searcher(searcher);
+    TypeContainerVisitor<UwowCore::UnitLastSearcher <AffectedTargetCheck>, GridTypeMapContainer >  grid_unit_searcher(searcher);
 
     cell.Visit(p, world_unit_searcher, *master->GetMap(), *master, dist);
     cell.Visit(p, grid_unit_searcher, *master->GetMap(), *master, dist);
@@ -3359,17 +3359,17 @@ Unit* bot_minion_ai::FindPolyTarget(float dist, Unit* currTarget) const
     if (!currTarget)
         return NULL;
 
-    CellCoord p(JadeCore::ComputeCellCoord(me->GetPositionX(), me->GetPositionY()));
+    CellCoord p(UwowCore::ComputeCellCoord(me->GetPositionX(), me->GetPositionY()));
     Cell cell(p);
     cell.SetNoCreate();
 
     Unit* unit = NULL;
 
     PolyUnitCheck check(me, dist, currTarget);
-	JadeCore::UnitLastSearcher <PolyUnitCheck> searcher(me, unit, check);
+	UwowCore::UnitLastSearcher <PolyUnitCheck> searcher(me, unit, check);
 
-    TypeContainerVisitor<JadeCore::UnitLastSearcher <PolyUnitCheck>, WorldTypeMapContainer > world_unit_searcher(searcher);
-    TypeContainerVisitor<JadeCore::UnitLastSearcher <PolyUnitCheck>, GridTypeMapContainer >  grid_unit_searcher(searcher);
+    TypeContainerVisitor<UwowCore::UnitLastSearcher <PolyUnitCheck>, WorldTypeMapContainer > world_unit_searcher(searcher);
+    TypeContainerVisitor<UwowCore::UnitLastSearcher <PolyUnitCheck>, GridTypeMapContainer >  grid_unit_searcher(searcher);
 
     cell.Visit(p, world_unit_searcher, *me->GetMap(), *me, dist);
     cell.Visit(p, grid_unit_searcher, *me->GetMap(), *me, dist);
@@ -3379,17 +3379,17 @@ Unit* bot_minion_ai::FindPolyTarget(float dist, Unit* currTarget) const
 //Finds target for direct fear (warlock)
 Unit* bot_minion_ai::FindFearTarget(float dist) const
 {
-    CellCoord p(JadeCore::ComputeCellCoord(me->GetPositionX(), me->GetPositionY()));
+    CellCoord p(UwowCore::ComputeCellCoord(me->GetPositionX(), me->GetPositionY()));
     Cell cell(p);
     cell.SetNoCreate();
 
     Unit* unit = NULL;
 
     FearUnitCheck check(me, dist);
-	JadeCore::UnitLastSearcher <FearUnitCheck> searcher(me, unit, check);
+	UwowCore::UnitLastSearcher <FearUnitCheck> searcher(me, unit, check);
 
-    TypeContainerVisitor<JadeCore::UnitLastSearcher <FearUnitCheck>, WorldTypeMapContainer > world_unit_searcher(searcher);
-    TypeContainerVisitor<JadeCore::UnitLastSearcher <FearUnitCheck>, GridTypeMapContainer >  grid_unit_searcher(searcher);
+    TypeContainerVisitor<UwowCore::UnitLastSearcher <FearUnitCheck>, WorldTypeMapContainer > world_unit_searcher(searcher);
+    TypeContainerVisitor<UwowCore::UnitLastSearcher <FearUnitCheck>, GridTypeMapContainer >  grid_unit_searcher(searcher);
 
     cell.Visit(p, world_unit_searcher, *me->GetMap(), *me, dist);
     cell.Visit(p, grid_unit_searcher, *me->GetMap(), *me, dist);
@@ -3399,17 +3399,17 @@ Unit* bot_minion_ai::FindFearTarget(float dist) const
 //Finds target for paladin's repentance
 Unit* bot_minion_ai::FindStunTarget(float dist) const
 {
-    CellCoord p(JadeCore::ComputeCellCoord(me->GetPositionX(), me->GetPositionY()));
+    CellCoord p(UwowCore::ComputeCellCoord(me->GetPositionX(), me->GetPositionY()));
     Cell cell(p);
     cell.SetNoCreate();
 
     Unit* unit = NULL;
 
     StunUnitCheck check(me, dist);
-	JadeCore::UnitLastSearcher <StunUnitCheck> searcher(me, unit, check);
+	UwowCore::UnitLastSearcher <StunUnitCheck> searcher(me, unit, check);
 
-    TypeContainerVisitor<JadeCore::UnitLastSearcher <StunUnitCheck>, WorldTypeMapContainer > world_unit_searcher(searcher);
-    TypeContainerVisitor<JadeCore::UnitLastSearcher <StunUnitCheck>, GridTypeMapContainer >  grid_unit_searcher(searcher);
+    TypeContainerVisitor<UwowCore::UnitLastSearcher <StunUnitCheck>, WorldTypeMapContainer > world_unit_searcher(searcher);
+    TypeContainerVisitor<UwowCore::UnitLastSearcher <StunUnitCheck>, GridTypeMapContainer >  grid_unit_searcher(searcher);
 
     cell.Visit(p, world_unit_searcher, *me->GetMap(), *me, dist);
     cell.Visit(p, grid_unit_searcher, *me->GetMap(), *me, dist);
@@ -3419,17 +3419,17 @@ Unit* bot_minion_ai::FindStunTarget(float dist) const
 //Finds target for priest's shackles
 Unit* bot_minion_ai::FindUndeadCCTarget(float dist, uint32 spellId/* = 0*/) const
 {
-    CellCoord p(JadeCore::ComputeCellCoord(me->GetPositionX(), me->GetPositionY()));
+    CellCoord p(UwowCore::ComputeCellCoord(me->GetPositionX(), me->GetPositionY()));
     Cell cell(p);
     cell.SetNoCreate();
 
     Unit* unit = NULL;
 
     UndeadCCUnitCheck check(me, dist, spellId);
-	JadeCore::UnitLastSearcher <UndeadCCUnitCheck> searcher(me, unit, check);
+	UwowCore::UnitLastSearcher <UndeadCCUnitCheck> searcher(me, unit, check);
 
-    TypeContainerVisitor<JadeCore::UnitLastSearcher <UndeadCCUnitCheck>, WorldTypeMapContainer > world_unit_searcher(searcher);
-    TypeContainerVisitor<JadeCore::UnitLastSearcher <UndeadCCUnitCheck>, GridTypeMapContainer >  grid_unit_searcher(searcher);
+    TypeContainerVisitor<UwowCore::UnitLastSearcher <UndeadCCUnitCheck>, WorldTypeMapContainer > world_unit_searcher(searcher);
+    TypeContainerVisitor<UwowCore::UnitLastSearcher <UndeadCCUnitCheck>, GridTypeMapContainer >  grid_unit_searcher(searcher);
 
     cell.Visit(p, world_unit_searcher, *me->GetMap(), *me, dist);
     cell.Visit(p, grid_unit_searcher, *me->GetMap(), *me, dist);
@@ -3439,17 +3439,17 @@ Unit* bot_minion_ai::FindUndeadCCTarget(float dist, uint32 spellId/* = 0*/) cons
 //Finds target for druid's Entangling Roots
 Unit* bot_minion_ai::FindRootTarget(float dist, uint32 spellId) const
 {
-    CellCoord p(JadeCore::ComputeCellCoord(me->GetPositionX(), me->GetPositionY()));
+    CellCoord p(UwowCore::ComputeCellCoord(me->GetPositionX(), me->GetPositionY()));
     Cell cell(p);
     cell.SetNoCreate();
 
     Unit* unit = NULL;
 
     RootUnitCheck check(me, me->GetVictim(), dist, spellId);
-	JadeCore::UnitLastSearcher <RootUnitCheck> searcher(me, unit, check);
+	UwowCore::UnitLastSearcher <RootUnitCheck> searcher(me, unit, check);
 
-    TypeContainerVisitor<JadeCore::UnitLastSearcher <RootUnitCheck>, WorldTypeMapContainer > world_unit_searcher(searcher);
-    TypeContainerVisitor<JadeCore::UnitLastSearcher <RootUnitCheck>, GridTypeMapContainer >  grid_unit_searcher(searcher);
+    TypeContainerVisitor<UwowCore::UnitLastSearcher <RootUnitCheck>, WorldTypeMapContainer > world_unit_searcher(searcher);
+    TypeContainerVisitor<UwowCore::UnitLastSearcher <RootUnitCheck>, GridTypeMapContainer >  grid_unit_searcher(searcher);
 
     cell.Visit(p, world_unit_searcher, *me->GetMap(), *me, dist);
     cell.Visit(p, grid_unit_searcher, *me->GetMap(), *me, dist);
@@ -3459,17 +3459,17 @@ Unit* bot_minion_ai::FindRootTarget(float dist, uint32 spellId) const
 //Finds casting target (friend or enemy)
 Unit* bot_minion_ai::FindCastingTarget(float maxdist, float mindist, bool isFriend, uint32 spellId) const
 {
-    CellCoord p(JadeCore::ComputeCellCoord(me->GetPositionX(), me->GetPositionY()));
+    CellCoord p(UwowCore::ComputeCellCoord(me->GetPositionX(), me->GetPositionY()));
     Cell cell(p);
     cell.SetNoCreate();
 
     Unit* unit = NULL;
 
     CastingUnitCheck check(me, mindist, maxdist, isFriend, spellId);
-	JadeCore::UnitLastSearcher <CastingUnitCheck> searcher(me, unit, check);
+	UwowCore::UnitLastSearcher <CastingUnitCheck> searcher(me, unit, check);
 
-    TypeContainerVisitor<JadeCore::UnitLastSearcher <CastingUnitCheck>, WorldTypeMapContainer > world_unit_searcher(searcher);
-    TypeContainerVisitor<JadeCore::UnitLastSearcher <CastingUnitCheck>, GridTypeMapContainer >  grid_unit_searcher(searcher);
+    TypeContainerVisitor<UwowCore::UnitLastSearcher <CastingUnitCheck>, WorldTypeMapContainer > world_unit_searcher(searcher);
+    TypeContainerVisitor<UwowCore::UnitLastSearcher <CastingUnitCheck>, GridTypeMapContainer >  grid_unit_searcher(searcher);
 
     cell.Visit(p, world_unit_searcher, *me->GetMap(), *me, maxdist);
     cell.Visit(p, grid_unit_searcher, *me->GetMap(), *me, maxdist);
@@ -3628,17 +3628,17 @@ Unit* bot_minion_ai::FindSplashTarget(float dist, Unit* To, float splashdist) co
     if (me->GetDistance(To) > dist)
         return NULL;
 
-    CellCoord p(JadeCore::ComputeCellCoord(me->GetPositionX(), me->GetPositionY()));
+    CellCoord p(UwowCore::ComputeCellCoord(me->GetPositionX(), me->GetPositionY()));
     Cell cell(p);
     cell.SetNoCreate();
 
     Unit* unit = NULL;
 
     SecondEnemyCheck check(me, dist, splashdist, To, this);
-	JadeCore::UnitLastSearcher <SecondEnemyCheck> searcher(me, unit, check);
+	UwowCore::UnitLastSearcher <SecondEnemyCheck> searcher(me, unit, check);
 
-    TypeContainerVisitor<JadeCore::UnitLastSearcher <SecondEnemyCheck>, WorldTypeMapContainer > world_unit_searcher(searcher);
-    TypeContainerVisitor<JadeCore::UnitLastSearcher <SecondEnemyCheck>, GridTypeMapContainer >  grid_unit_searcher(searcher);
+    TypeContainerVisitor<UwowCore::UnitLastSearcher <SecondEnemyCheck>, WorldTypeMapContainer > world_unit_searcher(searcher);
+    TypeContainerVisitor<UwowCore::UnitLastSearcher <SecondEnemyCheck>, GridTypeMapContainer >  grid_unit_searcher(searcher);
 
     cell.Visit(p, world_unit_searcher, *me->GetMap(), *me, dist);
     cell.Visit(p, grid_unit_searcher, *me->GetMap(), *me, dist);
@@ -3648,17 +3648,17 @@ Unit* bot_minion_ai::FindSplashTarget(float dist, Unit* To, float splashdist) co
 //Finds target for hunter's Tranquilizing Shot (has dispellable magic or enrage effect)
 Unit* bot_minion_ai::FindTranquilTarget(float mindist, float maxdist) const
 {
-    CellCoord p(JadeCore::ComputeCellCoord(me->GetPositionX(), me->GetPositionY()));
+    CellCoord p(UwowCore::ComputeCellCoord(me->GetPositionX(), me->GetPositionY()));
     Cell cell(p);
     cell.SetNoCreate();
 
     Unit* unit = NULL;
 
     TranquilTargetCheck check(me, mindist, maxdist, this);
-	JadeCore::UnitLastSearcher <TranquilTargetCheck> searcher(me, unit, check);
+	UwowCore::UnitLastSearcher <TranquilTargetCheck> searcher(me, unit, check);
 
-    TypeContainerVisitor<JadeCore::UnitLastSearcher <TranquilTargetCheck>, WorldTypeMapContainer > world_unit_searcher(searcher);
-    TypeContainerVisitor<JadeCore::UnitLastSearcher <TranquilTargetCheck>, GridTypeMapContainer >  grid_unit_searcher(searcher);
+    TypeContainerVisitor<UwowCore::UnitLastSearcher <TranquilTargetCheck>, WorldTypeMapContainer > world_unit_searcher(searcher);
+    TypeContainerVisitor<UwowCore::UnitLastSearcher <TranquilTargetCheck>, GridTypeMapContainer >  grid_unit_searcher(searcher);
 
     cell.Visit(p, world_unit_searcher, *me->GetMap(), *me, maxdist);
     cell.Visit(p, grid_unit_searcher, *me->GetMap(), *me, maxdist);
@@ -3669,15 +3669,15 @@ Unit* bot_minion_ai::FindTranquilTarget(float mindist, float maxdist) const
 //used for finding targets for spells which need reasonable amount of targets (ex. Death Knight AOE spells)
 void bot_minion_ai::GetNearbyTargetsList(std::list<Unit*> &targets, float maxdist, float mindist, bool forCC) const
 {
-    CellCoord p(JadeCore::ComputeCellCoord(me->GetPositionX(), me->GetPositionY()));
+    CellCoord p(UwowCore::ComputeCellCoord(me->GetPositionX(), me->GetPositionY()));
     Cell cell(p);
     cell.SetNoCreate();
 
     NearbyHostileUnitCheck check(me, maxdist, mindist, this, forCC);
-	JadeCore::UnitListSearcher <NearbyHostileUnitCheck> searcher(me, targets, check);
+	UwowCore::UnitListSearcher <NearbyHostileUnitCheck> searcher(me, targets, check);
 
-    TypeContainerVisitor<JadeCore::UnitListSearcher <NearbyHostileUnitCheck>, WorldTypeMapContainer > world_unit_searcher(searcher);
-    TypeContainerVisitor<JadeCore::UnitListSearcher <NearbyHostileUnitCheck>, GridTypeMapContainer >  grid_unit_searcher(searcher);
+    TypeContainerVisitor<UwowCore::UnitListSearcher <NearbyHostileUnitCheck>, WorldTypeMapContainer > world_unit_searcher(searcher);
+    TypeContainerVisitor<UwowCore::UnitListSearcher <NearbyHostileUnitCheck>, GridTypeMapContainer >  grid_unit_searcher(searcher);
 
     cell.Visit(p, world_unit_searcher, *me->GetMap(), *me, maxdist);
     cell.Visit(p, grid_unit_searcher, *me->GetMap(), *me, maxdist);
@@ -3686,7 +3686,7 @@ void bot_minion_ai::GetNearbyTargetsList(std::list<Unit*> &targets, float maxdis
 //used for finding targets to heal/buff for uncontrolled bots
 void bot_minion_ai::GetNearbyFriendlyTargetsList(GuidList &targets, float maxdist) const
 {
-    CellCoord p(JadeCore::ComputeCellCoord(me->GetPositionX(), me->GetPositionY()));
+    CellCoord p(UwowCore::ComputeCellCoord(me->GetPositionX(), me->GetPositionY()));
     Cell cell(p);
     cell.SetNoCreate();
 
@@ -7878,7 +7878,7 @@ void bot_ai::BotSpeak(std::string const& text, uint8 msgtype, uint32 language, O
         if (Unit* snd = ObjectAccessor::FindConnectedPlayer(speaker))
         {
             float dist = std::max<float>(sWorld->getFloatConfig(CONFIG_LISTEN_RANGE_SAY), sWorld->getFloatConfig(CONFIG_LISTEN_RANGE_YELL) * 0.5f);
-			JadeCore::MessageDistDeliverer notifier(snd, &data, dist, false);
+			UwowCore::MessageDistDeliverer notifier(snd, &data, dist, false);
             snd->VisitNearbyWorldObject(dist, notifier);
         }
     }

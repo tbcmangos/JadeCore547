@@ -2058,8 +2058,8 @@ class at_draw_power : MS::AreaTriggerEntityScript
             std::list<Unit*> targetList;
             float l_Radius = 30.0f;
 
-            JadeCore::NearestAttackableUnitInObjectRangeCheck u_check(p_AreaTrigger, l_Caster, l_Radius);
-            JadeCore::UnitListSearcher<JadeCore::NearestAttackableUnitInObjectRangeCheck> searcher(p_AreaTrigger, targetList, u_check);
+            UwowCore::NearestAttackableUnitInObjectRangeCheck u_check(p_AreaTrigger, l_Caster, l_Radius);
+            UwowCore::UnitListSearcher<UwowCore::NearestAttackableUnitInObjectRangeCheck> searcher(p_AreaTrigger, targetList, u_check);
             p_AreaTrigger->VisitNearbyObject(l_Radius, searcher);
 
             for (auto itr : targetList)

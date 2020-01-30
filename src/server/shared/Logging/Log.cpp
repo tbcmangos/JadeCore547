@@ -578,6 +578,6 @@ void Log::OutTrinity(const char* str, ...)
     va_end(ap);
 
     std::string date = GetTimestampStr();
-    fprintf(trinityLog, "[%s] JadeCore LOG : %s\n", date.c_str(), result);
+    fprintf(trinityLog, "[%s] UwowCore LOG : %s\n", date.c_str(), result);
     fflush(trinityLog);
 }

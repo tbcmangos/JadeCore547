@@ -1182,7 +1182,7 @@ class npc_lulin_star_1 : public CreatureScript
             {
                 Creature* creature = NULL;
                 ReadyStarCheck checker(me);
-                JadeCore::CreatureLastSearcher<ReadyStarCheck> searcher(me, creature, checker);
+                UwowCore::CreatureLastSearcher<ReadyStarCheck> searcher(me, creature, checker);
                 me->VisitNearbyObject(100.0f, searcher);
                 return creature;
             }
@@ -1505,7 +1505,7 @@ class spell_lulin_ice_comet_aoe : public SpellScriptLoader
                 if (!GetCaster())
                     return;
 
-                JadeCore::Containers::RandomResizeList(targets, 1);
+                UwowCore::Containers::RandomResizeList(targets, 1);
             }
 
             void HandleDummy(SpellEffIndex effIndex)

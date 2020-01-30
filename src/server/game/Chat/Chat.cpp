@@ -981,8 +981,8 @@ GameObject* ChatHandler::GetNearbyGameObject()
 
     Player* pl = m_session->GetPlayer();
     GameObject* obj = NULL;
-    JadeCore::NearestGameObjectCheck check(*pl);
-    JadeCore::GameObjectLastSearcher<JadeCore::NearestGameObjectCheck> searcher(pl, obj, check);
+    UwowCore::NearestGameObjectCheck check(*pl);
+    UwowCore::GameObjectLastSearcher<UwowCore::NearestGameObjectCheck> searcher(pl, obj, check);
     pl->VisitNearbyGridObject(SIZE_OF_GRIDS, searcher);
     return obj;
 }

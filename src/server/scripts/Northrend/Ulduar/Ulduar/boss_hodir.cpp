@@ -394,7 +394,7 @@ class boss_hodir : public CreatureScript
             {
                 std::list<Creature*> freezeTraps;
                 FreezeTrapSearcher check(me, 100.0f);
-                JadeCore::CreatureListSearcher<FreezeTrapSearcher> searcher(me, freezeTraps, check);
+                UwowCore::CreatureListSearcher<FreezeTrapSearcher> searcher(me, freezeTraps, check);
                 me->VisitNearbyGridObject(100.0f, searcher);
                 for (std::list<Creature*>::iterator itr = freezeTraps.begin(); itr != freezeTraps.end(); ++itr)
                     (*itr)->DespawnOrUnsummon();
@@ -564,8 +564,8 @@ class boss_hodir : public CreatureScript
             void FlashFreeze()
             {
                 std::list<Unit*> TargetList;
-                JadeCore::AnyUnfriendlyUnitInObjectRangeCheck checker(me, me, 100.0f);
-                JadeCore::UnitListSearcher<JadeCore::AnyUnfriendlyUnitInObjectRangeCheck> searcher(me, TargetList, checker);
+                UwowCore::AnyUnfriendlyUnitInObjectRangeCheck checker(me, me, 100.0f);
+                UwowCore::UnitListSearcher<UwowCore::AnyUnfriendlyUnitInObjectRangeCheck> searcher(me, TargetList, checker);
                 me->VisitNearbyObject(100.0f, searcher);
                 for (std::list<Unit*>::iterator itr = TargetList.begin(); itr != TargetList.end(); ++itr)
                 {
@@ -738,8 +738,8 @@ class npc_hodir_priest : public CreatureScript
                         case EVENT_DISPEL_MAGIC:
                         {
                             std::list<Unit*> TargetList;
-                            JadeCore::AnyFriendlyUnitInObjectRangeCheck checker(me, me, 30.0f);
-                            JadeCore::UnitListSearcher<JadeCore::AnyFriendlyUnitInObjectRangeCheck> searcher(me, TargetList, checker);
+                            UwowCore::AnyFriendlyUnitInObjectRangeCheck checker(me, me, 30.0f);
+                            UwowCore::UnitListSearcher<UwowCore::AnyFriendlyUnitInObjectRangeCheck> searcher(me, TargetList, checker);
                             me->VisitNearbyObject(30.0f, searcher);
                             for (std::list<Unit*>::iterator itr = TargetList.begin(); itr != TargetList.end(); ++itr)
                                 if ((*itr)->HasAura(SPELL_FREEZE))
@@ -807,8 +807,8 @@ class npc_hodir_shaman : public CreatureScript
                         case EVENT_STORM_CLOUD:
                             {
                                 std::list<Unit*> allies;
-                                JadeCore::AnyFriendlyUnitInObjectRangeCheck checker(me, me, 30.0f);
-                                JadeCore::UnitListSearcher<JadeCore::AnyFriendlyUnitInObjectRangeCheck> searcher(me, allies, checker);
+                                UwowCore::AnyFriendlyUnitInObjectRangeCheck checker(me, me, 30.0f);
+                                UwowCore::UnitListSearcher<UwowCore::AnyFriendlyUnitInObjectRangeCheck> searcher(me, allies, checker);
                                 me->VisitNearbyWorldObject(30.0f, searcher);
                                 if (!allies.empty())
                                 {

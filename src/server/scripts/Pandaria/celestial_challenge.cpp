@@ -661,7 +661,7 @@ class spell_celestial_challenge_xuen_crackling_lightning: public SpellScriptLoad
 
                 if (targets.size() > 1)
                 {
-                    JadeCore::Containers::RandomResizeList(targets, 1);
+                    UwowCore::Containers::RandomResizeList(targets, 1);
                 }
             }
 
@@ -715,7 +715,7 @@ class spell_celestial_challenge_xuen_chi_barrage: public SpellScriptLoader
 
                 if (targets.size() > 1)
                 {
-                    JadeCore::Containers::RandomResizeList(targets, 1);
+                    UwowCore::Containers::RandomResizeList(targets, 1);
                 }
             }
 

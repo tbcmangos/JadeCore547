@@ -230,8 +230,8 @@ class spell_mage_glyph_of_slow : public SpellScriptLoader
                         float radius = 50.0f;
                         bool found = false;
 
-                        JadeCore::NearestAttackableUnitInObjectRangeCheck u_check(caster, caster, radius);
-                        JadeCore::UnitListSearcher<JadeCore::NearestAttackableUnitInObjectRangeCheck> searcher(caster, targetList, u_check);
+                        UwowCore::NearestAttackableUnitInObjectRangeCheck u_check(caster, caster, radius);
+                        UwowCore::UnitListSearcher<UwowCore::NearestAttackableUnitInObjectRangeCheck> searcher(caster, targetList, u_check);
                         caster->VisitNearbyObject(radius, searcher);
 
                         for (auto itr : targetList)
@@ -705,7 +705,7 @@ class spell_mage_arcane_barrage : public SpellScriptLoader
                             target->GetAttackableUnitListInRange(targetList, 10.0f);
                             targetList.remove_if(CheckArcaneBarrageImpactPredicate(_player, target));
 
-                            JadeCore::Containers::RandomResizeList(targetList, chargeCount);
+                            UwowCore::Containers::RandomResizeList(targetList, chargeCount);
 
                             for (auto itr : targetList)
                                 _player->CastCustomSpell(itr, SPELL_MAGE_ARCANE_BARRAGE_TRIGGERED, &damage, NULL, NULL, true, 0, nullptr, _player->GetGUID());
@@ -953,7 +953,7 @@ class spell_mage_nether_tempest : public SpellScriptLoader
                         GetTarget()->GetAttackableUnitListInRange(targetList, 10.0f);
                         targetList.remove_if(CheckNetherImpactPredicate(_player, GetTarget()));
 
-                        JadeCore::Containers::RandomResizeList(targetList, 1);
+                        UwowCore::Containers::RandomResizeList(targetList, 1);
 
                         for (auto itr : targetList)
                         {
@@ -1168,7 +1168,7 @@ class spell_mage_inferno_blast : public SpellScriptLoader
                         targetList.remove_if(CheckInfernoBlastImpactPredicate(_player, target));
 
                         if (targetList.size() > 2)
-                            JadeCore::Containers::RandomResizeList(targetList, 2);
+                            UwowCore::Containers::RandomResizeList(targetList, 2);
 
                         for (auto itr : targetList)
                         {
@@ -1421,10 +1421,10 @@ class spell_mage_time_warp : public SpellScriptLoader
 
             void RemoveInvalidTargets(std::list<WorldObject*>& targets)
             {
-                targets.remove_if(JadeCore::UnitAuraCheck(true, HUNTER_SPELL_INSANITY));
-                targets.remove_if(JadeCore::UnitAuraCheck(true, SPELL_SHAMAN_EXHAUSTED));
-                targets.remove_if(JadeCore::UnitAuraCheck(true, SPELL_SHAMAN_SATED));
-                targets.remove_if(JadeCore::UnitAuraCheck(true, SPELL_MAGE_TEMPORAL_DISPLACEMENT));
+                targets.remove_if(UwowCore::UnitAuraCheck(true, HUNTER_SPELL_INSANITY));
+                targets.remove_if(UwowCore::UnitAuraCheck(true, SPELL_SHAMAN_EXHAUSTED));
+                targets.remove_if(UwowCore::UnitAuraCheck(true, SPELL_SHAMAN_SATED));
+                targets.remove_if(UwowCore::UnitAuraCheck(true, SPELL_MAGE_TEMPORAL_DISPLACEMENT));
             }
 
             void ApplyDebuff()

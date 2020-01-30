@@ -878,7 +878,7 @@ class boss_generic_guardian : public CreatureScript
                                         if (tempPlayerList.size() < 2)
                                             break;
 
-                                        JadeCore::Containers::RandomResizeList(tempPlayerList, 2);
+                                        UwowCore::Containers::RandomResizeList(tempPlayerList, 2);
                                     
                                         Player* firstPlayer  = *tempPlayerList.begin();
                                         Player* SecondPlayer = *(++(tempPlayerList.begin()));
@@ -1486,8 +1486,8 @@ class at_amethyst_pool : MS::AreaTriggerEntityScript
             float l_Radius = 5.0f;
             std::list<Unit*> l_TargetList;
 
-            JadeCore::NearestAttackableUnitInObjectRangeCheck u_check(p_AreaTrigger, l_Caster, l_Radius);
-            JadeCore::UnitListSearcher<JadeCore::NearestAttackableUnitInObjectRangeCheck> searcher(p_AreaTrigger, l_TargetList, u_check);
+            UwowCore::NearestAttackableUnitInObjectRangeCheck u_check(p_AreaTrigger, l_Caster, l_Radius);
+            UwowCore::UnitListSearcher<UwowCore::NearestAttackableUnitInObjectRangeCheck> searcher(p_AreaTrigger, l_TargetList, u_check);
             p_AreaTrigger->VisitNearbyObject(l_Radius, searcher);
 
             if (!l_TargetList.empty())

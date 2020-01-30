@@ -854,7 +854,7 @@ class Spell
         std::list<TargetInfo> const& GetTargetInfos() const { return m_UniqueTargetInfo; }
 };
 
-namespace JadeCore
+namespace UwowCore
 {
     struct WorldObjectSpellTargetCheck
     {

@@ -1802,10 +1802,10 @@ class spell_malygos_arcane_storm : public SpellScriptLoader
                 {
                     // Resize list only to objects that are vehicles.
                     IsCreatureVehicleCheck check(true);
-                    JadeCore::RandomResizeList(targets, check, (malygos->GetMap()->GetDifficulty() == MAN10_DIFFICULTY ? 4 : 10));
+                    UwowCore::RandomResizeList(targets, check, (malygos->GetMap()->GetDifficulty() == MAN10_DIFFICULTY ? 4 : 10));
                 }
                 else
-                    JadeCore::RandomResizeList(targets, (malygos->GetMap()->GetDifficulty() == MAN10_DIFFICULTY ? 4 : 10));
+                    UwowCore::RandomResizeList(targets, (malygos->GetMap()->GetDifficulty() == MAN10_DIFFICULTY ? 4 : 10));
             }
 
             void HandleVisual(SpellEffIndex /*effIndex*/)
@@ -2058,7 +2058,7 @@ class spell_scion_of_eternity_arcane_barrage : public SpellScriptLoader
                 // and if 3rd picks X again 4th will pick smth else (by not limiting the cast to certain caster).
                 if (targets.size() > 1)
                     if (malygos && malygos->AI()->GetGUID(DATA_LAST_TARGET_BARRAGE_GUID))
-                        targets.remove_if(JadeCore::ObjectGUIDCheck(malygos->AI()->GetGUID(DATA_LAST_TARGET_BARRAGE_GUID)));
+                        targets.remove_if(UwowCore::ObjectGUIDCheck(malygos->AI()->GetGUID(DATA_LAST_TARGET_BARRAGE_GUID)));
 
                 // Remove players not on Hover Disk from second list
                 std::list<WorldObject*> playersWithoutDisk;
@@ -2074,7 +2074,7 @@ class spell_scion_of_eternity_arcane_barrage : public SpellScriptLoader
                 // Finally here we remove all targets that have been damaged by Arcane Barrage
                 // and have 2 seconds long aura still lasting. Used to give healers some time.
                 if (!targets.empty())
-                    targets.remove_if(JadeCore::UnitAuraCheck(true, SPELL_ARCANE_BARRAGE_DAMAGE));
+                    targets.remove_if(UwowCore::UnitAuraCheck(true, SPELL_ARCANE_BARRAGE_DAMAGE));
 
                 // Now we resize the list to max output targets which can be only 1
                 // to take it's guid and send/store it to DATA_LAST_TARGET_BARRAGE_GUID.
@@ -2083,7 +2083,7 @@ class spell_scion_of_eternity_arcane_barrage : public SpellScriptLoader
                 if (!targets.empty())
                 {
                     if (targets.size() > 1)
-                        JadeCore::RandomResizeList(targets, 1);
+                        UwowCore::RandomResizeList(targets, 1);
 
                     if (WorldObject* filteredTarget = targets.front())
                         if (malygos)
@@ -2339,7 +2339,7 @@ class spell_malygos_surge_of_power_warning_selector_25 : public SpellScriptLoade
                 std::list<WorldObject*> selectedTargets = targets;
 
                 uint8 guidDataSlot = DATA_FIRST_SURGE_TARGET_GUID; // SetGuid in Malygos AI is reserved for 14th, 15th and 16th Id for the three targets
-                JadeCore::RandomResizeList(selectedTargets, 3);
+                UwowCore::RandomResizeList(selectedTargets, 3);
                 for (std::list<WorldObject*>::const_iterator itr = selectedTargets.begin(); itr != selectedTargets.end(); ++itr)
                 {
                     Creature* target = (*itr)->ToCreature();

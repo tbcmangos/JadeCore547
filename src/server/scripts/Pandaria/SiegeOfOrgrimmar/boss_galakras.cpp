@@ -1850,13 +1850,13 @@ class npc_galakras_war_banner : public CreatureScript
 
             void SelectCreatures(std::list<Creature*>& creatureList, float range)
             {
-                CellCoord pair(JadeCore::ComputeCellCoord(me->GetPositionX(), me->GetPositionY()));
+                CellCoord pair(UwowCore::ComputeCellCoord(me->GetPositionX(), me->GetPositionY()));
                 Cell cell(pair);
                 cell.SetNoCreate();
 
                 AllCreatures check(me, range);
-                JadeCore::CreatureListSearcher<AllCreatures> searcher(me, creatureList, check);
-                TypeContainerVisitor<JadeCore::CreatureListSearcher<AllCreatures>, GridTypeMapContainer> visitor(searcher);
+                UwowCore::CreatureListSearcher<AllCreatures> searcher(me, creatureList, check);
+                TypeContainerVisitor<UwowCore::CreatureListSearcher<AllCreatures>, GridTypeMapContainer> visitor(searcher);
 
                 cell.Visit(pair, visitor, *(me->GetMap()), *me, range);
             }
@@ -2453,7 +2453,7 @@ class npc_galakras_tower : public CreatureScript
             void SelectPlayersOnGrid(std::list<Player*>& players, float range)
             {
                 AnyPlayerInObjectRange2dCheck checker(me, range);
-                JadeCore::PlayerListSearcher<AnyPlayerInObjectRange2dCheck> searcher(me, players, checker);
+                UwowCore::PlayerListSearcher<AnyPlayerInObjectRange2dCheck> searcher(me, players, checker);
                 me->VisitNearbyWorldObject(range, searcher);
             }
 
@@ -2813,7 +2813,7 @@ class spell_galakras_tidal_wave_aoe : public SpellScriptLoader
 
             void FilterTargets(std::list<WorldObject*>& targets)
             {
-                JadeCore::Containers::RandomResizeList(targets, 1);
+                UwowCore::Containers::RandomResizeList(targets, 1);
             }
 
             void HandleHitTarget(SpellEffIndex effIndex)
@@ -2849,7 +2849,7 @@ class spell_galakras_shattering_roar : public SpellScriptLoader
 
             void FilterTargets(std::list<WorldObject*>& targets)
             {
-                targets.remove_if(JadeCore::UnitAuraCheck(true, SPELL_IN_A_TOWER));
+                targets.remove_if(UwowCore::UnitAuraCheck(true, SPELL_IN_A_TOWER));
             }
 
             void Register()

@@ -1617,7 +1617,7 @@ class spell_zorlok_exhale : public SpellScriptLoader
                 if (!playerList.empty())
                 {
                     // Players have been found, we order them by distance from the caster
-                    playerList.sort(JadeCore::DistanceCompareOrderPred(caster));
+                    playerList.sort(UwowCore::DistanceCompareOrderPred(caster));
 
                     // Remove players that are in the range but not between the caster and the current target
                     playerList.remove_if([this, owner, caster](Player* player) -> bool

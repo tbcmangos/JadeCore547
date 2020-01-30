@@ -1978,8 +1978,8 @@ public:
             events.Update(diff);
 
             std::list<Creature*> list_p;
-            JadeCore::AnyCreatureInObjectRangeCheck check(me, 2.0f);
-            JadeCore::CreatureListSearcher<JadeCore::AnyCreatureInObjectRangeCheck> searcher(me, list_p, check);
+            UwowCore::AnyCreatureInObjectRangeCheck check(me, 2.0f);
+            UwowCore::CreatureListSearcher<UwowCore::AnyCreatureInObjectRangeCheck> searcher(me, list_p, check);
             me->VisitNearbyObject(2.0, searcher);
 
             for (std::list<Creature*>::const_iterator itr = list_p.begin(); itr != list_p.end(); itr++)

@@ -195,8 +195,8 @@ class spell_monk_ring_of_peace : public SpellScriptLoader
                         std::list<Unit*> targetList;
                         float radius = 8.0f;
 
-                        JadeCore::NearestAttackableUnitInObjectRangeCheck u_check(target, caster, radius);
-                        JadeCore::UnitListSearcher<JadeCore::NearestAttackableUnitInObjectRangeCheck> searcher(target, targetList, u_check);
+                        UwowCore::NearestAttackableUnitInObjectRangeCheck u_check(target, caster, radius);
+                        UwowCore::UnitListSearcher<UwowCore::NearestAttackableUnitInObjectRangeCheck> searcher(target, targetList, u_check);
                         target->VisitNearbyObject(radius, searcher);
 
                         for (auto itr : targetList)
@@ -511,7 +511,7 @@ class spell_monk_fists_of_fury_stun : public SpellScriptLoader
 
             void RemoveInvalidTargets(std::list<WorldObject*>& targets)
             {
-                targets.remove_if(JadeCore::UnitAuraCheck(true, GetSpellInfo()->Id));
+                targets.remove_if(UwowCore::UnitAuraCheck(true, GetSpellInfo()->Id));
             }
 
             void Register()
@@ -546,8 +546,8 @@ class spell_monk_expel_harm : public SpellScriptLoader
                     std::list<Unit*> targetList;
                     float radius = 10.0f;
 
-                    JadeCore::NearestAttackableUnitInObjectRangeCheck u_check(_player, _player, radius);
-                    JadeCore::UnitListSearcher<JadeCore::NearestAttackableUnitInObjectRangeCheck> searcher(_player, targetList, u_check);
+                    UwowCore::NearestAttackableUnitInObjectRangeCheck u_check(_player, _player, radius);
+                    UwowCore::UnitListSearcher<UwowCore::NearestAttackableUnitInObjectRangeCheck> searcher(_player, targetList, u_check);
                     _player->VisitNearbyObject(radius, searcher);
 
                     for (auto itr : targetList)
@@ -688,7 +688,7 @@ public:
 
                     if (unitList.size() > 1)
                     {
-                        unitList.sort(JadeCore::DistanceOrderPred(caster));
+                        unitList.sort(UwowCore::DistanceOrderPred(caster));
                         unitList.resize(1);
                     }
 
@@ -702,7 +702,7 @@ public:
 
                     if (unitList.size() > 1)
                     {
-                        unitList.sort(JadeCore::HealthPctOrderPred()); // "When bouncing to allies, Chi Wave will prefer those injured over full health"
+                        unitList.sort(UwowCore::HealthPctOrderPred()); // "When bouncing to allies, Chi Wave will prefer those injured over full health"
                         unitList.resize(1);
                     }
 
@@ -1208,7 +1208,7 @@ class spell_monk_black_ox_statue : public SpellScriptLoader
                                 {
                                     m_DamageDealt %= l_Threshold; // To prevent players from accumulating more than one guard charge
 
-                                    Unit* l_Target = JadeCore::Containers::SelectRandomContainerElement(l_Targets);
+                                    Unit* l_Target = UwowCore::Containers::SelectRandomContainerElement(l_Targets);
                                     l_Target->CastSpell(l_Target, SPELL_MONK_GUARD, true, nullptr, nullptr, l_Statue->GetGUID());
                                 }
                             }
@@ -1679,7 +1679,7 @@ class spell_monk_spinning_fire_blossom : public SpellScriptLoader
 
                     if (!targetList.empty())
                     {
-                        JadeCore::Containers::RandomResizeList(targetList, 1);
+                        UwowCore::Containers::RandomResizeList(targetList, 1);
 
                         for (auto itr : targetList)
                             _player->CastSpell(itr, SPELL_MONK_SPINNING_FIRE_BLOSSOM_DAMAGE, true);
@@ -1748,7 +1748,7 @@ class spell_monk_thunder_focus_tea : public SpellScriptLoader
                     hasTea = true;
                     aur->Remove();
                 }
-                unitList.remove_if(JadeCore::UnitAuraCheck(false, SPELL_MONK_RENEWING_MIST_HOT, GetCaster()->GetGUID()));
+                unitList.remove_if(UwowCore::UnitAuraCheck(false, SPELL_MONK_RENEWING_MIST_HOT, GetCaster()->GetGUID()));
             }
 
             void HandleOnHit(SpellEffIndex effIndex)
@@ -2079,7 +2079,7 @@ public:
                 unitList.remove_if(TargetCheck(GetOriginalCaster()->GetGUID()));
 
             if (unitList.size() > 1)
-                JadeCore::Containers::RandomResizeList(unitList, 1);
+                UwowCore::Containers::RandomResizeList(unitList, 1);
         }
 
         void HandleOnHitTarget(SpellEffIndex /*effIndex*/)
@@ -2918,7 +2918,7 @@ class spell_monk_soothing_mist : public SpellScriptLoader
 
                             if (!l_PartyMembers.empty())
                             {
-                                l_PartyMembers.sort(JadeCore::HealthPctOrderPred());
+                                l_PartyMembers.sort(UwowCore::HealthPctOrderPred());
 
                                 l_SerpentStatue->CastSpell(l_PartyMembers.front(), GetSpellInfo()->Id, true);
                             }

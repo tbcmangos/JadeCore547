@@ -393,13 +393,13 @@ class instance_shadopan_monastery : public InstanceMapScript
                     case NPC_SHA_VIOLENCE:          return shaViolenceGuid;
                     case NPC_TARAN_ZHU:             return taranZhuGuid;
                     case NPC_AZURE_SERPENT:         return azureSerpentGuid;
-                    case NPC_ARCHERY_TARGET:        return JadeCore::Containers::SelectRandomContainerElement(archeryTargetGuids);
+                    case NPC_ARCHERY_TARGET:        return UwowCore::Containers::SelectRandomContainerElement(archeryTargetGuids);
                     case DATA_RANDOM_FIRST_POS:
                     {
                         if (firstDefeatedNovicePositionsGuid.empty())
                             return 0;
 
-                        uint64 guid = JadeCore::Containers::SelectRandomContainerElement(firstDefeatedNovicePositionsGuid);
+                        uint64 guid = UwowCore::Containers::SelectRandomContainerElement(firstDefeatedNovicePositionsGuid);
                         firstDefeatedNovicePositionsGuid.remove(guid);
                         return guid;
                     }
@@ -408,7 +408,7 @@ class instance_shadopan_monastery : public InstanceMapScript
                         if (secondDefeatedNovicePositionsGuid.empty())
                             return 0;
 
-                        uint64 guid = JadeCore::Containers::SelectRandomContainerElement(secondDefeatedNovicePositionsGuid);
+                        uint64 guid = UwowCore::Containers::SelectRandomContainerElement(secondDefeatedNovicePositionsGuid);
                         secondDefeatedNovicePositionsGuid.remove(guid);
                         return guid;
                     }
@@ -417,7 +417,7 @@ class instance_shadopan_monastery : public InstanceMapScript
                         if (minibossPositionsGuid.empty())
                             return 0;
 
-                        uint64 guid = JadeCore::Containers::SelectRandomContainerElement(minibossPositionsGuid);
+                        uint64 guid = UwowCore::Containers::SelectRandomContainerElement(minibossPositionsGuid);
                         minibossPositionsGuid.remove(guid);
                         return guid;
                     }

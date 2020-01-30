@@ -1534,7 +1534,7 @@ class go_sha_of_pride_shadow_prison_trap : public GameObjectScript
 
                 Player* player = NULL;
                 PlayerTrapActivatorCheck check(go, range, auraId);
-                JadeCore::PlayerSearcher<PlayerTrapActivatorCheck> searcher(go, player, check);
+                UwowCore::PlayerSearcher<PlayerTrapActivatorCheck> searcher(go, player, check);
                 go->VisitNearbyWorldObject(range, searcher);
                 return player;
             }
@@ -1547,7 +1547,7 @@ class go_sha_of_pride_shadow_prison_trap : public GameObjectScript
 
                 std::list<Player*> players;
                 PlayerTrapActivatorCheckNew check(go, 5.0f, 7.5f, auraId);
-                JadeCore::PlayerListSearcher<PlayerTrapActivatorCheckNew> searcher(go, players, check);
+                UwowCore::PlayerListSearcher<PlayerTrapActivatorCheckNew> searcher(go, players, check);
                 go->VisitNearbyWorldObject(range, searcher);
                 return players.size();
             }
@@ -2202,7 +2202,7 @@ class spell_sha_of_pride_last_word : public SpellScriptLoader
 
                     if (!unitTargets.empty())
                     {
-                        unitTargets.sort(JadeCore::DistanceOrderPred(pCreature));
+                        unitTargets.sort(UwowCore::DistanceOrderPred(pCreature));
                         unitTargets.resize(2);
 
                         for (std::list<Player*>::const_iterator itr = unitTargets.begin(); itr != unitTargets.end(); ++itr)
@@ -2438,12 +2438,12 @@ class spell_sha_of_pride_gift_titans : public SpellScriptLoader
 
                 std::list<Player*> playerList;
                 caster->GetPlayerListInGrid(playerList, 100.0f);
-                playerList.remove_if(JadeCore::UnitAuraCheck(true, SPELL_OVERCOME_1));
+                playerList.remove_if(UwowCore::UnitAuraCheck(true, SPELL_OVERCOME_1));
 
                 uint32 targetsCount = caster->GetMap()->Is25ManRaid() ? GIFT_OF_TITANS_COUNT_25 : GIFT_OF_TITANS_COUNT_10;
 
                 if (playerList.size() > targetsCount)
-                    JadeCore::RandomResizeList(playerList, targetsCount);
+                    UwowCore::RandomResizeList(playerList, targetsCount);
 
                 for (Player* player : playerList)
                 {
@@ -2483,7 +2483,7 @@ class spell_sha_of_pride_gift_of_the_titans_aura : public SpellScriptLoader
                 std::list<Player*> playerList;
                 GetPlayerListInGrid(playerList, owner, 8.f);
 
-                playerList.remove_if(JadeCore::UnitAuraCheck(false, SPELL_GIFT_OF_THE_TITANS_1));
+                playerList.remove_if(UwowCore::UnitAuraCheck(false, SPELL_GIFT_OF_THE_TITANS_1));
 
                 uint8 neededCount = owner->GetMap()->Is25ManRaid() ? 7 : 2;
                 if (playerList.size() >= neededCount)

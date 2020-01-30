@@ -458,7 +458,7 @@ class npc_ook_barrel : public CreatureScript
                         // Selecting a target
                         if (!l_TargetList.empty())
                         {
-                            JadeCore::RandomResizeList(l_TargetList, 1);
+                            UwowCore::RandomResizeList(l_TargetList, 1);
                             Unit* l_Target = l_TargetList.front();
                             l_Ori = me->GetAngle(l_Target->GetPositionX(), l_Target->GetPositionY());
                         }
@@ -765,7 +765,7 @@ class spell_brew_explosion_hozen : public SpellScriptLoader
 
             void SelectTargets(std::list<WorldObject*>& p_Targets)
             {
-                p_Targets.remove_if(JadeCore::UnitAuraCheck(true, SPELL_BARREL_RIDE));
+                p_Targets.remove_if(UwowCore::UnitAuraCheck(true, SPELL_BARREL_RIDE));
                 p_Targets.remove_if(CheckBrewBarrelTargets());
             }
 
@@ -796,7 +796,7 @@ class spell_brew_explosion_ookook : public SpellScriptLoader
 
             void SelectTargets(std::list<WorldObject*>& p_Targets)
             {
-                p_Targets.remove_if(JadeCore::UnitAuraCheck(true, SPELL_BARREL_RIDE));
+                p_Targets.remove_if(UwowCore::UnitAuraCheck(true, SPELL_BARREL_RIDE));
                 p_Targets.remove_if(CheckBrewBarrelTargets());
             }
 

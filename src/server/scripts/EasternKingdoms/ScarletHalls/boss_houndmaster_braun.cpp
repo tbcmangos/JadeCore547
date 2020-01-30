@@ -138,13 +138,13 @@ class boss_houndmaster_braun : public CreatureScript
                 me->GetPosition(x, y, z);
 
                 {
-                    CellCoord pair(JadeCore::ComputeCellCoord(x, y));
+                    CellCoord pair(UwowCore::ComputeCellCoord(x, y));
                     Cell cell(pair);
                     cell.SetNoCreate();
 
-                    JadeCore::AllCreaturesOfEntryInRange check(me, MOB_OBEDIENT_HOUND, 200);
-                    JadeCore::CreatureListSearcher<JadeCore::AllCreaturesOfEntryInRange> searcher(me, templist, check);
-                    TypeContainerVisitor<JadeCore::CreatureListSearcher<JadeCore::AllCreaturesOfEntryInRange>, GridTypeMapContainer> cSearcher(searcher);
+                    UwowCore::AllCreaturesOfEntryInRange check(me, MOB_OBEDIENT_HOUND, 200);
+                    UwowCore::CreatureListSearcher<UwowCore::AllCreaturesOfEntryInRange> searcher(me, templist, check);
+                    TypeContainerVisitor<UwowCore::CreatureListSearcher<UwowCore::AllCreaturesOfEntryInRange>, GridTypeMapContainer> cSearcher(searcher);
                     cell.Visit(pair, cSearcher, *me->GetMap(), *me, me->GetGridActivationRange());
                 }
 

@@ -195,13 +195,13 @@ void WorldSession::HandleLootMoneyOpcode(WorldPacket& /*recvData*/)
                 else
                 {
                     std::list<Creature*> linkedLootCreatures;
-                    CellCoord p(JadeCore::ComputeCellCoord(player->GetPositionX(), player->GetPositionY()));
+                    CellCoord p(UwowCore::ComputeCellCoord(player->GetPositionX(), player->GetPositionY()));
                     Cell cell(p);
                     cell.SetNoCreate();
 
-                    JadeCore::AllDeadCreaturesInRange check(player, 25.0f, creature->GetGUID());
-                    JadeCore::CreatureListSearcher<JadeCore::AllDeadCreaturesInRange> searcher(player, linkedLootCreatures, check);
-                    TypeContainerVisitor<JadeCore::CreatureListSearcher<JadeCore::AllDeadCreaturesInRange>, GridTypeMapContainer> cSearcher(searcher);
+                    UwowCore::AllDeadCreaturesInRange check(player, 25.0f, creature->GetGUID());
+                    UwowCore::CreatureListSearcher<UwowCore::AllDeadCreaturesInRange> searcher(player, linkedLootCreatures, check);
+                    TypeContainerVisitor<UwowCore::CreatureListSearcher<UwowCore::AllDeadCreaturesInRange>, GridTypeMapContainer> cSearcher(searcher);
                     cell.Visit(p, cSearcher, *(player->GetMap()), *player,  25.0f);
 
                     for (auto itr : linkedLootCreatures)

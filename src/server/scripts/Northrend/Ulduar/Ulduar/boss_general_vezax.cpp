@@ -304,7 +304,7 @@ class boss_general_vezax : public CreatureScript
                     if (PlayerList.empty() || PlayerList.size()<playersMin)
                         return SelectTarget(SELECT_TARGET_RANDOM, 0, 150.0f, true);
 
-                    return JadeCore::Containers::SelectRandomContainerElement(PlayerList);
+                    return UwowCore::Containers::SelectRandomContainerElement(PlayerList);
                 }
                 return 0;
             }
@@ -572,10 +572,10 @@ class spell_saronite_vapors : public SpellScriptLoader // Spell 63323
                 if (Unit* caster = GetCaster())
                 {
                     std::list<Player*> players;
-                    JadeCore::AnyPlayerInObjectRangeCheck u_check(caster, 150.0f, true);
-                    JadeCore::PlayerListSearcher<JadeCore::AnyPlayerInObjectRangeCheck> searcher(caster, players, u_check);
+                    UwowCore::AnyPlayerInObjectRangeCheck u_check(caster, 150.0f, true);
+                    UwowCore::PlayerListSearcher<UwowCore::AnyPlayerInObjectRangeCheck> searcher(caster, players, u_check);
                     caster->VisitNearbyObject(30.0f, searcher);
-                    players.sort(JadeCore::ObjectDistanceOrderPred(caster));
+                    players.sort(UwowCore::ObjectDistanceOrderPred(caster));
                     for (std::list<Player*>::iterator it = players.begin(); it != players.end(); ++it)
                     {
                         if (Player* player = *it)

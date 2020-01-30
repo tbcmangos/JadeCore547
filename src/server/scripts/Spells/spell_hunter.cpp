@@ -197,8 +197,8 @@ class spell_hun_glaive_toss_damage : public SpellScriptLoader
                 std::list<Unit*> targetList;
                 float radius = 50.0f;
 
-                JadeCore::AnyUnfriendlyUnitInObjectRangeCheck u_check(caster, caster, radius);
-                JadeCore::UnitListSearcher<JadeCore::AnyUnfriendlyUnitInObjectRangeCheck> searcher(caster, targetList, u_check);
+                UwowCore::AnyUnfriendlyUnitInObjectRangeCheck u_check(caster, caster, radius);
+                UwowCore::UnitListSearcher<UwowCore::AnyUnfriendlyUnitInObjectRangeCheck> searcher(caster, targetList, u_check);
                 caster->VisitNearbyObject(radius, searcher);
 
                 for (Unit* target : targetList)
@@ -719,7 +719,7 @@ class spell_hun_lynx_rush : public SpellScriptLoader
                 if (targetList.empty())
                     return;
 
-                JadeCore::Containers::RandomResizeList(targetList, 1);
+                UwowCore::Containers::RandomResizeList(targetList, 1);
 
                 for (auto itr : targetList)
                 {
@@ -790,7 +790,7 @@ class spell_hun_lynx_rush : public SpellScriptLoader
                                 if (targetList.empty())
                                     return;
 
-                                JadeCore::Containers::RandomResizeList(targetList, 1);
+                                UwowCore::Containers::RandomResizeList(targetList, 1);
 
                                 for (auto itr : targetList)
                                 {
@@ -990,20 +990,20 @@ class spell_hun_binding_shot : public SpellScriptLoader
 
                     std::list<Unit*> bindedList;
 
-                    CellCoord p(JadeCore::ComputeCellCoord(dynObj->GetPositionX(), dynObj->GetPositionY()));
+                    CellCoord p(UwowCore::ComputeCellCoord(dynObj->GetPositionX(), dynObj->GetPositionY()));
                     Cell cell(p);
                     cell.SetNoCreate();
 
-                    JadeCore::AnyUnitInObjectRangeCheck u_check(dynObj, 15.0f);
-                    JadeCore::UnitListSearcher<JadeCore::AnyUnitInObjectRangeCheck> searcher(dynObj, bindedList, u_check);
+                    UwowCore::AnyUnitInObjectRangeCheck u_check(dynObj, 15.0f);
+                    UwowCore::UnitListSearcher<UwowCore::AnyUnitInObjectRangeCheck> searcher(dynObj, bindedList, u_check);
 
-                    TypeContainerVisitor<JadeCore::UnitListSearcher<JadeCore::AnyUnitInObjectRangeCheck>, WorldTypeMapContainer > world_unit_searcher(searcher);
-                    TypeContainerVisitor<JadeCore::UnitListSearcher<JadeCore::AnyUnitInObjectRangeCheck>, GridTypeMapContainer >  grid_unit_searcher(searcher);
+                    TypeContainerVisitor<UwowCore::UnitListSearcher<UwowCore::AnyUnitInObjectRangeCheck>, WorldTypeMapContainer > world_unit_searcher(searcher);
+                    TypeContainerVisitor<UwowCore::UnitListSearcher<UwowCore::AnyUnitInObjectRangeCheck>, GridTypeMapContainer >  grid_unit_searcher(searcher);
 
                     cell.Visit(p, world_unit_searcher, *dynObj->GetMap(), *dynObj, 15.0f);
                     cell.Visit(p, grid_unit_searcher, *dynObj->GetMap(), *dynObj, 15.0f);
 
-                    bindedList.remove_if(JadeCore::UnitAuraCheck(false, GetSpellInfo()->Id, caster->GetGUID()));
+                    bindedList.remove_if(UwowCore::UnitAuraCheck(false, GetSpellInfo()->Id, caster->GetGUID()));
 
                     for (auto itr : bindedList)
                     {
@@ -1322,10 +1322,10 @@ class spell_hun_ancient_hysteria : public SpellScriptLoader
 
             void RemoveInvalidTargets(std::list<WorldObject*>& targets)
             {
-                targets.remove_if(JadeCore::UnitAuraCheck(true, HUNTER_SPELL_INSANITY));
-                targets.remove_if(JadeCore::UnitAuraCheck(true, SPELL_SHAMAN_EXHAUSTED));
-                targets.remove_if(JadeCore::UnitAuraCheck(true, SPELL_SHAMAN_SATED));
-                targets.remove_if(JadeCore::UnitAuraCheck(true, SPELL_MAGE_TEMPORAL_DISPLACEMENT));
+                targets.remove_if(UwowCore::UnitAuraCheck(true, HUNTER_SPELL_INSANITY));
+                targets.remove_if(UwowCore::UnitAuraCheck(true, SPELL_SHAMAN_EXHAUSTED));
+                targets.remove_if(UwowCore::UnitAuraCheck(true, SPELL_SHAMAN_SATED));
+                targets.remove_if(UwowCore::UnitAuraCheck(true, SPELL_MAGE_TEMPORAL_DISPLACEMENT));
             }
 
             void ApplyDebuff()
@@ -1953,8 +1953,8 @@ class spell_hun_pet_carrion_feeder : public SpellScriptLoader
                 float max_range = GetSpellInfo()->GetMaxRange(false);
                 WorldObject* result = NULL;
                 // search for nearby enemy corpse in range
-                JadeCore::AnyDeadUnitSpellTargetInRangeCheck check(caster, max_range, GetSpellInfo(), TARGET_CHECK_ENEMY);
-                JadeCore::WorldObjectSearcher<JadeCore::AnyDeadUnitSpellTargetInRangeCheck> searcher(caster, result, check);
+                UwowCore::AnyDeadUnitSpellTargetInRangeCheck check(caster, max_range, GetSpellInfo(), TARGET_CHECK_ENEMY);
+                UwowCore::WorldObjectSearcher<UwowCore::AnyDeadUnitSpellTargetInRangeCheck> searcher(caster, result, check);
                 caster->GetMap()->VisitFirstFound(caster->m_positionX, caster->m_positionY, max_range, searcher);
                 if (!result)
                     return SPELL_FAILED_NO_EDIBLE_CORPSES;
@@ -2348,15 +2348,15 @@ public:
 
                         std::list<Unit*> targetsNew;
 
-                        CellCoord p(JadeCore::ComputeCellCoord(trap->GetPositionX(), trap->GetPositionY()));
+                        CellCoord p(UwowCore::ComputeCellCoord(trap->GetPositionX(), trap->GetPositionY()));
                         Cell cell(p);
                         cell.SetNoCreate();
 
-                        JadeCore::AnyUnitInObjectRangeCheck u_check(trap, 10.0f);
-                        JadeCore::UnitListSearcher<JadeCore::AnyUnitInObjectRangeCheck> searcher(trap, targetsNew, u_check);
+                        UwowCore::AnyUnitInObjectRangeCheck u_check(trap, 10.0f);
+                        UwowCore::UnitListSearcher<UwowCore::AnyUnitInObjectRangeCheck> searcher(trap, targetsNew, u_check);
 
-                        TypeContainerVisitor<JadeCore::UnitListSearcher<JadeCore::AnyUnitInObjectRangeCheck>, WorldTypeMapContainer> world_unit_searcher(searcher);
-                        TypeContainerVisitor<JadeCore::UnitListSearcher<JadeCore::AnyUnitInObjectRangeCheck>, GridTypeMapContainer>  grid_unit_searcher(searcher);
+                        TypeContainerVisitor<UwowCore::UnitListSearcher<UwowCore::AnyUnitInObjectRangeCheck>, WorldTypeMapContainer> world_unit_searcher(searcher);
+                        TypeContainerVisitor<UwowCore::UnitListSearcher<UwowCore::AnyUnitInObjectRangeCheck>, GridTypeMapContainer>  grid_unit_searcher(searcher);
 
                         cell.Visit(p, world_unit_searcher, *trap->GetMap(), *trap, 10.0f);
                         cell.Visit(p, grid_unit_searcher, *trap->GetMap(), *trap, 10.0f);

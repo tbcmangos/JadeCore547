@@ -87,7 +87,7 @@ bool Corpse::Create(uint32 guidlow, Player* owner)
     SetObjectScale(1);
     SetUInt64Value(CORPSE_FIELD_OWNER, owner->GetGUID());
 
-    _cellCoord = JadeCore::ComputeCellCoord(GetPositionX(), GetPositionY());
+    _cellCoord = UwowCore::ComputeCellCoord(GetPositionX(), GetPositionY());
 
     return true;
 }
@@ -173,7 +173,7 @@ bool Corpse::LoadCorpseFromDB(uint32 guid, Field* fields)
         return false;
     }
 
-    _cellCoord = JadeCore::ComputeCellCoord(GetPositionX(), GetPositionY());
+    _cellCoord = UwowCore::ComputeCellCoord(GetPositionX(), GetPositionY());
     return true;
 }
 

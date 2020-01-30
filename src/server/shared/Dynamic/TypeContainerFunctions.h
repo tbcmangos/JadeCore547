@@ -30,7 +30,7 @@
 #include <map>
 #include <unordered_map>
 
-namespace JadeCore
+namespace UwowCore
 {
     // Helpers
     // Insert helpers

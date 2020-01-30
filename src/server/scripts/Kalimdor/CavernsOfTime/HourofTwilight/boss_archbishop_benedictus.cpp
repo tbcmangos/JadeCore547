@@ -361,7 +361,7 @@ class spell_archbishop_benedictus_righteous_snear_aoe : public SpellScriptLoader
                         targets.remove(pTank);
 
                 if (targets.size() > 1)
-                    JadeCore::Containers::RandomResizeList(targets, 1);
+                    UwowCore::Containers::RandomResizeList(targets, 1);
             }
 
             void HandleDummy(SpellEffIndex effIndex)

@@ -3099,7 +3099,7 @@ public:
                 maxTargets = 5;
 
             if (targets.size() > maxTargets)
-                JadeCore::Containers::RandomResizeList(targets, maxTargets);
+                UwowCore::Containers::RandomResizeList(targets, maxTargets);
         }
 
         void HandeHitTarget(SpellEffIndex effIndex)
@@ -3140,8 +3140,8 @@ public:
             targets.clear();
 
             std::list<Player*> players;
-            JadeCore::AnyPlayerInObjectRangeCheck check(GetCaster(), 19.0f);
-            JadeCore::PlayerListSearcher<JadeCore::AnyPlayerInObjectRangeCheck> searcher(GetCaster(), players, check);
+            UwowCore::AnyPlayerInObjectRangeCheck check(GetCaster(), 19.0f);
+            UwowCore::PlayerListSearcher<UwowCore::AnyPlayerInObjectRangeCheck> searcher(GetCaster(), players, check);
             GetCaster()->VisitNearbyWorldObject(19.0f, searcher);
             
             for (std::list<Player*>::const_iterator itr = players.begin(); itr != players.end(); ++itr)

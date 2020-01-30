@@ -643,8 +643,8 @@ public:
                             if (m_Instance != nullptr)
                             {
                                 UnitList targets;
-                                JadeCore::AnyUnitHavingBuffInObjectRangeCheck u_check(me, me, 100, Spells::SPELL_HELLSCREAMS_WARSONG, true);
-                                JadeCore::UnitListSearcher<JadeCore::AnyUnitHavingBuffInObjectRangeCheck> searcher(me, targets, u_check);
+                                UwowCore::AnyUnitHavingBuffInObjectRangeCheck u_check(me, me, 100, Spells::SPELL_HELLSCREAMS_WARSONG, true);
+                                UwowCore::UnitListSearcher<UwowCore::AnyUnitHavingBuffInObjectRangeCheck> searcher(me, targets, u_check);
                                 me->VisitNearbyObject(100, searcher);
 
                                 for (UnitList::const_iterator it = targets.begin(); it != targets.end(); ++it)
@@ -1441,8 +1441,8 @@ public:
                     if (RandomWalkingTimer <= diff)
                     {
                         UnitList targets;
-                        JadeCore::AnyPlayerHavingBuffInObjectRangeCheck u_check(GetTarget(), GetTarget(), 300.0f, Spells::SPELL_EMPOWERED_TOUCH_OF_YSHRAAJ ? GetSpellInfo()->Id == SPELL_EMPOWERED_TOUCH_OF_YSHRAAJ : SPELL_TOUCH_OF_YSHRAAJ_SCRIPT_EFFECT, true);
-                        JadeCore::UnitListSearcher<JadeCore::AnyPlayerHavingBuffInObjectRangeCheck> searcher(GetTarget(), targets, u_check);
+                        UwowCore::AnyPlayerHavingBuffInObjectRangeCheck u_check(GetTarget(), GetTarget(), 300.0f, Spells::SPELL_EMPOWERED_TOUCH_OF_YSHRAAJ ? GetSpellInfo()->Id == SPELL_EMPOWERED_TOUCH_OF_YSHRAAJ : SPELL_TOUCH_OF_YSHRAAJ_SCRIPT_EFFECT, true);
+                        UwowCore::UnitListSearcher<UwowCore::AnyPlayerHavingBuffInObjectRangeCheck> searcher(GetTarget(), targets, u_check);
                         GetTarget()->VisitNearbyObject(300.0f, searcher);
 
                         std::list<Unit*>::const_iterator it = targets.begin();

@@ -1366,7 +1366,7 @@ void Position::MovePosition(Position &pos, float dist, float angle, WorldObject*
     desty = pos.m_positionY + dist * std::sin(angle);
 
     // Prevent invalid coordinates here, position is unchanged
-    if (!JadeCore::IsValidMapCoord(destx, desty))
+    if (!UwowCore::IsValidMapCoord(destx, desty))
     {
         sLog->outFatal(LOG_FILTER_GENERAL, "Position::MovePosition invalid coordinates X: %f and Y: %f were passed!", destx, desty);
         return;
@@ -1397,8 +1397,8 @@ void Position::MovePosition(Position &pos, float dist, float angle, WorldObject*
         }
     }
 
-    JadeCore::NormalizeMapCoord(pos.m_positionX);
-    JadeCore::NormalizeMapCoord(pos.m_positionY);
+    UwowCore::NormalizeMapCoord(pos.m_positionX);
+    UwowCore::NormalizeMapCoord(pos.m_positionY);
     object->UpdateGroundPositionZ(pos.m_positionX, pos.m_positionY, pos.m_positionZ);
     pos.SetOrientation(GetOrientation());
 }
@@ -2096,8 +2096,8 @@ void WorldObject::GetRandomPoint(const Position &pos, float distance, float &ran
     rand_y = pos.m_positionY + new_dist * std::sin(angle);
     rand_z = pos.m_positionZ;
 
-    JadeCore::NormalizeMapCoord(rand_x);
-    JadeCore::NormalizeMapCoord(rand_y);
+    UwowCore::NormalizeMapCoord(rand_x);
+    UwowCore::NormalizeMapCoord(rand_y);
     UpdateGroundPositionZ(rand_x, rand_y, rand_z);            // update to LOS height if available
 }
 
@@ -2178,7 +2178,7 @@ void WorldObject::UpdateAllowedPositionZ(float x, float y, float &z) const
 
 bool Position::IsPositionValid() const
 {
-    return JadeCore::IsValidMapCoord(m_positionX, m_positionY, m_positionZ, m_orientation);
+    return UwowCore::IsValidMapCoord(m_positionX, m_positionY, m_positionZ, m_orientation);
 }
 
 float WorldObject::GetGridActivationRange() const
@@ -2515,7 +2515,7 @@ void Object::ForceValuesUpdateAtIndex(uint32 i)
     AddToObjectUpdateIfNeeded();
 }
 
-namespace JadeCore
+namespace UwowCore
 {
     class MonsterChatBuilder
     {
@@ -2556,68 +2556,68 @@ namespace JadeCore
             uint32 i_language;
             uint64 i_targetGUID;
     };
-}                                                           // namespace JadeCore
+}                                                           // namespace UwowCore
 
 void WorldObject::MonsterSay(const char* text, uint32 language, uint64 TargetGuid)
 {
-    CellCoord p = JadeCore::ComputeCellCoord(GetPositionX(), GetPositionY());
+    CellCoord p = UwowCore::ComputeCellCoord(GetPositionX(), GetPositionY());
 
     Cell cell(p);
     cell.SetNoCreate();
 
-    JadeCore::MonsterCustomChatBuilder say_build(*this, CHAT_MSG_MONSTER_SAY, text, language, TargetGuid);
-    JadeCore::LocalizedPacketDo<JadeCore::MonsterCustomChatBuilder> say_do(say_build);
-    JadeCore::PlayerDistWorker<JadeCore::LocalizedPacketDo<JadeCore::MonsterCustomChatBuilder> > say_worker(this, sWorld->getFloatConfig(CONFIG_LISTEN_RANGE_SAY), say_do);
-    TypeContainerVisitor<JadeCore::PlayerDistWorker<JadeCore::LocalizedPacketDo<JadeCore::MonsterCustomChatBuilder> >, WorldTypeMapContainer > message(say_worker);
+    UwowCore::MonsterCustomChatBuilder say_build(*this, CHAT_MSG_MONSTER_SAY, text, language, TargetGuid);
+    UwowCore::LocalizedPacketDo<UwowCore::MonsterCustomChatBuilder> say_do(say_build);
+    UwowCore::PlayerDistWorker<UwowCore::LocalizedPacketDo<UwowCore::MonsterCustomChatBuilder> > say_worker(this, sWorld->getFloatConfig(CONFIG_LISTEN_RANGE_SAY), say_do);
+    TypeContainerVisitor<UwowCore::PlayerDistWorker<UwowCore::LocalizedPacketDo<UwowCore::MonsterCustomChatBuilder> >, WorldTypeMapContainer > message(say_worker);
     cell.Visit(p, message, *GetMap(), *this, sWorld->getFloatConfig(CONFIG_LISTEN_RANGE_SAY));
 }
 
 void WorldObject::MonsterSay(int32 textId, uint32 language, uint64 TargetGuid)
 {
-    CellCoord p = JadeCore::ComputeCellCoord(GetPositionX(), GetPositionY());
+    CellCoord p = UwowCore::ComputeCellCoord(GetPositionX(), GetPositionY());
 
     Cell cell(p);
     cell.SetNoCreate();
 
-    JadeCore::MonsterChatBuilder say_build(*this, CHAT_MSG_MONSTER_SAY, textId, language, TargetGuid);
-    JadeCore::LocalizedPacketDo<JadeCore::MonsterChatBuilder> say_do(say_build);
-    JadeCore::PlayerDistWorker<JadeCore::LocalizedPacketDo<JadeCore::MonsterChatBuilder> > say_worker(this, sWorld->getFloatConfig(CONFIG_LISTEN_RANGE_SAY), say_do);
-    TypeContainerVisitor<JadeCore::PlayerDistWorker<JadeCore::LocalizedPacketDo<JadeCore::MonsterChatBuilder> >, WorldTypeMapContainer > message(say_worker);
+    UwowCore::MonsterChatBuilder say_build(*this, CHAT_MSG_MONSTER_SAY, textId, language, TargetGuid);
+    UwowCore::LocalizedPacketDo<UwowCore::MonsterChatBuilder> say_do(say_build);
+    UwowCore::PlayerDistWorker<UwowCore::LocalizedPacketDo<UwowCore::MonsterChatBuilder> > say_worker(this, sWorld->getFloatConfig(CONFIG_LISTEN_RANGE_SAY), say_do);
+    TypeContainerVisitor<UwowCore::PlayerDistWorker<UwowCore::LocalizedPacketDo<UwowCore::MonsterChatBuilder> >, WorldTypeMapContainer > message(say_worker);
     cell.Visit(p, message, *GetMap(), *this, sWorld->getFloatConfig(CONFIG_LISTEN_RANGE_SAY));
 }
 
 void WorldObject::MonsterYell(const char* text, uint32 language, uint64 TargetGuid)
 {
-    CellCoord p = JadeCore::ComputeCellCoord(GetPositionX(), GetPositionY());
+    CellCoord p = UwowCore::ComputeCellCoord(GetPositionX(), GetPositionY());
 
     Cell cell(p);
     cell.SetNoCreate();
 
-    JadeCore::MonsterCustomChatBuilder say_build(*this, CHAT_MSG_MONSTER_YELL, text, language, TargetGuid);
-    JadeCore::LocalizedPacketDo<JadeCore::MonsterCustomChatBuilder> say_do(say_build);
-    JadeCore::PlayerDistWorker<JadeCore::LocalizedPacketDo<JadeCore::MonsterCustomChatBuilder> > say_worker(this, sWorld->getFloatConfig(CONFIG_LISTEN_RANGE_YELL), say_do);
-    TypeContainerVisitor<JadeCore::PlayerDistWorker<JadeCore::LocalizedPacketDo<JadeCore::MonsterCustomChatBuilder> >, WorldTypeMapContainer > message(say_worker);
+    UwowCore::MonsterCustomChatBuilder say_build(*this, CHAT_MSG_MONSTER_YELL, text, language, TargetGuid);
+    UwowCore::LocalizedPacketDo<UwowCore::MonsterCustomChatBuilder> say_do(say_build);
+    UwowCore::PlayerDistWorker<UwowCore::LocalizedPacketDo<UwowCore::MonsterCustomChatBuilder> > say_worker(this, sWorld->getFloatConfig(CONFIG_LISTEN_RANGE_YELL), say_do);
+    TypeContainerVisitor<UwowCore::PlayerDistWorker<UwowCore::LocalizedPacketDo<UwowCore::MonsterCustomChatBuilder> >, WorldTypeMapContainer > message(say_worker);
     cell.Visit(p, message, *GetMap(), *this, sWorld->getFloatConfig(CONFIG_LISTEN_RANGE_YELL));
 }
 
 void WorldObject::MonsterYell(int32 textId, uint32 language, uint64 TargetGuid)
 {
-    CellCoord p = JadeCore::ComputeCellCoord(GetPositionX(), GetPositionY());
+    CellCoord p = UwowCore::ComputeCellCoord(GetPositionX(), GetPositionY());
 
     Cell cell(p);
     cell.SetNoCreate();
 
-    JadeCore::MonsterChatBuilder say_build(*this, CHAT_MSG_MONSTER_YELL, textId, language, TargetGuid);
-    JadeCore::LocalizedPacketDo<JadeCore::MonsterChatBuilder> say_do(say_build);
-    JadeCore::PlayerDistWorker<JadeCore::LocalizedPacketDo<JadeCore::MonsterChatBuilder> > say_worker(this, sWorld->getFloatConfig(CONFIG_LISTEN_RANGE_YELL), say_do);
-    TypeContainerVisitor<JadeCore::PlayerDistWorker<JadeCore::LocalizedPacketDo<JadeCore::MonsterChatBuilder> >, WorldTypeMapContainer > message(say_worker);
+    UwowCore::MonsterChatBuilder say_build(*this, CHAT_MSG_MONSTER_YELL, textId, language, TargetGuid);
+    UwowCore::LocalizedPacketDo<UwowCore::MonsterChatBuilder> say_do(say_build);
+    UwowCore::PlayerDistWorker<UwowCore::LocalizedPacketDo<UwowCore::MonsterChatBuilder> > say_worker(this, sWorld->getFloatConfig(CONFIG_LISTEN_RANGE_YELL), say_do);
+    TypeContainerVisitor<UwowCore::PlayerDistWorker<UwowCore::LocalizedPacketDo<UwowCore::MonsterChatBuilder> >, WorldTypeMapContainer > message(say_worker);
     cell.Visit(p, message, *GetMap(), *this, sWorld->getFloatConfig(CONFIG_LISTEN_RANGE_YELL));
 }
 
 void WorldObject::MonsterYellToZone(int32 textId, uint32 language, uint64 TargetGuid)
 {
-    JadeCore::MonsterChatBuilder say_build(*this, CHAT_MSG_MONSTER_YELL, textId, language, TargetGuid);
-    JadeCore::LocalizedPacketDo<JadeCore::MonsterChatBuilder> say_do(say_build);
+    UwowCore::MonsterChatBuilder say_build(*this, CHAT_MSG_MONSTER_YELL, textId, language, TargetGuid);
+    UwowCore::LocalizedPacketDo<UwowCore::MonsterChatBuilder> say_do(say_build);
 
     uint32 zoneid = GetZoneId();
 
@@ -2636,15 +2636,15 @@ void WorldObject::MonsterTextEmote(const char* text, uint64 TargetGuid, bool IsB
 
 void WorldObject::MonsterTextEmote(int32 textId, uint64 TargetGuid, bool IsBossEmote)
 {
-    CellCoord p = JadeCore::ComputeCellCoord(GetPositionX(), GetPositionY());
+    CellCoord p = UwowCore::ComputeCellCoord(GetPositionX(), GetPositionY());
 
     Cell cell(p);
     cell.SetNoCreate();
 
-    JadeCore::MonsterChatBuilder say_build(*this, IsBossEmote ? CHAT_MSG_RAID_BOSS_EMOTE : CHAT_MSG_MONSTER_EMOTE, textId, LANG_UNIVERSAL, TargetGuid);
-    JadeCore::LocalizedPacketDo<JadeCore::MonsterChatBuilder> say_do(say_build);
-    JadeCore::PlayerDistWorker<JadeCore::LocalizedPacketDo<JadeCore::MonsterChatBuilder> > say_worker(this, sWorld->getFloatConfig(CONFIG_LISTEN_RANGE_TEXTEMOTE), say_do);
-    TypeContainerVisitor<JadeCore::PlayerDistWorker<JadeCore::LocalizedPacketDo<JadeCore::MonsterChatBuilder> >, WorldTypeMapContainer > message(say_worker);
+    UwowCore::MonsterChatBuilder say_build(*this, IsBossEmote ? CHAT_MSG_RAID_BOSS_EMOTE : CHAT_MSG_MONSTER_EMOTE, textId, LANG_UNIVERSAL, TargetGuid);
+    UwowCore::LocalizedPacketDo<UwowCore::MonsterChatBuilder> say_do(say_build);
+    UwowCore::PlayerDistWorker<UwowCore::LocalizedPacketDo<UwowCore::MonsterChatBuilder> > say_worker(this, sWorld->getFloatConfig(CONFIG_LISTEN_RANGE_TEXTEMOTE), say_do);
+    TypeContainerVisitor<UwowCore::PlayerDistWorker<UwowCore::LocalizedPacketDo<UwowCore::MonsterChatBuilder> >, WorldTypeMapContainer > message(say_worker);
     cell.Visit(p, message, *GetMap(), *this, sWorld->getFloatConfig(CONFIG_LISTEN_RANGE_TEXTEMOTE));
 }
 
@@ -2806,13 +2806,13 @@ void WorldObject::SendMessageToSet(WorldPacket* data, bool self)
 
 void WorldObject::SendMessageToSetInRange(WorldPacket* data, float dist, bool /*self*/)
 {
-    JadeCore::MessageDistDeliverer notifier(this, data, dist);
+    UwowCore::MessageDistDeliverer notifier(this, data, dist);
     VisitNearbyWorldObject(dist, notifier);
 }
 
 void WorldObject::SendMessageToSet(WorldPacket* data, Player const* skipped_rcvr)
 {
-    JadeCore::MessageDistDeliverer notifier(this, data, GetVisibilityRange(), false, skipped_rcvr);
+    UwowCore::MessageDistDeliverer notifier(this, data, GetVisibilityRange(), false, skipped_rcvr);
     VisitNearbyWorldObject(GetVisibilityRange(), notifier);
 }
 
@@ -3388,8 +3388,8 @@ void WorldObject::SummonCreatureGroup(uint8 group, std::list<TempSummon*>& list)
 Creature* WorldObject::FindNearestCreature(uint32 entry, float range, bool alive) const
 {
     Creature* creature = NULL;
-    JadeCore::NearestCreatureEntryWithLiveStateInObjectRangeCheck checker(*this, entry, alive, range);
-    JadeCore::CreatureLastSearcher<JadeCore::NearestCreatureEntryWithLiveStateInObjectRangeCheck> searcher(this, creature, checker);
+    UwowCore::NearestCreatureEntryWithLiveStateInObjectRangeCheck checker(*this, entry, alive, range);
+    UwowCore::CreatureLastSearcher<UwowCore::NearestCreatureEntryWithLiveStateInObjectRangeCheck> searcher(this, creature, checker);
     VisitNearbyObject(range, searcher);
     return creature;
 }
@@ -3397,8 +3397,8 @@ Creature* WorldObject::FindNearestCreature(uint32 entry, float range, bool alive
 GameObject* WorldObject::FindNearestGameObject(uint32 entry, float range) const
 {
     GameObject* go = NULL;
-    JadeCore::NearestGameObjectEntryInObjectRangeCheck checker(*this, entry, range);
-    JadeCore::GameObjectLastSearcher<JadeCore::NearestGameObjectEntryInObjectRangeCheck> searcher(this, go, checker);
+    UwowCore::NearestGameObjectEntryInObjectRangeCheck checker(*this, entry, range);
+    UwowCore::GameObjectLastSearcher<UwowCore::NearestGameObjectEntryInObjectRangeCheck> searcher(this, go, checker);
     VisitNearbyGridObject(range, searcher);
     return go;
 }
@@ -3406,8 +3406,8 @@ GameObject* WorldObject::FindNearestGameObject(uint32 entry, float range) const
 GameObject* WorldObject::FindNearestGameObjectOfType(GameobjectTypes type, float range) const
 { 
     GameObject* go = NULL;
-    JadeCore::NearestGameObjectTypeInObjectRangeCheck checker(*this, type, range);
-    JadeCore::GameObjectLastSearcher<JadeCore::NearestGameObjectTypeInObjectRangeCheck> searcher(this, go, checker);
+    UwowCore::NearestGameObjectTypeInObjectRangeCheck checker(*this, type, range);
+    UwowCore::GameObjectLastSearcher<UwowCore::NearestGameObjectTypeInObjectRangeCheck> searcher(this, go, checker);
     VisitNearbyGridObject(range, searcher);
     return go;
 }
@@ -3415,42 +3415,42 @@ GameObject* WorldObject::FindNearestGameObjectOfType(GameobjectTypes type, float
 Player* WorldObject::FindNearestPlayer(float range, bool alive)
 {
     Player* player = NULL;
-    JadeCore::AnyPlayerInObjectRangeCheck check(this, range);
-    JadeCore::PlayerSearcher<JadeCore::AnyPlayerInObjectRangeCheck> searcher(this, player, check);
+    UwowCore::AnyPlayerInObjectRangeCheck check(this, range);
+    UwowCore::PlayerSearcher<UwowCore::AnyPlayerInObjectRangeCheck> searcher(this, player, check);
     VisitNearbyWorldObject(range, searcher);
     return player;
 }
 
 void WorldObject::GetGameObjectListWithEntryInGrid(std::list<GameObject*>& gameobjectList, uint32 entry, float maxSearchRange) const
 {
-    CellCoord pair(JadeCore::ComputeCellCoord(this->GetPositionX(), this->GetPositionY()));
+    CellCoord pair(UwowCore::ComputeCellCoord(this->GetPositionX(), this->GetPositionY()));
     Cell cell(pair);
     cell.SetNoCreate();
 
-    JadeCore::AllGameObjectsWithEntryInRange check(this, entry, maxSearchRange);
-    JadeCore::GameObjectListSearcher<JadeCore::AllGameObjectsWithEntryInRange> searcher(this, gameobjectList, check);
-    TypeContainerVisitor<JadeCore::GameObjectListSearcher<JadeCore::AllGameObjectsWithEntryInRange>, GridTypeMapContainer> visitor(searcher);
+    UwowCore::AllGameObjectsWithEntryInRange check(this, entry, maxSearchRange);
+    UwowCore::GameObjectListSearcher<UwowCore::AllGameObjectsWithEntryInRange> searcher(this, gameobjectList, check);
+    TypeContainerVisitor<UwowCore::GameObjectListSearcher<UwowCore::AllGameObjectsWithEntryInRange>, GridTypeMapContainer> visitor(searcher);
 
     cell.Visit(pair, visitor, *(this->GetMap()), *this, maxSearchRange);
 }
 
 void WorldObject::GetCreatureListWithEntryInGrid(std::list<Creature*>& creatureList, uint32 entry, float maxSearchRange) const
 {
-    CellCoord pair(JadeCore::ComputeCellCoord(this->GetPositionX(), this->GetPositionY()));
+    CellCoord pair(UwowCore::ComputeCellCoord(this->GetPositionX(), this->GetPositionY()));
     Cell cell(pair);
     cell.SetNoCreate();
 
-    JadeCore::AllCreaturesOfEntryInRange check(this, entry, maxSearchRange);
-    JadeCore::CreatureListSearcher<JadeCore::AllCreaturesOfEntryInRange> searcher(this, creatureList, check);
-    TypeContainerVisitor<JadeCore::CreatureListSearcher<JadeCore::AllCreaturesOfEntryInRange>, GridTypeMapContainer> visitor(searcher);
+    UwowCore::AllCreaturesOfEntryInRange check(this, entry, maxSearchRange);
+    UwowCore::CreatureListSearcher<UwowCore::AllCreaturesOfEntryInRange> searcher(this, creatureList, check);
+    TypeContainerVisitor<UwowCore::CreatureListSearcher<UwowCore::AllCreaturesOfEntryInRange>, GridTypeMapContainer> visitor(searcher);
 
     cell.Visit(pair, visitor, *(this->GetMap()), *this, maxSearchRange);
 }
 
 void WorldObject::GetPlayerListInGrid(std::list<Player*>& playerList, float maxSearchRange) const
 {    
-    JadeCore::AnyPlayerInObjectRangeCheck checker(this, maxSearchRange);
-    JadeCore::PlayerListSearcher<JadeCore::AnyPlayerInObjectRangeCheck> searcher(this, playerList, checker);
+    UwowCore::AnyPlayerInObjectRangeCheck checker(this, maxSearchRange);
+    UwowCore::PlayerListSearcher<UwowCore::AnyPlayerInObjectRangeCheck> searcher(this, playerList, checker);
     this->VisitNearbyWorldObject(maxSearchRange, searcher);
 }
 
@@ -3473,7 +3473,7 @@ void WorldObject::GetCreatureListWithEntryInGridAppend(std::list<Creature*>& cre
 }
 
 /*
-namespace JadeCore
+namespace UwowCore
 {
     class NearUsedPosDo
     {
@@ -3542,7 +3542,7 @@ namespace JadeCore
             float              i_angle;
             ObjectPosSelector& i_selector;
     };
-}                                                           // namespace JadeCore
+}                                                           // namespace UwowCore
 */
 
 //===================================================================================================
@@ -3552,8 +3552,8 @@ void WorldObject::GetNearPoint2D(float &x, float &y, float distance2d, float abs
     x = GetPositionX() + (GetObjectSize() + distance2d) * std::cos(absAngle);
     y = GetPositionY() + (GetObjectSize() + distance2d) * std::sin(absAngle);
 
-    JadeCore::NormalizeMapCoord(x);
-    JadeCore::NormalizeMapCoord(y);
+    UwowCore::NormalizeMapCoord(x);
+    UwowCore::NormalizeMapCoord(y);
 }
 
 void WorldObject::GetNearPoint(WorldObject const* searcher, float &x, float &y, float &z, float searcher_size, float distance2d, float absAngle) const
@@ -3580,15 +3580,15 @@ void WorldObject::GetNearPoint(WorldObject const* searcher, float &x, float &y, 
 
     // adding used positions around object
     {
-        CellCoord p(JadeCore::ComputeCellCoord(GetPositionX(), GetPositionY()));
+        CellCoord p(UwowCore::ComputeCellCoord(GetPositionX(), GetPositionY()));
         Cell cell(p);
         cell.SetNoCreate();
 
-        JadeCore::NearUsedPosDo u_do(*this, searcher, absAngle, selector);
-        JadeCore::WorldObjectWorker<JadeCore::NearUsedPosDo> worker(this, u_do);
+        UwowCore::NearUsedPosDo u_do(*this, searcher, absAngle, selector);
+        UwowCore::WorldObjectWorker<UwowCore::NearUsedPosDo> worker(this, u_do);
 
-        TypeContainerVisitor<JadeCore::WorldObjectWorker<JadeCore::NearUsedPosDo>, GridTypeMapContainer  > grid_obj_worker(worker);
-        TypeContainerVisitor<JadeCore::WorldObjectWorker<JadeCore::NearUsedPosDo>, WorldTypeMapContainer > world_obj_worker(worker);
+        TypeContainerVisitor<UwowCore::WorldObjectWorker<UwowCore::NearUsedPosDo>, GridTypeMapContainer  > grid_obj_worker(worker);
+        TypeContainerVisitor<UwowCore::WorldObjectWorker<UwowCore::NearUsedPosDo>, WorldTypeMapContainer > world_obj_worker(worker);
 
         CellLock<GridReadGuard> cell_lock(cell, p);
         cell_lock->Visit(cell_lock, grid_obj_worker,  *GetMap(), *this, distance2d);
@@ -3689,7 +3689,7 @@ void WorldObject::MovePosition(Position &pos, float dist, float angle)
     desty = pos.m_positionY + dist * std::sin(angle);
 
     // Prevent invalid coordinates here, position is unchanged
-    if (!JadeCore::IsValidMapCoord(destx, desty))
+    if (!UwowCore::IsValidMapCoord(destx, desty))
     {
         sLog->outFatal(LOG_FILTER_GENERAL, "WorldObject::MovePosition invalid coordinates X: %f and Y: %f were passed!", destx, desty);
         return;
@@ -3720,8 +3720,8 @@ void WorldObject::MovePosition(Position &pos, float dist, float angle)
         }
     }
 
-    JadeCore::NormalizeMapCoord(pos.m_positionX);
-    JadeCore::NormalizeMapCoord(pos.m_positionY);
+    UwowCore::NormalizeMapCoord(pos.m_positionX);
+    UwowCore::NormalizeMapCoord(pos.m_positionY);
     UpdateGroundPositionZ(pos.m_positionX, pos.m_positionY, pos.m_positionZ);
     pos.SetOrientation(GetOrientation());
 }
@@ -3735,7 +3735,7 @@ void WorldObject::MovePositionToFirstCollision(Position &pos, float dist, float 
     desty = pos.m_positionY + dist * std::sin(angle);
 
     // Prevent invalid coordinates here, position is unchanged
-    if (!JadeCore::IsValidMapCoord(destx, desty))
+    if (!UwowCore::IsValidMapCoord(destx, desty))
     {
         sLog->outFatal(LOG_FILTER_GENERAL, "WorldObject::MovePositionToFirstCollision invalid coordinates X: %f and Y: %f were passed!", destx, desty);
         return;
@@ -3788,8 +3788,8 @@ void WorldObject::MovePositionToFirstCollision(Position &pos, float dist, float 
         }
     }
 
-    JadeCore::NormalizeMapCoord(pos.m_positionX);
-    JadeCore::NormalizeMapCoord(pos.m_positionY);
+    UwowCore::NormalizeMapCoord(pos.m_positionX);
+    UwowCore::NormalizeMapCoord(pos.m_positionY);
     UpdateAllowedPositionZ(pos.m_positionX, pos.m_positionY, pos.m_positionZ);
     pos.SetOrientation(GetOrientation());
 }
@@ -3807,7 +3807,7 @@ void WorldObject::MovePositionToCollisionBetween(Position &pos, float distMin, f
     desty = pos.m_positionY + distMax * std::sin(angle);
 
     // Prevent invalid coordinates here, position is unchanged
-    if (!JadeCore::IsValidMapCoord(destx, desty))
+    if (!UwowCore::IsValidMapCoord(destx, desty))
     {
         sLog->outFatal(LOG_FILTER_GENERAL, "WorldObject::MovePositionToFirstCollision invalid coordinates X: %f and Y: %f were passed!", destx, desty);
         return;
@@ -3860,8 +3860,8 @@ void WorldObject::MovePositionToCollisionBetween(Position &pos, float distMin, f
         }
     }
 
-    JadeCore::NormalizeMapCoord(pos.m_positionX);
-    JadeCore::NormalizeMapCoord(pos.m_positionY);
+    UwowCore::NormalizeMapCoord(pos.m_positionX);
+    UwowCore::NormalizeMapCoord(pos.m_positionY);
     UpdateAllowedPositionZ(pos.m_positionX, pos.m_positionY, pos.m_positionZ);
     pos.SetOrientation(GetOrientation());
 }
@@ -3953,8 +3953,8 @@ void WorldObject::DestroyForNearbyPlayers()
         return;
 
     std::list<Player*> targets;
-    JadeCore::AnyPlayerInObjectRangeCheck check(this, GetVisibilityRange(), false);
-    JadeCore::PlayerListSearcher<JadeCore::AnyPlayerInObjectRangeCheck> searcher(this, targets, check);
+    UwowCore::AnyPlayerInObjectRangeCheck check(this, GetVisibilityRange(), false);
+    UwowCore::PlayerListSearcher<UwowCore::AnyPlayerInObjectRangeCheck> searcher(this, targets, check);
     VisitNearbyWorldObject(GetVisibilityRange(), searcher);
     for (std::list<Player*>::const_iterator iter = targets.begin(); iter != targets.end(); ++iter)
     {
@@ -3977,7 +3977,7 @@ void WorldObject::DestroyForNearbyPlayers()
 void WorldObject::UpdateObjectVisibility(bool /*forced*/)
 {
     //updates object's visibility for nearby players
-    JadeCore::VisibleChangesNotifier notifier(*this);
+    UwowCore::VisibleChangesNotifier notifier(*this);
     VisitNearbyWorldObject(GetVisibilityRange(), notifier);
 }
 
@@ -4056,7 +4056,7 @@ struct WorldObjectChangeAccumulator
 
 void WorldObject::BuildUpdate(UpdateDataMapType& data_map)
 {
-    CellCoord p = JadeCore::ComputeCellCoord(GetPositionX(), GetPositionY());
+    CellCoord p = UwowCore::ComputeCellCoord(GetPositionX(), GetPositionY());
     Cell cell(p);
     cell.SetNoCreate();
     WorldObjectChangeAccumulator notifier(*this, data_map);

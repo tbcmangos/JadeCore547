@@ -28,7 +28,7 @@
 #include "SpellAuras.h"
 
 template<class T>
-inline void JadeCore::VisibleNotifier::Visit(GridRefManager<T> &m)
+inline void UwowCore::VisibleNotifier::Visit(GridRefManager<T> &m)
 {
     for (typename GridRefManager<T>::iterator iter = m.begin(); iter != m.end(); ++iter)
     {
@@ -42,7 +42,7 @@ inline void JadeCore::VisibleNotifier::Visit(GridRefManager<T> &m)
 // WorldObject searchers & workers
 
 template<class Check>
-void JadeCore::WorldObjectSearcher<Check>::Visit(GameObjectMapType &m)
+void UwowCore::WorldObjectSearcher<Check>::Visit(GameObjectMapType &m)
 {
     if (!(i_mapTypeMask & GRID_MAP_TYPE_MASK_GAMEOBJECT))
         return;
@@ -65,7 +65,7 @@ void JadeCore::WorldObjectSearcher<Check>::Visit(GameObjectMapType &m)
 }
 
 template<class Check>
-void JadeCore::WorldObjectSearcher<Check>::Visit(PlayerMapType &m)
+void UwowCore::WorldObjectSearcher<Check>::Visit(PlayerMapType &m)
 {
     if (!(i_mapTypeMask & GRID_MAP_TYPE_MASK_PLAYER))
         return;
@@ -88,7 +88,7 @@ void JadeCore::WorldObjectSearcher<Check>::Visit(PlayerMapType &m)
 }
 
 template<class Check>
-void JadeCore::WorldObjectSearcher<Check>::Visit(CreatureMapType &m)
+void UwowCore::WorldObjectSearcher<Check>::Visit(CreatureMapType &m)
 {
     if (!(i_mapTypeMask & GRID_MAP_TYPE_MASK_CREATURE))
         return;
@@ -111,7 +111,7 @@ void JadeCore::WorldObjectSearcher<Check>::Visit(CreatureMapType &m)
 }
 
 template<class Check>
-void JadeCore::WorldObjectSearcher<Check>::Visit(CorpseMapType &m)
+void UwowCore::WorldObjectSearcher<Check>::Visit(CorpseMapType &m)
 {
     if (!(i_mapTypeMask & GRID_MAP_TYPE_MASK_CORPSE))
         return;
@@ -134,7 +134,7 @@ void JadeCore::WorldObjectSearcher<Check>::Visit(CorpseMapType &m)
 }
 
 template<class Check>
-void JadeCore::WorldObjectSearcher<Check>::Visit(DynamicObjectMapType &m)
+void UwowCore::WorldObjectSearcher<Check>::Visit(DynamicObjectMapType &m)
 {
     if (!(i_mapTypeMask & GRID_MAP_TYPE_MASK_DYNAMICOBJECT))
         return;
@@ -157,7 +157,7 @@ void JadeCore::WorldObjectSearcher<Check>::Visit(DynamicObjectMapType &m)
 }
 
 template<class Check>
-void JadeCore::WorldObjectSearcher<Check>::Visit(AreaTriggerMapType &m)
+void UwowCore::WorldObjectSearcher<Check>::Visit(AreaTriggerMapType &m)
 {
     if (!(i_mapTypeMask & GRID_MAP_TYPE_MASK_AREATRIGGER))
         return;
@@ -180,7 +180,7 @@ void JadeCore::WorldObjectSearcher<Check>::Visit(AreaTriggerMapType &m)
 }
 
 template<class Check>
-void JadeCore::WorldObjectLastSearcher<Check>::Visit(GameObjectMapType &m)
+void UwowCore::WorldObjectLastSearcher<Check>::Visit(GameObjectMapType &m)
 {
     if (!(i_mapTypeMask & GRID_MAP_TYPE_MASK_GAMEOBJECT))
         return;
@@ -196,7 +196,7 @@ void JadeCore::WorldObjectLastSearcher<Check>::Visit(GameObjectMapType &m)
 }
 
 template<class Check>
-void JadeCore::WorldObjectLastSearcher<Check>::Visit(PlayerMapType &m)
+void UwowCore::WorldObjectLastSearcher<Check>::Visit(PlayerMapType &m)
 {
     if (!(i_mapTypeMask & GRID_MAP_TYPE_MASK_PLAYER))
         return;
@@ -212,7 +212,7 @@ void JadeCore::WorldObjectLastSearcher<Check>::Visit(PlayerMapType &m)
 }
 
 template<class Check>
-void JadeCore::WorldObjectLastSearcher<Check>::Visit(CreatureMapType &m)
+void UwowCore::WorldObjectLastSearcher<Check>::Visit(CreatureMapType &m)
 {
     if (!(i_mapTypeMask & GRID_MAP_TYPE_MASK_CREATURE))
         return;
@@ -228,7 +228,7 @@ void JadeCore::WorldObjectLastSearcher<Check>::Visit(CreatureMapType &m)
 }
 
 template<class Check>
-void JadeCore::WorldObjectLastSearcher<Check>::Visit(CorpseMapType &m)
+void UwowCore::WorldObjectLastSearcher<Check>::Visit(CorpseMapType &m)
 {
     if (!(i_mapTypeMask & GRID_MAP_TYPE_MASK_CORPSE))
         return;
@@ -244,7 +244,7 @@ void JadeCore::WorldObjectLastSearcher<Check>::Visit(CorpseMapType &m)
 }
 
 template<class Check>
-void JadeCore::WorldObjectLastSearcher<Check>::Visit(DynamicObjectMapType &m)
+void UwowCore::WorldObjectLastSearcher<Check>::Visit(DynamicObjectMapType &m)
 {
     if (!(i_mapTypeMask & GRID_MAP_TYPE_MASK_DYNAMICOBJECT))
         return;
@@ -260,7 +260,7 @@ void JadeCore::WorldObjectLastSearcher<Check>::Visit(DynamicObjectMapType &m)
 }
 
 template<class Check>
-void JadeCore::WorldObjectLastSearcher<Check>::Visit(AreaTriggerMapType  &m)
+void UwowCore::WorldObjectLastSearcher<Check>::Visit(AreaTriggerMapType  &m)
 {
     if (!(i_mapTypeMask & GRID_MAP_TYPE_MASK_AREATRIGGER))
         return;
@@ -276,7 +276,7 @@ void JadeCore::WorldObjectLastSearcher<Check>::Visit(AreaTriggerMapType  &m)
 }
 
 template<class Check>
-void JadeCore::WorldObjectListSearcher<Check>::Visit(PlayerMapType &m)
+void UwowCore::WorldObjectListSearcher<Check>::Visit(PlayerMapType &m)
 {
     if (!(i_mapTypeMask & GRID_MAP_TYPE_MASK_PLAYER))
         return;
@@ -287,7 +287,7 @@ void JadeCore::WorldObjectListSearcher<Check>::Visit(PlayerMapType &m)
 }
 
 template<class Check>
-void JadeCore::WorldObjectListSearcher<Check>::Visit(CreatureMapType &m)
+void UwowCore::WorldObjectListSearcher<Check>::Visit(CreatureMapType &m)
 {
     if (!(i_mapTypeMask & GRID_MAP_TYPE_MASK_CREATURE))
         return;
@@ -298,7 +298,7 @@ void JadeCore::WorldObjectListSearcher<Check>::Visit(CreatureMapType &m)
 }
 
 template<class Check>
-void JadeCore::WorldObjectListSearcher<Check>::Visit(CorpseMapType &m)
+void UwowCore::WorldObjectListSearcher<Check>::Visit(CorpseMapType &m)
 {
     if (!(i_mapTypeMask & GRID_MAP_TYPE_MASK_CORPSE))
         return;
@@ -309,7 +309,7 @@ void JadeCore::WorldObjectListSearcher<Check>::Visit(CorpseMapType &m)
 }
 
 template<class Check>
-void JadeCore::WorldObjectListSearcher<Check>::Visit(GameObjectMapType &m)
+void UwowCore::WorldObjectListSearcher<Check>::Visit(GameObjectMapType &m)
 {
     if (!(i_mapTypeMask & GRID_MAP_TYPE_MASK_GAMEOBJECT))
         return;
@@ -320,7 +320,7 @@ void JadeCore::WorldObjectListSearcher<Check>::Visit(GameObjectMapType &m)
 }
 
 template<class Check>
-void JadeCore::WorldObjectListSearcher<Check>::Visit(DynamicObjectMapType &m)
+void UwowCore::WorldObjectListSearcher<Check>::Visit(DynamicObjectMapType &m)
 {
     if (!(i_mapTypeMask & GRID_MAP_TYPE_MASK_DYNAMICOBJECT))
         return;
@@ -331,7 +331,7 @@ void JadeCore::WorldObjectListSearcher<Check>::Visit(DynamicObjectMapType &m)
 }
 
 template<class Check>
-void JadeCore::WorldObjectListSearcher<Check>::Visit(AreaTriggerMapType &m)
+void UwowCore::WorldObjectListSearcher<Check>::Visit(AreaTriggerMapType &m)
 {
     if (!(i_mapTypeMask & GRID_MAP_TYPE_MASK_AREATRIGGER))
         return;
@@ -344,7 +344,7 @@ void JadeCore::WorldObjectListSearcher<Check>::Visit(AreaTriggerMapType &m)
 /// AreaTrigger searchers
 
 template<class Check>
-void JadeCore::AreaTriggerListSearcher<Check>::Visit(AreaTriggerMapType& p_AreaTriggerMap)
+void UwowCore::AreaTriggerListSearcher<Check>::Visit(AreaTriggerMapType& p_AreaTriggerMap)
 {
     for (AreaTriggerMapType::iterator l_Iterator = p_AreaTriggerMap.begin(); l_Iterator != p_AreaTriggerMap.end(); ++l_Iterator)
     {
@@ -357,7 +357,7 @@ void JadeCore::AreaTriggerListSearcher<Check>::Visit(AreaTriggerMapType& p_AreaT
 }
 
 template<class Check>
-void JadeCore::AreaTriggerSearcher<Check>::Visit(AreaTriggerMapType& p_AreatriggerMap)
+void UwowCore::AreaTriggerSearcher<Check>::Visit(AreaTriggerMapType& p_AreatriggerMap)
 {
     // already found
     if (i_object)
@@ -379,7 +379,7 @@ void JadeCore::AreaTriggerSearcher<Check>::Visit(AreaTriggerMapType& p_Areatrigg
 // Gameobject searchers
 
 template<class Check>
-void JadeCore::GameObjectSearcher<Check>::Visit(GameObjectMapType &m)
+void UwowCore::GameObjectSearcher<Check>::Visit(GameObjectMapType &m)
 {
     // already found
     if (i_object)
@@ -399,7 +399,7 @@ void JadeCore::GameObjectSearcher<Check>::Visit(GameObjectMapType &m)
 }
 
 template<class Check>
-void JadeCore::GameObjectLastSearcher<Check>::Visit(GameObjectMapType &m)
+void UwowCore::GameObjectLastSearcher<Check>::Visit(GameObjectMapType &m)
 {
     for (GameObjectMapType::iterator itr=m.begin(); itr != m.end(); ++itr)
     {
@@ -412,7 +412,7 @@ void JadeCore::GameObjectLastSearcher<Check>::Visit(GameObjectMapType &m)
 }
 
 template<class Check>
-void JadeCore::GameObjectListSearcher<Check>::Visit(GameObjectMapType &m)
+void UwowCore::GameObjectListSearcher<Check>::Visit(GameObjectMapType &m)
 {
     for (GameObjectMapType::iterator itr=m.begin(); itr != m.end(); ++itr)
         if (itr->getSource()->InSamePhase(i_phaseMask))
@@ -423,7 +423,7 @@ void JadeCore::GameObjectListSearcher<Check>::Visit(GameObjectMapType &m)
 // Unit searchers
 
 template<class Check>
-void JadeCore::UnitSearcher<Check>::Visit(CreatureMapType &m)
+void UwowCore::UnitSearcher<Check>::Visit(CreatureMapType &m)
 {
     // already found
     if (i_object)
@@ -443,7 +443,7 @@ void JadeCore::UnitSearcher<Check>::Visit(CreatureMapType &m)
 }
 
 template<class Check>
-void JadeCore::UnitSearcher<Check>::Visit(PlayerMapType &m)
+void UwowCore::UnitSearcher<Check>::Visit(PlayerMapType &m)
 {
     // already found
     if (i_object)
@@ -463,7 +463,7 @@ void JadeCore::UnitSearcher<Check>::Visit(PlayerMapType &m)
 }
 
 template<class Check>
-void JadeCore::UnitLastSearcher<Check>::Visit(CreatureMapType &m)
+void UwowCore::UnitLastSearcher<Check>::Visit(CreatureMapType &m)
 {
     for (CreatureMapType::iterator itr=m.begin(); itr != m.end(); ++itr)
     {
@@ -476,7 +476,7 @@ void JadeCore::UnitLastSearcher<Check>::Visit(CreatureMapType &m)
 }
 
 template<class Check>
-void JadeCore::UnitLastSearcher<Check>::Visit(PlayerMapType &m)
+void UwowCore::UnitLastSearcher<Check>::Visit(PlayerMapType &m)
 {
     for (PlayerMapType::iterator itr=m.begin(); itr != m.end(); ++itr)
     {
@@ -489,7 +489,7 @@ void JadeCore::UnitLastSearcher<Check>::Visit(PlayerMapType &m)
 }
 
 template<class Check>
-void JadeCore::UnitListSearcher<Check>::Visit(PlayerMapType &m)
+void UwowCore::UnitListSearcher<Check>::Visit(PlayerMapType &m)
 {
     for (PlayerMapType::iterator itr=m.begin(); itr != m.end(); ++itr)
         if (itr->getSource()->InSamePhase(i_phaseMask))
@@ -498,7 +498,7 @@ void JadeCore::UnitListSearcher<Check>::Visit(PlayerMapType &m)
 }
 
 template<class Check>
-void JadeCore::UnitListSearcher<Check>::Visit(CreatureMapType &m)
+void UwowCore::UnitListSearcher<Check>::Visit(CreatureMapType &m)
 {
     for (CreatureMapType::iterator itr=m.begin(); itr != m.end(); ++itr)
         if (itr->getSource()->InSamePhase(i_phaseMask))
@@ -509,7 +509,7 @@ void JadeCore::UnitListSearcher<Check>::Visit(CreatureMapType &m)
 // Creature searchers
 
 template<class Check>
-void JadeCore::CreatureSearcher<Check>::Visit(CreatureMapType &m)
+void UwowCore::CreatureSearcher<Check>::Visit(CreatureMapType &m)
 {
     // already found
     if (i_object)
@@ -529,7 +529,7 @@ void JadeCore::CreatureSearcher<Check>::Visit(CreatureMapType &m)
 }
 
 template<class Check>
-void JadeCore::CreatureLastSearcher<Check>::Visit(CreatureMapType &m)
+void UwowCore::CreatureLastSearcher<Check>::Visit(CreatureMapType &m)
 {
     for (CreatureMapType::iterator itr=m.begin(); itr != m.end(); ++itr)
     {
@@ -542,7 +542,7 @@ void JadeCore::CreatureLastSearcher<Check>::Visit(CreatureMapType &m)
 }
 
 template<class Check>
-void JadeCore::CreatureListSearcher<Check>::Visit(CreatureMapType &m)
+void UwowCore::CreatureListSearcher<Check>::Visit(CreatureMapType &m)
 {
     for (CreatureMapType::iterator itr=m.begin(); itr != m.end(); ++itr)
         if (itr->getSource()->InSamePhase(i_phaseMask))
@@ -551,7 +551,7 @@ void JadeCore::CreatureListSearcher<Check>::Visit(CreatureMapType &m)
 }
 
 template<class Check>
-void JadeCore::PlayerListSearcher<Check>::Visit(PlayerMapType &m)
+void UwowCore::PlayerListSearcher<Check>::Visit(PlayerMapType &m)
 {
     for (PlayerMapType::iterator itr=m.begin(); itr != m.end(); ++itr)
     {
@@ -565,7 +565,7 @@ void JadeCore::PlayerListSearcher<Check>::Visit(PlayerMapType &m)
 }
 
 template<class Check>
-void JadeCore::PlayerSearcher<Check>::Visit(PlayerMapType &m)
+void UwowCore::PlayerSearcher<Check>::Visit(PlayerMapType &m)
 {
     // already found
     if (i_object)
@@ -585,7 +585,7 @@ void JadeCore::PlayerSearcher<Check>::Visit(PlayerMapType &m)
 }
 
 template<class Check>
-void JadeCore::PlayerLastSearcher<Check>::Visit(PlayerMapType& m)
+void UwowCore::PlayerLastSearcher<Check>::Visit(PlayerMapType& m)
 {
     for (PlayerMapType::iterator itr = m.begin(); itr != m.end(); ++itr)
     {
@@ -598,7 +598,7 @@ void JadeCore::PlayerLastSearcher<Check>::Visit(PlayerMapType& m)
 }
 
 template<class Builder>
-void JadeCore::LocalizedPacketDo<Builder>::operator()(Player* p)
+void UwowCore::LocalizedPacketDo<Builder>::operator()(Player* p)
 {
     if (!p)
         return;
@@ -626,7 +626,7 @@ void JadeCore::LocalizedPacketDo<Builder>::operator()(Player* p)
 }
 
 template<class Builder>
-void JadeCore::LocalizedPacketListDo<Builder>::operator()(Player* p)
+void UwowCore::LocalizedPacketListDo<Builder>::operator()(Player* p)
 {
     if (!p)
         return;

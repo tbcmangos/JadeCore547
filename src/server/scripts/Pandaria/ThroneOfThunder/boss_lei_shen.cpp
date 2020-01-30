@@ -1571,7 +1571,7 @@ class spell_lei_shen_static_shock_aoe : public SpellScriptLoader
                     }
                 }
 
-                JadeCore::Containers::RandomResizeList(targets, maxTargets);
+                UwowCore::Containers::RandomResizeList(targets, maxTargets);
             }
 
             void Register()
@@ -1711,7 +1711,7 @@ class spell_lei_shen_diffusion_chain_aoe : public SpellScriptLoader
                     }
                 }
 
-                JadeCore::Containers::RandomResizeList(targets, maxTargets);
+                UwowCore::Containers::RandomResizeList(targets, maxTargets);
             }
 
             void HandleDummy(SpellEffIndex effIndex)
@@ -1761,7 +1761,7 @@ class spell_lei_shen_overcharge_aoe : public SpellScriptLoader
                     }
                 }
 
-                JadeCore::Containers::RandomResizeList(targets, maxTargets);
+                UwowCore::Containers::RandomResizeList(targets, maxTargets);
             }
 
             void Register()
@@ -1972,7 +1972,7 @@ class spell_lei_shen_ball_lightning_aoe : public SpellScriptLoader
                 if (!GetCaster())
                     return;
 
-                JadeCore::Containers::RandomResizeList(targets, 3);
+                UwowCore::Containers::RandomResizeList(targets, 3);
             }
 
             void HandleDummy(SpellEffIndex effIndex)

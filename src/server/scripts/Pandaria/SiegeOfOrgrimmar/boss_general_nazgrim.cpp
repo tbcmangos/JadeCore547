@@ -494,7 +494,7 @@ class boss_general_nazgrim : public CreatureScript
                 addsEntries.push_back(NPC_KORKRON_ASSASSIN);
                 addsEntries.push_back(NPC_KORKRON_ARCWEAVER);
                 addsEntries.push_back(NPC_KORKRON_WARSHAMAN);
-                JadeCore::Containers::RandomResizeList(addsEntries, ADDS_COUNT);
+                UwowCore::Containers::RandomResizeList(addsEntries, ADDS_COUNT);
 
                 std::list<uint32> addsPositions;
                 addsPositions.push_back(0);
@@ -502,7 +502,7 @@ class boss_general_nazgrim : public CreatureScript
                 addsPositions.push_back(2);
                 addsPositions.push_back(3);
                 addsPositions.push_back(4);
-                JadeCore::Containers::RandomResizeList(addsPositions, ADDS_COUNT);
+                UwowCore::Containers::RandomResizeList(addsPositions, ADDS_COUNT);
 
                 for (auto creatureEntry : addsEntries)
                 {

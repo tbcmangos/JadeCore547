@@ -2406,10 +2406,10 @@ public:
 
         void RemoveInvalidTargets(std::list<WorldObject*>& targets)
         {
-            targets.remove_if(JadeCore::UnitAuraCheck(true, HUNTER_SPELL_INSANITY));
-            targets.remove_if(JadeCore::UnitAuraCheck(true, SPELL_SHAMAN_EXHAUSTED));
-            targets.remove_if(JadeCore::UnitAuraCheck(true, SPELL_SHAMAN_SATED));
-            targets.remove_if(JadeCore::UnitAuraCheck(true, SPELL_MAGE_TEMPORAL_DISPLACEMENT));
+            targets.remove_if(UwowCore::UnitAuraCheck(true, HUNTER_SPELL_INSANITY));
+            targets.remove_if(UwowCore::UnitAuraCheck(true, SPELL_SHAMAN_EXHAUSTED));
+            targets.remove_if(UwowCore::UnitAuraCheck(true, SPELL_SHAMAN_SATED));
+            targets.remove_if(UwowCore::UnitAuraCheck(true, SPELL_MAGE_TEMPORAL_DISPLACEMENT));
         }
 
         void ApplyDebuff()
@@ -3391,8 +3391,8 @@ class spell_taunt_flag_targeting : public SpellScriptLoader
                     float l_SearchDist = GetSpellInfo()->Effects[SpellEffIndex::EFFECT_0].CalcRadius(l_Caster);
 
                     std::list<WorldObject*> l_Targets;
-                    JadeCore::AllWorldObjectsInRange l_Check(l_Caster, l_SearchDist);
-                    JadeCore::WorldObjectListSearcher<JadeCore::AllWorldObjectsInRange> l_Searcher(l_Caster, l_Targets, l_Check);
+                    UwowCore::AllWorldObjectsInRange l_Check(l_Caster, l_SearchDist);
+                    UwowCore::WorldObjectListSearcher<UwowCore::AllWorldObjectsInRange> l_Searcher(l_Caster, l_Targets, l_Check);
                     l_Caster->VisitNearbyObject(l_SearchDist, l_Searcher);
 
                     Position l_CasterPos;

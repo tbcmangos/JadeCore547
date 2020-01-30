@@ -2740,7 +2740,7 @@ class Unit : public WorldObject
         uint64 m_petBattleId;
 };
 
-namespace JadeCore
+namespace UwowCore
 {
     // Binary predicate for sorting Units based on percent value of a power
     class PowerPctOrderPred

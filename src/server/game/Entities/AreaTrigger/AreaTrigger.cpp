@@ -635,8 +635,8 @@ void AreaTrigger::UpdateTargets(float p_Radius)
                 AreaTriggerTemplateList const& l_Templates = GetTemplates();
                 std::vector<G3D::Vector2> l_CheckPoints;
 
-                JadeCore::AnyFriendlyUnitInObjectRangeCheck l_Check(this, GetCaster(), p_Radius);
-                JadeCore::UnitListSearcher<JadeCore::AnyFriendlyUnitInObjectRangeCheck> l_Searcher(this, l_Newtargets, l_Check);
+                UwowCore::AnyFriendlyUnitInObjectRangeCheck l_Check(this, GetCaster(), p_Radius);
+                UwowCore::UnitListSearcher<UwowCore::AnyFriendlyUnitInObjectRangeCheck> l_Searcher(this, l_Newtargets, l_Check);
                 VisitNearbyObject(p_Radius, l_Searcher);
 
                 float l_X = GetPositionX();
@@ -668,8 +668,8 @@ void AreaTrigger::UpdateTargets(float p_Radius)
             }
             else
             {
-                JadeCore::AnyFriendlyUnitInObjectRangeCheck u_check(this, GetCaster(), p_Radius);
-                JadeCore::UnitListSearcher<JadeCore::AnyFriendlyUnitInObjectRangeCheck> searcher(this, l_Newtargets, u_check);
+                UwowCore::AnyFriendlyUnitInObjectRangeCheck u_check(this, GetCaster(), p_Radius);
+                UwowCore::UnitListSearcher<UwowCore::AnyFriendlyUnitInObjectRangeCheck> searcher(this, l_Newtargets, u_check);
                 VisitNearbyObject(p_Radius, searcher);
             }
             break;
@@ -681,8 +681,8 @@ void AreaTrigger::UpdateTargets(float p_Radius)
                 AreaTriggerTemplateList const& l_Templates = GetTemplates();
                 std::vector<G3D::Vector2> l_CheckPoints;
 
-                JadeCore::AnyUnfriendlyNoTotemUnitInObjectRangeCheck l_Check(this, GetCaster(), p_Radius);
-                JadeCore::UnitListSearcher<JadeCore::AnyUnfriendlyNoTotemUnitInObjectRangeCheck> l_Searcher(this, l_Newtargets, l_Check);
+                UwowCore::AnyUnfriendlyNoTotemUnitInObjectRangeCheck l_Check(this, GetCaster(), p_Radius);
+                UwowCore::UnitListSearcher<UwowCore::AnyUnfriendlyNoTotemUnitInObjectRangeCheck> l_Searcher(this, l_Newtargets, l_Check);
                 VisitNearbyObject(p_Radius, l_Searcher);
 
                 float l_X = GetPositionX();
@@ -714,16 +714,16 @@ void AreaTrigger::UpdateTargets(float p_Radius)
             }
             else
             {
-                JadeCore::AnyUnfriendlyNoTotemUnitInObjectRangeCheck u_check(this, GetCaster(), p_Radius);
-                JadeCore::UnitListSearcher<JadeCore::AnyUnfriendlyNoTotemUnitInObjectRangeCheck> searcher(this, l_Newtargets, u_check);
+                UwowCore::AnyUnfriendlyNoTotemUnitInObjectRangeCheck u_check(this, GetCaster(), p_Radius);
+                UwowCore::UnitListSearcher<UwowCore::AnyUnfriendlyNoTotemUnitInObjectRangeCheck> searcher(this, l_Newtargets, u_check);
                 VisitNearbyObject(p_Radius, searcher);
             }
             break;
         }
         default:
         {
-            JadeCore::AnyUnitInObjectRangeCheck u_check(this, p_Radius);
-            JadeCore::UnitListSearcher<JadeCore::AnyUnitInObjectRangeCheck> searcher(this, l_Newtargets, u_check);
+            UwowCore::AnyUnitInObjectRangeCheck u_check(this, p_Radius);
+            UwowCore::UnitListSearcher<UwowCore::AnyUnitInObjectRangeCheck> searcher(this, l_Newtargets, u_check);
             VisitNearbyObject(p_Radius, searcher);
             break;
         }

@@ -517,8 +517,8 @@ class spell_venoxis_toxic_link_aura : public SpellScriptLoader
                     return;
 
                  UnitList targets;
-                 JadeCore::AnyUnitHavingBuffInObjectRangeCheck u_check(GetCaster(), GetTarget(), 100, SPELL_TOXIC_LINK_AURA, true);
-                 JadeCore::UnitListSearcher<JadeCore::AnyUnitHavingBuffInObjectRangeCheck> searcher(GetTarget(), targets, u_check);
+                 UwowCore::AnyUnitHavingBuffInObjectRangeCheck u_check(GetCaster(), GetTarget(), 100, SPELL_TOXIC_LINK_AURA, true);
+                 UwowCore::UnitListSearcher<UwowCore::AnyUnitHavingBuffInObjectRangeCheck> searcher(GetTarget(), targets, u_check);
                  GetTarget()->VisitNearbyObject(80, searcher);
 
                  if (targets.size() < 2)

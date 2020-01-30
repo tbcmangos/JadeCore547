@@ -2345,7 +2345,7 @@ SpellSchoolMask Unit::CalcAbsorbResist(Unit* victim, SpellSchoolMask schoolMask,
     // We're going to call functions which can modify content of the list during iteration over it's elements
     // Let's copy the list so we can prevent iterator invalidation
     AuraEffectList vSchoolAbsorbCopy(victim->GetAuraEffectsByType(SPELL_AURA_SCHOOL_ABSORB));
-    vSchoolAbsorbCopy.sort(JadeCore::AbsorbAuraOrderPred());
+    vSchoolAbsorbCopy.sort(UwowCore::AbsorbAuraOrderPred());
 
     // absorb without mana cost
     for (AuraEffectList::iterator itr = vSchoolAbsorbCopy.begin(); (itr != vSchoolAbsorbCopy.end()) && (dmgInfo.GetDamage() > 0); ++itr)
@@ -6629,7 +6629,7 @@ void Unit::SendSpellDamageResist(Unit* target, uint32 spellId)
 
 void Unit::SendMessageUnfriendlyToSetInRange(WorldPacket* data, float fist)
 {
-    JadeCore::UnfriendlyMessageDistDeliverer notifier(this, data, GetVisibilityRange());
+    UwowCore::UnfriendlyMessageDistDeliverer notifier(this, data, GetVisibilityRange());
     VisitNearbyWorldObject(GetVisibilityRange(), notifier);
 }
 
@@ -8536,8 +8536,8 @@ bool Unit::HandleDummyAuraProc(Unit* victim, uint32 damage, uint32 absorb, AuraE
 
                     
                     std::list<Player*> plrList;
-                    JadeCore::AnyFriendlyUnitInObjectRangeCheck check(this, this, 15.0f);
-                    JadeCore::PlayerListSearcher<JadeCore::AnyFriendlyUnitInObjectRangeCheck> searcher(this, plrList, check);
+                    UwowCore::AnyFriendlyUnitInObjectRangeCheck check(this, this, 15.0f);
+                    UwowCore::PlayerListSearcher<UwowCore::AnyFriendlyUnitInObjectRangeCheck> searcher(this, plrList, check);
                     VisitNearbyObject(15.0f, searcher);
                     if (plrList.empty())
                         return false;
@@ -8547,7 +8547,7 @@ bool Unit::HandleDummyAuraProc(Unit* victim, uint32 damage, uint32 absorb, AuraE
                     if (plrList.empty())
                         return false;
 
-                    plrList.sort(JadeCore::HealthPctOrderPred());
+                    plrList.sort(UwowCore::HealthPctOrderPred());
                     plrList.resize(1);
 
                     int32 bp0 = damage;
@@ -9217,8 +9217,8 @@ bool Unit::HandleDummyAuraProc(Unit* victim, uint32 damage, uint32 absorb, AuraE
 
                     
                     std::list<Player*> plrList;
-                    JadeCore::AnyFriendlyUnitInObjectRangeCheck check(this, this, 15.0f);
-                    JadeCore::PlayerListSearcher<JadeCore::AnyFriendlyUnitInObjectRangeCheck> searcher(this, plrList, check);
+                    UwowCore::AnyFriendlyUnitInObjectRangeCheck check(this, this, 15.0f);
+                    UwowCore::PlayerListSearcher<UwowCore::AnyFriendlyUnitInObjectRangeCheck> searcher(this, plrList, check);
                     VisitNearbyObject(15.0f, searcher);
                     if (plrList.empty())
                         return false;
@@ -9228,7 +9228,7 @@ bool Unit::HandleDummyAuraProc(Unit* victim, uint32 damage, uint32 absorb, AuraE
                     if (plrList.empty())
                         return false;
 
-                    plrList.sort(JadeCore::HealthPctOrderPred());
+                    plrList.sort(UwowCore::HealthPctOrderPred());
                     plrList.resize(1);
 
                     int32 bp0 = int32(CalculatePct(damage, 10));
@@ -13617,13 +13617,13 @@ int32 Unit::DealHeal(Unit* victim, uint32 addhealth, SpellInfo const* spellProto
         {
             std::list<Unit*> targetList;
 
-            JadeCore::AnyFriendlyPlayerOrPetInObjectRangeCheck u_check(unit, unit, 40.0f);
-            JadeCore::UnitListSearcher<JadeCore::AnyFriendlyPlayerOrPetInObjectRangeCheck> searcher(unit, targetList, u_check);
+            UwowCore::AnyFriendlyPlayerOrPetInObjectRangeCheck u_check(unit, unit, 40.0f);
+            UwowCore::UnitListSearcher<UwowCore::AnyFriendlyPlayerOrPetInObjectRangeCheck> searcher(unit, targetList, u_check);
             unit->VisitNearbyObject(40.0f, searcher);
 
             if (!targetList.empty())
             {
-                targetList.sort(JadeCore::HealthPctOrderPred());
+                targetList.sort(UwowCore::HealthPctOrderPred());
 
                 for (auto itr : targetList)
                 {
@@ -20491,15 +20491,15 @@ void Unit::UpdateReactives(uint32 p_time)
 
 void Unit::GetAttackableUnitListInRange(std::list<Unit*> &list, float fMaxSearchRange) const
 {
-    CellCoord p(JadeCore::ComputeCellCoord(GetPositionX(), GetPositionY()));
+    CellCoord p(UwowCore::ComputeCellCoord(GetPositionX(), GetPositionY()));
     Cell cell(p);
     cell.SetNoCreate();
 
-    JadeCore::AnyUnitInObjectRangeCheck u_check(this, fMaxSearchRange);
-    JadeCore::UnitListSearcher<JadeCore::AnyUnitInObjectRangeCheck> searcher(this, list, u_check);
+    UwowCore::AnyUnitInObjectRangeCheck u_check(this, fMaxSearchRange);
+    UwowCore::UnitListSearcher<UwowCore::AnyUnitInObjectRangeCheck> searcher(this, list, u_check);
 
-    TypeContainerVisitor<JadeCore::UnitListSearcher<JadeCore::AnyUnitInObjectRangeCheck>, WorldTypeMapContainer > world_unit_searcher(searcher);
-    TypeContainerVisitor<JadeCore::UnitListSearcher<JadeCore::AnyUnitInObjectRangeCheck>, GridTypeMapContainer >  grid_unit_searcher(searcher);
+    TypeContainerVisitor<UwowCore::UnitListSearcher<UwowCore::AnyUnitInObjectRangeCheck>, WorldTypeMapContainer > world_unit_searcher(searcher);
+    TypeContainerVisitor<UwowCore::UnitListSearcher<UwowCore::AnyUnitInObjectRangeCheck>, GridTypeMapContainer >  grid_unit_searcher(searcher);
 
     cell.Visit(p, world_unit_searcher, *GetMap(), *this, fMaxSearchRange);
     cell.Visit(p, grid_unit_searcher, *GetMap(), *this, fMaxSearchRange);
@@ -20508,8 +20508,8 @@ void Unit::GetAttackableUnitListInRange(std::list<Unit*> &list, float fMaxSearch
 Unit* Unit::SelectNearbyTarget(Unit* exclude, float dist, bool checkValidAttack, SpellInfo const* spellInfo) const
 {
     std::list<Unit*> targets;
-    JadeCore::AnyUnfriendlyUnitInObjectRangeCheck u_check(this, this, dist);
-    JadeCore::UnitListSearcher<JadeCore::AnyUnfriendlyUnitInObjectRangeCheck> searcher(this, targets, u_check);
+    UwowCore::AnyUnfriendlyUnitInObjectRangeCheck u_check(this, this, dist);
+    UwowCore::UnitListSearcher<UwowCore::AnyUnfriendlyUnitInObjectRangeCheck> searcher(this, targets, u_check);
     VisitNearbyObject(dist, searcher);
 
     // remove current target
@@ -20533,14 +20533,14 @@ Unit* Unit::SelectNearbyTarget(Unit* exclude, float dist, bool checkValidAttack,
         return NULL;
 
     // select random
-    return JadeCore::Containers::SelectRandomContainerElement(targets);
+    return UwowCore::Containers::SelectRandomContainerElement(targets);
 }
 
 Unit* Unit::SelectNearbyAlly(Unit* exclude, float dist, bool checkValidAssist, SpellInfo const* spellInfo) const
 {
     std::list<Unit*> targets;
-    JadeCore::AnyFriendlyUnitInObjectRangeCheck u_check(this, this, dist);
-    JadeCore::UnitListSearcher<JadeCore::AnyFriendlyUnitInObjectRangeCheck> searcher(this, targets, u_check);
+    UwowCore::AnyFriendlyUnitInObjectRangeCheck u_check(this, this, dist);
+    UwowCore::UnitListSearcher<UwowCore::AnyFriendlyUnitInObjectRangeCheck> searcher(this, targets, u_check);
     VisitNearbyObject(dist, searcher);
 
     if (exclude)
@@ -20560,7 +20560,7 @@ Unit* Unit::SelectNearbyAlly(Unit* exclude, float dist, bool checkValidAssist, S
         return NULL;
 
     // select random
-    return JadeCore::Containers::SelectRandomContainerElement(targets);
+    return UwowCore::Containers::SelectRandomContainerElement(targets);
 }
 
 void Unit::ApplyAttackTimePercentMod(WeaponAttackType att, float val, bool apply)
@@ -22457,7 +22457,7 @@ public:
 
     virtual bool Execute(uint64 , uint32)
     {
-        JadeCore::AIRelocationNotifier notifier(m_owner);
+        UwowCore::AIRelocationNotifier notifier(m_owner);
         m_owner.VisitNearbyObject(60.0f, notifier);
         return true;
     }
@@ -24083,7 +24083,7 @@ void Unit::SendTeleportPacket(Position &newPos)
 bool Unit::UpdatePosition(float x, float y, float z, float orientation, bool teleport)
 {
     // prevent crash when a bad coord is sent by the client
-    if (!JadeCore::IsValidMapCoord(x, y, z, orientation))
+    if (!UwowCore::IsValidMapCoord(x, y, z, orientation))
         return false;
 
     bool turn = (GetOrientation() != orientation);

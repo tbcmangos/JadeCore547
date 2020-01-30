@@ -51,7 +51,7 @@ class Transaction
         bool m_IsExecuted;
 
 };
-typedef JadeCore::AutoPtr<Transaction, ACE_Thread_Mutex> SQLTransaction;
+typedef UwowCore::AutoPtr<Transaction, ACE_Thread_Mutex> SQLTransaction;
 
 /*! Low level class*/
 class TransactionTask : public SQLOperation

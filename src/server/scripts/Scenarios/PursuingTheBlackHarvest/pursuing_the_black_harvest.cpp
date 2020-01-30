@@ -98,7 +98,7 @@ class npc_pursuing_the_black_harvest_ashtongue_primalist : public CreatureScript
             {
                 Player* player = NULL;
                 IntrudersCheck check(me, 31.0f);
-                JadeCore::PlayerSearcher<IntrudersCheck> searcher(me, player, check);
+                UwowCore::PlayerSearcher<IntrudersCheck> searcher(me, player, check);
                 me->VisitNearbyWorldObject(30.0f, searcher);
 
                 return player;
@@ -188,7 +188,7 @@ class npc_pursuing_the_black_harvest_ashtongue_shaman : public CreatureScript
             {
                 Player* player = NULL;
                 IntrudersCheck check(me, 31.0f);
-                JadeCore::PlayerSearcher<IntrudersCheck> searcher(me, player, check);
+                UwowCore::PlayerSearcher<IntrudersCheck> searcher(me, player, check);
                 me->VisitNearbyWorldObject(30.0f, searcher);
 
                 return player;

@@ -299,7 +299,7 @@ class npc_spine_of_deathwing_deathwing : public CreatureScript
                             if (!targets.empty())
                             {
                                 num = targets.size();
-                                Unit* pSpawner = JadeCore::Containers::SelectRandomContainerElement(targets);
+                                Unit* pSpawner = UwowCore::Containers::SelectRandomContainerElement(targets);
                                 if (Creature* pBlood = me->SummonCreature(NPC_CORRUPTED_BLOOD, *pSpawner))
                                     DoZoneInCombat(pBlood);
                             }
@@ -374,7 +374,7 @@ class npc_spine_of_deathwing_deathwing : public CreatureScript
             {
                 /*std::list<Player*> players;
                 AnyLivePlayerNoGmCheck check(me, 200.0f, true);
-                JadeCore::PlayerListSearcher<AnyLivePlayerNoGmCheck> searcher(me, players, check);
+                UwowCore::PlayerListSearcher<AnyLivePlayerNoGmCheck> searcher(me, players, check);
                 me->VisitNearbyWorldObject(200.0f, searcher);
                 if (!players.empty())
                     for (std::list<Player*>::iterator itr = players.begin(); itr != players.end(); ++ itr)
@@ -446,7 +446,7 @@ class npc_spine_of_deathwing_deathwing : public CreatureScript
             {
                 Player* player = NULL;
                 AnyLivePlayerNoGmCheck check(me, 200.0f);
-                JadeCore::PlayerSearcher<AnyLivePlayerNoGmCheck> searcher(me, player, check);
+                UwowCore::PlayerSearcher<AnyLivePlayerNoGmCheck> searcher(me, player, check);
                 me->VisitNearbyWorldObject(200.0f, searcher);
                 return (player ? true : false);
             }
@@ -1114,7 +1114,7 @@ class spell_spine_of_deathwing_searing_plasma_aoe : public SpellScriptLoader
                 if (targets.empty())
                     return;
                 
-                JadeCore::Containers::RandomResizeList(targets, 1);
+                UwowCore::Containers::RandomResizeList(targets, 1);
             }
 
             void HandleDummy(SpellEffIndex /*effIndex*/)
@@ -1306,10 +1306,10 @@ class spell_spine_of_deathwing_blood_corruption : public SpellScriptLoader
                     Unit* target = NULL;
                     std::list<Player*> players;
                     PlayersCheck check(owner);
-                    JadeCore::PlayerListSearcher<PlayersCheck> searcher(owner, players, check);
+                    UwowCore::PlayerListSearcher<PlayersCheck> searcher(owner, players, check);
                     owner->VisitNearbyObject(200.0f, searcher);
                     if (!players.empty())
-                        target = JadeCore::Containers::SelectRandomContainerElement(players);
+                        target = UwowCore::Containers::SelectRandomContainerElement(players);
                     else
                         target = owner;
 
@@ -1416,7 +1416,7 @@ class spell_spine_of_deathwing_blood_corruption_death : public SpellScriptLoader
                 if (targets.empty())
                     return;
 
-                JadeCore::Containers::RandomResizeList(targets, 1);
+                UwowCore::Containers::RandomResizeList(targets, 1);
             }
 
             void Register()

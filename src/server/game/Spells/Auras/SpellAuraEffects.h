@@ -396,7 +396,7 @@ class AuraEffect
         void HandleTriggerAtApply(AuraApplication const* aurApp, uint8 mode, bool apply) const;
 };
 
-namespace JadeCore
+namespace UwowCore
 {
     // Binary predicate for sorting the priority of absorption aura effects
     class AbsorbAuraOrderPred

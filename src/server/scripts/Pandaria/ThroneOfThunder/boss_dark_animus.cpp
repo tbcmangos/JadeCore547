@@ -614,7 +614,7 @@ class boss_dark_animus : public CreatureScript
                 // Turn off 13 anima golems in 10ppl raids
                 if (!Is25ManRaid())
                 {
-                    JadeCore::Containers::RandomResizeList(animaGolems, 13);
+                    UwowCore::Containers::RandomResizeList(animaGolems, 13);
                     for (std::list<uint64>::const_iterator itr = animaGolems.begin(); itr != animaGolems.end(); ++itr)
                     {
                         if (Creature* pGolem = instance->instance->GetCreature((*itr)))
@@ -637,7 +637,7 @@ class boss_dark_animus : public CreatureScript
                 // Turn off 3 large anima golems in 10ppl raids
                 if (!Is25ManRaid())
                 {
-                    JadeCore::Containers::RandomResizeList(largeAnimaGolems, 3);
+                    UwowCore::Containers::RandomResizeList(largeAnimaGolems, 3);
                     for (std::list<uint64>::const_iterator itr = largeAnimaGolems.begin(); itr != largeAnimaGolems.end(); ++itr)
                     {
                         if (Creature* pGolem = instance->instance->GetCreature((*itr)))
@@ -1388,7 +1388,7 @@ class spell_dark_animus_transfusion_searcher: public SpellScriptLoader
                     return;
 
                 // In LFR difficulty, a random golem is chosen.
-                targets.sort(JadeCore::DistanceCompareOrderPred(caster));
+                targets.sort(UwowCore::DistanceCompareOrderPred(caster));
                 WorldObject* target = (*targets.begin());
 
                 targets.clear();
@@ -1443,7 +1443,7 @@ class spell_dark_animus_crimson_wake_aoe: public SpellScriptLoader
                 if (targets.empty())
                     return;
 
-                JadeCore::Containers::RandomResizeList(targets, 1);
+                UwowCore::Containers::RandomResizeList(targets, 1);
             }
 
             void HandleHitTarget(SpellEffIndex effIndex)
@@ -1538,7 +1538,7 @@ class spell_dark_animus_matter_swap: public SpellScriptLoader
                 if (p_Targets.empty())
                     return;
 
-                JadeCore::RandomResizeList(p_Targets, 1);
+                UwowCore::RandomResizeList(p_Targets, 1);
             }
 
             void Register()
@@ -1712,7 +1712,7 @@ class spell_dark_animus_matter_swap: public SpellScriptLoader
             {
                 Player* player = NULL;
                 PlayerMatterSwapCheck checker(unit);
-                JadeCore::PlayerLastSearcher<PlayerMatterSwapCheck> searcher(unit, player, checker);
+                UwowCore::PlayerLastSearcher<PlayerMatterSwapCheck> searcher(unit, player, checker);
                 unit->VisitNearbyWorldObject(100.0f, searcher);
                 return player;
             }
@@ -1761,8 +1761,8 @@ class spell_dark_animus_targeted_matter_swap: public SpellScriptLoader
                 if (p_Targets.empty())
                     return;
 
-                p_Targets.sort(JadeCore::DistanceOrderPred(GetCaster()));
-                JadeCore::RandomResizeList(p_Targets, 1);
+                p_Targets.sort(UwowCore::DistanceOrderPred(GetCaster()));
+                UwowCore::RandomResizeList(p_Targets, 1);
             }
 
             void Register()
@@ -1935,7 +1935,7 @@ class spell_dark_animus_touch_of_the_animus: public SpellScriptLoader
                 if (p_Targets.empty())
                     return;
 
-                JadeCore::RandomResizeList(p_Targets, 1);
+                UwowCore::RandomResizeList(p_Targets, 1);
             }
 
             void Register()
@@ -1965,7 +1965,7 @@ class spell_dark_animus_anima_font: public SpellScriptLoader
                 if (p_Targets.empty())
                     return;
 
-                JadeCore::RandomResizeList(p_Targets, 1);
+                UwowCore::RandomResizeList(p_Targets, 1);
             }
 
             void Register()
@@ -1995,7 +1995,7 @@ class spell_dark_animus_anima_font_dummy: public SpellScriptLoader
                 if (p_Targets.empty())
                     return;
 
-                JadeCore::RandomResizeList(p_Targets, 1);
+                UwowCore::RandomResizeList(p_Targets, 1);
             }
 
             void HandleDummy(SpellEffIndex p_EffIndex)
@@ -2089,7 +2089,7 @@ class spell_dark_animus_empower_golem: public SpellScriptLoader
                 for (WorldObject* l_Object : p_Targets)
                     l_TempList.push_back(l_Object->ToUnit());
 
-                l_TempList.sort(JadeCore::HealthPctOrderPred());
+                l_TempList.sort(UwowCore::HealthPctOrderPred());
                 WorldObject* l_Object = (*l_TempList.begin());
                 p_Targets.clear();
                 p_Targets.push_back(l_Object);

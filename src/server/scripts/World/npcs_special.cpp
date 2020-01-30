@@ -2150,8 +2150,8 @@ public:
 
             // Select attackable target in range of 60 with 49206
             std::list<Unit*> targets;
-            JadeCore::AnyUnfriendlyUnitInObjectRangeCheck u_check(me, me, 60);
-            JadeCore::UnitListSearcher<JadeCore::AnyUnfriendlyUnitInObjectRangeCheck> searcher(me, targets, u_check);
+            UwowCore::AnyUnfriendlyUnitInObjectRangeCheck u_check(me, me, 60);
+            UwowCore::UnitListSearcher<UwowCore::AnyUnfriendlyUnitInObjectRangeCheck> searcher(me, targets, u_check);
             me->VisitNearbyObject(30, searcher);
             for (std::list<Unit*>::const_iterator itr = targets.begin(); itr != targets.end(); ++itr)
             {
@@ -4078,7 +4078,7 @@ class npc_demonic_gateway_purple : public CreatureScript
                 if (greenGates.empty())
                     return;
 
-                greenGates.sort(JadeCore::DistanceCompareOrderPred(me));
+                greenGates.sort(UwowCore::DistanceCompareOrderPred(me));
                 for (auto itr : greenGates)
                 {
                     // Skip gates created by other warlocks
@@ -4167,7 +4167,7 @@ class npc_demonic_gateway_green : public CreatureScript
                 if (purpleGates.empty())
                     return;
 
-                purpleGates.sort(JadeCore::DistanceCompareOrderPred(me));
+                purpleGates.sort(UwowCore::DistanceCompareOrderPred(me));
                 for (auto itr : purpleGates)
                 {
                     // Skip gates created by other warlocks
@@ -5360,14 +5360,14 @@ class npc_custom_caster_guard : public CreatureScript
                         UnitList targets;
                         DebuffCheck u_check(me, me->GetOwnerGUID());
                         
-                        JadeCore::UnitListSearcher<DebuffCheck> searcher(me, targets, u_check);
+                        UwowCore::UnitListSearcher<DebuffCheck> searcher(me, targets, u_check);
                         me->VisitNearbyObject(100.0f, searcher);
                         if (!targets.empty())
                         {
                             if (targets.size() > 1)
                             {
-                                targets.sort(JadeCore::DistanceOrderPred(me));
-                                JadeCore::Containers::RandomResizeList(targets, 1);
+                                targets.sort(UwowCore::DistanceOrderPred(me));
+                                UwowCore::Containers::RandomResizeList(targets, 1);
                             }
                             Unit* newTarget = *(targets.begin());
                             if (me->getVictim() != newTarget)

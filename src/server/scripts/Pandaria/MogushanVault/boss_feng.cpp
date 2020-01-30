@@ -1613,8 +1613,8 @@ class at_nullification_barrier : MS::AreaTriggerEntityScript
             std::list<Unit*> l_TargetList;
             float l_Radius = 6.0f;
 
-            JadeCore::AnyFriendlyUnitInObjectRangeCheck u_check(p_AreaTrigger, l_Caster, l_Radius);
-            JadeCore::UnitListSearcher<JadeCore::AnyFriendlyUnitInObjectRangeCheck> searcher(p_AreaTrigger, l_TargetList, u_check);
+            UwowCore::AnyFriendlyUnitInObjectRangeCheck u_check(p_AreaTrigger, l_Caster, l_Radius);
+            UwowCore::UnitListSearcher<UwowCore::AnyFriendlyUnitInObjectRangeCheck> searcher(p_AreaTrigger, l_TargetList, u_check);
             p_AreaTrigger->VisitNearbyObject(l_Radius, searcher);
 
             if (!l_TargetList.empty())

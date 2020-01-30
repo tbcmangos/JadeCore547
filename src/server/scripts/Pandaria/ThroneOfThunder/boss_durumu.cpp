@@ -663,7 +663,7 @@ class boss_durumu_the_forgotten : public CreatureScript
                             if (targets.size() > 3)
                                 targets.remove(me->getVictim());
 
-                            JadeCore::Containers::RandomResizeList(targets, 3);
+                            UwowCore::Containers::RandomResizeList(targets, 3);
 
                             CreateColorEyesForTargets(targets);
 
@@ -1297,7 +1297,7 @@ class spell_durumu_the_forgotten_lingering_gaze: public SpellScriptLoader
                         targets.remove(pDurumu->getVictim());
                     }
 
-                    JadeCore::RandomResizeList(targets, targetsCount);
+                    UwowCore::RandomResizeList(targets, targetsCount);
 
                     for (std::list<Unit*>::const_iterator itr = targets.begin(); itr != targets.end(); ++itr)
                     {

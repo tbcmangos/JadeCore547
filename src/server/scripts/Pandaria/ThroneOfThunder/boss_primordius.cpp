@@ -358,13 +358,13 @@ class boss_primordius : public CreatureScript
 
                  if (appliedAurasIndexes.size() >= maxEvolutionAurasCount)
                  {
-                    uint8 removeAuraIndex = JadeCore::Containers::SelectRandomContainerElement(appliedAurasIndexes);
+                    uint8 removeAuraIndex = UwowCore::Containers::SelectRandomContainerElement(appliedAurasIndexes);
                     DeactivateEvolutionAura(removeAuraIndex);
                  }
                  
                  if (notAppliedAurasIndexes.size() > 0)
                  {
-                    uint8 applyAuraIndex = JadeCore::Containers::SelectRandomContainerElement(notAppliedAurasIndexes);
+                    uint8 applyAuraIndex = UwowCore::Containers::SelectRandomContainerElement(notAppliedAurasIndexes);
                     ActivateEvolutionAura(applyAuraIndex);
                  }
             }
@@ -766,7 +766,7 @@ class spell_primordius_volatile_mutation: public SpellScriptLoader
                         auras.push_back(nephastAuras[i]);
                 }
                 
-                uint32 newAura = JadeCore::Containers::SelectRandomContainerElement(auras);
+                uint32 newAura = UwowCore::Containers::SelectRandomContainerElement(auras);
 
                 GetCaster()->AddAura(newAura, GetCaster());
             }

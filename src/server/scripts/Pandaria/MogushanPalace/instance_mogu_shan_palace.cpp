@@ -244,7 +244,7 @@ class instance_mogu_shan_palace : public InstanceMapScript
                 {
                     case TYPE_ACTIVATE_ANIMATED_STAFF:
                     {
-                        if (Creature* creature = instance->GetCreature(JadeCore::Containers::SelectRandomContainerElement(animated_staffs)))
+                        if (Creature* creature = instance->GetCreature(UwowCore::Containers::SelectRandomContainerElement(animated_staffs)))
                             if (creature->GetAI())
                                 creature->GetAI()->DoAction(0); //ACTION_ACTIVATE
                         break;

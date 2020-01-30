@@ -28,7 +28,7 @@
 //! Because circular includes are bad
 extern uint32 urand(uint32 min, uint32 max);
 
-namespace JadeCore
+namespace UwowCore
 {
     namespace Containers
     {
@@ -120,6 +120,6 @@ namespace JadeCore
     }
     //! namespace Containers
 }
-//! namespace JadeCore
+//! namespace UwowCore
 
 #endif

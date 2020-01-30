@@ -2198,7 +2198,7 @@ class npc_norushen_residual_corruption : public CreatureScript
             {
                 Player* player = NULL;
                 PlayerForCorruptCheck check(me);
-                JadeCore::PlayerSearcher<PlayerForCorruptCheck> searcher(me, player, check);
+                UwowCore::PlayerSearcher<PlayerForCorruptCheck> searcher(me, player, check);
                 me->VisitNearbyWorldObject(3.0f, searcher);
                 return player;
             }

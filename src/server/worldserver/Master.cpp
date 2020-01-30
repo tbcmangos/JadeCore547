@@ -54,7 +54,7 @@ extern int m_ServiceStatus;
 #endif
 
 /// Handle worldservers's termination signals
-class WorldServerSignalHandler : public JadeCore::SignalHandler
+class WorldServerSignalHandler : public UwowCore::SignalHandler
 {
     public:
         virtual void HandleSignal(int SigNum)

@@ -810,7 +810,7 @@ bool BattlegroundQueue::SelectArenaTeams(uint32 bracket_id, uint32 arenaRating, 
         if (randomTeams.size() > 0 && !selectedTeam1 && !selectedTeam2)
         {
             selectedTeam1 = selectedTeam;
-            selectedTeam2 = JadeCore::Containers::SelectRandomContainerElement(randomTeams);
+            selectedTeam2 = UwowCore::Containers::SelectRandomContainerElement(randomTeams);
 
             found = true;
             continue;
