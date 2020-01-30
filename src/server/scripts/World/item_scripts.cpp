@@ -33,6 +33,8 @@ EndContentData */
 #include "ScriptMgr.h"
 #include "ScriptedCreature.h"
 #include "Spell.h"
+#include "WorldPacket.h"
+#include "WorldSession.h"
 
 /*#####
 # item_only_for_flight
@@ -480,6 +482,154 @@ class item_eye_of_the_black_prince : public ItemScript
             return false;
         }
 };
+/*######
+# item_Titanium_Seal_of_Dalaran
+# For do not anything
+######*/
+class item_titanium_seal_of_dalaran : public ItemScript
+{
+public:
+    item_titanium_seal_of_dalaran() : ItemScript("item_titanium_seal_of_dalaran") { }
+
+    bool OnUse(Player* pPlayer, Item* pItem, const SpellCastTargets & /*pTargets*/)
+    {
+     uint8 luky = urand(0,1);
+
+     if(pPlayer)
+     {
+        pPlayer->CastSpell(pPlayer,60458,true);
+        pPlayer->TextEmote("casually flips his Titanium Seal of Dalaran");
+
+        if(luky)
+           pPlayer->TextEmote("caches the coin heads up!");
+        else
+           pPlayer->TextEmote("finds the coin face down for tails!");
+     }
+     return false;
+   }
+};
+
+enum eBrewfestSampler
+{
+    QUEST_CHUG_AND_CHUCK_A    = 12022,
+    QUEST_CHUG_AND_CHUCK_H    = 12191,
+    NPC_BREWFEST_STOUT        = 24108
+};
+class item_brewfest_sampler : public ItemScript
+{
+public:
+    item_brewfest_sampler() : ItemScript("item_brewfest_sampler") { }
+
+    bool OnUse(Player* pPlayer, Item* pItem, const SpellCastTargets & /*pTargets*/)
+    {
+        if (pPlayer->GetQuestStatus(QUEST_CHUG_AND_CHUCK_A) == QUEST_STATUS_INCOMPLETE
+            || pPlayer->GetQuestStatus(QUEST_CHUG_AND_CHUCK_H) == QUEST_STATUS_INCOMPLETE)
+        {
+            if (Creature* pStout = pPlayer->FindNearestCreature(NPC_BREWFEST_STOUT, 10.0f)) // spell range
+            {
+                return false;
+            } else
+                pPlayer->SendEquipError(EQUIP_ERR_OUT_OF_RANGE, pItem, NULL);
+        } else
+            pPlayer->SendEquipError(EQUIP_ERR_CLIENT_LOCKED_OUT ,pItem, NULL);
+        return true;
+    }
+};
+
+enum eBrewfestRamReins
+{
+    SPELL_BREWFEST_RAM          = 43880,
+    SPELL_RAM_FATIGUE           = 43052,
+    SPELL_SPEED_RAM_GALLOP      = 42994,
+    SPELL_SPEED_RAM_CANTER      = 42993,
+    SPELL_SPEED_RAM_TROT        = 42992,
+    SPELL_SPEED_RAM_NORMAL      = 43310,
+    SPELL_SPEED_RAM_EXHAUSED    = 43332
+};
+
+class item_brewfest_ram_reins : public ItemScript
+{
+public:
+    item_brewfest_ram_reins() : ItemScript("item_brewfest_ram_reins") { }
+
+    bool OnUse(Player* pPlayer, Item* pItem, const SpellCastTargets & /*pTargets*/)
+    {
+        if (pPlayer->HasAura(SPELL_BREWFEST_RAM) && !pPlayer->HasAura(SPELL_SPEED_RAM_EXHAUSED))
+        {
+            if (pPlayer->HasAura(SPELL_SPEED_RAM_NORMAL))
+                pPlayer->CastSpell(pPlayer,SPELL_SPEED_RAM_TROT,false);
+            else if (pPlayer->HasAura(SPELL_SPEED_RAM_TROT))
+            {
+                if (pPlayer->GetAura(SPELL_SPEED_RAM_TROT)->GetDuration() < 3000)
+                    pPlayer->GetAura(SPELL_SPEED_RAM_TROT)->SetDuration(4000);
+                else
+                  pPlayer->CastSpell(pPlayer,SPELL_SPEED_RAM_CANTER,false);
+            } else if (pPlayer->HasAura(SPELL_SPEED_RAM_CANTER))
+            {
+                if (pPlayer->GetAura(SPELL_SPEED_RAM_CANTER)->GetDuration() < 3000)
+                    pPlayer->GetAura(SPELL_SPEED_RAM_CANTER)->SetDuration(4000);
+                else
+                  pPlayer->CastSpell(pPlayer,SPELL_SPEED_RAM_GALLOP,false);
+            } else if (pPlayer->HasAura(SPELL_SPEED_RAM_GALLOP))
+                pPlayer->GetAura(SPELL_SPEED_RAM_GALLOP)->SetDuration(4000);
+        } else
+            pPlayer->SendEquipError(EQUIP_ERR_CLIENT_LOCKED_OUT ,pItem, NULL);
+        return true;
+    }
+};
+
+// Leyara's Locket item=71259
+class item_leyara_locket : public ItemScript
+{
+public:
+    item_leyara_locket() : ItemScript("item_leyara_locket") { }
+
+    bool OnUse(Player* pPlayer, Item* pItem, const SpellCastTargets & /*pTargets*/)
+    {
+        if (pPlayer->getGender() == GENDER_MALE)
+            pPlayer->CastSpell(pPlayer, 101185); // model male
+        else
+            pPlayer->CastSpell(pPlayer, 101186); // female
+
+        return false;
+    }
+};
+
+//custom
+class item_custom_event_bg : public ItemScript
+{
+public:
+    item_custom_event_bg() : ItemScript("item_custom_event_bg") { }
+
+    uint32 spellid;
+    
+    bool OnUse(Player* player, Item* item, SpellCastTargets const& targets)
+    {
+         if (!player->InBattleground())
+         {
+            player->DestroyItemCount(600000, 1, true);
+            player->DestroyItemCount(600001, 1, true);
+            player->DestroyItemCount(600002, 1, true);
+            player->DestroyItemCount(600003, 1, true);
+            return false;
+         }
+         if (item->GetEntry() == 600000)
+            spellid = 119513;
+         else if (item->GetEntry() == 600001)
+            spellid = 145547;
+         else if (item->GetEntry() == 600002)
+            spellid = 147702;
+         else if (item->GetEntry() == 600003)
+            spellid = 144638;
+         else
+            return false;
+         
+         player->CastSpell(targets.GetUnitTarget(), spellid, false, item);
+         
+         
+         return true;
+    }
+};
 
 void AddSC_item_scripts()
 {
@@ -497,4 +647,11 @@ void AddSC_item_scripts()
     new item_captured_frog();
     new item_sylvanas_music_box();
     new item_eye_of_the_black_prince();
+	new item_titanium_seal_of_dalaran();
+    new item_brewfest_sampler();
+    new item_brewfest_ram_reins();
+    new item_leyara_locket();
+    
+    new item_custom_event_bg();
 }
+

@@ -1446,6 +1446,35 @@ public:
     }
 };
 
+class go_sikthik_cage : public GameObjectScript
+{
+public:
+    go_sikthik_cage() : GameObjectScript("go_sikthik_cage") { }
+
+    bool OnGossipHello(Player* player, GameObject* /*go*/)
+    {
+        if (player->GetQuestStatus(31688) == QUEST_STATUS_INCOMPLETE && player->GetReqKillOrCastCurrentCount(31688, -214734) >= 7)
+        {
+            player->CastSpell(player, 128920, true);
+            return false;
+        }
+        return false;
+    }
+};
+
+// Quest: Clean Up in Stormwind - 29144 and Clean Up in Undercity - 29375
+class go_forsaken_stink_bomb : public GameObjectScript
+{
+    public:
+        go_forsaken_stink_bomb() : GameObjectScript("go_forsaken_stink_bomb") { }
+
+        bool OnGossipHello(Player* player, GameObject* go)
+        {
+            go->SetLootState(GO_JUST_DEACTIVATED);
+            player->CastSpell(player, 97157, true);
+            return true;
+        }
+};
 void AddSC_go_scripts()
 {
     new go_cat_figurine;
@@ -1493,4 +1522,6 @@ void AddSC_go_scripts()
     new go_dark_iron_mole_machine_wreckage();
     new go_shard_of_archstone();
     new go_tp_to_duel_zone();
+	new go_sikthik_cage;
+	new go_forsaken_stink_bomb();
 }

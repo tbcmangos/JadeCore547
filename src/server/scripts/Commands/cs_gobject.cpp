@@ -214,7 +214,9 @@ public:
 
         // fill the gameobject data and save to the db
         object->SaveToDB(map->GetId(), (1 << map->GetSpawnMode()), player->GetPhaseMgr().GetPhaseMaskForSpawn());
+        delete object;
 
+        object = new GameObject();
         // this will generate a new guid if the object is in an instance
         if (!object->LoadGameObjectFromDB(guidLow, map))
         {
@@ -451,8 +453,16 @@ public:
             return false;
         }
 
-        Player* player = handler->GetSession()->GetPlayer();
-        float o = player->GetOrientation();
+        char* orientation = strtok(NULL, " ");
+        float o;
+
+        if (orientation)
+            o = (float)atof(orientation);
+        else
+        {
+            Player* player = handler->GetSession()->GetPlayer();
+            o = player->GetOrientation();
+        }
 
         object->Relocate(object->GetPositionX(), object->GetPositionY(), object->GetPositionZ(), o);
         object->UpdateRotationFields();
@@ -690,12 +700,7 @@ public:
         if (objectType < 4)
             object->SetByteValue(GAMEOBJECT_BYTES_1, objectType, objectState);
         else if (objectType == 4)
-        {
-            WorldPacket data(SMSG_GAMEOBJECT_CUSTOM_ANIM, 8+4);
-            data << object->GetGUID();
-            data << (uint32)(objectState);
-            object->SendMessageToSet(&data, true);
-        }
+            object->SendCustomAnim(objectState);
         handler->PSendSysMessage("Set gobject type %d state %d", objectType, objectState);
         return true;
     }

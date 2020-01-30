@@ -112,6 +112,7 @@ void AddSC_npc_companions();
 void AddSC_achievement_scripts();
 void AddSC_green_fire_scripts();
 void AddSC_legendary_cloak_scripts();
+void AddSC_emerald_dragons();
 
 //eastern kingdoms
 void AddSC_alterac_valley();                 //Alterac Valley
@@ -1075,6 +1076,7 @@ void AddWorldScripts()
     AddSC_chat_log();
     AddSC_green_fire_scripts();
     AddSC_legendary_cloak_scripts();
+    AddSC_emerald_dragons();
 #endif
 }
 

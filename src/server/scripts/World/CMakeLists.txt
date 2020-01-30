@@ -24,6 +24,7 @@ set(scripts_STAT_SRCS
   World/npcs_special.cpp
   World/green_fire_scripts.cpp
   World/legendary_cloak_scripts.cpp
+  World/boss_emerald_dragons.cpp
 )
 
 message("  -> Prepared: World")
