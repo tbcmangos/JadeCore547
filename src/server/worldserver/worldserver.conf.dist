@@ -2892,6 +2892,7 @@ Appenders=Console Server GM DBErrors Char RA Warden Chat
 #
 
 Logger.Root=0,5,Console Server
+Logger.Maps=17,2,Console Server
 Logger.Chat=22,3,Chat
 Logger.DBErrors=26,5,Console Server DBErrors
 Logger.GM=27,3,Console Server GM
@@ -2913,7 +2914,7 @@ Logger.InterRealm=42,1,Console Server
 #                     (Using spaces as separator).
 #        Default:     "Root Chat DBErrors GM RA Warden Character Load"
 
-Loggers=Root Chat DBErrors GM RA Warden Character Load WorldServer Opcodes
+Loggers=Root Chat DBErrors GM RA Warden Character Load WorldServer Opcodes Maps
 
 #
 ###################################################################################################
