@@ -13,7 +13,9 @@
   \created 2003-01-25
   \edited  2012-01-05
  */
+#if defined(_MSC_VER)
 #include <intrin.h>
+#endif
 #include "G3D/platform.h"
 #include "G3D/System.h"
 #include "G3D/debug.h"

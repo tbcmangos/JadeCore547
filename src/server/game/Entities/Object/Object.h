@@ -258,7 +258,7 @@ class Object
             return *(((uint16*)&m_uint32Values[index])+offset);
         }
 		//npcbot
-		void Object::SetGuidValue(uint16 index, ObjectGuid const &value) {
+		void SetGuidValue(uint16 index, ObjectGuid const &value) {
 			SetUInt64Value(index, uint64(value));
 		}
 		//end npcbot

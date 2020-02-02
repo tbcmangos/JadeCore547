@@ -525,7 +525,7 @@ public:
     bool IsAuraExclusiveBySpecificWith(SpellInfo const* spellInfo) const;
     bool IsAuraExclusiveBySpecificPerCasterWith(SpellInfo const* spellInfo) const;
 	//npcbot
-	bool SpellInfo::IsCooldownStartedOnEvent() const
+	bool IsCooldownStartedOnEvent() const
 	{
 		return Attributes & SPELL_ATTR0_DISABLED_WHILE_ACTIVE || (CategoryFlags & SPELL_CATEGORY_FLAG_COOLDOWN_STARTS_ON_EVENT);
 	}

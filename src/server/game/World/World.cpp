@@ -37,7 +37,7 @@
 #include "AccountMgr.h"
 #include "AchievementMgr.h"
 #include "AuctionHouseMgr.h"
-#include "AuctionHouseBot\AuctionHouseBot.h"
+#include "AuctionHouseBot/AuctionHouseBot.h"
 #include "ObjectMgr.h"
 #include "GuildMgr.h"
 #include "GuildFinderMgr.h"
