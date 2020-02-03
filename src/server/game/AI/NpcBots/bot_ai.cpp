@@ -807,7 +807,7 @@ void bot_minion_ai::RezGroup(uint32 REZZ, Player* gPlayer)
         if (doCast(target, REZZ)) //rezzing it
         {
             if (Player* player = playerOrCorpse->GetTypeId() == TYPEID_PLAYER ? playerOrCorpse->ToPlayer() : ObjectAccessor::FindPlayer(playerOrCorpse->ToCorpse()->GetOwnerGUID()))
-                BotWhisper("Rezzing You", player);
+                BotWhisper("起来吧我的朋友！  ", player);
             rezz_cd = 20;
         }
 
@@ -836,7 +836,7 @@ void bot_minion_ai::RezGroup(uint32 REZZ, Player* gPlayer)
 
         if (doCast(target, REZZ))//rezzing it
         {
-            BotWhisper("Rezzing You", master);
+            BotWhisper("起来吧我的朋友！  ", master);
             rezz_cd = 60;
         }
         return;
@@ -863,10 +863,10 @@ void bot_minion_ai::RezGroup(uint32 REZZ, Player* gPlayer)
 
         if (doCast(target, REZZ))//rezzing it
         {
-            BotWhisper("Rezzing You", tPlayer);
+            BotWhisper("起来吧我的朋友!  ", tPlayer);
             if (tPlayer != master)
             {
-                std::string rezstr = "Rezzing ";
+                std::string rezstr = "复活中... ";
                 rezstr += tPlayer->GetName();
                 BotWhisper(rezstr.c_str(), master);
             }
@@ -1963,7 +1963,7 @@ void bot_ai::ReceiveEmote(Player* player, uint32 emote)
 			return;
 		}
 		SetBotCommandState(COMMAND_STAY);
-		BotWhisper("好吧，我就呆在这", player);
+		BotWhisper("好吧，我就呆在这  ", player);
 		break;
 	case TEXT_EMOTE_BECKON:
 	case TEXT_EMOTE_FOLLOW:
@@ -1975,7 +1975,7 @@ void bot_ai::ReceiveEmote(Player* player, uint32 emote)
 			return;
 		}
 		SetBotCommandState(COMMAND_FOLLOW, true);
-		BotWhisper("你去哪我都跟..", player);
+		BotWhisper("你去哪我都跟..  ", player);
 		break;
 	case TEXT_EMOTE_WAVE:
 	case TEXT_EMOTE_GREET:
@@ -1984,11 +1984,11 @@ void bot_ai::ReceiveEmote(Player* player, uint32 emote)
 	case TEXT_EMOTE_WELCOME:
 	case TEXT_EMOTE_INTRODUCE:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_WAVE);
-		BotSay("你好!", player);
+		BotSay("你好!  ", player);
 		break;
 	case TEXT_EMOTE_DANCE:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_DANCE);
-		BotSay("晃晃你的奶瓶!", player);
+		BotSay("晃晃你的奶瓶!  ", player);
 		break;
 	case TEXT_EMOTE_FLIRT:
 	case TEXT_EMOTE_KISS:
@@ -1998,11 +1998,11 @@ void bot_ai::ReceiveEmote(Player* player, uint32 emote)
 	case TEXT_EMOTE_LOVE:
 	case TEXT_EMOTE_HOLDHAND:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_SHY);
-		BotSay("额...", player);
+		BotSay("额...  ", player);
 		break;
 	case TEXT_EMOTE_FLEX:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_APPLAUD);
-		BotSay("大力! 大力!", player);
+		BotSay("大力! 大力!  ", player);
 		break;
 	case TEXT_EMOTE_ANGRY:
 	case TEXT_EMOTE_FACEPALM:
@@ -2013,7 +2013,7 @@ void bot_ai::ReceiveEmote(Player* player, uint32 emote)
 	case TEXT_EMOTE_SCOLD:
 	case TEXT_EMOTE_CROSSARMS:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_QUESTION);
-		BotSay("我真的那么干了?", player);
+		BotSay("我真的那么干了?  ", player);
 		break;
 	case TEXT_EMOTE_FART:
 	case TEXT_EMOTE_BURP:
@@ -2022,19 +2022,19 @@ void bot_ai::ReceiveEmote(Player* player, uint32 emote)
 	case TEXT_EMOTE_SNIFF:
 	case TEXT_EMOTE_STINK:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_POINT);
-		BotSay("不是我！是你你你..", player);
+		BotSay("不是我！是你你你..  ", player);
 		break;
 	case TEXT_EMOTE_JOKE:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_LAUGH);
-		BotSay("啊.. 我笑的太早了吗?", player);
+		BotSay("啊.. 我笑的太早了吗?  ", player);
 		break;
 	case TEXT_EMOTE_CHICKEN:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_RUDE);
-		BotSay("我们很快就会知道谁是胆小鬼了!", player);
+		BotSay("我们很快就会知道谁是胆小鬼了!  ", player);
 		break;
 	case TEXT_EMOTE_APOLOGIZE:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_POINT);
-		BotSay("你说得对，你很抱歉!", player);
+		BotSay("你说得对，你很抱歉!  ", player);
 		break;
 	case TEXT_EMOTE_APPLAUD:
 	case TEXT_EMOTE_CLAP:
@@ -2042,13 +2042,13 @@ void bot_ai::ReceiveEmote(Player* player, uint32 emote)
 	case TEXT_EMOTE_HAPPY:
 	case TEXT_EMOTE_GOLFCLAP:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_BOW);
-		BotSay("谢谢。。谢谢。。我一周都在这里.", player);
+		BotSay("谢谢。。谢谢。。我一周都在这里.  ", player);
 		break;
 	case TEXT_EMOTE_BEG:
 	case TEXT_EMOTE_GROVEL:
 	case TEXT_EMOTE_PLEAD:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_NO);
-		BotSay("什么都找我要，我啥都没有！", player);
+		BotSay("什么都找我要，我啥都没有！  ", player);
 		break;
 	case TEXT_EMOTE_BITE:
 	case TEXT_EMOTE_POKE:
@@ -2056,11 +2056,11 @@ void bot_ai::ReceiveEmote(Player* player, uint32 emote)
 	case TEXT_EMOTE_PINCH:
 	case TEXT_EMOTE_PUNCH:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_ROAR);
-		BotYell("哎呀，卧槽，太疼了！", player);
+		BotYell("哎呀，卧槽，太疼了！  ", player);
 		break;
 	case TEXT_EMOTE_BORED:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_NO);
-		BotSay("我的工作职责不包括招待你。 ", player);
+		BotSay("我的工作职责不包括招待你。   ", player);
 		break;
 	case TEXT_EMOTE_BOW:
 	case TEXT_EMOTE_CURTSEY:
@@ -2070,12 +2070,12 @@ void bot_ai::ReceiveEmote(Player* player, uint32 emote)
 	case TEXT_EMOTE_SIT:
 		//me->HandleEmoteCommand(EMOTE_STATE_SIT); // replace if state doesn't break
 		me->HandleEmoteCommand(EMOTE_ONESHOT_EAT);
-		BotSay("容我休息一下..", player);
+		BotSay("容我休息一下..  ", player);
 		break;
 	case TEXT_EMOTE_AGREE:
 	case TEXT_EMOTE_NOD:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_EXCLAMATION);
-		BotSay("居然有人和我想的一样!", player);
+		BotSay("居然有人和我想的一样!  ", player);
 		break;
 	case TEXT_EMOTE_AMAZE:
 	case TEXT_EMOTE_COWER:
@@ -2091,7 +2091,7 @@ void bot_ai::ReceiveEmote(Player* player, uint32 emote)
 	case TEXT_EMOTE_JEALOUS:
 	case TEXT_EMOTE_PROUD:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_FLEX);
-		BotSay("是啊是啊，我伟大吧..", player);
+		BotSay("是啊是啊，我伟大吧..  ", player);
 		break;
 	case TEXT_EMOTE_BLEED:
 	case TEXT_EMOTE_MOURN:
@@ -2099,20 +2099,20 @@ void bot_ai::ReceiveEmote(Player* player, uint32 emote)
 	case TEXT_EMOTE_FAINT:
 	case TEXT_EMOTE_PULSE:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_KNEEL);
-		BotYell("奶一口! 补下buff!", player);
+		BotYell("奶一口! 补下buff!  ", player);
 		break;
 	case TEXT_EMOTE_BLINK:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_KICK);
-		BotSay("啥? 眼睛里进东西了?", player);
+		BotSay("啥? 眼睛里进东西了?  ", player);
 		break;
 	case TEXT_EMOTE_BOUNCE:
 	case TEXT_EMOTE_BARK:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_POINT);
-		BotSay("谁是条好狗? 是你是你还是你!", player);
+		BotSay("谁是条好狗? 是你是你还是你!  ", player);
 		break;
 	case TEXT_EMOTE_BYE:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_WAVE);
-		BotSay("额.... 等下! 你在搞毛!", player);
+		BotSay("额.... 等下! 你在搞毛!  ", player);
 		break;
 	case TEXT_EMOTE_CACKLE:
 	case TEXT_EMOTE_LAUGH:
@@ -2123,7 +2123,7 @@ void bot_ai::ReceiveEmote(Player* player, uint32 emote)
 	case TEXT_EMOTE_SNICKER:
 	case TEXT_EMOTE_SNORT:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_LAUGH);
-		BotSay("等下... 你们又在笑什么?", player);
+		BotSay("等下... 你们又在笑什么?  ", player);
 		break;
 	case TEXT_EMOTE_CONFUSED:
 	case TEXT_EMOTE_CURIOUS:
@@ -2142,7 +2142,7 @@ void bot_ai::ReceiveEmote(Player* player, uint32 emote)
 	case TEXT_EMOTE_SERIOUS:
 	case TEXT_EMOTE_EYEBROW:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_QUESTION);
-		BotSay("别看我.. 我在这干活呢", player);
+		BotSay("别看我.. 我在这干活呢  ", player);
 		break;
 	case TEXT_EMOTE_COUGH:
 	case TEXT_EMOTE_DROOL:
@@ -2152,37 +2152,37 @@ void bot_ai::ReceiveEmote(Player* player, uint32 emote)
 	case TEXT_EMOTE_SNEEZE:
 	case TEXT_EMOTE_SWEAT:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_POINT);
-		BotSay("额! 有细菌，把你口罩带起!", player);
+		BotSay("额! 有细菌，把你口罩带起!  ", player);
 		break;
 	case TEXT_EMOTE_CRY:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_CRY);
-		BotSay("别哭了好不好，搞的我都想哭了!", player);
+		BotSay("别哭了好不好，搞的我都想哭了!  ", player);
 		break;
 	case TEXT_EMOTE_CRACK:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_ROAR);
-		BotSay("痛击的时候到了!", player);
+		BotSay("痛击的时候到了!  ", player);
 		break;
 	case TEXT_EMOTE_EAT:
 	case TEXT_EMOTE_DRINK:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_EAT);
-		BotSay("希望你给大家都带了吃的...", player);
+		BotSay("希望你给大家都带了吃的...  ", player);
 		break;
 	case TEXT_EMOTE_GLOAT:
 	case TEXT_EMOTE_MOCK:
 	case TEXT_EMOTE_TEASE:
 	case TEXT_EMOTE_EMBARRASS:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_CRY);
-		BotSay("别表现得那么蠢..", player);
+		BotSay("别表现得那么蠢..  ", player);
 		break;
 	case TEXT_EMOTE_HUNGRY:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_EAT);
-		BotSay("什么? 你想尝尝。。这东西??!!", player);
+		BotSay("什么? 你想尝尝。。这东西??!!  ", player);
 		break;
 	case TEXT_EMOTE_LAYDOWN:
 	case TEXT_EMOTE_TIRED:
 	case TEXT_EMOTE_YAWN:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_KNEEL);
-		BotSay("居然又该休息了吗?", player);
+		BotSay("居然又该休息了吗?  ", player);
 		break;
 	case TEXT_EMOTE_MOAN:
 	case TEXT_EMOTE_MOON:
@@ -2196,27 +2196,27 @@ void bot_ai::ReceiveEmote(Player* player, uint32 emote)
 	case TEXT_EMOTE_WINK:
 	case TEXT_EMOTE_CHARM:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_NO);
-		BotSay("别把你的鸟掏出来..", player);
+		BotSay("别把你的鸟掏出来..  ", player);
 		break;
 	case TEXT_EMOTE_NO:
 	case TEXT_EMOTE_VETO:
 	case TEXT_EMOTE_DISAGREE:
 	case TEXT_EMOTE_DOUBT:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_QUESTION);
-		BotSay("额.... 为啥呢?!", player);
+		BotSay("额.... 为啥呢?!  ", player);
 		break;
 	case TEXT_EMOTE_PANIC:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_EXCLAMATION);
-		BotSay("慌慌慌个毛线!", player);
+		BotSay("慌慌慌个毛线!  ", player);
 		break;
 	case TEXT_EMOTE_POINT:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_POINT);
-		BotSay("什么?! 我也能好吧!", player);
+		BotSay("什么?! 我也能好吧!  ", player);
 		break;
 	case TEXT_EMOTE_RUDE:
 	case TEXT_EMOTE_RASP:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_RUDE);
-		BotSay("我在你后面，小屁孩!", player);
+		BotSay("我在你后面，小屁孩!  ", player);
 		break;
 	case TEXT_EMOTE_ROAR:
 	case TEXT_EMOTE_THREATEN:
@@ -2237,18 +2237,18 @@ void bot_ai::ReceiveEmote(Player* player, uint32 emote)
 	case TEXT_EMOTE_REVENGE:
 	case TEXT_EMOTE_SHAKEFIST:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_ROAR);
-		BotYell("干起来!", player);
+		BotYell("干起来!  ", player);
 		break;
 	case TEXT_EMOTE_TALK:
 	case TEXT_EMOTE_TALKEX:
 	case TEXT_EMOTE_TALKQ:
 	case TEXT_EMOTE_LISTEN:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_TALK);
-		BotSay("叽里呱啦说点废话..", player);
+		BotSay("叽里呱啦说点废话..  ", player);
 		break;
 	case TEXT_EMOTE_THANK:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_BOW);
-		BotSay("跟我还客气个啥!", player);
+		BotSay("跟我还客气个啥!  ", player);
 		break;
 	case TEXT_EMOTE_VICTORY:
 	case TEXT_EMOTE_CHEER:
@@ -2256,7 +2256,7 @@ void bot_ai::ReceiveEmote(Player* player, uint32 emote)
 	case TEXT_EMOTE_HIGHFIVE:
 	case TEXT_EMOTE_DING:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_CHEER);
-		BotSay("牛B了卧槽!", player);
+		BotSay("牛B了卧槽!  ", player);
 		break;
 	case TEXT_EMOTE_COLD:
 	case TEXT_EMOTE_SHIVER:
@@ -2265,101 +2265,101 @@ void bot_ai::ReceiveEmote(Player* player, uint32 emote)
 	case TEXT_EMOTE_HEALME:
 	case TEXT_EMOTE_POUT:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_QUESTION);
-		BotSay("我凭什么要那么做?", player);
+		BotSay("我凭什么要那么做?  ", player);
 		break;
 	case TEXT_EMOTE_COMFORT:
 	case TEXT_EMOTE_SOOTHE:
 	case TEXT_EMOTE_PAT:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_CRY);
-		BotSay("谢了...", player);
+		BotSay("谢了...  ", player);
 		break;
 	case TEXT_EMOTE_INSULT:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_CRY);
-		BotSay("你伤我心了..", player);
+		BotSay("你伤我心了..  ", player);
 		break;
 	case TEXT_EMOTE_JK:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_POINT);
-		BotSay("你.....", player);
+		BotSay("你.....  ", player);
 		break;
 	case TEXT_EMOTE_RAISE:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_POINT);
-		BotSay("还行吧你，世界第三。 ", player);
+		BotSay("还行吧你，世界第三。   ", player);
 		break;
 	case TEXT_EMOTE_READY:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_SALUTE);
-		BotSay("我也准备好了!", player);
+		BotSay("我也准备好了!  ", player);
 		break;
 	case TEXT_EMOTE_SHOO:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_KICK);
-		BotSay("嘘你自己!", player);
+		BotSay("嘘你自己!  ", player);
 		break;
 	case TEXT_EMOTE_SLAP:
 	case TEXT_EMOTE_SMACK:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_CRY);
-		BotSay("天哪我做错了什么?", player);
+		BotSay("天哪我做错了什么?  ", player);
 		break;
 	case TEXT_EMOTE_STAND:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_NONE);
-		BotSay("什么? 该干活了? 好吧..", player);
+		BotSay("什么? 该干活了? 好吧..  ", player);
 		break;
 	case TEXT_EMOTE_TICKLE:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_LAUGH);
-		BotSay("喂! 停下!", player);
+		BotSay("喂! 停下!  ", player);
 		break;
 	case TEXT_EMOTE_VIOLIN:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_TALK);
-		BotSay("哈哈.. 有那么点意思..", player);
+		BotSay("哈哈.. 有那么点意思..  ", player);
 		break;
 	case TEXT_EMOTE_HELPME:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_POINT);
-		BotYell("快点! 大家来帮帮忙!", player);
+		BotYell("快点! 大家来帮帮忙!  ", player);
 		break;
 	case TEXT_EMOTE_GOODLUCK:
 	case TEXT_EMOTE_LUCK:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_TALK);
-		BotSay("谢谢... 正需要鼓励..", player);
+		BotSay("谢谢... 正需要鼓励..  ", player);
 		break;
 	case TEXT_EMOTE_BRANDISH:
 	case TEXT_EMOTE_MERCY:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_BEG);
-		BotSay("球球你了，鳖杀我!", player);
+		BotSay("球球你了，鳖杀我!  ", player);
 		break;
 	case TEXT_EMOTE_BADFEELING:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_QUESTION);
-		BotSay("我有一种不祥的预感...", player);
+		BotSay("我有一种不祥的预感...  ", player);
 		break;
 	case TEXT_EMOTE_MAP:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_NO);
-		BotSay("不，你难道是路痴吗?", player);
+		BotSay("不，你难道是路痴吗?  ", player);
 		break;
 	case TEXT_EMOTE_IDEA:
 	case TEXT_EMOTE_THINK:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_NO);
-		BotSay("呦.. 可真是个好主意...", player);
+		BotSay("呦.. 可真是个好主意...  ", player);
 		break;
 	case TEXT_EMOTE_OFFER:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_NO);
-		BotSay("不了，谢谢.. 我在村头买了一些了", player);
+		BotSay("不了，谢谢.. 我在村头买了一些了  ", player);
 		break;
 	case TEXT_EMOTE_PET:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_ROAR);
-		BotSay("我看起来像你的狗?!", player);
+		BotSay("我看起来像你的狗?!  ", player);
 		break;
 	case TEXT_EMOTE_ROLLEYES:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_POINT);
-		BotSay("再这么做我就把你眼珠子挖出来..", player);
+		BotSay("再这么做我就把你眼珠子挖出来..  ", player);
 		break;
 	case TEXT_EMOTE_SING:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_APPLAUD);
-		BotSay("不错嘛... 蛮好听的?..", player);
+		BotSay("不错嘛... 蛮好听的?..  ", player);
 		break;
 	case TEXT_EMOTE_COVEREARS:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_EXCLAMATION);
-		BotYell("有用吗?!你这是掩耳盗铃 ", player);
+		BotYell("有用吗?!你这是掩耳盗铃   ", player);
 		break;
 	default:
 		me->HandleEmoteCommand(EMOTE_ONESHOT_QUESTION);
-		BotSay("额...hmmmm...", player);
+		BotSay("额...hmmmm...  ", player);
 		break;
 	}
 }
@@ -3043,10 +3043,10 @@ void bot_minion_ai::_updateMountedState()
             {
                 // thesawolf - let's give it some personality
                 me->HandleEmoteCommand(EMOTE_ONESHOT_CHEER);                
-                BotSay("走，粗发!", master);
+                BotSay("走，粗发!  ", master);
                 return;
             } else {
-                BotSay("我的马儿不行了，所以暂时只能骑一下我的鸡了..", master);
+                BotSay("我的马儿不行了，所以暂时只能骑一下我的鸡了..  ", master);
                 me->AddAura(65927, me); //summons chicken mount
                 return;
             }
@@ -4522,7 +4522,7 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
         case 0: //any kind of fail
         {
 			me->HandleEmoteCommand(EMOTE_ONESHOT_NO);
-			BotSay("你可能需要再试一次.. 或者试下别的东西..", player);
+			BotSay("你可能需要再试一次.. 或者试下别的东西..  ", player);
             break;
         }
         case 1: //return to main menu
@@ -4534,7 +4534,7 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
             //thesawolf - early dismissal/delete
             me->HandleEmoteCommand(EMOTE_ONESHOT_NONE);
             me->HandleEmoteCommand(EMOTE_ONESHOT_FLEX);
-            BotSay("我们在一起会幸福的...", player);
+            BotSay("我们在一起会幸福的...  ", player);
             me->CombatStop();
             me->DeleteFromDB();
             me->AddObjectToRemoveList();
@@ -4571,7 +4571,7 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
             
             //const_cast<CreatureTemplate*>(me->GetCreatureTemplate())->faction = faction;
             me->HandleEmoteCommand(EMOTE_ONESHOT_SALUTE);
-            BotSay("为了联盟!", player);
+            BotSay("为了联盟!  ", player);
             break;
         }
         case GOSSIP_SENDER_FACTION_HORDE: //set horde
@@ -4586,7 +4586,7 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
                         
             //const_cast<CreatureTemplate*>(me->GetCreatureTemplate())->faction = faction;
             me->HandleEmoteCommand(EMOTE_ONESHOT_ROAR);
-            BotSay("为了部落!", player);
+            BotSay("为了部落!  ", player);
             break;
         }
         case GOSSIP_SENDER_FACTION_MONSTER: //set monster
@@ -4601,7 +4601,7 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
                         
             //const_cast<CreatureTemplate*>(me->GetCreatureTemplate())->faction = faction;
             me->HandleEmoteCommand(EMOTE_ONESHOT_RUDE);
-            BotSay("我恨所有人!", player);
+            BotSay("我恨所有人!  ", player);
             break;
         }
         case GOSSIP_SENDER_FACTION_FRIEND: //set friendly to all
@@ -4616,7 +4616,7 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
                         
             //const_cast<CreatureTemplate*>(me->GetCreatureTemplate())->faction = faction;
             me->HandleEmoteCommand(EMOTE_ONESHOT_FLEX);
-            BotSay("所有人都爱我!", player);
+            BotSay("所有人都爱我!  ", player);
             break;
         }
 
@@ -4630,7 +4630,7 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
 
             if (plevel < 40) // level check
             {
-                BotWhisper("你的级别不够40，我现在不能召唤传送门... 抱歉.", player);
+                BotWhisper("你的级别不够40，我现在不能召唤传送门... 抱歉.  ", player);
                 //player->PlayerTalkClass->ClearMenus();
                 //return OnGossipHello(player, me);
                 player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "返回", 1, GOSSIP_ACTION_INFO_DEF + 1);
@@ -4799,7 +4799,7 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
             {
                 //portspell->finish(false);
                 //delete portspell;
-                BotSay("哎呀! 出了点问题!", player);
+                BotSay("哎呀! 出了点问题!  ", player);
             }
             else
             {
@@ -4837,9 +4837,9 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
                     }
                     if (!food)
                     {
-                        std::string errorstr = "我现在不能召唤 ";
-                        errorstr += iswater ? "水 " : "食物 ";
-                        errorstr += " 技能问题 ";
+                        std::string errorstr = "我现在不能召唤  ";
+                        errorstr += iswater ? "水  " : "食物  ";
+                        errorstr += " 技能问题  ";
                         BotWhisper(errorstr.c_str(), player);
                         //player->PlayerTalkClass->ClearMenus();
                         //return OnGossipHello(player, me);
@@ -4855,13 +4855,13 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
                     {
                         foodspell->finish(false);
                         delete foodspell;
-                        BotWhisper("我现在还不能那么做 ", player);
+                        BotWhisper("我现在还不能那么做  ", player);
                     }
                     else
                     {
                         aftercastTargetGuid = player->GetGUID();
                         foodspell->prepare(&targets);
-                        BotWhisper("给你...", player);
+                        BotWhisper("给你...  ", player);
                     }
                     break;
                 }
@@ -4953,7 +4953,7 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
             _AddItemLink(player, item, msg);
 
             if (slot < BOT_SLOT_RANGED && einfo->ItemEntry[slot] == item->GetEntry())
-                msg << " |cffe6cc80|h[!标准物品!]|h|r";
+                msg << " |cffe6cc80|h[  !标准物品!  ]|h|r  ";
 
             BotWhisper(msg.str().c_str(), player);
 
@@ -5121,7 +5121,7 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
         case GOSSIP_SENDER_UNEQUIP: //equips change s3: Unequip DEPRECATED
         {
             if (_unequip(action - (GOSSIP_ACTION_INFO_DEF + 1)))
-                BotSay("额...", player);
+                BotSay("额...  ", player);
             break;
         }
         case GOSSIP_SENDER_UNEQUIP_ALL:
@@ -5133,7 +5133,7 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
                 {
                     suc = false;
                     std::ostringstream estr;
-                    estr << "不能重置装备， 槽位 " << uint32(i) << " (" << _getNameForSlot(i + 1) << ")!";
+                    estr << "不能重置装备， 槽位  " << uint32(i) << " (" << _getNameForSlot(i + 1) << ")!";
                     BotWhisper(estr.str().c_str(), player);
                 }
 
@@ -5499,7 +5499,7 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
                 {
                     std::ostringstream ostr;
                     std::string name;
-                    ostr << "一边儿凉快，我只为我主子服务. ";
+                    ostr << "一边儿凉快，我只为我主子服务.  ";
                     if (sObjectMgr->GetPlayerNameByGUID(ObjectGuid(HighGuid::Player, _ownerGuid), name))
                         ostr << name;
                     else
@@ -5511,9 +5511,9 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
                 }
 
                 if (SetBotOwner(player))
-                    BotWhisper("我准备好了.", player);
+                    BotWhisper("我准备好了.  ", player);
                 else
-                    BotSay("设置主人时好像出了点问题...", player);
+                    BotSay("设置主人时好像出了点问题...  ", player);
             }
             else if (reason == -1)
             {
@@ -5605,13 +5605,13 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
                     pet->setFaction(35);
                 // thesawolf - 80 npcbot slaughtering you, isn't funny, make them passive aggressive
                 me->HandleEmoteCommand(EMOTE_ONESHOT_RUDE);
-				BotSay("不管怎么说，你真是个烂老板...", player);
+				BotSay("不管怎么说，你真是个烂老板...  ", player);
 				//me->Attack(player, IsMelee());
             }
             else
 			{
                 me->HandleEmoteCommand(EMOTE_ONESHOT_WAVE);
-                BotSay("我打赌你肯定会想我的...", player);
+                BotSay("我打赌你肯定会想我的...  ", player);
 			}
 
             //thesawolf - instead of dismissing.. delete
@@ -5678,7 +5678,7 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
                 {
                     close = false;
                     ChatHandler ch(player->GetSession());
-                    ch.PSendSysMessage("%s 的职责是:", me->GetName());
+                    ch.PSendSysMessage("%s 的职责是:  ", me->GetName());
                     for (uint8 i = BOT_MAX_ROLE; i != BOT_ROLE_NONE; i >>= 1)
                     {
                         if (_roleMask & i)
@@ -5709,7 +5709,7 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
                 {
                     close = false;
                     ChatHandler ch(player->GetSession());
-                    ch.PSendSysMessage("%s 的技能:", me->GetName());
+                    ch.PSendSysMessage("%s 的技能:  ", me->GetName());
                     uint32 counter = 0;
                     SpellInfo const* spellInfo;
                     BotSpellMap const& myspells = GetSpellMap();
@@ -5766,14 +5766,14 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
 
             player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, ostr.str().c_str(), GOSSIP_SENDER_DEBUG_ACTION, GOSSIP_ACTION_INFO_DEF + 0);
 
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "<重置主人>", GOSSIP_SENDER_DEBUG_ACTION, GOSSIP_ACTION_INFO_DEF + 1);
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "<重置状态>", GOSSIP_SENDER_DEBUG_ACTION, GOSSIP_ACTION_INFO_DEF + 2);
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "<列出状态>", GOSSIP_SENDER_DEBUG_ACTION, GOSSIP_ACTION_INFO_DEF + 3);
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "<列出职责>", GOSSIP_SENDER_DEBUG_ACTION, GOSSIP_ACTION_INFO_DEF + 4);
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "<列出技能>", GOSSIP_SENDER_DEBUG_ACTION, GOSSIP_ACTION_INFO_DEF + 5);
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "<重载设置>", GOSSIP_SENDER_DEBUG_ACTION, GOSSIP_ACTION_INFO_DEF + 6);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "<重置主人>  ", GOSSIP_SENDER_DEBUG_ACTION, GOSSIP_ACTION_INFO_DEF + 1);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "<重置状态>  ", GOSSIP_SENDER_DEBUG_ACTION, GOSSIP_ACTION_INFO_DEF + 2);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "<列出状态>  ", GOSSIP_SENDER_DEBUG_ACTION, GOSSIP_ACTION_INFO_DEF + 3);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "<列出职责>  ", GOSSIP_SENDER_DEBUG_ACTION, GOSSIP_ACTION_INFO_DEF + 4);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "<列出技能>  ", GOSSIP_SENDER_DEBUG_ACTION, GOSSIP_ACTION_INFO_DEF + 5);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "<重载设置>  ", GOSSIP_SENDER_DEBUG_ACTION, GOSSIP_ACTION_INFO_DEF + 6);
 
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "返回", 1, GOSSIP_ACTION_INFO_DEF + 1);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "返回  ", 1, GOSSIP_ACTION_INFO_DEF + 1);
             break;
         }
         case GOSSIP_SENDER_SCAN:
@@ -5791,7 +5791,7 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
                     break;
             }
 
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "返回", 1, GOSSIP_ACTION_INFO_DEF + 1);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "返回  ", 1, GOSSIP_ACTION_INFO_DEF + 1);
 
             break;
         }
@@ -5866,7 +5866,7 @@ bool bot_minion_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/,
                     break;
             }
 
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "返回", 1, GOSSIP_ACTION_INFO_DEF + 1);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "返回  ", 1, GOSSIP_ACTION_INFO_DEF + 1);
 
             break;
         }
@@ -5936,7 +5936,7 @@ void bot_minion_ai::SummonBotsPet(uint32 entry)
     {
         //annoy master
         if (!IAmFree())
-            BotWhisper("我为什么要召唤未知宠物!?", master);
+            BotWhisper("我为什么要召唤未知宠物!?  ", master);
         return;
     }
     float x(0),y(0),z(0);
@@ -5946,7 +5946,7 @@ void bot_minion_ai::SummonBotsPet(uint32 entry)
     if (!m_botsPet)
     {
         if (!IAmFree())
-            BotWhisper("召唤宠物失败!", master);
+            BotWhisper("召唤宠物失败!  ", master);
         return;
     }
 
@@ -5958,7 +5958,7 @@ void bot_minion_ai::SummonBotsPet(uint32 entry)
     stmt->setUInt32(0, originalentry);
     stmt->setUInt8(1, mylevel);
     PreparedQueryResult result = WorldDatabase.Query(stmt);
-    //QueryResult result = WorldDatabase.PQuery("SELECT hp, mana, armor, str, agi, sta, inte, spi FROM `pet_levelstats` WHERE `creature_entry` = '%u' AND `level` = '%u'", originalentry, mylevel);
+    //QueryResult result = WorldDatabase.PQuery("SELECT hp, mana, armor, str, agi, sta, inte, spi FROM `pet_levelstats` WHERE `creature_entry` = '%u' AND `level` = '%u'  ", originalentry, mylevel);
 
     if (result)
     {
@@ -6514,7 +6514,7 @@ bool bot_minion_ai::_equip(uint8 slot, Item* newItem)
 
     if (!_unequip(slot))
     {
-        BotSay("你没有足够的空间给我现在的物品.", master);
+        BotSay("你没有足够的空间给我现在的物品.  ", master);
         return false;
     }
 
@@ -7526,7 +7526,7 @@ void bot_ai::FindMaster(bool force)
             return;
 
         if (!IsTempBot())
-            BotWhisper("嗨...", master);
+            BotWhisper("嗨...  ", master);
         return;
     }
 }
