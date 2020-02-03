@@ -24,35 +24,6 @@
 # gcc --version | head -1
 
 # ###################################################
-# ######## install boost 
-# ###################################################
-# yum install libquadmath-devel python-devel
-# curl -L https://dl.bintray.com/boostorg/release/1.64.0/source/boost_1_64_0.tar.gz -o boost_1_64_0.tar.gz
-# tar -zxvf boost_1_64_0.tar.gz
-# cd boost_1_64_0
-
-
-# or use higher boost 1.6.8, but also nee to enable gcc6 g++6 scl enable devtoolset-6 bash
-# https://dl.bintray.com/boostorg/release/1.68.0/source/boost_1_68_0.tar.bz2
-
-# ./bootstrap.sh --prefix=/usr &&
-# ./b2 stage threading=multi link=shared
-
-# ./b2 install threading=multi link=shared                 &&
-# ln -svf detail/sha1.hpp /usr/include/boost/uuid/sha1.hpp
-
-# copy generated lib to userlib
-# $sudo cp -rf boost /usr/include
-# $sudo cp -rf stage/lib/* /usr/lib64
-
-# ###################################################
-# ######## link boost 
-# ###################################################
-# find / -name libboost_system.so.1.64.0  # this will list where the lib is
-# then vi/etc/ld.so.conf add the directory found above, eg: /home/dj/lib/boost/lib 
-# do /sbin/ldconfig, this will make /etc/ld.so.conf   take effect
-
-# ###################################################
 # ######## initial base directory for the core, you can create user or you can make a folder directly for dev
 # ###################################################
 # cd ~/
