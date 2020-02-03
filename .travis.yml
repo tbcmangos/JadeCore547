@@ -8,6 +8,70 @@
 # WITHOUT ANY WARRANTY, to the extent permitted by law; without even the
 # implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE
 
+# ###################################################
+# ######## for manual install(centos)
+# ###################################################
+
+# ###################################################
+# ######## install dependancy
+# ###################################################
+# yum install epel-release
+# yum install git cmake3 make clang mariadb-devel openssl-devel bzip2-devel readline-devel ncurses-devel gcc-c++
+# ln -s /usr/bin/cmake3 /usr/bin/cmake
+# yum install centos-release-scl
+# yum install devtoolset-6-gcc-c++
+# scl enable devtoolset-6 bash
+# gcc --version | head -1
+
+# ###################################################
+# ######## install boost 
+# ###################################################
+# yum install libquadmath-devel python-devel
+# curl -L https://dl.bintray.com/boostorg/release/1.64.0/source/boost_1_64_0.tar.gz -o boost_1_64_0.tar.gz
+# tar -zxvf boost_1_64_0.tar.gz
+# cd boost_1_64_0
+
+
+# or use higher boost 1.6.8, but also nee to enable gcc6 g++6 scl enable devtoolset-6 bash
+# https://dl.bintray.com/boostorg/release/1.68.0/source/boost_1_68_0.tar.bz2
+
+# ./bootstrap.sh --prefix=/usr &&
+# ./b2 stage threading=multi link=shared
+
+# ./b2 install threading=multi link=shared                 &&
+# ln -svf detail/sha1.hpp /usr/include/boost/uuid/sha1.hpp
+
+# copy generated lib to userlib
+# $sudo cp -rf boost /usr/include
+# $sudo cp -rf stage/lib/* /usr/lib64
+
+# ###################################################
+# ######## link boost 
+# ###################################################
+# find / -name libboost_system.so.1.64.0  # this will list where the lib is
+# then vi/etc/ld.so.conf add the directory found above, eg: /home/dj/lib/boost/lib 
+# do /sbin/ldconfig, this will make /etc/ld.so.conf   take effect
+
+# ###################################################
+# ######## initial base directory for the core, you can create user or you can make a folder directly for dev
+# ###################################################
+# cd ~/
+# cd /home
+# mkdir trinity
+
+
+# cd ~/
+# cd w5x-JadeCore547
+# mkdir build
+# cd build
+# cmake ../ -DCMAKE_INSTALL_PREFIX=/home/trinity/JadeCore -DCMAKE_BUILD_TYPE=Release -DTOOLS=0 -DWITH_WARNINGS=0  -DCMAKE_CXX_COMPILER=/opt/rh/devtoolset-6/root/usr/bin/g++ -DCMAKE_C_COMPILER=/opt/rh/devtoolset-6/root/usr/bin/gcc
+
+# ###################################################
+# ######## verified on gcc 6, gcc 5 may work also
+# ###################################################
+# make -j2 or higher cpu number
+# make install
+
 language: cpp
 
 git:
