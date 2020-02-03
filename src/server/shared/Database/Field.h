@@ -45,7 +45,7 @@ class Field
             #ifdef TRINITY_DEBUG
             if (!IsType(MYSQL_TYPE_TINY))
             {
-                sLog->outSQLDriver("Warning: GetUInt8() on non-tinyint field %s.%s (%s.%s) at index %u. Using type: %s.",
+                sLog->outDebug("Warning: GetUInt8() on non-tinyint field %s.%s (%s.%s) at index %u. Using type: %s.",
                     meta.TableAlias, meta.Alias, meta.TableName, meta.Name, meta.Index, meta.Type);
                 return 0;
             }
@@ -64,7 +64,7 @@ class Field
             #ifdef TRINITY_DEBUG
             if (!IsType(MYSQL_TYPE_TINY))
             {
-                sLog->outSQLDriver("Warning: GetInt8() on non-tinyint field %s.%s (%s.%s) at index %u. Using type: %s.",
+                sLog->outDebug("Warning: GetInt8() on non-tinyint field %s.%s (%s.%s) at index %u. Using type: %s.",
                     meta.TableAlias, meta.Alias, meta.TableName, meta.Name, meta.Index, meta.Type);
                 return 0;
             }
@@ -83,7 +83,7 @@ class Field
             #ifdef TRINITY_DEBUG
             if (!IsType(MYSQL_TYPE_SHORT) && !IsType(MYSQL_TYPE_YEAR))
             {
-                sLog->outSQLDriver("Warning: GetUInt16() on non-smallint field %s.%s (%s.%s) at index %u. Using type: %s.",
+                sLog->outDebug("Warning: GetUInt16() on non-smallint field %s.%s (%s.%s) at index %u. Using type: %s.",
                     meta.TableAlias, meta.Alias, meta.TableName, meta.Name, meta.Index, meta.Type);
                 return 0;
             }
@@ -102,7 +102,7 @@ class Field
             #ifdef TRINITY_DEBUG
             if (!IsType(MYSQL_TYPE_SHORT) && !IsType(MYSQL_TYPE_YEAR))
             {
-                sLog->outSQLDriver("Warning: GetInt16() on non-smallint field %s.%s (%s.%s) at index %u. Using type: %s.",
+                sLog->outDebug("Warning: GetInt16() on non-smallint field %s.%s (%s.%s) at index %u. Using type: %s.",
                     meta.TableAlias, meta.Alias, meta.TableName, meta.Name, meta.Index, meta.Type);
                 return 0;
             }
@@ -121,7 +121,7 @@ class Field
             #ifdef TRINITY_DEBUG
             if (!IsType(MYSQL_TYPE_INT24) && !IsType(MYSQL_TYPE_LONG))
             {
-                sLog->outSQLDriver("Warning: GetUInt32() on non-(medium)int field %s.%s (%s.%s) at index %u. Using type: %s.",
+                sLog->outDebug("Warning: GetUInt32() on non-(medium)int field %s.%s (%s.%s) at index %u. Using type: %s.",
                     meta.TableAlias, meta.Alias, meta.TableName, meta.Name, meta.Index, meta.Type);
                 return 0;
             }
@@ -140,7 +140,7 @@ class Field
             #ifdef TRINITY_DEBUG
             if (!IsType(MYSQL_TYPE_INT24) && !IsType(MYSQL_TYPE_LONG))
             {
-                sLog->outSQLDriver("Warning: GetInt32() on non-(medium)int field %s.%s (%s.%s) at index %u. Using type: %s.",
+                sLog->outDebug("Warning: GetInt32() on non-(medium)int field %s.%s (%s.%s) at index %u. Using type: %s.",
                     meta.TableAlias, meta.Alias, meta.TableName, meta.Name, meta.Index, meta.Type);
                 return 0;
             }
@@ -159,7 +159,7 @@ class Field
             #ifdef TRINITY_DEBUG
             if (!IsType(MYSQL_TYPE_LONGLONG) && !IsType(MYSQL_TYPE_BIT))
             {
-                sLog->outSQLDriver("Warning: GetUInt64() on non-bigint field %s.%s (%s.%s) at index %u. Using type: %s.",
+                sLog->outDebug("Warning: GetUInt64() on non-bigint field %s.%s (%s.%s) at index %u. Using type: %s.",
                     meta.TableAlias, meta.Alias, meta.TableName, meta.Name, meta.Index, meta.Type);
                 return 0;
             }
@@ -178,7 +178,7 @@ class Field
             #ifdef TRINITY_DEBUG
             if (!IsType(MYSQL_TYPE_LONGLONG) && !IsType(MYSQL_TYPE_BIT))
             {
-                sLog->outSQLDriver("Warning: GetInt64() on non-bigint field %s.%s (%s.%s) at index %u. Using type: %s.",
+                sLog->outDebug("Warning: GetInt64() on non-bigint field %s.%s (%s.%s) at index %u. Using type: %s.",
                     meta.TableAlias, meta.Alias, meta.TableName, meta.Name, meta.Index, meta.Type);
                 return 0;
             }
@@ -197,7 +197,7 @@ class Field
             #ifdef TRINITY_DEBUG
             if (!IsType(MYSQL_TYPE_FLOAT))
             {
-                sLog->outSQLDriver("Warning: GetFloat() on non-float field %s.%s (%s.%s) at index %u. Using type: %s.",
+                sLog->outDebug("Warning: GetFloat() on non-float field %s.%s (%s.%s) at index %u. Using type: %s.",
                     meta.TableAlias, meta.Alias, meta.TableName, meta.Name, meta.Index, meta.Type);
                 return 0.0f;
             }
@@ -216,7 +216,7 @@ class Field
             #ifdef TRINITY_DEBUG
             if (!IsType(MYSQL_TYPE_DOUBLE))
             {
-                sLog->outSQLDriver("Warning: GetDouble() on non-double field %s.%s (%s.%s) at index %u. Using type: %s.",
+                sLog->outDebug("Warning: GetDouble() on non-double field %s.%s (%s.%s) at index %u. Using type: %s.",
                     meta.TableAlias, meta.Alias, meta.TableName, meta.Name, meta.Index, meta.Type);
                 return 0.0f;
             }
@@ -235,7 +235,7 @@ class Field
             #ifdef TRINITY_DEBUG
             if (IsNumeric())
             {
-                sLog->outSQLDriver("Error: GetCString() on numeric field %s.%s (%s.%s) at index %u. Using type: %s.",
+                sLog->outDebug("Error: GetCString() on numeric field %s.%s (%s.%s) at index %u. Using type: %s.",
                     meta.TableAlias, meta.Alias, meta.TableName, meta.Name, meta.Index, meta.Type);
                 return NULL;
             }
