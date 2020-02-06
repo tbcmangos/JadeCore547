@@ -1,33 +1,37 @@
 
-#Ignore thumbnails created by Windows
-Thumbs.db
-#Ignore files built by Visual Studio
-*.obj
-*.exe
-*.pdb
-*.user
-*.aps
-*.pch
-*.vspscc
-*_i.c
-*_p.c
-*.ncb
-*.suo
-*.tlb
-*.tlh
+# build directories
+build*/
+
+# backups
+*.orig
 *.bak
-*.cache
-*.ilk
-*.log
-[Bb]in
-[Dd]ebug*/
-*.lib
-*.sbr
-obj/
-[Rr]elease*/
-_ReSharper*/
-[Tt]est[Rr]esult*
-.vs/
-#Nuget packages folder
-packages/
-[Bb]uild
+*~
+*.back
+*.old
+
+# patch rejects
+*.rej
+
+# K-Develop files
+*.kdev*
+
+# patches
+*.patch
+*.diff
+
+# vim files
+*.vim
+*.ycm*
+
+# Mercurial files (foreign dev)
+.hg/
+.hgignore
+.hgtags
+
+# database documentation - generated files
+doc/doxygen/Database/*.dox
+
+# IDEs and Tools
+.idea/
+.nbproject/
+.project
