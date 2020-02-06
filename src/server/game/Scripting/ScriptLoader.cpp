@@ -65,7 +65,6 @@ void AddSC_npc_toy();
 void AddSC_anticheat_commandscript();
 void AddSC_account_commandscript();
 void AddSC_achievement_commandscript();
-void AddSC_ahbot_commandscript();
 void AddSC_ban_commandscript();
 void AddSC_bf_commandscript();
 void AddSC_cast_commandscript();
@@ -95,7 +94,6 @@ void AddSC_tele_commandscript();
 void AddSC_ticket_commandscript();
 void AddSC_titles_commandscript();
 void AddSC_wp_commandscript();
-void AddSC_mmaps_commandscript();
 
 #ifdef SCRIPTS
 //world
@@ -1026,7 +1024,6 @@ void AddCommandScripts()
     AddSC_anticheat_commandscript();
     AddSC_account_commandscript();
     AddSC_achievement_commandscript();
-    AddSC_ahbot_commandscript();
     AddSC_ban_commandscript();
     AddSC_bf_commandscript();
     AddSC_cast_commandscript();
@@ -1056,7 +1053,6 @@ void AddCommandScripts()
     AddSC_ticket_commandscript();
     AddSC_titles_commandscript();
     AddSC_wp_commandscript();
-    AddSC_mmaps_commandscript();
 }
 
 void AddWorldScripts()
