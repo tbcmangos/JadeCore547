@@ -413,11 +413,8 @@ bool ChatHandler::SetDataForCommandInTable(ChatCommand* table, const char* text,
         // select subcommand from child commands list (including "")
         if (table[i].ChildCommands != NULL)
         {
-            std::string ChildCommands = " ";
-            if (table[i].ChildCommands->Name != "")
-                ChildCommands = table[i].ChildCommands->Name;
 
-            sLog->outInfo(LOG_FILTER_WORLDSERVER, " ChildCommands %s ", ChildCommands.c_str());
+            sLog->outInfo(LOG_FILTER_WORLDSERVER, " ChildCommands %s ", table[i].ChildCommands->Name);
             if (SetDataForCommandInTable(table[i].ChildCommands, text, security, help, fullcommand))
                 return true;
             else if (*text)
