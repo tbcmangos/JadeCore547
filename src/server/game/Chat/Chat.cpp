@@ -96,9 +96,11 @@ ChatCommand* ChatHandler::getCommandTable()
             {
                 Field* fields = result->Fetch();
                 std::string name = fields[0].GetString();
-
-                SetDataForCommandInTable(commandTableCache, name.c_str(), fields[1].GetUInt8(), fields[2].GetString(), name);
-
+                std::string help = fields[2].GetString();
+                if (name != "" && name != " ") {
+                    sLog->outInfo(LOG_FILTER_WORLDSERVER,"loading command %s ", name.c_str());
+                    SetDataForCommandInTable(commandTableCache, name.c_str(), fields[1].GetUInt8(), help, name);
+                }
             }
             while (result->NextRow());
         }
