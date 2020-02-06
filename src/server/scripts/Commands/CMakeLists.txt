@@ -13,7 +13,6 @@ set(scripts_STAT_SRCS
   Commands/cs_anticheat.cpp
   Commands/cs_account.cpp
   Commands/cs_achievement.cpp
-  Commands/cs_ahbot.cpp
   Commands/cs_ban.cpp
   Commands/cs_bf.cpp
   Commands/cs_cast.cpp
@@ -23,7 +22,6 @@ set(scripts_STAT_SRCS
   Commands/cs_debug.cpp
   Commands/cs_disable.cpp
   Commands/cs_event.cpp
-  Commands/cs_mmap.cpp
   Commands/cs_gm.cpp
   Commands/cs_go.cpp
   Commands/cs_gobject.cpp

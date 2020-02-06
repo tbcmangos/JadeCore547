@@ -42,12 +42,6 @@ public:
 
     ChatCommand* GetCommands() const
     {
-        static ChatCommand betaCommandTable[] =
-        {
-            { "buff",         SEC_GAMEMASTER,          false,  &HandleBetaBuffCommand,          "", NULL },
-			{ "fixsize",         SEC_GAMEMASTER,          false,  &HandleBetaFixSizeCommand,          "", NULL },
-            { NULL,             0,                          false,  NULL,                               "", NULL }
-        };
         static ChatCommand groupCommandTable[] =
         {
             { "leader",         SEC_ADMINISTRATOR,          false,  &HandleGroupLeaderCommand,          "", NULL },
@@ -119,7 +113,6 @@ public:
             { "respawn",            SEC_ADMINISTRATOR,      false, &HandleRespawnCommand,               "", NULL },
             { "send",               SEC_MODERATOR,          true,  NULL,                                "", sendCommandTable },
             { "pet",                SEC_GAMEMASTER,         false, NULL,                                "", petCommandTable },
-            { "beta",               SEC_GAMEMASTER,         false, NULL,                                "", betaCommandTable },
             { "mute",               SEC_MODERATOR,          true,  &HandleMuteCommand,                  "", NULL },
             { "unmute",             SEC_MODERATOR,          true,  &HandleUnmuteCommand,                "", NULL },
             { "movegens",           SEC_ADMINISTRATOR,      false, &HandleMovegensCommand,              "", NULL },
@@ -144,70 +137,6 @@ public:
         };
         return commandTable;
     }
-    
-    static bool HandleBetaBuffCommand(ChatHandler* handler, char const* args)
-    {
-        if (!*args)
-        {
-            handler->PSendSysMessage("Incorrect value, please use .beta buff on/off");
-            return true;
-        }
-
-        std::string argstr = (char*)args;
-
-        if (argstr == "on")
-        {
-            // 900%
-            handler->GetSession()->GetPlayer()->AddAura(96350, handler->GetSession()->GetPlayer());  // 150x900
-            handler->GetSession()->GetPlayer()->AddAura(137697, handler->GetSession()->GetPlayer()); // 150x900
-            handler->GetSession()->GetPlayer()->AddAura(145525, handler->GetSession()->GetPlayer()); // 900x900
-            handler->GetSession()->GetPlayer()->AddAura(144369, handler->GetSession()->GetPlayer()); // 150x900
-            handler->GetSession()->GetPlayer()->AddAura(95211, handler->GetSession()->GetPlayer());  // 0x900
-
-            // 500%
-            handler->GetSession()->GetPlayer()->AddAura(110055, handler->GetSession()->GetPlayer());
-            handler->GetSession()->GetPlayer()->AddAura(82396, handler->GetSession()->GetPlayer());
-
-            // 240%
-            handler->GetSession()->GetPlayer()->AddAura(72525, handler->GetSession()->GetPlayer());
-
-            // 30%
-            handler->GetSession()->GetPlayer()->AddAura(138994, handler->GetSession()->GetPlayer());
-
-			handler->GetSession()->GetPlayer()->SetObjectScale(1.0f);
-
-            handler->PSendSysMessage("Your damage modifiers has been applied, if you don't need that much simply just rightclick the auras or if you want to remove them completely just type '.beta damage off'");
-			handler->PSendSysMessage("|cffFF0000Note|r: Your scale (player size) will change once you remove any auras so type .beta fixsize if its too small/big.");
-        }
-
-        if (argstr == "off")
-		{
-            handler->GetSession()->GetPlayer()->RemoveAura(96350);
-            handler->GetSession()->GetPlayer()->RemoveAura(137697);
-            handler->GetSession()->GetPlayer()->RemoveAura(145525);
-            handler->GetSession()->GetPlayer()->RemoveAura(144369);
-            handler->GetSession()->GetPlayer()->RemoveAura(95211);
-            handler->GetSession()->GetPlayer()->RemoveAura(110055);
-            handler->GetSession()->GetPlayer()->RemoveAura(82396);
-            handler->GetSession()->GetPlayer()->RemoveAura(72525);
-            handler->GetSession()->GetPlayer()->RemoveAura(138994);
-			handler->GetSession()->GetPlayer()->SetObjectScale(1.0f);
-            handler->PSendSysMessage("Your damage modifiers has been removed, if you want them back just type .beta damage on");
-			handler->PSendSysMessage("|cffFF0000Note|r: Your scale (player size) will change once you remove any auras so type .beta fixsize if its too small/big.");
-            return true;
-        }
-
-        return true;
-    }
-
-	static bool HandleBetaFixSizeCommand(ChatHandler* handler, char const* args)
-	{
-		handler->PSendSysMessage("Your size has been fixed.");
-		handler->GetSession()->GetPlayer()->SetObjectScale(1.0f);
-
-		return true;
-	}
-
 
     static bool HandleDevCommand(ChatHandler* handler, char const* args)
     {
@@ -269,7 +198,7 @@ public:
             }
         }
 
-        CellCoord cellCoord = UwowCore::ComputeCellCoord(object->GetPositionX(), object->GetPositionY());
+        CellCoord cellCoord = JadeCore::ComputeCellCoord(object->GetPositionX(), object->GetPositionY());
         Cell cell(cellCoord);
 
         uint32 zoneId, areaId;
@@ -288,7 +217,7 @@ public:
         float groundZ = map->GetHeight(object->GetPhaseMask(), object->GetPositionX(), object->GetPositionY(), MAX_HEIGHT);
         float floorZ = map->GetHeight(object->GetPhaseMask(), object->GetPositionX(), object->GetPositionY(), object->GetPositionZ());
 
-        GridCoord gridCoord = UwowCore::ComputeGridCoord(object->GetPositionX(), object->GetPositionY());
+        GridCoord gridCoord = JadeCore::ComputeGridCoord(object->GetPositionX(), object->GetPositionY());
 
         // 63? WHY?
         int gridX = 63 - gridCoord.x_coord;
@@ -1910,14 +1839,14 @@ public:
             return true;
         }
 
-        CellCoord p(UwowCore::ComputeCellCoord(player->GetPositionX(), player->GetPositionY()));
+        CellCoord p(JadeCore::ComputeCellCoord(player->GetPositionX(), player->GetPositionY()));
         Cell cell(p);
         cell.SetNoCreate();
 
-        UwowCore::RespawnDo u_do;
-        UwowCore::WorldObjectWorker<UwowCore::RespawnDo> worker(player, u_do);
+        JadeCore::RespawnDo u_do;
+        JadeCore::WorldObjectWorker<JadeCore::RespawnDo> worker(player, u_do);
 
-        TypeContainerVisitor<UwowCore::WorldObjectWorker<UwowCore::RespawnDo>, GridTypeMapContainer > obj_worker(worker);
+        TypeContainerVisitor<JadeCore::WorldObjectWorker<JadeCore::RespawnDo>, GridTypeMapContainer > obj_worker(worker);
         cell.Visit(p, obj_worker, *player->GetMap(), *player, player->GetGridActivationRange());
 
         return true;

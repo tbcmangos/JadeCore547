@@ -87,7 +87,6 @@ public:
             { "creature_onkill_reputation",   SEC_ADMINISTRATOR, true,  &HandleReloadOnKillReputationCommand,           "", NULL },
             { "creature_questrelation",       SEC_ADMINISTRATOR, true,  &HandleReloadCreatureQuestRelationsCommand,     "", NULL },
             { "creature_template",            SEC_ADMINISTRATOR, true,  &HandleReloadCreatureTemplateCommand,           "", NULL },
-			{ "creature_template_outfits",    SEC_ADMINISTRATOR, true,  &HandleReloadCreatureTemplateOutfitsCommand,    "", NULL },
             //{ "db_script_string",             SEC_ADMINISTRATOR, true,  &HandleReloadDbScriptStringCommand,            "", NULL },
             { "disables",                     SEC_ADMINISTRATOR, true,  &HandleReloadDisablesCommand,                   "", NULL },
             { "disenchant_loot_template",     SEC_ADMINISTRATOR, true,  &HandleReloadLootTemplatesDisenchantCommand,    "", NULL },
@@ -198,8 +197,6 @@ public:
         HandleReloadReservedNameCommand(handler, "");
         HandleReloadTrinityStringCommand(handler, "");
         HandleReloadGameTeleCommand(handler, "");
-
-		HandleReloadCreatureTemplateOutfitsCommand(handler, "");
 
         HandleReloadVehicleAccessoryCommand(handler, "");
         HandleReloadVehicleTemplateAccessoryCommand(handler, "");
@@ -537,14 +534,6 @@ public:
         handler->SendGlobalGMSysMessage("Creature template reloaded.");
         return true;
     }
-
-	static bool HandleReloadCreatureTemplateOutfitsCommand(ChatHandler* handler, const char* /*args*/)
-	{
-		sLog->outInfo(LOG_FILTER_GENERAL, "Loading Creature Outfits... (`creature_template_outfits`)");
-		sObjectMgr->LoadCreatureOutfits();
-		handler->SendGlobalGMSysMessage("DB table `creature_template_outfits` reloaded.");
-		return true;
-	}
 
     static bool HandleReloadCreatureQuestRelationsCommand(ChatHandler* handler, const char* /*args*/)
     {
