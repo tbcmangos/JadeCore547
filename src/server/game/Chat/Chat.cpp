@@ -401,11 +401,7 @@ bool ChatHandler::SetDataForCommandInTable(ChatCommand* table, const char* text,
 
     for (uint32 i = 0; table[i].Name != NULL; i++)
     {
-        std::string tablename = " ";
-        if (table[i].Name != "")
-            tablename = table[i].Name;
 
-        sLog->outInfo(LOG_FILTER_WORLDSERVER, " command table %s ", tablename.c_str());
         // for data fill use full explicit command names
         if (table[i].Name != cmd)
             continue;
