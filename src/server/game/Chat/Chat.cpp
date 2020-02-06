@@ -396,11 +396,12 @@ bool ChatHandler::SetDataForCommandInTable(ChatCommand* table, const char* text,
         cmd += *text;
         ++text;
     }
-
+    sLog->outInfo(LOG_FILTER_WORLDSERVER, "flat command %s ", cmd.c_str());
     while (*text == ' ') ++text;
 
     for (uint32 i = 0; table[i].Name != NULL; i++)
     {
+        sLog->outInfo(LOG_FILTER_WORLDSERVER, " command table %s ", table[i].Name);
         // for data fill use full explicit command names
         if (table[i].Name != cmd)
             continue;
