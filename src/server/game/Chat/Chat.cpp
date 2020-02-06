@@ -401,10 +401,11 @@ bool ChatHandler::SetDataForCommandInTable(ChatCommand* table, const char* text,
 
     for (uint32 i = 0; table[i].Name != NULL; i++)
     {
-        if (table[i].Name = "")
-            continue;
+        std::string tablename = " ";
+        if (table[i].Name != "")
+            tablename = table[i].Name;
 
-        sLog->outInfo(LOG_FILTER_WORLDSERVER, " command table %s ", table[i].Name);
+        sLog->outInfo(LOG_FILTER_WORLDSERVER, " command table %s ", tablename.c_str());
         // for data fill use full explicit command names
         if (table[i].Name != cmd)
             continue;
@@ -412,6 +413,11 @@ bool ChatHandler::SetDataForCommandInTable(ChatCommand* table, const char* text,
         // select subcommand from child commands list (including "")
         if (table[i].ChildCommands != NULL)
         {
+            std::string ChildCommands = " ";
+            if (table[i].ChildCommands->Name != "")
+                ChildCommands = table[i].ChildCommands->Name;
+
+            sLog->outInfo(LOG_FILTER_WORLDSERVER, " ChildCommands %s ", ChildCommands.c_str());
             if (SetDataForCommandInTable(table[i].ChildCommands, text, security, help, fullcommand))
                 return true;
             else if (*text)
