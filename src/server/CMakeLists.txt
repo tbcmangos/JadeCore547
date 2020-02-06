@@ -17,10 +17,16 @@ if(CMAKE_COMPILER_IS_GNUCXX)
 endif()
 
 if( SERVERS )
-  set(sources_Debugging
-    ${CMAKE_SOURCE_DIR}/src/server/shared/Debugging/WheatyExceptionReport.cpp
-    ${CMAKE_SOURCE_DIR}/src/server/shared/Debugging/WheatyExceptionReport.h
-  )
+  if (WIN32)
+      set(sources_Debugging
+		${CMAKE_SOURCE_DIR}/src/server/shared/Debugging/WheatyExceptionReport.cpp
+		${CMAKE_SOURCE_DIR}/src/server/shared/Debugging/WheatyExceptionReport.h
+      )
+  else(WIN32)
+    if (UNIX)
+        set(sources_Debugging ${CMAKE_SOURCE_DIR}/src/server/shared/Debugging/Debugging/UnixDebugger.cpp)
+    endif (UNIX)
+  endif(WIN32)
   add_subdirectory(shared)
   add_subdirectory(game)
   add_subdirectory(collision)

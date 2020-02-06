@@ -22,6 +22,10 @@
 #include <ace/Sched_Params.h>
 #include <vector>
 
+//#if PLATFORM == PLATFORM_UNIX
+//#include "Debugging/UnixDebugger.h"
+//#endif
+
 using namespace ACE_Based;
 
 ThreadPriority::ThreadPriority()
