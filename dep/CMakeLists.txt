@@ -20,9 +20,12 @@ if(CMAKE_SYSTEM_NAME MATCHES "Linux")
   endif()
 endif()
 
+if(SERVERS)
+	add_subdirectory(acelite)
+endif()
+
 if(CMAKE_SYSTEM_NAME MATCHES "Windows")
   if(SERVERS)
-    add_subdirectory(acelite)
     if(USE_MYSQL_SOURCES)
       add_subdirectory(mysqllite)
     endif()

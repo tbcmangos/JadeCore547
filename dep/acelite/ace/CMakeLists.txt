@@ -339,4 +339,7 @@ if (MINGW) # GCC ignores "#prama comment"
   target_link_libraries(ace ws2_32 iphlpapi netapi32 mswsock)
 endif()
 
-install(TARGETS ace RUNTIME DESTINATION "${CMAKE_INSTALL_PREFIX}")
+install(TARGETS ace 
+RUNTIME DESTINATION "${CMAKE_INSTALL_PREFIX}"
+# LIBRARY DESTINATION "${CMAKE_INSTALL_RPATH}"
+)
