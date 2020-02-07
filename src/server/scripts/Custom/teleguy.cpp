@@ -83,58 +83,58 @@ public:
         player->PlayerTalkClass->ClearMenus();
         if( player->GetTeam() == ALLIANCE )
         {
-            player->ADD_GOSSIP_ITEM( 2, "|TInterface\\icons\\Inv_misc_tournaments_banner_human:25|t Stormwind"   , GOSSIP_SENDER_MAIN, LOC_OFFSET + 0);
-            player->ADD_GOSSIP_ITEM( 2, "|TInterface\\icons\\Inv_misc_tournaments_banner_nightelf:25|t Darnassus", GOSSIP_SENDER_MAIN, LOC_OFFSET + 1);
-            player->ADD_GOSSIP_ITEM( 2, "|TInterface\\icons\\Inv_misc_tournaments_banner_draenei:25|t Exodar"    , GOSSIP_SENDER_MAIN, LOC_OFFSET + 2);
-            player->ADD_GOSSIP_ITEM( 2, "|TInterface\\icons\\Inv_misc_tournaments_banner_dwarf:25|t Ironforge"   , GOSSIP_SENDER_MAIN, LOC_OFFSET + 3);
-            player->ADD_GOSSIP_ITEM( 2, "|TInterface\\icons\\Inv_bannerpvp_02:25|t Shrine of Seven Stars"        , GOSSIP_SENDER_MAIN, LOC_OFFSET + 4);
-            player->ADD_GOSSIP_ITEM( 2, "|TInterface\\icons\\Inv_bannerpvp_02:25|t Theramore"                    , GOSSIP_SENDER_MAIN, LOC_OFFSET + 5);
+            player->ADD_GOSSIP_ITEM( 2, "|TInterface\\icons\\Inv_misc_tournaments_banner_human:25|t 暴风城  "   , GOSSIP_SENDER_MAIN, LOC_OFFSET + 0);
+            player->ADD_GOSSIP_ITEM( 2, "|TInterface\\icons\\Inv_misc_tournaments_banner_nightelf:25|t 达纳苏斯  ", GOSSIP_SENDER_MAIN, LOC_OFFSET + 1);
+            player->ADD_GOSSIP_ITEM( 2, "|TInterface\\icons\\Inv_misc_tournaments_banner_draenei:25|t 埃索达  "    , GOSSIP_SENDER_MAIN, LOC_OFFSET + 2);
+            player->ADD_GOSSIP_ITEM( 2, "|TInterface\\icons\\Inv_misc_tournaments_banner_dwarf:25|t 铁炉堡  "   , GOSSIP_SENDER_MAIN, LOC_OFFSET + 3);
+            player->ADD_GOSSIP_ITEM( 2, "|TInterface\\icons\\Inv_bannerpvp_02:25|t 七星殿  "        , GOSSIP_SENDER_MAIN, LOC_OFFSET + 4);
+            player->ADD_GOSSIP_ITEM( 2, "|TInterface\\icons\\Inv_bannerpvp_02:25|t 塞拉摩  "                    , GOSSIP_SENDER_MAIN, LOC_OFFSET + 5);
         }
         else
         {
-            player->ADD_GOSSIP_ITEM( 2, "|TInterface\\icons\\Inv_misc_tournaments_banner_orc:25|t Orgrimmar"            , GOSSIP_SENDER_MAIN, LOC_OFFSET + 6);
-            player->ADD_GOSSIP_ITEM( 2, "|TInterface\\icons\\Inv_misc_tournaments_banner_bloodelf:25|t Silvermoon."     , GOSSIP_SENDER_MAIN, LOC_OFFSET + 7);
-            player->ADD_GOSSIP_ITEM( 2, "|TInterface\\icons\\Inv_misc_tournaments_banner_scourge:25|t Undercity"        , GOSSIP_SENDER_MAIN, LOC_OFFSET + 8);
-            player->ADD_GOSSIP_ITEM( 2, "|TInterface\\icons\\Inv_misc_tournaments_banner_tauren.png:25|t Thunder Bluff" , GOSSIP_SENDER_MAIN, LOC_OFFSET + 9);    
-            player->ADD_GOSSIP_ITEM( 2, "|TInterface\\icons\\Inv_bannerpvp_01:25|t Shrine of Two Moons"                 , GOSSIP_SENDER_MAIN, LOC_OFFSET + 10);   
+            player->ADD_GOSSIP_ITEM( 2, "|TInterface\\icons\\Inv_misc_tournaments_banner_orc:25|t 奥格瑞玛  "            , GOSSIP_SENDER_MAIN, LOC_OFFSET + 6);
+            player->ADD_GOSSIP_ITEM( 2, "|TInterface\\icons\\Inv_misc_tournaments_banner_bloodelf:25|t 银月城  "     , GOSSIP_SENDER_MAIN, LOC_OFFSET + 7);
+            player->ADD_GOSSIP_ITEM( 2, "|TInterface\\icons\\Inv_misc_tournaments_banner_scourge:25|t 幽暗城  "        , GOSSIP_SENDER_MAIN, LOC_OFFSET + 8);
+            player->ADD_GOSSIP_ITEM( 2, "|TInterface\\icons\\Inv_misc_tournaments_banner_tauren.png:25|t 雷霆崖  " , GOSSIP_SENDER_MAIN, LOC_OFFSET + 9);    
+            player->ADD_GOSSIP_ITEM( 2, "|TInterface\\icons\\Inv_bannerpvp_01:25|t 双月殿  "                 , GOSSIP_SENDER_MAIN, LOC_OFFSET + 10);   
         }
-        player->ADD_GOSSIP_ITEM( 7, "[Main Menu] ->"                    , GOSSIP_SENDER_MAIN, 5550);
+        player->ADD_GOSSIP_ITEM( 7, "[  主菜单  ] ->"                    , GOSSIP_SENDER_MAIN, 5550);
         player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, creature->GetGUID());
     }
 
     void ShowNeutralCities(Player* player, Creature* creature)
     {
         player->PlayerTalkClass->ClearMenus();
-        player->ADD_GOSSIP_ITEM( 2, "|TInterface\\icons\\Spell_Arcane_PortalDalaran:25|t Dalaran"         , GOSSIP_SENDER_MAIN, LOC_OFFSET + 11);
-        player->ADD_GOSSIP_ITEM( 2, "|TInterface\\icons\\Spell_Arcane_PortalShattrath:25|t Shattrath City", GOSSIP_SENDER_MAIN, LOC_OFFSET + 12);
-        player->ADD_GOSSIP_ITEM( 7, "[Main Menu] ->"           , GOSSIP_SENDER_MAIN, 5550);
+        player->ADD_GOSSIP_ITEM( 2, "|TInterface\\icons\\Spell_Arcane_PortalDalaran:25|t 达拉然  "         , GOSSIP_SENDER_MAIN, LOC_OFFSET + 11);
+        player->ADD_GOSSIP_ITEM( 2, "|TInterface\\icons\\Spell_Arcane_PortalShattrath:25|t 沙塔斯城  ", GOSSIP_SENDER_MAIN, LOC_OFFSET + 12);
+        player->ADD_GOSSIP_ITEM( 7, "[  主菜单  ] ->"           , GOSSIP_SENDER_MAIN, 5550);
         player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, creature->GetGUID());
     }
 
     void ShowPvPZones(Player* player, Creature* creature)
     {
         player->PlayerTalkClass->ClearMenus();
-        player->ADD_GOSSIP_ITEM( 9, "|TInterface\\icons\\Achievement_arena_2v2_2.png:25|t Gurubashi Arena", GOSSIP_SENDER_MAIN, LOC_OFFSET + 13);
-        player->ADD_GOSSIP_ITEM( 9, "|TInterface\\icons\\ACHIEVEMENT_WIN_WINTERGRASP:25|t Wintergrasp"    , GOSSIP_SENDER_MAIN, LOC_OFFSET + 14);
-        player->ADD_GOSSIP_ITEM( 9, "|TInterface\\icons\\Achievement_Zone_Nagrand_01:25|t Nagrand Arena"  , GOSSIP_SENDER_MAIN, LOC_OFFSET + 15);
-        player->ADD_GOSSIP_ITEM( 9, "|TInterface\\icons\\Achievement_Zone_TolBarad:25|t Tol Barad"        , GOSSIP_SENDER_MAIN, LOC_OFFSET + 16);
-        player->ADD_GOSSIP_ITEM( 7, "[Main Menu] ->"                    , GOSSIP_SENDER_MAIN, 5550);
+        player->ADD_GOSSIP_ITEM( 9, "|TInterface\\icons\\Achievement_arena_2v2_2.png:25|t 古拉巴什竞技场  ", GOSSIP_SENDER_MAIN, LOC_OFFSET + 13);
+        player->ADD_GOSSIP_ITEM( 9, "|TInterface\\icons\\ACHIEVEMENT_WIN_WINTERGRASP:25|t 冬拥湖  "    , GOSSIP_SENDER_MAIN, LOC_OFFSET + 14);
+        player->ADD_GOSSIP_ITEM( 9, "|TInterface\\icons\\Achievement_Zone_Nagrand_01:25|t 纳格兰竞技场 "  , GOSSIP_SENDER_MAIN, LOC_OFFSET + 15);
+        player->ADD_GOSSIP_ITEM( 9, "|TInterface\\icons\\Achievement_Zone_TolBarad:25|t 巴拉德  "        , GOSSIP_SENDER_MAIN, LOC_OFFSET + 16);
+        player->ADD_GOSSIP_ITEM( 7, "[  主菜单  ] ->"                    , GOSSIP_SENDER_MAIN, 5550);
         player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, creature->GetGUID());
     }
 
     void ShowWorldZones(Player* player, Creature* creature)
     {
         player->PlayerTalkClass->ClearMenus();
-        player->ADD_GOSSIP_ITEM( 2, "Dark Portal"       , GOSSIP_SENDER_MAIN, LOC_OFFSET + 17);
-        player->ADD_GOSSIP_ITEM( 2, "Gadgetzan"         , GOSSIP_SENDER_MAIN, LOC_OFFSET + 18);
-        player->ADD_GOSSIP_ITEM( 2, "Moonglade"         , GOSSIP_SENDER_MAIN, LOC_OFFSET + 19);
-        player->ADD_GOSSIP_ITEM( 2, "Area 52"           , GOSSIP_SENDER_MAIN, LOC_OFFSET + 20);
-        player->ADD_GOSSIP_ITEM( 2, "Isle of Giants"    , GOSSIP_SENDER_MAIN, LOC_OFFSET + 21);
-        player->ADD_GOSSIP_ITEM( 2, "Isle of Thunder"   , GOSSIP_SENDER_MAIN, LOC_OFFSET + 22);
-        player->ADD_GOSSIP_ITEM( 2, "Isle of Quel'Danas", GOSSIP_SENDER_MAIN, LOC_OFFSET + 23);
-        player->ADD_GOSSIP_ITEM( 2, "Timeless Isle"     , GOSSIP_SENDER_MAIN, LOC_OFFSET + 24);
-        player->ADD_GOSSIP_ITEM( 2, "Niuzao Temple"     , GOSSIP_SENDER_MAIN, LOC_OFFSET + 25);
-        player->ADD_GOSSIP_ITEM( 7, "[Main Menu] ->"                    , GOSSIP_SENDER_MAIN, 5550);
+        player->ADD_GOSSIP_ITEM( 2, "  黑暗之门  "       , GOSSIP_SENDER_MAIN, LOC_OFFSET + 17);
+        player->ADD_GOSSIP_ITEM( 2, "  加基森  "         , GOSSIP_SENDER_MAIN, LOC_OFFSET + 18);
+        player->ADD_GOSSIP_ITEM( 2, "  月光林地  "         , GOSSIP_SENDER_MAIN, LOC_OFFSET + 19);
+        player->ADD_GOSSIP_ITEM( 2, "  52区域  "           , GOSSIP_SENDER_MAIN, LOC_OFFSET + 20);
+        player->ADD_GOSSIP_ITEM( 2, "  巨人岛  "    , GOSSIP_SENDER_MAIN, LOC_OFFSET + 21);
+        player->ADD_GOSSIP_ITEM( 2, "  雷神岛  "   , GOSSIP_SENDER_MAIN, LOC_OFFSET + 22);
+        player->ADD_GOSSIP_ITEM( 2, "  奎尔达纳斯岛  ", GOSSIP_SENDER_MAIN, LOC_OFFSET + 23);
+        player->ADD_GOSSIP_ITEM( 2, "  永恒之岛  "     , GOSSIP_SENDER_MAIN, LOC_OFFSET + 24);
+        player->ADD_GOSSIP_ITEM( 2, "  砮皂寺  "     , GOSSIP_SENDER_MAIN, LOC_OFFSET + 25);
+        player->ADD_GOSSIP_ITEM( 7, "[  主菜单  ] ->"                    , GOSSIP_SENDER_MAIN, 5550);
         player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, creature->GetGUID());
     }
 
@@ -142,44 +142,44 @@ public:
     {
         player->PlayerTalkClass->ClearMenus();
         if( page == 1 ) {
-            player->ADD_GOSSIP_ITEM( 2, "Gruul's Lair"       , GOSSIP_SENDER_MAIN, LOC_OFFSET + 26);
-            player->ADD_GOSSIP_ITEM( 2, "Bastion of Twilight", GOSSIP_SENDER_MAIN, LOC_OFFSET + 27);
-            player->ADD_GOSSIP_ITEM( 2, "Naxxramas"          , GOSSIP_SENDER_MAIN, LOC_OFFSET + 28);
-            player->ADD_GOSSIP_ITEM( 2, "The Eye"            , GOSSIP_SENDER_MAIN, LOC_OFFSET + 29);
-            player->ADD_GOSSIP_ITEM( 2, "Black Temple"       , GOSSIP_SENDER_MAIN, LOC_OFFSET + 30);
-            player->ADD_GOSSIP_ITEM( 2, "Nexus"              , GOSSIP_SENDER_MAIN, LOC_OFFSET + 31);
-            player->ADD_GOSSIP_ITEM( 2, "Ahn'Qiraj"          , GOSSIP_SENDER_MAIN, LOC_OFFSET + 32);
-            player->ADD_GOSSIP_ITEM( 2, "Caverns of Time"    , GOSSIP_SENDER_MAIN, LOC_OFFSET + 33);
-            player->ADD_GOSSIP_ITEM( 7, "[More] ->"          , GOSSIP_SENDER_MAIN, 5552);
+            player->ADD_GOSSIP_ITEM( 2, "  格鲁尔之巢穴  "       , GOSSIP_SENDER_MAIN, LOC_OFFSET + 26);
+            player->ADD_GOSSIP_ITEM( 2, "  暮光堡垒  ", GOSSIP_SENDER_MAIN, LOC_OFFSET + 27);
+            player->ADD_GOSSIP_ITEM( 2, "  纳克萨玛斯  "          , GOSSIP_SENDER_MAIN, LOC_OFFSET + 28);
+            player->ADD_GOSSIP_ITEM( 2, "  风暴之眼  "            , GOSSIP_SENDER_MAIN, LOC_OFFSET + 29);
+            player->ADD_GOSSIP_ITEM( 2, "  黑暗神殿  "       , GOSSIP_SENDER_MAIN, LOC_OFFSET + 30);
+            player->ADD_GOSSIP_ITEM( 2, "  魔枢  "              , GOSSIP_SENDER_MAIN, LOC_OFFSET + 31);
+            player->ADD_GOSSIP_ITEM( 2, "  安其拉  "          , GOSSIP_SENDER_MAIN, LOC_OFFSET + 32);
+            player->ADD_GOSSIP_ITEM( 2, "  时光之穴  "    , GOSSIP_SENDER_MAIN, LOC_OFFSET + 33);
+            player->ADD_GOSSIP_ITEM( 7, "[  更多  ] ->"          , GOSSIP_SENDER_MAIN, 5552);
         } else if( page == 2) {
-            player->ADD_GOSSIP_ITEM( 2, "Karazhan"   , GOSSIP_SENDER_MAIN, LOC_OFFSET + 34);
-            player->ADD_GOSSIP_ITEM( 2, "Serpentshrine Cavern", GOSSIP_SENDER_MAIN, LOC_OFFSET + 35);
-            player->ADD_GOSSIP_ITEM( 2, "Onyxia's Lair"       , GOSSIP_SENDER_MAIN, LOC_OFFSET + 36);
-            player->ADD_GOSSIP_ITEM( 2, "Argent Tournamentr"  , GOSSIP_SENDER_MAIN, LOC_OFFSET + 37);
-            player->ADD_GOSSIP_ITEM( 2, "Icecrown Citadel"    , GOSSIP_SENDER_MAIN, LOC_OFFSET + 38);
-            player->ADD_GOSSIP_ITEM( 2, "Ulduar"              , GOSSIP_SENDER_MAIN, LOC_OFFSET + 39);
-            player->ADD_GOSSIP_ITEM( 2, "Obsidian Sanctum"    , GOSSIP_SENDER_MAIN, LOC_OFFSET + 40);
-            player->ADD_GOSSIP_ITEM( 7, "[More] ->"           , GOSSIP_SENDER_MAIN, 5553);
-            player->ADD_GOSSIP_ITEM( 7, "[Back] ->"           , GOSSIP_SENDER_MAIN, 5551);
+            player->ADD_GOSSIP_ITEM( 2, "  卡拉赞  "   , GOSSIP_SENDER_MAIN, LOC_OFFSET + 34);
+            player->ADD_GOSSIP_ITEM( 2, "  毒蛇神殿  ", GOSSIP_SENDER_MAIN, LOC_OFFSET + 35);
+            player->ADD_GOSSIP_ITEM( 2, "  奥妮克希亚的巢穴  "       , GOSSIP_SENDER_MAIN, LOC_OFFSET + 36);
+            player->ADD_GOSSIP_ITEM( 2, "  银色竞技场  "  , GOSSIP_SENDER_MAIN, LOC_OFFSET + 37);
+            player->ADD_GOSSIP_ITEM( 2, "  冰冠堡垒  "    , GOSSIP_SENDER_MAIN, LOC_OFFSET + 38);
+            player->ADD_GOSSIP_ITEM( 2, "  奥杜尔  "              , GOSSIP_SENDER_MAIN, LOC_OFFSET + 39);
+            player->ADD_GOSSIP_ITEM( 2, "  黑曜石圣殿  "    , GOSSIP_SENDER_MAIN, LOC_OFFSET + 40);
+            player->ADD_GOSSIP_ITEM( 7, "[  更多  ] ->"           , GOSSIP_SENDER_MAIN, 5553);
+            player->ADD_GOSSIP_ITEM( 7, "[  返回  ] ->"           , GOSSIP_SENDER_MAIN, 5551);
         } else if( page == 3) {
-            player->ADD_GOSSIP_ITEM( 2, "Blackrock Mountain", GOSSIP_SENDER_MAIN, LOC_OFFSET + 41);
-            player->ADD_GOSSIP_ITEM( 2, "Sulfuron Spire"    , GOSSIP_SENDER_MAIN, LOC_OFFSET + 42);
-            player->ADD_GOSSIP_ITEM( 2, "Utgarde"           , GOSSIP_SENDER_MAIN, LOC_OFFSET + 43);
-            player->ADD_GOSSIP_ITEM( 2, "Auchindoun"        , GOSSIP_SENDER_MAIN, LOC_OFFSET + 44);
-            player->ADD_GOSSIP_ITEM( 7, "[Back] ->"         , GOSSIP_SENDER_MAIN, 5552);
+            player->ADD_GOSSIP_ITEM( 2, "  黑石山脉  ", GOSSIP_SENDER_MAIN, LOC_OFFSET + 41);
+            player->ADD_GOSSIP_ITEM( 2, "  萨弗隆尖塔  "    , GOSSIP_SENDER_MAIN, LOC_OFFSET + 42);
+            player->ADD_GOSSIP_ITEM( 2, "  乌特加德  "           , GOSSIP_SENDER_MAIN, LOC_OFFSET + 43);
+            player->ADD_GOSSIP_ITEM( 2, "  奥金顿  "        , GOSSIP_SENDER_MAIN, LOC_OFFSET + 44);
+            player->ADD_GOSSIP_ITEM( 7, "[  返回  ] ->"         , GOSSIP_SENDER_MAIN, 5552);
         }
-        player->ADD_GOSSIP_ITEM( 7, "[Main Menu] ->"                     , GOSSIP_SENDER_MAIN, 5550);
+        player->ADD_GOSSIP_ITEM( 7, "[  主菜单  ] ->"                     , GOSSIP_SENDER_MAIN, 5550);
         player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, creature->GetGUID());
     }
 
     void ShowMainMenu(Player* player, Creature* creature)
     {
         player->PlayerTalkClass->ClearMenus();
-        player->ADD_GOSSIP_ITEM( 2, "|TInterface\\icons\\Achievement_doublejeopardy:25|t [Capitals] ->"      , GOSSIP_SENDER_MAIN, 5560);
-        player->ADD_GOSSIP_ITEM( 2, "|TInterface\\icons\\Achievement_bg_takexflags_ab:25|t [Neutral Cities] ->", GOSSIP_SENDER_MAIN, 5561);
-        player->ADD_GOSSIP_ITEM( 2, "|TInterface\\icons\\Achievement_bg_winsoa:25|t [World Zones] ->"   , GOSSIP_SENDER_MAIN, 5563);
-        player->ADD_GOSSIP_ITEM( 2, "|TInterface\\icons\\Achievement_bg_killxenemies_generalsroom:25|t [Dungeons] ->"      , GOSSIP_SENDER_MAIN, 5551);
-        player->ADD_GOSSIP_ITEM( 9, "|TInterface\\icons\\Achievement_bg_winwsg:25|t [PvP Zones] ->"     , GOSSIP_SENDER_MAIN, 5562);
+        player->ADD_GOSSIP_ITEM( 2, "|TInterface\\icons\\Achievement_doublejeopardy:25|t [  主要城市  ]  ->"      , GOSSIP_SENDER_MAIN, 5560);
+        player->ADD_GOSSIP_ITEM( 2, "|TInterface\\icons\\Achievement_bg_takexflags_ab:25|t [  中立城市  ]  ->", GOSSIP_SENDER_MAIN, 5561);
+        player->ADD_GOSSIP_ITEM( 2, "|TInterface\\icons\\Achievement_bg_winsoa:25|t [  世界区域  ]  ->"   , GOSSIP_SENDER_MAIN, 5563);
+        player->ADD_GOSSIP_ITEM( 2, "|TInterface\\icons\\Achievement_bg_killxenemies_generalsroom:25|t [  副本  ]  ->"      , GOSSIP_SENDER_MAIN, 5551);
+        player->ADD_GOSSIP_ITEM( 9, "|TInterface\\icons\\Achievement_bg_winwsg:25|t [  PVP区域  ]  ->"     , GOSSIP_SENDER_MAIN, 5562);
         player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, creature->GetGUID());
     }
     
@@ -201,7 +201,7 @@ public:
         if(!player->getAttackers().empty())
         {
             player->CLOSE_GOSSIP_MENU();
-            creature->MonsterSay("You are in combat!", LANG_UNIVERSAL, NULL);
+            creature->MonsterSay("你正在战斗中  ", LANG_UNIVERSAL, NULL);
             return true;
         }
 

@@ -14,9 +14,9 @@ class petguy : public CreatureScript
         ChatHandler handler(player);
 
         if (player->getClass() != CLASS_HUNTER)
-            handler.PSendSysMessage("You aren't a hunter, error!");
+            handler.PSendSysMessage("你不是猎人!  ");
         else if (player->getClass() == CLASS_HUNTER && player->GetPet())
-		    handler.PSendSysMessage("You already have a pet, error!");
+		    handler.PSendSysMessage("你已经有一个宠物了  ");
         else if (player->getClass() == CLASS_HUNTER && !player->GetPet())
             ShowMainMenu(player, creature);
 
@@ -26,9 +26,9 @@ class petguy : public CreatureScript
     void ShowMainMenu(Player* player, Creature* creature)
     {
         player->PlayerTalkClass->ClearMenus();
-        player->ADD_GOSSIP_ITEM( 2, "|TInterface\\icons\\Ability_Hunter_BeastSoothe:25|t [Pets] ->", GOSSIP_SENDER_MAIN, 1216);
+        player->ADD_GOSSIP_ITEM( 2, "|TInterface\\icons\\Ability_Hunter_BeastSoothe:25|t [  宠物  ] ->", GOSSIP_SENDER_MAIN, 1216);
         if (player->GetSpecializationId(player->GetActiveSpec()) == SPEC_HUNTER_BEASTMASTER)
-            player->ADD_GOSSIP_ITEM( 2, "|TInterface\\icons\\Ability_Hunter_BeastMastery:25|t [Exotic pets] ->"      , GOSSIP_SENDER_MAIN, 1215);
+            player->ADD_GOSSIP_ITEM( 2, "|TInterface\\icons\\Ability_Hunter_BeastMastery:25|t [  另类宠物  ] ->"      , GOSSIP_SENDER_MAIN, 1215);
 
         player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, creature->GetGUID());
     }
@@ -73,7 +73,7 @@ class petguy : public CreatureScript
                 player->ADD_GOSSIP_ITEM( 11, "|TInterface\\icons\\Ability_Hunter_Pet_Hyena:25|t Hyena", GOSSIP_SENDER_MAIN, 1228);
 // exotic       player->ADD_GOSSIP_ITEM( 11, "Moth", GOSSIP_SENDER_MAIN, 1229);
                 player->ADD_GOSSIP_ITEM( 11, "|TInterface\\icons\\Ability_Hunter_Pet_Raptor:25|t Raptor", GOSSIP_SENDER_MAIN, 1229);
-                player->ADD_GOSSIP_ITEM( 7, "More pets?", GOSSIP_SENDER_MAIN, 1300);
+                player->ADD_GOSSIP_ITEM( 7, "  更多  ", GOSSIP_SENDER_MAIN, 1300);
                 player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE,creature->GetGUID());
                 break;
             }
@@ -94,8 +94,8 @@ class petguy : public CreatureScript
                 player->ADD_GOSSIP_ITEM( 11, "|TInterface\\icons\\Ability_Hunter_Pet_Wasp:25|t Wasp", GOSSIP_SENDER_MAIN, 1251);
                 player->ADD_GOSSIP_ITEM( 11, "|TInterface\\icons\\Spell_Nature_GuardianWard:25|t Serpent", GOSSIP_SENDER_MAIN, 1252);
                 player->ADD_GOSSIP_ITEM( 11, "|TInterface\\icons\\Ability_Hunter_Pet_Worm:25|t Snowdrift Jormungar", GOSSIP_SENDER_MAIN, 1253);
-                player->ADD_GOSSIP_ITEM( 7, "More pets?", GOSSIP_SENDER_MAIN, 1301);
-                player->ADD_GOSSIP_ITEM( 7, "Back", GOSSIP_SENDER_MAIN, 1216);
+                player->ADD_GOSSIP_ITEM( 7, "  更多  ", GOSSIP_SENDER_MAIN, 1301);
+                player->ADD_GOSSIP_ITEM( 7, "  返回  ", GOSSIP_SENDER_MAIN, 1216);
                 player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE,creature->GetGUID());
                 break;
             }
@@ -109,7 +109,7 @@ class petguy : public CreatureScript
                 player->ADD_GOSSIP_ITEM( 11, "|TInterface\\icons\\inv_pet_monkey:25|t Monkey", GOSSIP_SENDER_MAIN, 1259);
                 player->ADD_GOSSIP_ITEM( 11, "|TInterface\\icons\\ability_hunter_aspectofthefox:25|t Fox", GOSSIP_SENDER_MAIN, 1260);
                 player->ADD_GOSSIP_ITEM( 11, "|TInterface\\icons\\inv_pet_mastiff:25|t Dog", GOSSIP_SENDER_MAIN, 1261);
-                player->ADD_GOSSIP_ITEM( 7, "Back", GOSSIP_SENDER_MAIN, 1300);
+                player->ADD_GOSSIP_ITEM( 7, "  返回  ", GOSSIP_SENDER_MAIN, 1300);
                 player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE,creature->GetGUID());
                 break;
             }
