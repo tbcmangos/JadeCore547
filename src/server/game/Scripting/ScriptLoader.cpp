@@ -38,6 +38,8 @@ void AddSC_teleguy();
 void AddSC_petguy();
 void AddSC_arena_spectator_script();
 void AddSC_transmogrify_script();
+void AddSC_announce_login();
+void AddSC_Custom_Chat();
 
 // spells
 void AddSC_deathknight_spell_scripts();
@@ -1979,7 +1981,9 @@ void AddCustomScripts()
     AddSC_petguy();
     AddSC_arena_spectator_script();
     AddSC_transmogrify_script();
-    
+    AddSC_announce_login();
+    AddSC_Custom_Chat();
+
     //NPCBots
     AddSC_death_knight_bot();
     AddSC_druid_bot();
