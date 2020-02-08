@@ -10,6 +10,7 @@
 	header("Content-Type:text/html;charset=utf-8");
 	// DATABASE CONNECTION
 	$dbhost = 'localhost';
+	$serverport = 8085;
 	$dbuser = 'root';
 	$dbpass = 'afaf65b113286597'; 
 	$dbaccs = 'w_auth';
@@ -55,5 +56,6 @@
 0.1倍伤害<br />
 3倍属性<br />
 LM/BL互通<br />
-每个人能招4个机器人<br /><br />';
+10个商业技能<br />
+每个人能招4个机器人<br/><br />';
 ?>

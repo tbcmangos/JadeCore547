@@ -14,6 +14,32 @@ if (!$dbcon)
 {
   return show_error(mysql_error());
 }
+
+//port open
+$realmstatus = '';
+  if (! $sock = @fsockopen($dbhost, $serverport, $num, $error, 3))
+    {
+        $realmstatus = "<FONT COLOR=red>服务器离线</FONT>";
+    }
+    else
+    { 
+        $realmstatus = "<FONT COLOR=green>服务器在线</FONT>"; 
+        fclose($sock);
+    };
+
+//uptime
+$dba = @mysql_select_db($dbaccs, $dbcon);
+if (!$dba)
+{
+  return show_error(mysql_error());
+}
+
+$qry = mysql_query("SELECT * FROM " . mysql_real_escape_string($dbaccs) . ".uptime ORDER BY `starttime` DESC LIMIT 1") or die(mysql_error());
+$uptime_results = mysql_fetch_array($qry);    
+$uptime = Sec2Time($uptime_results['uptime']);
+
+
+//characters
 $dbc = @mysql_select_db($dbchars, $dbcon);
 if (!$dbc)
 {
@@ -30,4 +56,7 @@ $replace = array("," => ".");
 $string = $total;
 }
 else $total = 100;
+
+
+
 ?>

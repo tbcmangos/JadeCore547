@@ -51,16 +51,21 @@ include('core/core.php');
                 <div id="first" class="con-bg">
                     	<?php include('create.php');?>
                 </div>
+                
+				<?php include('status.php');?>
 				
                 <div id="second" class="con-bg">
-                <h2 align="center">Server Status</h2>
+                <h2 align="center"><?php echo $realmstatus ?></h2>
                 <div class="sep"></div>
-                		<?php include('status.php');?>
+                		
                         <?php echo xmlStuff();?>
+                        
                     <div id="serverstats">
-                      <div id="counter-bg">
+                    	<?php echo $uptime;?>
+                        <div id="counter-bg">
                             <div id="counter" style="width:<?php echo $string;?>%;"></div><br />
-                            <?php echo $online_players . '/' . $max_players . ' 玩家在线';?></div>
+                            <?php echo $online_players . '/' . $max_players . ' 玩家在线';?>
+                        </div>
                     </div><br />
                     <div id="serverstats2">
                     	<table width="387">

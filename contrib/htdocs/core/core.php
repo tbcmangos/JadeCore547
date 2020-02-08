@@ -59,13 +59,13 @@ header("Content-Type:text/html;charset=utf-8");
 				$xml = simplexml_load_file($xmlfile);
 				
 				if($xmldisplay != 2 && $xmldisplay != 3) {
-					return "<div align='center'>运行时间: " . $xml->status->uptime . "</div><br /><div align='center'>在线 GMs: " . $xml->status->gmcount . "</div><br />";
+					return "<div align='center'>Uptime: " . $xml->status->uptime . "</div><br /><div align='center'>Online GMs: " . $xml->status->gmcount . "</div><br />";
 				}
 				if($xmldisplay != 1 && $xmldisplay != 3) {
-					return "<div align='center'>运行时间: " . $xml->status->uptime . "</div><br />";
+					return "<div align='center'>Uptime: " . $xml->status->uptime . "</div><br />";
 				}
 				if($xmldisplay != 2 && $xmldisplay != 1) {
-					return "<div align='center'>在线 GMs " . $xml->status->gmcount . "</div><br />";
+					return "<div align='center'>Online GMs " . $xml->status->gmcount . "</div><br />";
 				}
 			} else {
 				return show_error("Your xml file cannot be found, please insert right settings in config.php");
@@ -132,6 +132,39 @@ header("Content-Type:text/html;charset=utf-8");
 									</tr>';
 			}
 		} else $error = '无玩家在线!';
+	}
+	
+	function Sec2Time($time){
+	    if(is_numeric($time)){
+	    $value = array(
+	      "years" => 0, "days" => 0, "hours" => 0,
+	      "minutes" => 0, "seconds" => 0,
+	    );
+	    if($time >= 31556926){
+	      $value["years"] = floor($time/31556926);
+	      $time = ($time%31556926);
+	    }
+	    if($time >= 86400){
+	      $value["days"] = floor($time/86400);
+	      $time = ($time%86400);
+	    }
+	    if($time >= 3600){
+	      $value["hours"] = floor($time/3600);
+	      $time = ($time%3600);
+	    }
+	    if($time >= 60){
+	      $value["minutes"] = floor($time/60);
+	      $time = ($time%60);
+	    }
+	    $value["seconds"] = floor($time);
+	    //return (array) $value;
+	    //$t=$value["years"] ."年". $value["days"] ."天"." ". $value["hours"] ."小时". $value["minutes"] ."分".$value["seconds"]."秒";
+		$t=  $value["days"] ."天"." ". $value["hours"] ."小时". $value["minutes"] ."分" ;
+	    Return $t;
+	    
+	     }else{
+	    return (bool) FALSE;
+	    }
 	}
 	
 ?>
