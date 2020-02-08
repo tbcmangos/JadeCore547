@@ -40,6 +40,8 @@ void AddSC_arena_spectator_script();
 void AddSC_transmogrify_script();
 void AddSC_announce_login();
 void AddSC_Custom_Chat();
+void AddSC_item_custom_summon();
+void AddSC_Boss_Announcer();
 
 // spells
 void AddSC_deathknight_spell_scripts();
@@ -1983,6 +1985,8 @@ void AddCustomScripts()
     AddSC_transmogrify_script();
     AddSC_announce_login();
     AddSC_Custom_Chat();
+    AddSC_item_custom_summon();
+    AddSC_Boss_Announcer();
 
     //NPCBots
     AddSC_death_knight_bot();

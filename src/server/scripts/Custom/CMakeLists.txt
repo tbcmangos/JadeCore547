@@ -21,6 +21,8 @@ set(scripts_STAT_SRCS
     Custom/misc.cpp
 	Custom/announce_login.cpp
 	Custom/world_chat.cpp
+	Custom/Boss_Announcer.cpp
+	Custom/hearthstone_summon.cpp
 )
 
 message("  -> Prepared: Custom")
