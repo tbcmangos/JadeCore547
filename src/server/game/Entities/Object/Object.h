@@ -246,8 +246,13 @@ class Object
 
         uint8 GetByteValue(uint16 index, uint8 offset) const
         {
-            ASSERT(index < m_valuesCount || PrintIndexError(index, false));
-            ASSERT(offset < 4);
+            if (index > m_valuesCount || offset > 4)
+            {
+                PrintIndexError(index, true);
+                return NULL;
+            }
+            //ASSERT(index < m_valuesCount || PrintIndexError(index, false));
+            //ASSERT(offset < 4);
             return *(((uint8*)&m_uint32Values[index])+offset);
         }
 
