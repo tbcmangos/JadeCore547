@@ -5805,6 +5805,8 @@ void Player::ReduceSpellCooldown(uint32 spell_id, time_t modifyTime)
 
 void Player::RemoveSpellCooldown(uint32 spell_id, bool update /* = false */)
 {
+    if (!this)
+        return;
     m_spellCooldowns.erase(spell_id);
 
     if (update)

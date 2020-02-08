@@ -969,7 +969,8 @@ void Aura::UpdateOwner(uint32 diff, WorldObject* owner)
     Update(diff, caster);
 
     if (m_updateTargetMapInterval <= int32(diff))
-        UpdateTargetMap(caster);
+        if (caster)
+            UpdateTargetMap(caster);
     else
         m_updateTargetMapInterval -= diff;
 
