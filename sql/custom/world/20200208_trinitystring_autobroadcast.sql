@@ -1,0 +1,2 @@
+UPDATE `trinity_string` SET `content_loc4`='|cffffff00[|c00077766小提示|cffffff00]: |cFFF222FF%s|r' WHERE (`entry`='11000');
+INSERT INTO `command` (`name`, `help`) VALUES ('sj', 'Syntax: .sj xxxx  send world message');
