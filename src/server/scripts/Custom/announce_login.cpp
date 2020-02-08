@@ -77,19 +77,19 @@ public:
         if (player->GetTeam() == ALLIANCE)
         {
             msg += "|cff0000ff [联盟]  ";
-            msg += announce_login::GetNameLink(player);
+            msg += GetNameLink(player);
             msg += " |cfffaeb00";
         }
         else if (player->GetTeam() == PANDAREN_NEUTRAL)
         {
             msg += "|cffABD473 [熊猫]  ";
-            msg += announce_login::GetNameLink(player);
+            msg += GetNameLink(player);
             msg += " |cfffaeb00";
         }
         else
         {
             msg += "|cffff0000 [部落]  ";
-            msg += announce_login::GetNameLink(player);
+            msg += GetNameLink(player);
             msg += " |cffFFD800";
         }
         msg += " 上线    ";
