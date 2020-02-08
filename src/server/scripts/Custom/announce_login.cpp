@@ -23,7 +23,7 @@ public:
 	announce_login() : PlayerScript("announce_login") { }
  
 
-    std::string announce_login::GetNameLink(Player* player)
+    std::string GetNameLink(Player* player)
     {
         std::string name = player->GetName();
         std::string color;
