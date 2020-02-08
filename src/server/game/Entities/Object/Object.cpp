@@ -1153,7 +1153,7 @@ void Object::SetFloatValue(uint16 index, float value)
     if (index > m_valuesCount)
     {
         PrintIndexError(index, true);
-
+        return;
     }
     //ASSERT(index < m_valuesCount || PrintIndexError(index, true));
 

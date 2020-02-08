@@ -249,7 +249,7 @@ class Object
             if (index > m_valuesCount || offset > 4)
             {
                 PrintIndexError(index, true);
-                return NULL;
+                return 0;
             }
             //ASSERT(index < m_valuesCount || PrintIndexError(index, false));
             //ASSERT(offset < 4);
