@@ -19,6 +19,8 @@ set(scripts_STAT_SRCS
     Custom/arena_spectator.cpp
     Custom/npc_transmogrify.cpp
     Custom/misc.cpp
+	Custom/announce_login.cpp
+	Custom/world_chat.cpp
 )
 
 message("  -> Prepared: Custom")
