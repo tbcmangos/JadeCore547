@@ -1,7 +1,7 @@
 /* PACW - Cataclysm Theme */
 a, a:visited, a:active, a:hover {color:#F93;text-decoration:none;font-weight:bold;}
 
-body {background:url(../../images/cataclysm/bg.png) no-repeat top center #010101;}
+body {background:url(../../images/cataclysm/bg.jpg) no-repeat top center #010101;}
 input[type="submit"] {background:url(../../images/cataclysm/submit.png) no-repeat;height:26px;width:70px;}
 input[type="submit"]:hover {background:url(../../images/cataclysm/submit_hov.png) no-repeat;}
 #logo {background:url(../../images/cataclysm/logo.png) no-repeat;height:146px;width:302px;}

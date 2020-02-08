@@ -2,17 +2,17 @@
 /*********************************************
 *   PACW - Pingue Account Creation Website   *
 *                 Version: 1.0               *
-*            coded by Adam Vi�arsson         *
+*            coded by Adam Vi餫rsson         *
 *                                            *
 *             http://thepingue.com           *
 *        MODIFIED BY MYRAN2 OF MMOWNED       *
 *********************************************/	
-
-	function show_error($error = "unknown issue") {
-	  echo '<div class="nosuccess"><span style="padding-left:25px;color:#FFF;font-weight:bold;">ERROR:</span> ' . $error . ' <div class="n-img"></div></div><br />';
+header("Content-Type:text/html;charset=utf-8");
+	function show_error($error = "未知问题") {
+	  echo '<div class="nosuccess"><span style="padding-left:25px;color:#FFF;font-weight:bold;">错误:</span> ' . $error . ' <div class="n-img"></div></div><br />';
 	}
-	function locked_error($error = "unknown issue") {
-	  echo '<div class="locked"><span style="padding-left:25px;color:#FFF;font-weight:bold;">ERROR:</span> ' . $error . ' <div class="l-img"></div></div><br />';
+	function locked_error($error = "未知问题") {
+	  echo '<div class="locked"><span style="padding-left:25px;color:#FFF;font-weight:bold;">错误:</span> ' . $error . ' <div class="l-img"></div></div><br />';
 	}
 	
 	if($show_all) {
@@ -59,13 +59,13 @@
 				$xml = simplexml_load_file($xmlfile);
 				
 				if($xmldisplay != 2 && $xmldisplay != 3) {
-					return "<div align='center'>Uptime: " . $xml->status->uptime . "</div><br /><div align='center'>Online GMs: " . $xml->status->gmcount . "</div><br />";
+					return "<div align='center'>运行时间: " . $xml->status->uptime . "</div><br /><div align='center'>在线 GMs: " . $xml->status->gmcount . "</div><br />";
 				}
 				if($xmldisplay != 1 && $xmldisplay != 3) {
-					return "<div align='center'>Uptime: " . $xml->status->uptime . "</div><br />";
+					return "<div align='center'>运行时间: " . $xml->status->uptime . "</div><br />";
 				}
 				if($xmldisplay != 2 && $xmldisplay != 1) {
-					return "<div align='center'>Online GMs " . $xml->status->gmcount . "</div><br />";
+					return "<div align='center'>在线 GMs " . $xml->status->gmcount . "</div><br />";
 				}
 			} else {
 				return show_error("Your xml file cannot be found, please insert right settings in config.php");
@@ -81,9 +81,9 @@
 	//Mav approved ^^
 	function displayPlayers() {
 		global $show_players, $online_players, $show_all;
-		if ($show_players < $online_players) echo 'Displaying random ' . $show_players . ' of ' . $online_players . ' players.';
-        if($show_all) echo ' - <a href="#showall" onClick="getOnline(id);">Show All</a>';
-		else echo 'Displaying ' . $online_players . ' players.';
+		if ($show_players < $online_players) echo '随机显示 ' . $show_players . ' / ' . $online_players . ' 玩家.';
+        if($show_all) echo ' - <a href="#showall" onClick="getOnline(id);">显示所有</a>';
+		else echo '显示中 ' . $online_players . ' 玩家.';
 	}
 	
 	function is_valid_email ($email) {
@@ -116,7 +116,7 @@
 										<td width="48" align="center">'.$row['level'].'</td>
 									</tr>';
 			}
-		} else $error = 'No online characters!';
+		} else $error = '无玩家在线!';
 		
 	}
 	
@@ -131,7 +131,7 @@
 										<td width="48" align="center">'.$row['level'].'</td>
 									</tr>';
 			}
-		} else $error = 'No online Characters!';
+		} else $error = '无玩家在线!';
 	}
 	
 ?>

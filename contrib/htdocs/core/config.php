@@ -2,18 +2,18 @@
 /*********************************************
 *   PACW - Pingue Account Creation Website   *
 *                 Version: 1.0               *
-*            coded by Adam Vi�arsson         *
+*            coded by Adam Vi餫rsson         *
 *                                            *
 *             http://thepingue.com           *
 *        MODIFIED BY MYRAN2 OF MMOWNED       *
 *********************************************/	
-	
+	header("Content-Type:text/html;charset=utf-8");
 	// DATABASE CONNECTION
 	$dbhost = 'localhost';
 	$dbuser = 'root';
-	$dbpass = 'sunwell'; 
-	$dbaccs = 'auth';
-	$dbchars = 'pandacharacters';
+	$dbpass = 'afaf65b113286597'; 
+	$dbaccs = 'w_auth';
+	$dbchars = 'w_char';
 
 	
 	
@@ -38,16 +38,22 @@
 	$show_all = true;           // true = Enables "Show All Link", false = Disables "Show All Link" (Of players online).
 	
 	// HOW TO CONNECT - EDIT HERE.
-	$realmlist = 'Set realmlist 127.0.0.1 ';
-	$htc1t = 'Configuring your realmlist.';
-	$htc1 = 'You need to configure your realmlist to be able to connect to our realm, you do so by navigating to your World of Warcraft directory folder which probably found under "C:\Program Files\World of Warcraft\" If you\'re using windows ("HD\Applications\World of Warcraft\" if you\'re using a Mac). Open it up, and if you\'re using windows7 or windows Vista you need to gain administrative permission to edit it (Run Notepad as admin, then file-open realmlist.wtf)<br /><br /> Edit the part where set "realmlist" is, from logon.eu.worldofwarcraft.com to:<br />';
+	$realmlist = 'Set realmlist 39.105.210.193';
+	$htc1t = '设置服务器列表.';
+	$htc1 = '打开wow目录下的WTF\Config.wtf文件，将Set realmlist xxx 改为 Set realmlist 39.105.210.193<br />';
 	
-	$htc2t = 'Create your account!';
-	$htc2 = 'If you have not already created your account on the index of this website, you can do so here: <a href="index.html">Click here</a>';
+	$htc2t = '创建账户!';
+	$htc2 = ' <a href="index.php">点击这里</a>';
 	
-	$htc3t = 'Wait 1 minute';
-	$htc3 = 'Our server requires that you wait 1 minute before attempting to log in. ';
+	$htc3t = '等待';
+	$htc3 = '等待一分钟左右. ';
 	
-	$htc4t = 'Go Play!';
-	$htc4 = '';
+	$htc4t = '启动WOW.exe即可登录!';
+	$htc4 = '服务器设置：<br />
+	出生1000G<br />
+10倍掉落和经验<br />
+0.1倍伤害<br />
+3倍属性<br />
+LM/BL互通<br />
+每个人能招4个机器人<br /><br />';
 ?>

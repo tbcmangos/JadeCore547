@@ -7,6 +7,7 @@
 *             http://thepingue.com           *
 *        MODIFIED BY MYRAN2 OF MMOWNED       *
 *********************************************/	
+header("Content-Type:text/html;charset=utf-8");
 error_reporting(E_ALL);
 include('core/config.php');
 include('core/core.php');
@@ -16,7 +17,7 @@ include('core/core.php');
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Blizz-Like 5.4.8</title>
+        <title>熊猫酒仙 5.4.8</title>
         <link href="style/main.css" rel="stylesheet" type="text/css" />
         <link href="style/theme/<?php echo vTheme();?>.css" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="js/jquery.js"></script>
@@ -45,7 +46,7 @@ include('core/core.php');
                             <a href="#first"   id="buttonone"><div class="link1"></div></a>
                             <a href="#second"  id="buttontwo"><div class="link2"></div></a>
                             <a href="#third"   id="buttonthree"><div class="link3"></div></a>
-							<a href="http://mental-wow.sforum.biz/" id="buttonfive"><div class="link5"></div></a>
+							<a href="https://pan.baidu.com/s/1f6F12cDp13PQaqHA8gwUlg/" id="buttonfive"><div class="link5"></div></a>
                         </div>
                 <div id="first" class="con-bg">
                     	<?php include('create.php');?>
@@ -59,15 +60,15 @@ include('core/core.php');
                     <div id="serverstats">
                       <div id="counter-bg">
                             <div id="counter" style="width:<?php echo $string;?>%;"></div><br />
-                            <?php echo $online_players . '/' . $max_players . ' Players Online';?></div>
+                            <?php echo $online_players . '/' . $max_players . ' 玩家在线';?></div>
                     </div><br />
                     <div id="serverstats2">
                     	<table width="387">
                         	<tr>
-                            	<td width="185"  align="center"><h3>Name</h3></td>
-                                <td width="71" align="center"><h3>Race</h3></td>
-                                <td width="63" align="center"><h3>Class</h3></td>
-                                <td width="48" align="center"><h3>Level</h3></td>
+                            	<td width="185"  align="center"><h3>名称</h3></td>
+                                <td width="71" align="center"><h3>种族</h3></td>
+                                <td width="63" align="center"><h3>职业</h3></td>
+                                <td width="48" align="center"><h3>级别</h3></td>
                             </tr>
                        	</table>
                         <div class="sep"></div>
@@ -87,11 +88,12 @@ include('core/core.php');
                 <?php echo "<h2>3. " . $htc3t . "</h2>";?>
                 <?php echo "<p> " . $htc3 . "</p><br /><br />";?>
 				<h1 align="center">4. <?php echo $htc4t;?></h1>
+				<?php echo "<p> " . $htc4 . "</p><br /><br />";?>
                 </div>
 				
             </div>
             <div id="con-bot"></div>
     </div>
-        <a href="http://thepingue.com"><div id="footer"></div></a>
+       <!-- <a href="http://thepingue.com"><div id="footer"></div></a>--> 
     </body>
 </html>

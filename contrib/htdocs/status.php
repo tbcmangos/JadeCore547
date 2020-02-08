@@ -2,11 +2,12 @@
 /*********************************************
 *   PACW - Pingue Account Creation Website   *
 *                 Version: 1.0               *
-*            coded by Adam Viðarsson         *
+*            coded by Adam Vié¤«rsson         *
 *                                            *
 *             http://thepingue.com           *
 *        MODIFIED BY MYRAN2 OF MMOWNED       *
 *********************************************/	
+header("Content-Type:text/html;charset=utf-8");
 
 $dbcon = @mysql_connect($dbhost, $dbuser, $dbpass);
 if (!$dbcon)
