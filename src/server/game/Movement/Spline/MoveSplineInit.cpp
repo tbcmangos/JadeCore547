@@ -417,6 +417,7 @@ namespace Movement
 
     void MoveSplineInit::MoveTo(Vector3 const& dest, bool generatePath, bool forceDestination)
     {
+        //here is where to generate path
         if (generatePath)
         {
             PathGenerator path(&unit);

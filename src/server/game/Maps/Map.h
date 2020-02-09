@@ -550,6 +550,11 @@ class Map : public GridRefManager<NGridType>
         uint64 GetScenarioOwner() { return m_ScenarioOwner; }
         void SetScenarioOwner(uint64 owner) { m_ScenarioOwner = owner; }
 
+        void EnsureGridCreated(const GridCoord &);
+
+        // pussywizard: movemaps, mmaps
+        ACE_RW_Thread_Mutex& GetMMapLock() const { return *(const_cast<ACE_RW_Thread_Mutex*>(&MMapLock)); }
+
     private:
         void LoadMapAndVMap(int gx, int gy);
         void LoadVMap(int gx, int gy);
@@ -585,7 +590,7 @@ class Map : public GridRefManager<NGridType>
 
 
         bool IsGridLoaded(const GridCoord &) const;
-        void EnsureGridCreated(const GridCoord &);
+        
         bool EnsureGridLoaded(Cell const&);
         void EnsureGridLoadedForActiveObject(Cell const&, WorldObject* object);
 
@@ -615,6 +620,8 @@ class Map : public GridRefManager<NGridType>
         void SetUnloadReferenceLock(const GridCoord &p, bool on) { getNGrid(p.x_coord, p.y_coord)->setUnloadReferenceLock(on); }
 
         ACE_Thread_Mutex Lock;
+        ACE_RW_Thread_Mutex MMapLock;
+
 
         MapEntry const* i_mapEntry;
         uint8 i_spawnMode;

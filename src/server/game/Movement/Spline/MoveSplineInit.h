@@ -182,6 +182,7 @@ namespace Movement
     {
         Vector3 v(x, y, z);
         MoveTo(v, generatePath, forceDestination);
+        //MoveTo(v);
     }
 
     inline void MoveSplineInit::SetParabolic(float amplitude, float time_shift)
