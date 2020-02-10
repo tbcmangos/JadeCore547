@@ -1,49 +1,57 @@
 /*
- * Copyright (C) 2005-2011 MaNGOS <http://getmangos.com/>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ * Copyright (C) 2016+     AzerothCore <www.azerothcore.org>, released under GNU GPL v2 license: https://github.com/azerothcore/azerothcore-wotlk/blob/master/LICENSE-GPL2
+ * Copyright (C) 2008-2016 TrinityCore <http://www.trinitycore.org/>
+ * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
  */
 
 #ifndef TRINITYSERVER_MOVESPLINEINIT_H
 #define TRINITYSERVER_MOVESPLINEINIT_H
 
 #include "MoveSplineInitArgs.h"
+#include "PathGenerator.h"
+#include "Unit.h"
 
 class Unit;
 
 namespace Movement
 {
+    // xinef: moved declaration here so it can be accessed out of MoveSplineInit.cpp
+    UnitMoveType SelectSpeedType(uint32 moveFlags);
+
     enum AnimType
     {
         ToGround    = 0, // 460 = ToGround, index of AnimationData.dbc
         FlyToFly    = 1, // 461 = FlyToFly?
         ToFly       = 2, // 458 = ToFly
-        FlyToGround = 3, // 463 = FlyToGround
+        FlyToGround = 3  // 463 = FlyToGround
     };
 
     // Transforms coordinates from global to transport offsets
     class TransportPathTransform
     {
     public:
-        TransportPathTransform(Unit& owner, bool transformForTransport)
+        TransportPathTransform(Unit* owner, bool transformForTransport)
             : _owner(owner), _transformForTransport(transformForTransport) { }
         Vector3 operator()(Vector3 input);
 
     private:
-        Unit& _owner;
+        Unit* _owner;
         bool _transformForTransport;
+    };
+
+    // Xinef: transforms z coordinate with hover offset
+    class HoverMovementTransform
+    {
+    public:
+        HoverMovementTransform(float z_offset) : _offset(z_offset) { }
+        Vector3 operator()(Vector3 input)
+        {
+            input.z += _offset;
+            return input;
+        }
+
+    private:
+        float _offset;
     };
 
     /*  Initializes and launches spline movement
@@ -52,15 +60,15 @@ namespace Movement
     {
     public:
 
-        explicit MoveSplineInit(Unit& m);
+        explicit MoveSplineInit(Unit* m);
 
         /*  Final pass of initialization that launches spline movement.
          */
-        void Launch();
+        int32 Launch();
 
         /*  Final pass of initialization that stops movement.
          */
-        void Stop(bool force = false);
+        void Stop();
 
         /* Adds movement by parabolic trajectory
          * @param amplitude  - the maximum height of parabola, value could be negative and positive
@@ -79,7 +87,7 @@ namespace Movement
          */
         void SetFacing(float angle);
         void SetFacing(Vector3 const& point);
-        void SetFacing(const Unit * target);
+        void SetFacing(const Unit* target);
 
         /* Initializes movement by path
          * @param path - array of points, shouldn't be empty
@@ -87,10 +95,10 @@ namespace Movement
          */
         void MovebyPath(const PointsArray& path, int32 pointId = 0);
 
-        /* Initializes simple A to B mition, A is current unit's position, B is destination
+        /* Initializes simple A to B motion, A is current unit's position, B is destination
          */
-        void MoveTo(const Vector3& destination, bool generatePath = true, bool forceDestination = false);
-        void MoveTo(float x, float y, float z, bool generatePath = true, bool forceDestination = false);
+        void MoveTo(const Vector3& destination, bool generatePath = false, bool forceDestination = false);
+        void MoveTo(float x, float y, float z, bool generatePath = false, bool forceDestination = false);
 
         /* Sets Id of fisrt point of the path. When N-th path point will be done ILisener will notify that pointId + N done
          * Needed for waypoint movement where path splitten into parts
@@ -101,43 +109,27 @@ namespace Movement
          * if not enabled linear spline mode will be choosen. Disabled by default
          */
         void SetSmooth();
-
-        /* Waypoints in packets will be sent without compression
-         */
-        void SetUncompressed();
-
         /* Enables CatmullRom spline interpolation mode, enables flying animation. Disabled by default
          */
         void SetFly();
-
         /* Enables walk mode. Disabled by default
          */
-        void EnableTaxiFlight();
-        /* Flags used in taxi
-        */
-
         void SetWalk(bool enable);
-
         /* Makes movement cyclic. Disabled by default
          */
         void SetCyclic();
-
         /* Enables falling mode. Disabled by default
          */
         void SetFall();
-
         /* Enters transport. Disabled by default
          */
         void SetTransportEnter();
-
         /* Exits transport. Disabled by default
          */
         void SetTransportExit();
-
         /* Inverses unit model orientation. Disabled by default
          */
         void SetOrientationInversed();
-
         /* Fixes unit's model rotation. Disabled by default
          */
         void SetOrientationFixed(bool enable);
@@ -157,14 +149,14 @@ namespace Movement
     protected:
 
         MoveSplineInitArgs args;
-        Unit&  unit;
+        Unit*  unit;
     };
 
-    inline void MoveSplineInit::SetFly() { args.flags.flying = true; }
+    inline void MoveSplineInit::SetFly() { args.flags.EnableFlying(); }
     inline void MoveSplineInit::SetWalk(bool enable) { args.flags.walkmode = enable; }
     inline void MoveSplineInit::SetSmooth() { args.flags.EnableCatmullRom(); }
-    inline void MoveSplineInit::SetUncompressed() { args.flags.uncompressedPath = true; }
     inline void MoveSplineInit::SetCyclic() { args.flags.cyclic = true; }
+    inline void MoveSplineInit::SetFall() { args.flags.EnableFalling(); }
     inline void MoveSplineInit::SetVelocity(float vel) { args.velocity = vel; args.HasVelocity = true; }
     inline void MoveSplineInit::SetOrientationInversed() { args.flags.orientationInversed = true;}
     inline void MoveSplineInit::SetTransportEnter() { args.flags.EnableTransportEnter(); }
@@ -180,9 +172,7 @@ namespace Movement
 
     inline void MoveSplineInit::MoveTo(float x, float y, float z, bool generatePath, bool forceDestination)
     {
-        Vector3 v(x, y, z);
-        MoveTo(v, generatePath, forceDestination);
-        //MoveTo(v);
+        MoveTo(G3D::Vector3(x, y, z), generatePath, forceDestination);
     }
 
     inline void MoveSplineInit::SetParabolic(float amplitude, float time_shift)
