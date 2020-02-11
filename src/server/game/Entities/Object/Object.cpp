@@ -3565,7 +3565,7 @@ void WorldObject::GetNearPoint(WorldObject const* searcher, float &x, float &y, 
 {
     GetNearPoint2D(x, y, distance2d+searcher_size, absAngle);
     z = GetPositionZ();
-    if (!searcher || !searcher->ToCreature() || !searcher->GetMap() || !searcher->GetMap()->Instanceable())
+    if (!searcher || !searcher->ToCreature() || !searcher->GetMap()->Instanceable())
         UpdateAllowedPositionZ(x, y, z);
     /*
     // if detection disabled, return first point

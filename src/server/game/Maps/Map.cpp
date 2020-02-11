@@ -619,10 +619,6 @@ bool Map::AddToMap(Transport* obj)
 
 bool Map::IsGridLoaded(const GridCoord &p) const
 {
-    if (!getNGrid(p.x_coord, p.y_coord))
-        return false;
-    if (!isGridObjectDataLoaded(p.x_coord, p.y_coord))
-        return false;
     return (getNGrid(p.x_coord, p.y_coord) && isGridObjectDataLoaded(p.x_coord, p.y_coord));
 }
 
