@@ -7212,7 +7212,9 @@ void bot_minion_ai::InitFaction()
     //"SELECT faction FROM characters_npcbot WHERE entry = ?", CONNECTION_SYNCH
     stmt->setUInt32(0, me->GetEntry());
     PreparedQueryResult result = CharacterDatabase.Query(stmt);
-    ASSERT(result);
+    if (!result)
+        return;
+    //ASSERT(result);
 
     Field* field = result->Fetch();
     uint32 faction = field[0].GetUInt32();
