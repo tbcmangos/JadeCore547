@@ -97,7 +97,7 @@ namespace Movement
             args.velocity = unit.GetSpeed(SelectSpeedType(moveFlagsForSpeed));
         }
 
-        if (!args.Validate())
+        if (!args.Validate(&unit))
             return 0;
 
         unit.m_movementInfo.SetMovementFlags(moveFlags);
@@ -126,9 +126,20 @@ namespace Movement
         return move_spline.Duration();
     }
 
-    void MoveSplineInit::Stop()
+    void MoveSplineInit::Stop(bool force)
     {
+        if (&unit == nullptr)
+            return;
+
         MoveSpline& move_spline = *unit.movespline;
+
+        if (force)
+        {
+            args.flags = MoveSplineFlag::Done;
+            unit.m_movementInfo.RemoveMovementFlag(MOVEMENTFLAG_FORWARD);
+            move_spline.Initialize(args);
+            return;
+        }
 
         // No need to stop if we are not moving
         if (move_spline.Finalized())
@@ -215,14 +226,14 @@ namespace Movement
 
         args.path_Idx_offset = 0;
         args.path.resize(2);
-        TransportPathTransform transform(&unit, args.TransformForTransport);
+        TransportPathTransform transform(unit, args.TransformForTransport);
         args.path[1] = transform(dest);
     }
 
     Vector3 TransportPathTransform::operator()(Vector3 input)
     {
         if (_transformForTransport)
-            if (TransportBase* transport = _owner->GetDirectTransport())
+            if (TransportBase* transport = _owner.GetDirectTransport())
                 transport->CalculatePassengerOffset(input.x, input.y, input.z);
 
         return input;
