@@ -60,7 +60,7 @@ namespace Movement
     {
     public:
 
-        explicit MoveSplineInit(Unit* m);
+        explicit MoveSplineInit(Unit& m);
 
         /*  Final pass of initialization that launches spline movement.
          */
@@ -149,7 +149,7 @@ namespace Movement
     protected:
 
         MoveSplineInitArgs args;
-        Unit*  unit;
+        Unit&  unit;
     };
 
     inline void MoveSplineInit::SetFly() { args.flags.EnableFlying(); }
