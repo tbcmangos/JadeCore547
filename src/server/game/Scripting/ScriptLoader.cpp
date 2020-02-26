@@ -42,6 +42,7 @@ void AddSC_announce_login();
 void AddSC_Custom_Chat();
 void AddSC_item_custom_summon();
 void AddSC_Boss_Announcer();
+void AddSC_npc_areaguard();
 
 // spells
 void AddSC_deathknight_spell_scripts();
@@ -1987,6 +1988,7 @@ void AddCustomScripts()
     AddSC_Custom_Chat();
     AddSC_item_custom_summon();
     AddSC_Boss_Announcer();
+    AddSC_npc_areaguard();
 
     //NPCBots
     AddSC_death_knight_bot();
