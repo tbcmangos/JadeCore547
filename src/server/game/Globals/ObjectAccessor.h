@@ -117,6 +117,9 @@ class ObjectAccessor
         // these functions return objects if found in whole world
         // ACCESS LIKE THAT IS NOT THREAD SAFE
         static Player* FindPlayer(uint64);
+        //npcbot
+        static Player* FindConnectedPlayer(uint64 guid) { return HashMapHolder<Player>::Find(guid); }
+        //end npcbot
         static Player* FindPlayerInOrOutOfWorld(uint64);
         static Player* FindPlayerByName(const char* name);
         static Player* FindPlayerByNameInOrOutOfWorld(const char* name);

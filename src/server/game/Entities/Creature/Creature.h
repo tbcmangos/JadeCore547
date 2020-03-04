@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
  * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
  *
@@ -37,6 +37,11 @@ class Player;
 class WorldSession;
 class CreatureGroup;
 struct RaidEncounterData;
+// npcbot
+class bot_ai;
+class bot_minion_ai;
+class bot_pet_ai;
+
 
 enum CreatureFlagsExtra
 {
@@ -57,6 +62,7 @@ enum CreatureFlagsExtra
     CREATURE_FLAG_EXTRA_ALL_DIMINISH    = 0x00100000,       // Creature is subject to all diminishing returns as player are
     CREATURE_FLAG_EXTRA_DUMMY           = 0x00200000,       // Creature don't activate trap
     CREATURE_FLAG_EXTRA_DUNGEON_BOSS    = 0x10000000,       // creature is a dungeon boss (SET DYNAMICALLY, DO NOT ADD IN DB)
+    CREATURE_FLAG_EXTRA_NPCBOT                          = 0x04000000,       // custom flag for NPCBots (not confirmed safe)
     CREATURE_FLAG_EXTRA_VEHICLE_ATTACKABLE_PASSENGERS   = 0x20000000,       // creature is vehicle, UNIT_STATE_ONVEHICLE will not add to passengers
 };
 
@@ -65,7 +71,7 @@ enum CreatureFlagsExtra
     CREATURE_FLAG_EXTRA_NO_CRUSH | CREATURE_FLAG_EXTRA_NO_XP_AT_KILL | CREATURE_FLAG_EXTRA_TRIGGER | \
     CREATURE_FLAG_EXTRA_NO_TAUNT | CREATURE_FLAG_EXTRA_WORLDEVENT | CREATURE_FLAG_EXTRA_NO_CRIT | \
     CREATURE_FLAG_EXTRA_NO_SKILLGAIN | CREATURE_FLAG_EXTRA_TAUNT_DIMINISH | CREATURE_FLAG_EXTRA_ALL_DIMINISH | \
-    CREATURE_FLAG_EXTRA_GUARD | CREATURE_FLAG_EXTRA_VEHICLE_ATTACKABLE_PASSENGERS | CREATURE_FLAG_EXTRA_DUMMY)
+    CREATURE_FLAG_EXTRA_GUARD | CREATURE_FLAG_EXTRA_VEHICLE_ATTACKABLE_PASSENGERS | CREATURE_FLAG_EXTRA_DUMMY | CREATURE_FLAG_EXTRA_NPCBOT)
 
 // GCC have alternative #pragma pack(N) syntax and old gcc version not support pack(push, N), also any gcc version not support it at some platform
 #if defined(__GNUC__)
@@ -461,6 +467,10 @@ class Creature : public Unit, public GridObject<Creature>, public MapObject
         void AddToWorld();
         void RemoveFromWorld();
 
+		//dressnpc
+		void SetOutfit(uint32 outfit) { outfitId = outfit; };
+		uint32 GetOutfit() const { return outfitId; };
+
         void DisappearAndDie();
 
         bool Create(uint32 guidlow, Map* map, uint32 phaseMask, uint32 Entry, uint32 vehId, uint32 team, float x, float y, float z, float ang, const CreatureData* data = NULL);
@@ -503,7 +513,11 @@ class Creature : public Unit, public GridObject<Creature>, public MapObject
         bool isCanInteractWithBattleMaster(Player* player, bool msg) const;
         bool isCanTrainingAndResetTalentsOf(Player* player) const;
         bool canCreatureAttack(Unit const* victim, bool force = true) const;
-        bool IsImmunedToSpell(SpellInfo const* spellInfo, bool permanent = false);
+        bool IsImmunedToSpell(SpellInfo const* spellInfo, bool permanent = false)
+        //npcbot
+        const
+        //end npcbot
+        ;
                                                             // redefine Unit::IsImmunedToSpell
         bool IsImmunedToSpellEffect(SpellInfo const* spellInfo, uint32 index, bool permanent = false) const;
                                                             // redefine Unit::IsImmunedToSpellEffect
@@ -771,6 +785,76 @@ class Creature : public Unit, public GridObject<Creature>, public MapObject
             m_MovementInform.push_back(std::make_pair(p_Type, p_Id));
         }
 
+        //NPCBot commands
+        bool LoadBotCreatureFromDB(uint32 guid, Map* map, bool addToMap = true);
+        Player* GetBotOwner() const;
+        void SetBotOwner(Player* newowner);
+        Creature* GetCreatureOwner() const { return m_creature_owner; }
+        void SetCreatureOwner(Creature* newCreOwner) { m_creature_owner = newCreOwner; }
+        Creature* GetBotsPet() const { return m_bots_pet; }
+        void SetBotsPetDied();
+        void SetBotsPet(Creature* newpet) { /*ASSERT (!m_bots_pet);*/ m_bots_pet = newpet; }
+        bool IsNPCBot() const;
+        bool IsFreeBot() const;
+        void SetIAmABot(bool bot = true);
+        bool GetIAmABot() const;
+        bool GetIAmABotsPet() const;
+        uint8 GetBotClass() const;
+        uint8 GetBotRoles() const;
+        bot_ai* GetBotAI() const { return bot_AI; }
+        bot_minion_ai* GetBotMinionAI() const;
+        bot_pet_ai* GetBotPetAI() const;
+        void SetBotAI(bot_ai* ai) { bot_AI = ai; }
+        void SetBotCommandState(CommandStates st, bool force = false);
+        CommandStates GetBotCommandState() const;
+        void ApplyBotDamageMultiplierMelee(uint32& damage, CalcDamageInfo& damageinfo) const;
+        void ApplyBotDamageMultiplierMelee(int32& damage, SpellNonMeleeDamage& damageinfo, SpellInfo const* spellInfo, WeaponAttackType attackType, bool& crit) const;
+        void ApplyBotDamageMultiplierSpell(int32& damage, SpellNonMeleeDamage& damageinfo, SpellInfo const* spellInfo, WeaponAttackType attackType, bool& crit) const;
+        void ApplyBotDamageMultiplierHeal(Unit const* victim, float& heal, SpellInfo const* spellInfo, DamageEffectType damagetype, uint32 stack) const;
+        void ApplyBotCritMultiplierAll(Unit const* victim, float& crit_chance, SpellInfo const* spellInfo, SpellSchoolMask schoolMask, WeaponAttackType attackType) const;
+        void ApplyCreatureSpellCostMods(SpellInfo const* spellInfo, int32& cost) const;
+        void ApplyCreatureSpellCastTimeMods(SpellInfo const* spellInfo, int32& casttime) const;
+        void SetBotShouldUpdateStats();
+        void OnBotSummon(Creature* summon);
+        void OnBotDespawn(Creature* summon);
+        void SetCanUpdate(bool can) { m_canUpdate = can; }
+        void KillEvents(bool force);
+        void BotStopMovement();
+        void ResetBotAI(uint8 resetType = 0);
+
+        bool CanParry() const;
+        bool CanDodge() const;
+        bool CanBlock() const;
+        bool CanCrit() const;
+        bool CanMiss() const;
+
+        float GetCreatureParryChance() const;
+        float GetCreatureDodgeChance() const;
+        float GetCreatureBlockChance() const;
+        float GetCreatureCritChance() const;
+        float GetCreatureMissChance() const;
+        float GetCreatureEvasion() const;
+        float GetCreatureArmorPenetrationCoef() const;
+        float GetCreatureDamageTakenMod() const;
+        uint32 GetCreatureExpertise() const;
+        uint32 GetCreatureSpellPenetration() const;
+        uint32 GetCreatureSpellPower() const;
+
+        bool IsCreatureImmuneToSpell(SpellInfo const* spellInfo) const;
+        bool IsTempBot() const;
+
+        MeleeHitOutcome BotRollMeleeOutcomeAgainst(Unit const* victim, WeaponAttackType attType) const;
+
+        void CastCreatureItemCombatSpell(Unit* target, WeaponAttackType attType, uint32 procVictim, uint32 procEx, Spell const* spell = NULL);
+
+        void OnSpellGo(Spell const* spell);
+        void AddBotSpellCooldown(uint32 spellId, uint32 cooldown);
+
+        static bool IsBotCustomSpell(uint32 spellId);
+        //advanced
+        bool IsQuestBot() const;
+        //End NPCBot commands
+
     protected:
         bool CreateFromProto(uint32 guidlow, uint32 Entry, uint32 vehId, uint32 team, const CreatureData* data = NULL);
         bool InitEntry(uint32 entry, uint32 team=ALLIANCE, const CreatureData* data=NULL);
@@ -822,10 +906,12 @@ class Creature : public Unit, public GridObject<Creature>, public MapObject
         bool IsInvisibleDueToDespawn() const;
         bool CanAlwaysSee(WorldObject const* obj) const;
     private:
-
         //WaypointMovementGenerator vars
         uint32 m_waypointID;
         uint32 m_path_id;
+
+		//dressnpc
+		uint32 outfitId;
 
         //Formation var
         CreatureGroup* m_formation;
@@ -834,6 +920,13 @@ class Creature : public Unit, public GridObject<Creature>, public MapObject
         std::list<std::pair<uint32, uint32>> m_MovementInform;
 
         float m_FixedAttackDistance;
+        
+        //npcbot system
+        bool m_canUpdate;
+        Creature* m_creature_owner;
+        Creature* m_bots_pet;
+        bot_ai* bot_AI;
+        //end npcbot system
 };
 
 class AssistDelayEvent : public BasicEvent

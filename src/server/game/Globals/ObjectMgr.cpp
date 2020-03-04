@@ -8408,6 +8408,92 @@ SkillRangeType GetSkillRangeType(SkillLineEntry const* pSkill, bool racial)
     }
 }
 
+//dressnpc
+void ObjectMgr::LoadCreatureOutfits()
+{
+	uint32 oldMSTime = getMSTime();
+	_creatureOutfitStore.clear();   // for reload case (test only)
+
+	QueryResult result = WorldDatabase.Query("SELECT entry, race, class, gender, head, shoulders, body, chest, waist, legs, feet, wrists, hands, tabard, back FROM creature_template_outfits");
+	
+	if (!result)
+	{
+		sLog->outError(LOG_FILTER_SERVER_LOADING, ">> Loaded 0 creature outfits. DB table `creature_template_outfits` is empty!");
+		return;
+	}
+	
+	uint32 count = 0;
+	do
+	{
+		Field * fields = result->Fetch();
+
+		uint32 i = 0;
+		uint32 entry = fields[i++].GetUInt32();
+
+		CreatureOutfit co;
+		co.entry = entry;
+
+		co.race = fields[i++].GetUInt8();
+		if (co.race) {
+			const ChrRacesEntry* rEntry = sChrRacesStore.LookupEntry(co.race);
+			if (!rEntry)
+			{
+				sLog->outError(LOG_FILTER_SERVER_LOADING, ">> Outfit entry %u in `creature_template_outfits` has incorrect race (%u).", entry, uint32(co.race));
+				continue;
+			}
+		}
+
+		co.Class = fields[i++].GetUInt8();
+		if (co.Class) {
+			const ChrClassesEntry* cEntry = sChrClassesStore.LookupEntry(co.Class);
+			if (!cEntry)
+			{
+				sLog->outError(LOG_FILTER_SERVER_LOADING, ">> Outfit entry %u in `creature_template_outfits` has incorrect class (%u).", entry, uint32(co.Class));
+				continue;
+			}
+		}
+
+		co.gender = fields[i++].GetUInt8();
+		if (co.gender) {
+			switch (co.gender)
+			{
+			case GENDER_FEMALE: break;
+			case GENDER_MALE: break;
+			default:
+				sLog->outError(LOG_FILTER_SERVER_LOADING, ">> Outfit entry %u in `creature_template_outfits` has invalid gender %u", entry, uint32(co.gender));
+				continue;
+			}
+		}
+
+		for (uint32 j = 0; j < MAX_CREATURE_OUTFIT_DISPLAYS; ++j)
+		{
+			co.outfit[j] = 0;
+
+			uint32 itemEntry = fields[i + j].GetUInt32();
+			if (itemEntry) {
+				ItemTemplate const* proto = sObjectMgr->GetItemTemplate(uint32(itemEntry));
+				co.outfit[j] = proto->DisplayInfoID;
+			}
+		}
+
+		_creatureOutfitStore[entry] = co;
+
+		++count;
+	} while (result->NextRow());
+
+	sLog->outInfo(LOG_FILTER_SERVER_LOADING, ">> Loaded %u creature outfits in %u ms", count, GetMSTimeDiffToNow(oldMSTime));
+}
+
+uint32 ObjectMgr::GetCreatureDisplay(uint32 entry) const
+{
+	const CreatureOutfitContainer& outfits = GetCreatureOutfitMap();
+	CreatureOutfitContainer::const_iterator it = outfits.find(entry);
+	if (it != outfits.end())
+		return it->second.entry;
+	
+	return 0;
+}
+
 void ObjectMgr::LoadGameTele()
 {
     uint32 oldMSTime = getMSTime();

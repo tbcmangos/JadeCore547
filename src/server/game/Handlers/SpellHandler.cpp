@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
  * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
  *
@@ -1559,6 +1559,103 @@ void WorldSession::HandleMirrorImageDataRequest(WorldPacket& recvData)
     Unit* unit = ObjectAccessor::GetUnit(*_player, guid);
     if (!unit)
         return;
+
+	if (Creature* creature = unit->ToCreature())
+	{
+		uint32 outfitId = creature->GetOutfit();
+		if (outfitId)
+		{
+			const CreatureOutfitContainer& outfits = sObjectMgr->GetCreatureOutfitMap();
+			CreatureOutfitContainer::const_iterator it = outfits.find(creature->GetEntry());
+			if (it != outfits.end())
+			{
+				CreatureOutfit const& outfit = it->second;
+				/*
+				sLog->outInfo(LOG_FILTER_WORLDSERVER, "==============================================");
+				sLog->outInfo(LOG_FILTER_WORLDSERVER, "outfit.entry %u", uint32(creature->GetEntry()));
+				sLog->outInfo(LOG_FILTER_WORLDSERVER, "==============================================");
+				*/
+
+				WorldPacket data(SMSG_MIRROR_IMAGE_DATA, 68);
+
+				ObjectGuid guildGuid = 0;
+
+				data.WriteBit(guid[3]);
+				data.WriteBit(guid[5]);
+				data.WriteBit(guid[7]);
+				data.WriteBit(guildGuid[1]);
+				data.WriteBits(11, 22);         // item slots count
+				data.WriteBit(guildGuid[0]);
+				data.WriteBit(guid[0]);
+				data.WriteBit(guid[6]);
+				data.WriteBit(guid[4]);
+				data.WriteBit(guildGuid[4]);
+				data.WriteBit(guildGuid[7]);
+				data.WriteBit(guildGuid[5]);
+				data.WriteBit(guildGuid[6]);
+				data.WriteBit(guildGuid[2]);
+				data.WriteBit(guid[2]);
+				data.WriteBit(guid[1]);
+				data.WriteBit(guildGuid[3]);
+
+				data.WriteByteSeq(guid[2]);
+				data << uint8(0); // unk 1
+				data.WriteByteSeq(guid[1]);
+				data.WriteByteSeq(guid[7]);
+				data.WriteByteSeq(guildGuid[5]);
+				if (outfit.race) {	// outfit.race
+					data << uint8(outfit.race);
+				}
+				else {
+					data << uint8(creature->getRace());
+				}
+				data.WriteByteSeq(guildGuid[6]);
+				data << uint8(0); // unk 3
+				data.WriteByteSeq(guildGuid[2]);
+				data.WriteByteSeq(guildGuid[0]);
+
+				// item displays
+				for (auto const& display : it->second.outfit) {
+					// sLog->outInfo(LOG_FILTER_WORLDSERVER, "item.displayId %u", uint32(display));
+					if (display) {
+						data << uint32(display);
+					}
+					else {
+						data << uint32(0);
+					}
+				}
+
+				data.WriteByteSeq(guid[4]);
+				data.WriteByteSeq(guid[5]);
+				data.WriteByteSeq(guid[6]);
+				data.WriteByteSeq(guid[0]);
+				data.WriteByteSeq(guid[3]);
+				data << uint32(creature->GetDisplayId());
+				data << uint8(0); // unk 4
+				if (outfit.Class) {	// outfit.Class
+					data << uint8(outfit.Class);
+				}
+				else {
+					data << uint8(creature->getClass());
+				}
+				data << uint8(0); // unk 6
+				data.WriteByteSeq(guildGuid[1]);
+				if (outfit.gender) {	// outfit.gender
+					data << uint8(outfit.gender);
+				}
+				else {
+					data << uint8(creature->getGender());
+				}
+				data.WriteByteSeq(guildGuid[4]);
+				data << uint8(0); // unk 8
+				data.WriteByteSeq(guildGuid[3]);
+				data.WriteByteSeq(guildGuid[7]);
+
+				SendPacket(&data);
+				return;
+			}
+		}
+	}
 
     if (!unit->HasAuraType(SPELL_AURA_CLONE_CASTER))
         return;

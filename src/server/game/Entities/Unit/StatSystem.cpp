@@ -260,6 +260,10 @@ bool Player::UpdateAllStats()
     for (int i = SPELL_SCHOOL_NORMAL; i < MAX_SPELL_SCHOOL; ++i)
         UpdateResistances(i);
 
+	//npcbot - Player::UpdateAllStats() is called on level change - update bots
+    SetBotsShouldUpdateStats();
+    //end npcbot
+
     return true;
 }
 

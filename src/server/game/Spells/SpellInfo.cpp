@@ -2991,6 +2991,10 @@ void SpellInfo::CalcPowerCost(Unit const* caster, SpellSchoolMask schoolMask, in
 
         if (Attributes & SPELL_ATTR0_LEVEL_DAMAGE_CALCULATION)
             powerCost = int32(powerCost / (1.117f * SpellLevel / caster->getLevel() - 0.1327f));
+    //npcbot - apply bot spell cost mods
+    if (powerCost > 0 && caster->GetTypeId() == TYPEID_UNIT && caster->ToCreature()->GetBotAI())
+        caster->ToCreature()->ApplyCreatureSpellCostMods(this, powerCost);
+    //end npcbot
 
         // PCT mod from user auras by spell school and power type
         Unit::AuraEffectList const& aurasPct = caster->GetAuraEffectsByType(SPELL_AURA_MOD_POWER_COST_SCHOOL_PCT);
